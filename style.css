@@ -1,14 +1,14 @@
 :root {
     /* MAIN COLORS */
     --main-color-1: #4B81A2;
-    --main-color-2: #6BC8EF;
+    --main-color-2: #4ebbea;
     --main-color-3: #FA8072;
     --main-color-4: #7E9F41;
     --main-color-5: #E5E0A4;
 
     /* WATER */
     --water-color-1: #BEE4F4;
-    --water-color-2: #6BC8EF;
+    --water-color-2: #86c6e9;
     --water-color-3: #5585D8;
     --water-color-4: #2B1060;
     --water-color-5: #0A0A33;
@@ -51,25 +51,65 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-image: 
-        url('assets/landing_cropped.png');
-        background-size: auto;
-        background-repeat: no-repeat;
-        background-position: top;
-        height: 1500px;
-        width: 100%;
     margin: 0;
     padding: 0;
+    background-image: linear-gradient(to bottom, 
+                                      var(--water-color-1), 
+                                      var(--water-color-2), 
+                                      var(--water-color-3), 
+                                      var(--water-color-4), 
+                                      var(--water-color-5));                          
+    height: 550vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    overscroll-behavior: none;
 }
 
-header {
+h1 {
+    font-family: 'Lost Fish';
+    color: white;
+    font-size: 5em;
+    padding: 0%;
+    @media screen and (max-width: 500px) {
+        font-size: 2em;
+    }
+}
+h2 {
+    font-family: 'Lost Fish';
+    font-size: 2em; 
+    margin-top: -40px;
+    color: white;
+    padding: 0%;
+    @media screen and (max-width: 500px) {
+        font-size: 1em;
+        margin-top: -10px;
+    }
+}
+
+.container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 20px;
-    padding-top: 20px;
+    flex-direction: column;
+    gap: 50px;
 }
 
+.first-section {
+    background-image: url("assets/landing_cropped.png");
+    position: relative;
+    z-index: 10;
+    height: 109vh;
+    @media screen and (max-width: 500px) {
+        background-position: 48% 60%;
+    }
+}
+.logo-and-nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 2%;
+    margin-top: 2%;
+}
 
 nav {
     display: flex;          
@@ -92,7 +132,12 @@ nav ul {
     list-style-type: none;
     padding: 0;        
     display: flex;        
-    gap: 35px;              
+    gap: 25px;             
+    
+    @media screen and (max-width: 500px) {
+        font-size: 1.3em;
+        gap: 20px;
+    }
 }
 
 nav li, nav a {
@@ -100,16 +145,134 @@ nav li, nav a {
     color: inherit;        
 }
 
-main {
-    padding-top: 70px;
+.main-title-and-apply {
+    padding-top: 60px;
     text-align: center;
 }
 
-h1 {
-    font-family: 'Lost Fish';
-    color: white;
-    font-size: 5em;
-    padding: 0%;
 
+.second-section {
+    background-image: url("assets/second_section.png");
+    position: relative;
+    z-index: 10;
+    height: 110vh;
+}
+.second-section img {
+    margin-right: auto;
+}
+
+.bubbles {
+    top: 10%;
+    position: relative;
+    z-index: 10;
+
+    @media screen and (max-width: 500px) {
+        height: 20%;
+    }
+}
+.table {
+    top: 9%;
+    left: 10%;
+    right: 10%;
+    position: absolute;
+    width: 80%;
+    height: 65%;
+    z-index: 11;
+
+    @media screen and (max-width: 500px) {
+        width: 80%;
+        height: 30%;
+        left: 10%;
+        right: 10%; 
+    }
+}
+.turtle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    animation: moveTurtle 10s infinite;
+    z-index: 12;
+
+    @media screen and (max-width: 500px) {
+        width: 50%;
+        height: 30%;
+        bottom: 45%; 
+
+    }
+}
+.jellyfish-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 27%;
+    overflow: hidden;
+
+    @media screen and (max-width: 500px) {
+        bottom: 32%;
+        left: 0;
+    }
+}
+.jellyfish {
+    position: absolute;
+    bottom: 0; 
+    animation: moveJellyfish 10s infinite;
+    @media screen and (max-width: 500px) {
+        width: 30%;
+        height: 60%;        
+        bottom: 52%; 
+        left: 0;
+    }
+}
+.baby-jellyfish {
+    position: absolute;
+    right: 50%;
+    animation: moveBabyJellyfish 10s infinite;
+    @media screen and (max-width: 500px) {
+        width: 30%;
+        height: 60%;        
+        bottom: 52%;
+        left: 45%;  
+    }
+}
+@keyframes moveJellyfish {
+    0%, 100% {
+        transform: translateX(0%) scaleX(1);
+    }
+    49% {
+        transform: translateX(40%) scaleX(1); 
+    }
+    50% {
+        transform: translateX(40%) scaleX(-1);
+    } 
+    99% {
+        transform: translateX(0%) scaleX(-1);
+    }
+    
+}
+@keyframes moveBabyJellyfish {
+    0%, 100% {
+        transform: translateX(0%) scaleX(1);
+    }
+    49% {
+        transform: translateX(-40%) scaleX(1); 
+    }
+    50% {
+        transform: translateX(-40%) scaleX(-1);
+    }
+    99% {
+        transform: translateX(0%) scaleX(-1);
+    }
+}
+.bottom-right-bubbles {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    @media screen and (max-width: 500px) {
+        width: 30%;
+        height: 10%;
+        bottom: 45%;        
+    }
 }
 

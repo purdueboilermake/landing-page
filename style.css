@@ -71,8 +71,11 @@ h1 {
     color: white;
     font-size: 5em;
     padding: 0%;
+    @media screen and (max-width: 768px) {
+        font-size: 3.5em;
+    }
     @media screen and (max-width: 500px) {
-        font-size: 2em;
+        font-size: 2.3em;
     }
 }
 h2 {
@@ -93,22 +96,29 @@ h2 {
     gap: 50px;
 }
 
+/* Scaling is kinda off but always contains whole iamge*/
 .first-section {
     background-image: url("assets/landing_cropped.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     position: relative;
     z-index: 10;
-    height: 109vh;
-    @media screen and (max-width: 500px) {
-        background-position: 48% 60%;
+    height: 100vh;
+    width: 100%;
+    @media screen and (max-width: 1024px) {
+        background-size: cover;
     }
 }
+
 .logo-and-nav-bar {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 2%;
-    margin-top: 2%;
+    align-items: center;
+    /* margin-left: 2%;
+    margin-top: 2%; */
+    margin: 2% 2% 0% 2%;
 }
 
 nav {
@@ -118,12 +128,28 @@ nav {
 }
 
 
-.logo-in-nav {
-    width: 100px;   
-    height: auto;  
-    margin-right: 20px; 
+.logo-in-nav { 
+    height: 100px;  
+    margin-right: 20px;
+    
+    @media screen and (max-width: 640px) {
+        height: 62px;
+    }
 }
 
+.event-schedule {
+    @media screen and (max-width: 500px) {
+        display: none;
+    }
+}
+
+.mobile-schedule {
+    display: none;
+
+    @media screen and (max-width: 500px) {
+        display: block;
+    }
+}
 
 nav ul {
     font-family: Sniglet;
@@ -134,7 +160,7 @@ nav ul {
     display: flex;        
     gap: 25px;             
     
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 640px) {
         font-size: 1.3em;
         gap: 20px;
     }

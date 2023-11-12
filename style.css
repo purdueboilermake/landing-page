@@ -37,6 +37,10 @@ html {
     scroll-behavior: smooth;
 }
 
+* {
+    border: 2px solid red;
+}
+
 @font-face {
     font-family:"Lost Fish";
     src:url("fonts/Lost_Fish.eot") format("eot"),
@@ -63,7 +67,7 @@ body {
                                       var(--water-color-3), 
                                       var(--water-color-4), 
                                       var(--water-color-5));                          
-    height: 550vh;
+    /* height: 550vh; */
     width: 100%;
     position: relative;
     z-index: 1;
@@ -195,13 +199,13 @@ nav li, nav a {
 .bubbles {
     top: 10%;
     position: relative;
-    z-index: 10;
+    /* z-index: 10; */
 
     @media screen and (max-width: 500px) {
         height: 20%;
     }
 }
-.table {
+/* .table {
     top: 9%;
     left: 10%;
     right: 10%;
@@ -216,7 +220,111 @@ nav li, nav a {
         left: 10%;
         right: 10%; 
     }
+} */
+
+.table {
+    top: 9%;
+    left: 7.5%;
+    right: 7.5%;
+    position: absolute;
+    width: 85%;
+    height: 65%;
+    margin: auto;
+    background-color: #B1DAF1;
+    border-radius: 8px;
+    display: grid;
+    grid-template-rows: 17% 83%;
+    grid-template-columns: 50% 50%;
 }
+
+.top-left {
+    border-right: 2px solid #759CBE;
+    border-bottom: 2px solid #759CBE;
+    font-family: 'Sniglet';
+    font-weight: normal;
+    color: #3F2C4E;
+    font-size: 3em;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.top-right {
+    border-bottom: 2px solid #759CBE;
+    font-family: 'Sniglet';
+    font-weight: normal;
+    color: #3F2C4E;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.bottom-left {
+    border-right: 2px solid #759CBE;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-right {
+
+}
+
+
+.event-rectangle {
+    background-color: black;
+    flex: 1;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.event-rectangle:nth-child(1) {
+    background-color: #E1F6FF;
+}
+
+.event-rectangle:nth-child(2) {
+    background-color: #BEE4F4;
+}
+
+.event-rectangle:nth-child(3) {
+    background-color: #82AEE3;
+}
+
+.event-rectangle:nth-child(4) {
+    background-color: #437CC2;
+}
+
+.event-rectangle:nth-child(5) {
+    background-color: #345998;
+}
+
+.event-time {
+    justify-self: start;
+    font-family: 'Sniglet';
+    font-weight: normal;
+    color: #3F2C4E;
+    font-size: 2.5em;
+}
+  
+.event-title-and-location {
+    justify-self: end;
+    font-family: 'Sniglet';
+    font-weight: normal;
+    color: #3F2C4E;
+    font-size: 1.5em;
+}
+  
+.arrow {
+    justify-self: end;
+}
+
+
 .turtle {
     position: absolute;
     bottom: 0;
@@ -309,4 +417,139 @@ nav li, nav a {
 .apply-button {
     text-decoration: none;
     color: white;
+}
+
+#faq {
+
+}
+
+#faq h3 {
+    font-family: 'Sniglet';
+    font-weight: normal;
+    color: #3F2C4E;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-size: 2.5em;
+}
+
+.faq-header {
+    margin: auto;
+    width: 80%;
+}
+
+.faq-header h1 {
+    font-family: 'Sniglet';
+    font-weight: 400;
+    color: #3F2C4E;
+    margin: 0;
+    font-size: 7.5em;
+    line-height: normal;
+}
+
+.faq-header hr {
+    border: 3px solid white;
+    width: 75%;
+    margin-left: 0;
+}
+
+.faq-general, .faq-registration {
+    width: 92%;
+    margin-left: 8%;
+}
+  
+.carousel {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.5s ease-in-out;
+}
+  
+.carousel-container {
+    overflow-x: scroll;
+    width: 100%;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.carousel-item {
+    font-family: 'Sniglet';
+    font-size: 1.5em;
+    flex: 0 0 auto;
+    width: 270px;
+    height: 70px;
+    margin-right: 3%;
+    border-radius: 29px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.faq-general .carousel-item:nth-child(even),
+.faq-registration .carousel-item:nth-child(odd) {
+    background-color: #D1DDF1;
+}
+
+.faq-general .carousel-item:nth-child(odd),
+.faq-registration .carousel-item:nth-child(even) {
+    background-color: #B4C8EA;
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 29px;
+}
+
+.faq-info {
+    display: flex;
+    flex-direction: column;
+    background-color: #B4C8EA;
+    font-family: 'Sniglet';
+    font-size: 1.5em;
+    flex: 0 0 auto;
+    width: 270px;
+    height: 370px;
+    margin-left: 8%;
+    border-radius: 29px;
+    padding: 15px;
+    margin-top: 5%;
+}
+
+.info-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    font-size: 1.25em;
+}
+
+.info-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 0.75em;
+}
+
+#end-screen {
+    background-image: url("assets/end.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    width: 100%;
+    margin-top: 600px;
+    @media screen and (max-width: 1024px) {
+        background-size: cover;
+    }
 }

@@ -10,26 +10,30 @@
 
 <body>
     <div class="container">
-        <div class="first-section">
+        <div id="home">
             <div class="logo-and-nav-bar">
             <img src="./assets/main_logo.png" alt="Logo" class="logo-in-nav">
             <nav>
                 <ul>
-                    <li><a href="#">HOME</a></li>
+                    <li><a href="#home">HOME</a></li>
                     <li>
-                        <a href="#" class="event-schedule">EVENT SCHEDULE</a>
+                        <a href="#schedule" class="event-schedule">EVENT SCHEDULE</a>
                         <a href="#" class="mobile-schedule">SCHEDULE</a>
                     </li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
             </div>
             <div class="main-title-and-apply">
                 <h1>BOILERMAKE XI</h1>
-                <h2>APPLY NOW</h2>
+                <h2>
+                    <a href="https://boilermake-apply.web.app/" class="apply-button">
+                        APPLY NOW
+                    </a>
+                </h2>
             </div>
         </div>
-        <div class="second-section">
+        <div id="schedule">
             <img class="bubbles" src="./assets/bubbles.png" alt="bubbles">
             <img class="table" src="./assets/table.png" alt="table">
             <img class="turtle" src="./assets/turtle.png" alt="turtle">
@@ -38,6 +42,10 @@
                 <img class="baby-jellyfish" src="assets/jellyfish_small.png" alt="Baby Jellyfish">
             </div>
             <img class = "bottom-right-bubbles" src="./assets/bottom_right_bubbles.png" alt="bubbles">
+        </div>
+
+        <div id="faq">
+
         </div>
     </div>
     <script src="script.js"></script>

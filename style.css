@@ -33,6 +33,10 @@
     --accent-color-15: #0A0A33;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 @font-face {
     font-family:"Lost Fish";
     src:url("fonts/Lost_Fish.eot") format("eot"),
@@ -78,6 +82,7 @@ h1 {
         font-size: 2.3em;
     }
 }
+
 h2 {
     font-family: 'Lost Fish';
     font-size: 2em; 
@@ -97,7 +102,7 @@ h2 {
 }
 
 /* Scaling is kinda off but always contains whole iamge*/
-.first-section {
+#home {
     background-image: url("assets/landing_cropped.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -177,13 +182,13 @@ nav li, nav a {
 }
 
 
-.second-section {
+#schedule {
     background-image: url("assets/second_section.png");
     position: relative;
     z-index: 10;
     height: 110vh;
 }
-.second-section img {
+#schedule img {
     margin-right: auto;
 }
 
@@ -301,4 +306,7 @@ nav li, nav a {
         bottom: 45%;        
     }
 }
-
+.apply-button {
+    text-decoration: none;
+    color: white;
+}

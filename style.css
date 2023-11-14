@@ -52,8 +52,9 @@ html {
 }
 @font-face {
     font-family: "Sniglet";
-    src: url("fonts/Sniglet-Regular.ttf") format("truetype");
-    font-weight: normal;
+    src: url("fonts/Sniglet-Regular.ttf") format("truetype"),
+         url("fonts/Sniglet-ExtraBold.ttf") format("truetype");
+    font-weight: normal, bold;
     font-style: normal;
 }
 
@@ -99,18 +100,16 @@ h2 {
     }
 }
 
-.apply-button {
-    padding: 16px 64px;
-    border-radius: 8px;
-    background: rgb(43,16,96);
-    background: linear-gradient(90deg, rgba(43,16,96,1) 0%, rgba(85,133,216,1) 46%, rgba(43,16,96,1) 100%);
+.event-info-title {
+    font-family: 'Sniglet';
 }
 
-.apply-button:hover {
-    filter: drop-shadow(8px 8px);
-    transform: translate(-8px, -8px);
-    animation: ease-in;
-    animation-duration: 500ms;
+.event-info-title span {
+    font-weight: bold;
+}
+
+.event-info-title a {
+    text-decoration: none;
 }
 
 .container {

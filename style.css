@@ -474,7 +474,7 @@ nav li, nav a {
     flex-direction: row;
     transition: transform 0.5s ease-in-out;
 }
-  
+
 .carousel-container {
     overflow-x: scroll;
     width: 100%;
@@ -556,6 +556,15 @@ nav li, nav a {
     padding: 15px;
     margin-top: 5%;
 } */
+
+#sponsors h3 {
+    font-family: 'Sniglet';
+    font-weight: normal;
+    color: #24192D;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-size: 2.5em;
+}
 
 #end-screen {
     /* background-image: url("assets/end.png"); */

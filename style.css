@@ -481,12 +481,37 @@ nav li, nav a {
     height: 70px;
     margin-right: 3%;
     border-radius: 29px;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden;
     padding: 15px;
+    cursor: pointer;
+    transition: height 0.3s ease;
+}
+
+.carousel-item.expanded {
+    height: 370px;
+}
+
+.carousel-item.expanded .faq-answer {
+    height: 100%;
+}
+
+.faq-question {
+    display: inline-flex;
+}
+
+.faq-answer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 10px; */
+    text-align: left;
+    overflow: hidden;
+    font-size: 0.75em;
+    height: 0;
 }
 
 .faq-general .carousel-item:nth-child(even),
@@ -508,7 +533,7 @@ nav li, nav a {
     border-radius: 29px;
 }
 
-.faq-info {
+/* .faq-info {
     display: flex;
     flex-direction: column;
     background-color: #B4C8EA;
@@ -521,29 +546,10 @@ nav li, nav a {
     border-radius: 29px;
     padding: 15px;
     margin-top: 5%;
-}
-
-.info-title {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    font-size: 1.25em;
-}
-
-.info-content {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    text-align: left;
-    overflow: hidden;
-    font-size: 0.75em;
-}
+} */
 
 #end-screen {
-    background-image: url("assets/end.png");
+    /* background-image: url("assets/end.png"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

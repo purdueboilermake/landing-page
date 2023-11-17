@@ -25,115 +25,115 @@ const schedule = {
             title: 'Opening Ceremony',
             location: 'Auditorium',
             presenter: 'Jane Doe',
-            companyLink: 'https://company1.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event1-2',
             time: '11:00 am',
-            title: 'Innovative Tech in 2024',
-            location: 'Conference Room A',
+            title: 'Innovative Tech',
+            location: 'Room A',
             presenter: 'John Smith',
-            companyLink: 'https://techconference.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event1-3',
             time: '1:00 pm',
-            title: 'Networking Lunch',
+            title: 'Networking',
             location: 'Main Hall',
             presenter: 'Emily Johnson',
-            companyLink: 'https://networkingevent.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event1-4',
             time: '3:00 pm',
-            title: 'Future of Artificial Intelligence',
-            location: 'Lecture Hall 1',
+            title: 'Artificial Intelligence',
+            location: 'Hall 1',
             presenter: 'Michael Brown',
-            companyLink: 'https://aifuture.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event1-5',
             time: '5:00 pm',
-            title: 'Evening Keynote: The Digital World',
+            title: 'Evening Keynote',
             location: 'Auditorium',
             presenter: 'Sarah Lee',
-            companyLink: 'https://keynotespeakers.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         }
     ],
     'Saturday, January 20': [
         {
             id: 'event2-1',
             time: '9:30 am',
-            title: 'Mobile Technology Advancements',
+            title: 'Mobile Technology',
             location: 'Room B',
             presenter: 'Alice Martin',
-            companyLink: 'https://mobiletech.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event2-2',
             time: '11:30 am',
-            title: 'Virtual Reality Workshop',
-            location: 'Workshop Area',
+            title: 'Virtual Reality',
+            location: 'Area',
             presenter: 'Carlos Gomez',
-            companyLink: 'https://vrworld.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event2-3',
             time: '2:00 pm',
-            title: 'Green Tech Solutions',
-            location: 'Green Hall',
+            title: 'Tech Solutions',
+            location: 'Hall',
             presenter: 'Irene Thompson',
-            companyLink: 'https://greentech.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event2-4',
             time: '4:00 pm',
-            title: 'Cybersecurity in the Modern Age',
+            title: 'Cybersecurity',
             location: 'Auditorium',
             presenter: 'Gregory Hughes',
-            companyLink: 'https://cybersecure.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event2-5',
             time: '6:00 pm',
-            title: 'Closing Remarks: Day 2',
+            title: 'Closing Remarks',
             location: 'Main Hall',
             presenter: 'Diana Prince',
-            companyLink: 'https://day2close.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         }
     ],
     'Sunday, January 21': [
         {
             id: 'event3-1',
             time: '8:00 am',
-            title: 'Early Bird Yoga',
-            location: 'Fitness Center',
+            title: 'Early Bird',
+            location: 'Center',
             presenter: 'Liam Chen',
-            companyLink: 'https://yogafitness.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event3-2',
             time: '10:00 am',
-            title: 'Blockchain and Its Applications',
-            location: 'Conference Room C',
+            title: 'Blockchain',
+            location: 'Room C',
             presenter: 'Sophia Patel',
-            companyLink: 'https://blockchainapps.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event3-3',
             time: '12:00 pm',
             title: 'Luncheon: Meet the Experts',
-            location: 'Dining Hall',
+            location: 'Dining',
             presenter: 'Oliver Kim',
-            companyLink: 'https://meetexperts.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event3-4',
             time: '3:00 pm',
             title: 'The Future of E-commerce',
-            location: 'E-commerce Hub',
+            location: 'Hub',
             presenter: 'Zoe Wong',
-            companyLink: 'https://ecommercefuture.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event3-5',
@@ -141,49 +141,49 @@ const schedule = {
             title: 'Interactive Q&A Session',
             location: 'Auditorium',
             presenter: 'Maxwell Johnson',
-            companyLink: 'https://interactiveqa.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         }
     ],
     'Monday, January 22': [
         {
             id: 'event4-1',
             time: '9:00 am',
-            title: 'Health Tech Innovations',
-            location: 'Health Wing',
+            title: 'Tech Innovations',
+            location: 'Wing',
             presenter: 'Nora Edwards',
-            companyLink: 'https://healthtech.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event4-2',
             time: '11:00 am',
-            title: 'Sustainable Living and Technology',
-            location: 'Eco Center',
+            title: 'Sustainable Technology',
+            location: 'Eco',
             presenter: 'Luke Rodriguez',
-            companyLink: 'https://sustainabletech.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event4-3',
             time: '1:00 pm',
-            title: 'Tech Startups Pitch Session',
-            location: 'Startup Arena',
+            title: 'Pitch Session',
+            location: 'Startup',
             presenter: 'Emma Clark',
-            companyLink: 'https://techpitch.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event4-4',
             time: '3:30 pm',
-            title: 'Digital Marketing Trends',
-            location: 'Marketing Suite',
+            title: 'Marketing Trends',
+            location: 'Suite',
             presenter: 'Owen Wilson',
-            companyLink: 'https://digitalmarketing.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event4-5',
             time: '5:30 pm',
-            title: 'Grand Finale: The Tech Future',
-            location: 'Grand Hall',
+            title: 'The Tech Future',
+            location: 'Grand',
             presenter: 'Isabella Garcia',
-            companyLink: 'https://techfuturefinale.com'
+            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         }
     ]
 };
@@ -232,11 +232,9 @@ function displayEventDetails(eventId) {
 
     if (event) {
         let htmlContent = `
-            <h3>${event.title}</h3>
-            <p><strong>Time:</strong> ${event.time}</p>
-            <p><strong>Location:</strong> ${event.location}</p>
-            <p><strong>Presenter:</strong> ${event.presenter}</p>
-            <p><strong>Company Link:</strong> <a href="${event.companyLink}" target="_blank">Visit</a></p>
+            <span class="event-detail-headers">${event.location}: ${event.title}</span>
+            <span><span class="slackey-font">Presenter: </span>${event.presenter}</span>
+            <span><span class="slackey-font">Link: </span> ${event.companyLink}</span>
         `;
 
         document.querySelector('.bottom-right').innerHTML = htmlContent;

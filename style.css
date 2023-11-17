@@ -42,20 +42,27 @@ html {
 } */
 
 @font-face {
-    font-family:"Lost Fish";
-    src:url("fonts/Lost_Fish.eot") format("eot"),
+    font-family: "Lost Fish";
+    src: url("fonts/Lost_Fish.eot") format("eot"),
     url("fonts/Lost_Fish.woff") format("woff"),
     url("fonts/Lost_Fish.ttf") format("truetype"),
     url("fonts/Lost_Fish.svg") format("svg");
-    font-weight:normal;
-    font-style:normal;
+    font-weight: normal;
+    font-style: normal;
 }
+
 @font-face {
     font-family: "Sniglet";
     src: url("fonts/Sniglet-Regular.ttf") format("truetype"),
          url("fonts/Sniglet-ExtraBold.ttf") format("truetype");
     font-weight: normal, bold;
     font-style: normal;
+}
+
+@font-face {
+    font-family: "Slackey";
+    src: url("fonts/Slackey-Regular.ttf") format("truetype");
+
 }
 
 body {
@@ -267,9 +274,23 @@ nav li, nav a {
 }
 
 .bottom-right {
-    
+    display: flex;
+    flex-direction: column;
+    font-family: 'Sniglet';
+    padding: 20px;
+    gap: 20px;
+    font-size: 1.5em;
+    color: #3F2C4E;
 }
 
+.event-detail-headers {
+    font-family: "Slackey";
+    font-size: 2rem;
+}
+
+.slackey-font {
+    font-family: "Slackey";
+}
 
 .event-rectangle {
     background-color: black;

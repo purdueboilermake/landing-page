@@ -315,6 +315,9 @@ nav li, nav a {
 
 .event-title-and-location {
     justify-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     font-family: 'Sniglet';
     font-weight: normal;
     color: #3F2C4E;

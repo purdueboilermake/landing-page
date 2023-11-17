@@ -199,7 +199,8 @@ function renderEventRectangles(day) {
             <div class="event-rectangle" data-event-id="${event.id}">
                 <div class="event-time">${event.time}</div>
                 <div class="event-title-and-location">
-                    ${event.title}<br>${event.location}
+                    <span>${event.title}</span>
+                    <span>${event.location}</span>
                 </div>
                 <button class="image-button">
                     <img src="./assets/event-arrow.png" alt="arrow" class="event-arrow" data-event-id="${event.id}">

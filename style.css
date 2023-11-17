@@ -205,6 +205,7 @@ nav li, nav a {
     z-index: 10;
     height: 110vh;
 }
+
 .bottom-left img {
     margin-right: auto;
 }
@@ -218,22 +219,6 @@ nav li, nav a {
         height: 20%;
     }
 }
-/* .table {
-    top: 9%;
-    left: 10%;
-    right: 10%;
-    position: absolute;
-    width: 80%;
-    height: 65%;
-    z-index: 11;
-
-    @media screen and (max-width: 500px) {
-        width: 80%;
-        height: 30%;
-        left: 10%;
-        right: 10%; 
-    }
-} */
 
 .table {
     top: 9%;
@@ -282,7 +267,7 @@ nav li, nav a {
 }
 
 .bottom-right {
-
+    
 }
 
 
@@ -339,6 +324,21 @@ nav li, nav a {
 .event-arrow {
     justify-self: end;
     cursor: pointer;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.arrow-left {
+    cursor: pointer;
+}
+
+.arrow-right {
+    cursor: pointer;
+    transform: scaleX(-1);
 }
 
 .image-button {

@@ -82,31 +82,6 @@ body {
     overscroll-behavior: none;
 }
 
-h1 {
-    font-family: 'Lost Fish';
-    color: white;
-    font-size: 5em;
-    padding: 0%;
-    @media screen and (max-width: 768px) {
-        font-size: 3.5em;
-    }
-    @media screen and (max-width: 500px) {
-        font-size: 2.3em;
-    }
-}
-
-h2 {
-    font-family: 'Lost Fish';
-    font-size: 2em; 
-    margin-top: -40px;
-    color: white;
-    padding: 0%;
-    @media screen and (max-width: 500px) {
-        font-size: 1em;
-        margin-top: -10px;
-    }
-}
-
 .event-info-title {
     font-family: 'Sniglet';
 }
@@ -161,8 +136,11 @@ nav {
     height: 100px;  
     margin-right: 20px;
     
-    @media screen and (max-width: 640px) {
+    @media screen and (max-width: 680px) {
         height: 62px;
+    }
+    @media screen and (max-width: 400px) {
+        height: 50px;
     }
 }
 
@@ -187,11 +165,20 @@ nav ul {
     list-style-type: none;
     padding: 0;        
     display: flex;
-    gap: 25px;             
+    gap: 30px;             
     
-    @media screen and (max-width: 640px) {
+    @media screen and (max-width: 680px) {
         font-size: 1.3em;
+        gap: 25px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 1.2em;
         gap: 20px;
+    }
+
+    @media screen and (max-width: 360px) {
+        font-size: 1em;
     }
 }
 
@@ -201,8 +188,26 @@ nav li, nav a {
 }
 
 .main-title-and-apply {
-    padding-top: 60px;
+    padding-top: 40px;
     text-align: center;
+}
+
+.main-title-and-apply h1 {
+    font-family: 'Lost Fish';
+    color: white;
+    font-size: 5em;
+    padding: 0%;
+    margin-bottom: 5px;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 4em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 3.5em;
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 2.3em;
+    }
 }
 
 
@@ -252,6 +257,16 @@ nav li, nav a {
     display: flex;
     align-items: center;
     padding: 20px;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 2.5em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 2em;
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 1.5em;
+    }
 }
 
 .top-right {
@@ -264,6 +279,15 @@ nav li, nav a {
     align-items: center;
     justify-content: flex-end;
     padding: 20px;
+    @media screen and (max-width: 1024px) {
+        font-size: 1.5em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 1.2em;
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 0.9em;
+    }
 }
 
 .bottom-left {
@@ -281,11 +305,30 @@ nav li, nav a {
     gap: 20px;
     font-size: 1.5em;
     color: #3F2C4E;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 1.2em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 1em;
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 0.8em;
+    }
 }
 
 .event-detail-headers {
     font-family: "Slackey";
     font-size: 2rem;
+    @media screen and (max-width: 1024px) {
+        font-size: 1.75em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 1.5em;
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 1.25em;
+    }
 }
 
 .slackey-font {
@@ -304,6 +347,16 @@ nav li, nav a {
     box-sizing: border-box;
     height: 100px;
     overflow: hidden;
+
+    @media screen and (max-width: 680px) {
+        gap: 3px;
+        padding: 12px;
+    }
+
+    @media screen and (max-width: 610px) {
+        gap: 0px;
+        padding: 5px;
+    }
 }
 
 .event-rectangle:nth-child(1) {
@@ -332,6 +385,12 @@ nav li, nav a {
     font-weight: normal;
     color: #3F2C4E;
     font-size: 2em;
+    @media screen and (max-width: 1024px) {
+        font-size: 1.5em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 1.2em;
+    }
 }
 
 .event-title-and-location {
@@ -343,6 +402,13 @@ nav li, nav a {
     font-weight: normal;
     color: #3F2C4E;
     font-size: 1.5em;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 1em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 0.8em;
+    }
 }
   
 .event-arrow {
@@ -386,11 +452,15 @@ nav li, nav a {
     animation: moveTurtle 10s infinite;
     z-index: 12;
 
+    @media screen and (max-width: 1200px) {
+        width: 35%;
+        height: 40%;
+    }
+
     @media screen and (max-width: 500px) {
         width: 50%;
         height: 30%;
-        bottom: 45%; 
-
+        /* bottom: 45%;  */
     }
 }
 .jellyfish-container {
@@ -398,11 +468,11 @@ nav li, nav a {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 27%;
+    height: 25%;
     overflow: hidden;
 
     @media screen and (max-width: 500px) {
-        bottom: 32%;
+        /* bottom: 32%; */
         left: 0;
     }
 }
@@ -410,6 +480,7 @@ nav li, nav a {
     position: absolute;
     bottom: 0; 
     animation: moveJellyfish 10s infinite;
+    
     @media screen and (max-width: 500px) {
         width: 30%;
         height: 60%;        
@@ -468,9 +539,47 @@ nav li, nav a {
         bottom: 45%;        
     }
 }
-.apply-button {
-    text-decoration: none;
+
+/* .apply-button {
+    font-family: 'Lost Fish';
+    font-size: 2em; 
+    margin-top: -40px;
     color: white;
+    padding: 0%;
+    @media screen and (max-width: 500px) {
+        font-size: 1em;
+        margin-top: -10px;
+    }
+} */
+
+.apply-text {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Lost Fish';
+    justify-content: center;
+    font-size: 2em;
+    align-items: center;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 1.7em;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 1.4em;
+    }
+    @media screen and (max-width: 500px) {
+        font-size: 1.1em;
+    }
+}
+
+.main-title-and-apply button {
+    padding: 0;
+}
+
+.glow-on-hover button {
+    padding: 0;
 }
 
 #faq h3 {
@@ -492,8 +601,20 @@ nav li, nav a {
     font-weight: 400;
     color: #3F2C4E;
     margin: 0;
-    font-size: 7.5em;
+    font-size: 7em;
     line-height: normal;
+
+    @media screen and (max-width: 1200px) {
+        font-size: 6em;
+    }
+
+    @media screen and (max-width: 1024px) {
+        font-size: 4em;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 2.5em;
+    }
 }
 
 .faq-header hr {
@@ -638,17 +759,32 @@ nav li, nav a {
 }
 
 .glow-on-hover {
-    width: 220px;
-    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     outline: none;
-    color: #fff;
     background: #111;
     cursor: pointer;
     position: relative;
     z-index: 0;
     border-radius: 10px;
-    padding: 16px 64px;
+    margin: auto;
+    width: 270px;
+    height: 70px;
+
+    @media screen and (max-width: 1024px) {
+        width: 250px;
+        height: 60px;
+    }
+    @media screen and (max-width: 768px) {
+        width: 230px;
+        height: 55px;
+    }
+    @media screen and (max-width: 500px) {
+        width: 210px;
+        height: 50px;
+    }
 }
 
 .glow-on-hover:before {

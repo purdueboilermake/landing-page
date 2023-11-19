@@ -540,18 +540,6 @@ nav li, nav a {
     }
 }
 
-/* .apply-button {
-    font-family: 'Lost Fish';
-    font-size: 2em; 
-    margin-top: -40px;
-    color: white;
-    padding: 0%;
-    @media screen and (max-width: 500px) {
-        font-size: 1em;
-        margin-top: -10px;
-    }
-} */
-
 .apply-text {
     display: flex;
     width: 100%;

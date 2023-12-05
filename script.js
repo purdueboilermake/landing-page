@@ -21,85 +21,109 @@ const schedule = {
     'Friday, January 19': [
         {
             id: 'event1-1',
-            time: '9:00 am',
-            title: 'Opening Ceremony',
-            location: 'Auditorium',
-            presenter: 'Jane Doe',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '5:00 PM',
+            title: 'Check in',
+            location: 'Co Rec',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event1-2',
-            time: '11:00 am',
-            title: 'Innovative Tech',
-            location: 'Room A',
-            presenter: 'John Smith',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '6:00 PM',
+            title: 'Icebreakers',
+            location: 'Feature Gym',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event1-3',
-            time: '1:00 pm',
-            title: 'Networking',
-            location: 'Main Hall',
-            presenter: 'Emily Johnson',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '7:00 pm',
+            title: 'Opening Ceremony',
+            location: 'Feature Gym',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event1-4',
-            time: '3:00 pm',
-            title: 'Artificial Intelligence',
-            location: 'Hall 1',
-            presenter: 'Michael Brown',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '8:00 pm',
+            title: 'Team Building Activities',
+            location: 'Gym 6',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event1-5',
-            time: '5:00 pm',
-            title: 'Evening Keynote',
-            location: 'Auditorium',
-            presenter: 'Sarah Lee',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '9:00 pm',
+            title: 'Hacking Starts!',
+            location: 'Main Gyms',
+            presenter: '',
+            companyLink: ''
+        },
+        {
+            id: 'event1-5',
+            time: '9:00 pm',
+            title: 'Dinner begins',
+            location: 'Gym 4',
+            presenter: '',
+            companyLink: ''
         }
     ],
     'Saturday, January 20': [
         {
             id: 'event2-1',
-            time: '9:30 am',
-            title: 'Mobile Technology',
-            location: 'Room B',
+            time: '8:00 am',
+            title: 'Breakfast Begins',
+            location: 'Gym 4',
             presenter: 'Alice Martin',
             companyLink: 'Please check the company\'s appropriate slack channel for more info.'
         },
         {
             id: 'event2-2',
-            time: '11:30 am',
-            title: 'Virtual Reality',
-            location: 'Area',
-            presenter: 'Carlos Gomez',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '9:00 am',
+            title: 'Art Time!',
+            location: 'Main Gyms',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event2-3',
-            time: '2:00 pm',
-            title: 'Tech Solutions',
-            location: 'Hall',
-            presenter: 'Irene Thompson',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '10:00 am',
+            title: 'Cockroach DB Tech Talk',
+            location: 'Conference Room',
+            presenter: 'Cockroach DB',
+            companyLink: ''
         },
         {
             id: 'event2-4',
-            time: '4:00 pm',
-            title: 'Cybersecurity',
-            location: 'Auditorium',
-            presenter: 'Gregory Hughes',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '11:00 am',
+            title: 'Yoga',
+            location: 'Conference Room',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event2-5',
-            time: '6:00 pm',
-            title: 'Closing Remarks',
-            location: 'Main Hall',
-            presenter: 'Diana Prince',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '12:00 pm',
+            title: 'Lunch Begins',
+            location: 'Gym 4',
+            presenter: '',
+            companyLink: ''
+        },
+        {
+            id: 'event2-6',
+            time: '3:00 pm',
+            title: 'MLH Mini Event 1',
+            location: 'Gym 6',
+            presenter: '',
+            companyLink: ''
+        },
+        {
+            id: 'event2-7',
+            time: '3:00 pm',
+            title: 'MLH Mini Event 1',
+            location: 'Gym 6',
+            presenter: '',
+            companyLink: ''
         }
     ],
     'Sunday, January 21': [

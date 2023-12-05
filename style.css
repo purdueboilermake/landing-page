@@ -611,7 +611,7 @@ nav li, nav a {
     margin-left: 0;
 }
 
-.faq-general, .faq-registration {
+.faq-general, .faq-registration, .sponsors-section {
     width: 92%;
     margin-left: 8%;
 }
@@ -698,14 +698,14 @@ nav li, nav a {
     font-size: 2.5em;
 }
 
-.sponsor-row {
+.spn-row {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     padding: 16px 0;
 }
 
-.sponsor-box {
+.spn-box {
 
     display: flex;
     align-items: center;
@@ -718,15 +718,15 @@ nav li, nav a {
     border: white solid 1px;
 }
 
-.sponsor-box img {
+.spn-box img {
     width: 100%;
 }
 
-.sponsor-box-and-more {
+.spn-box-and-more {
     background-color: unset
 }
 
-.sponsor-box-and-more h2 {
+.spn-box-and-more h2 {
     text-align: center;
     margin: 0;
 }

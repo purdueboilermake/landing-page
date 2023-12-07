@@ -215,7 +215,7 @@ nav li, nav a {
     background-image: url("assets/second_section.png");
     position: relative;
     z-index: 10;
-    height: 110vh;
+    height: 150vh;
 }
 
 .bottom-left img {
@@ -295,6 +295,12 @@ nav li, nav a {
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(to bottom, 
+    #E1F6FF, 
+    #BEE4F4, 
+    #82AEE3, 
+    #437CC2, 
+    #345998);                          
 }
 
 .bottom-right {
@@ -336,7 +342,7 @@ nav li, nav a {
 }
 
 .event-rectangle {
-    background-color: black;
+    background-color: transparent;
     flex: 1;
     border-radius: 8px;
     display: grid;
@@ -359,7 +365,7 @@ nav li, nav a {
     }
 }
 
-.event-rectangle:nth-child(1) {
+/* .event-rectangle:nth-child(1) {
     background-color: #E1F6FF;
 }
 
@@ -377,7 +383,7 @@ nav li, nav a {
 
 .event-rectangle:nth-child(5) {
     background-color: #345998;
-}
+} */
 
 .event-time {
     justify-self: start;

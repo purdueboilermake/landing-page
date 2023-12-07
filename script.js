@@ -60,7 +60,7 @@ const schedule = {
             companyLink: ''
         },
         {
-            id: 'event1-5',
+            id: 'event1-6',
             time: '9:00 pm',
             title: 'Dinner begins',
             location: 'Gym 4',
@@ -119,9 +119,17 @@ const schedule = {
         },
         {
             id: 'event2-7',
-            time: '3:00 pm',
-            title: 'MLH Mini Event 1',
+            time: '4:00 pm',
+            title: 'MLH Mini Event 2',
             location: 'Gym 6',
+            presenter: '',
+            companyLink: ''
+        },
+        {
+            id: 'event2-8',
+            time: '5:00 pm',
+            title: 'Mario Kart',
+            location: 'Feature Gym',
             presenter: '',
             companyLink: ''
         }

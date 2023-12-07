@@ -74,8 +74,8 @@ const schedule = {
             time: '8:00 am',
             title: 'Breakfast Begins',
             location: 'Gym 4',
-            presenter: 'Alice Martin',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event2-2',
@@ -132,92 +132,66 @@ const schedule = {
             location: 'Feature Gym',
             presenter: '',
             companyLink: ''
+        },
+        {
+            id: 'event2-9',
+            time: '6:00 pm',
+            title: 'Dinner begins',
+            location: 'Gym 4',
+            presenter: '',
+            companyLink: ''
         }
     ],
     'Sunday, January 21': [
         {
             id: 'event3-1',
-            time: '8:00 am',
-            title: 'Early Bird',
-            location: 'Center',
-            presenter: 'Liam Chen',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '12:00 am',
+            title: 'Smash Tournament',
+            location: '',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event3-2',
-            time: '10:00 am',
-            title: 'Blockchain',
-            location: 'Room C',
-            presenter: 'Sophia Patel',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '7:00 am',
+            title: 'Breakfast Begins',
+            location: 'Gym 4',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event3-3',
-            time: '12:00 pm',
-            title: 'Luncheon: Meet the Experts',
-            location: 'Dining',
-            presenter: 'Oliver Kim',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '9:00 am',
+            title: 'Hacking Ends',
+            location: '',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event3-4',
-            time: '3:00 pm',
-            title: 'The Future of E-commerce',
-            location: 'Hub',
-            presenter: 'Zoe Wong',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '10:00 am',
+            title: 'Symposium',
+            location: '',
+            presenter: '',
+            companyLink: ''
         },
         {
             id: 'event3-5',
-            time: '5:00 pm',
-            title: 'Interactive Q&A Session',
-            location: 'Auditorium',
-            presenter: 'Maxwell Johnson',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
+            time: '12:00 pm',
+            title: 'Lunch Begins',
+            location: 'Gym 4',
+            presenter: '',
+            companyLink: ''
+        },
+        {
+            id: 'event3-6',
+            time: '2:15 pm',
+            title: 'Closing Ceremony',
+            location: '',
+            presenter: '',
+            companyLink: ''
         }
     ],
-    'Monday, January 22': [
-        {
-            id: 'event4-1',
-            time: '9:00 am',
-            title: 'Tech Innovations',
-            location: 'Wing',
-            presenter: 'Nora Edwards',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
-        },
-        {
-            id: 'event4-2',
-            time: '11:00 am',
-            title: 'Sustainable Technology',
-            location: 'Eco',
-            presenter: 'Luke Rodriguez',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
-        },
-        {
-            id: 'event4-3',
-            time: '1:00 pm',
-            title: 'Pitch Session',
-            location: 'Startup',
-            presenter: 'Emma Clark',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
-        },
-        {
-            id: 'event4-4',
-            time: '3:30 pm',
-            title: 'Marketing Trends',
-            location: 'Suite',
-            presenter: 'Owen Wilson',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
-        },
-        {
-            id: 'event4-5',
-            time: '5:30 pm',
-            title: 'The Tech Future',
-            location: 'Grand',
-            presenter: 'Isabella Garcia',
-            companyLink: 'Please check the company\'s appropriate slack channel for more info.'
-        }
-    ]
 };
 
 /* RENDERING EVENT RECTANGLES */

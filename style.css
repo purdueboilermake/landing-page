@@ -38,15 +38,15 @@ html {
 }
 
 /* * {
-    border: 2px solid red;
+border: 2px solid red;
 } */
 
 @font-face {
     font-family: "Lost Fish";
     src: url("fonts/Lost_Fish.eot") format("eot"),
-    url("fonts/Lost_Fish.woff") format("woff"),
-    url("fonts/Lost_Fish.ttf") format("truetype"),
-    url("fonts/Lost_Fish.svg") format("svg");
+        url("fonts/Lost_Fish.woff") format("woff"),
+        url("fonts/Lost_Fish.ttf") format("truetype"),
+        url("fonts/Lost_Fish.svg") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -54,7 +54,7 @@ html {
 @font-face {
     font-family: "Sniglet";
     src: url("fonts/Sniglet-Regular.ttf") format("truetype"),
-         url("fonts/Sniglet-ExtraBold.ttf") format("truetype");
+        url("fonts/Sniglet-ExtraBold.ttf") format("truetype");
     font-weight: normal, bold;
     font-style: normal;
 }
@@ -69,12 +69,12 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(to bottom, 
-                                      var(--water-color-1), 
-                                      var(--water-color-2), 
-                                      var(--water-color-3), 
-                                      var(--water-color-4), 
-                                      var(--water-color-5));                          
+    background-image: linear-gradient(to bottom,
+            var(--water-color-1),
+            var(--water-color-2),
+            var(--water-color-3),
+            var(--water-color-4),
+            var(--water-color-5));
     /* height: 550vh; */
     width: 100%;
     position: relative;
@@ -90,9 +90,9 @@ body {
     font-weight: bold;
 }
 
-.event-info-title a {
+/* .event-info-title a {
     text-decoration: none;
-}
+} */
 
 .container {
     display: flex;
@@ -110,6 +110,7 @@ body {
     z-index: 10;
     height: 100vh;
     width: 100%;
+
     @media screen and (max-width: 1024px) {
         background-size: cover;
     }
@@ -121,24 +122,25 @@ body {
     justify-content: flex-start;
     align-items: center;
     /* margin-left: 2%;
-    margin-top: 2%; */
+margin-top: 2%; */
     margin: 2% 2% 0% 2%;
 }
 
 nav {
-    display: flex;          
-    align-items: center;   
-    justify-content: space-between; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
-.logo-in-nav { 
-    height: 100px;  
+.logo-in-nav {
+    height: 100px;
     margin-right: 20px;
-    
+
     @media screen and (max-width: 680px) {
         height: 62px;
     }
+
     @media screen and (max-width: 400px) {
         height: 50px;
     }
@@ -163,10 +165,10 @@ nav ul {
     color: var(--main-color-1);
     font-size: 1.9em;
     list-style-type: none;
-    padding: 0;        
+    padding: 0;
     display: flex;
-    gap: 30px;             
-    
+    /* gap: 30px;
+
     @media screen and (max-width: 680px) {
         font-size: 1.3em;
         gap: 25px;
@@ -179,12 +181,13 @@ nav ul {
 
     @media screen and (max-width: 360px) {
         font-size: 1em;
-    }
+    } */
 }
 
-nav li, nav a {
-    text-decoration: none;  
-    color: inherit;        
+nav li,
+nav a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .main-title-and-apply {
@@ -202,9 +205,11 @@ nav li, nav a {
     @media screen and (max-width: 1024px) {
         font-size: 4em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 3.5em;
     }
+
     @media screen and (max-width: 500px) {
         font-size: 2.3em;
     }
@@ -214,7 +219,7 @@ nav li, nav a {
 #schedule {
     background-image: url("assets/second_section.png");
     position: relative;
-    z-index: 10;
+    z-index: 9;
     height: 150vh;
 }
 
@@ -242,7 +247,7 @@ nav li, nav a {
     margin: auto;
     background-color: #B1DAF1;
     border-radius: 8px;
-    display: grid;
+    display: grid !important;
     grid-template-rows: 17% 83%;
     grid-template-columns: 50% 50%;
 }
@@ -261,9 +266,11 @@ nav li, nav a {
     @media screen and (max-width: 1024px) {
         font-size: 2.5em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 2em;
     }
+
     @media screen and (max-width: 500px) {
         font-size: 1.5em;
     }
@@ -279,12 +286,15 @@ nav li, nav a {
     align-items: center;
     justify-content: flex-end;
     padding: 20px;
+
     @media screen and (max-width: 1024px) {
         font-size: 1.5em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 1.2em;
     }
+
     @media screen and (max-width: 500px) {
         font-size: 0.9em;
     }
@@ -295,12 +305,12 @@ nav li, nav a {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to bottom, 
-    #E1F6FF, 
-    #BEE4F4, 
-    #82AEE3, 
-    #437CC2, 
-    #345998);                          
+    background-image: linear-gradient(to bottom,
+            #E1F6FF,
+            #BEE4F4,
+            #82AEE3,
+            #437CC2,
+            #345998);
 }
 
 .bottom-right {
@@ -315,9 +325,11 @@ nav li, nav a {
     @media screen and (max-width: 1024px) {
         font-size: 1.2em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 1em;
     }
+
     @media screen and (max-width: 500px) {
         font-size: 0.8em;
     }
@@ -326,12 +338,15 @@ nav li, nav a {
 .event-detail-headers {
     font-family: "Slackey";
     font-size: 2rem;
+
     @media screen and (max-width: 1024px) {
         font-size: 1.75em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 1.5em;
     }
+
     @media screen and (max-width: 500px) {
         font-size: 1.25em;
     }
@@ -366,23 +381,23 @@ nav li, nav a {
 }
 
 /* .event-rectangle:nth-child(1) {
-    background-color: #E1F6FF;
+background-color: #E1F6FF;
 }
 
 .event-rectangle:nth-child(2) {
-    background-color: #BEE4F4;
+background-color: #BEE4F4;
 }
 
 .event-rectangle:nth-child(3) {
-    background-color: #82AEE3;
+background-color: #82AEE3;
 }
 
 .event-rectangle:nth-child(4) {
-    background-color: #437CC2;
+background-color: #437CC2;
 }
 
 .event-rectangle:nth-child(5) {
-    background-color: #345998;
+background-color: #345998;
 } */
 
 .event-time {
@@ -391,9 +406,11 @@ nav li, nav a {
     font-weight: normal;
     color: #3F2C4E;
     font-size: 2em;
+
     @media screen and (max-width: 1024px) {
         font-size: 1.5em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 1.2em;
     }
@@ -412,11 +429,12 @@ nav li, nav a {
     @media screen and (max-width: 1024px) {
         font-size: 1em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 0.8em;
     }
 }
-  
+
 .event-arrow {
     justify-self: end;
     cursor: pointer;
@@ -469,6 +487,7 @@ nav li, nav a {
         /* bottom: 45%;  */
     }
 }
+
 .jellyfish-container {
     position: absolute;
     bottom: 0;
@@ -482,58 +501,74 @@ nav li, nav a {
         left: 0;
     }
 }
+
 .jellyfish {
     position: absolute;
-    bottom: 0; 
+    bottom: 0;
     animation: moveJellyfish 10s infinite;
-    
+
     @media screen and (max-width: 500px) {
         width: 30%;
-        height: 60%;        
-        bottom: 52%; 
+        height: 60%;
+        bottom: 52%;
         left: 0;
     }
 }
+
 .baby-jellyfish {
     position: absolute;
     right: 50%;
     animation: moveBabyJellyfish 10s infinite;
+
     @media screen and (max-width: 500px) {
         width: 30%;
-        height: 60%;        
+        height: 60%;
         bottom: 52%;
-        left: 45%;  
+        left: 45%;
     }
 }
+
 @keyframes moveJellyfish {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0%) scaleX(1);
     }
+
     49% {
-        transform: translateX(40%) scaleX(1); 
+        transform: translateX(40%) scaleX(1);
     }
+
     50% {
         transform: translateX(40%) scaleX(-1);
-    } 
+    }
+
     99% {
         transform: translateX(0%) scaleX(-1);
     }
-    
+
 }
+
 @keyframes moveBabyJellyfish {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0%) scaleX(1);
     }
+
     49% {
-        transform: translateX(-40%) scaleX(1); 
+        transform: translateX(-40%) scaleX(1);
     }
+
     50% {
         transform: translateX(-40%) scaleX(-1);
     }
+
     99% {
         transform: translateX(0%) scaleX(-1);
     }
 }
+
 .bottom-right-bubbles {
     position: absolute;
     bottom: 0;
@@ -542,7 +577,7 @@ nav li, nav a {
     @media screen and (max-width: 500px) {
         width: 30%;
         height: 10%;
-        bottom: 45%;        
+        bottom: 45%;
     }
 }
 
@@ -560,9 +595,11 @@ nav li, nav a {
     @media screen and (max-width: 1024px) {
         font-size: 1.7em;
     }
+
     @media screen and (max-width: 768px) {
         font-size: 1.4em;
     }
+
     @media screen and (max-width: 500px) {
         font-size: 1.1em;
     }
@@ -617,11 +654,13 @@ nav li, nav a {
     margin-left: 0;
 }
 
-.faq-general, .faq-registration, .sponsors-section {
+.faq-general,
+.faq-registration,
+.sponsors-section {
     width: 92%;
     margin-left: 8%;
 }
-  
+
 .carousel {
     display: flex;
     flex-direction: row;
@@ -639,8 +678,8 @@ nav li, nav a {
     font-family: 'Sniglet';
     font-size: 1.5em;
     flex: 0 0 auto;
-    width: 270px;
-    height: 70px;
+    width: 300px;
+    height: 100px;
     margin-right: 3%;
     border-radius: 29px;
     display: flex;
@@ -695,7 +734,7 @@ nav li, nav a {
     border-radius: 29px;
 }
 
-#sponsors > h3 {
+#sponsors>h3 {
     font-family: 'Sniglet';
     font-weight: normal;
     color: #24192D;
@@ -721,7 +760,7 @@ nav li, nav a {
     padding: 16px;
     background-color: var(--water-color-4);
     border-radius: 8px;
-    border: white solid 1px;
+    /* border: white solid 1px; */
 }
 
 .spn-box img {
@@ -756,9 +795,14 @@ nav li, nav a {
     height: 100vh;
     width: 100%;
     margin-top: 600px;
+
     @media screen and (max-width: 1024px) {
         background-size: cover;
     }
+}
+
+.sniglet-font {
+    font-family: 'Sniglet';
 }
 
 .glow-on-hover {
@@ -780,7 +824,7 @@ nav li, nav a {
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
     top: -2px;
-    left:-2px;
+    left: -2px;
     background-size: 400%;
     z-index: -1;
     filter: blur(5px);
@@ -817,7 +861,15 @@ nav li, nav a {
 }
 
 @keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
 }

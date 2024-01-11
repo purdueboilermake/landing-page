@@ -35,6 +35,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* * {
@@ -657,8 +658,9 @@ background-color: #345998;
 .faq-general,
 .faq-registration,
 .sponsors-section {
-    width: 92%;
+    width: 100%;
     margin-left: 8%;
+    overflow-x: hidden;
 }
 
 .carousel {

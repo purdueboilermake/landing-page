@@ -134,3 +134,8 @@ body {
     text-align: center;
     margin: 0;
 }
+
+.quick-link-btn {
+    background-color: var(--accent-color-9);
+    color: black;
+}

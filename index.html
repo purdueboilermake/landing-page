@@ -1,50 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+    <script src="script.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Boilermake XI</title>
 </head>
-
 <body>
-    <div class="container">
-        <div id="home">
-            <div class="flex flex-row gap-2 md:gap-5 p-5 w-full fixed bg-black bg-opacity-15 backdrop-blur-sm z-50">
-                <a href="#"><img src="./assets/main_logo.png" alt="boilermake xi logo" class="w-8 h-8 md:w-14 md:h-14"></a>
-                <!-- <img src="./assets/mlh-logo-color.png" alt="mlh logo" class="logo-in-nav"> -->
-                <nav>
-                    <ul class="text-white text-sm gap-3 md:text-lg md:gap-6 lg:text-2xl lg:gap-10">
-                        <!-- <li><a href="#home">HOME</a></li> -->
-                        <li>
-                            <a href="#schedule" class="event-schedule">EVENT SCHEDULE</a>
-                            <a href="#schedule" class="mobile-schedule">SCHEDULE</a>
-                        </li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#sponsors">SPONSORS</a></li>
-                    </ul>
-                </nav>
-                <a id="mlh-trust-badge"
-                    class="right-5 md:right-12"
-                    style="display:block;max-width:100px;min-width:40px;position:fixed;top:0;width:10%;z-index:10000"
-                    href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=blue"
-                    target="_blank"><img
-                        src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-blue.svg"
-                        alt="Major League Hacking 2024 Hackathon Season"></a>
-            </div>
+    <div class="flex flex-row gap-2 md:gap-5 items-center p-5 w-full fixed top-0 bg-black bg-opacity-15 backdrop-blur-sm z-50">
+        <a href="#"><img src="./assets/main_logo.png" alt="boilermake xi logo" class="w-8 h-8 md:w-14 md:h-14"></a>
+        <nav>
+            <ul class="flex flex-row gap-2 md:gap-5 text-white gap-3 text-sm md:text-lg md:gap-6 lg:text-2xl lg:gap-10">
+                <li><a href="#schedule" class="event-schedule text-sm md:text-lg md:gap-6 lg:text-2xl">EVENT SCHEDULE</a></li>
+                <li><a href="#faq" class="text-sm md:text-lg md:gap-6 lg:text-2xl">FAQ</a></li>
+                <li><a href="#sponsors" class="text-sm md:text-lg md:gap-6 lg:text-2xl">SPONSORS</a></li>
+            </ul>
+        </nav>
+        <a id="mlh-trust-badge"
+        class="right-5 md:right-12"
+        style="display:block;max-width:100px;min-width:40px;position:fixed;top:0;width:10%;z-index:10000"
+        href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=blue"
+        target="_blank"><img
+        src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-blue.svg"
+        alt="Major League Hacking 2024 Hackathon Season"></a>
+    </div>
+
+
+    <div class="container mx-auto flex flex-col p-4 gap-5">
+        <div id="info-section">
             <div class="main-title-and-apply mt-20 md:mt-40 grid justify-items-center gap-4">
-                <h1 class="">BOILERMAKE XI</h1>
-                <h2>
-                    <a href="https://apply.boilermake.com/" class="glow-on-hover sniglet-font text-md md:text-2xl">
-                        APPLY NOW!
-                    </a>
-                </h2>
+                <h1 class="title-font font-extrabold sm:text-8xl text-4xl">BOILERMAKE XI</h1>
                 <div class="flex flex-col bg-black bg-opacity-30 backdrop-blur-sm text-white text-lg p-2 md:p-5 rounded-lg mt-5">
                     <h3 class="event-info-title">
-                        <span class="">Event Location:</span>
+                        <span>Event Location:</span>
                         <a href="https://maps.app.goo.gl/t3KdbJsjY2CKT7nG7" target="_blank" class="underline decoration-dotted text-blue-100 hover:text-blue-200">France A. Córdova
                             Recreational
                             Sports Center</a>
@@ -56,155 +47,786 @@
                 </div>
             </div>
         </div>
+
         <div id="schedule">
-            <img class="bubbles" src="./assets/bubbles.png" alt="bubbles">
-            <div class="table">
-                <div class="top-left">
-                    Event Schedule
-                </div>
-                <div class="top-right" id="schedule-date">
-                    <div class="date">
-                        <button class="image-button">
-                            <img src="./assets/schedule-date-arrow.png" alt="arrow-left" class="arrow-left">
-                        </button>
-                        <span>Friday, January 19</span>
-                        <button class="image-button">
-                            <img src="./assets/schedule-date-arrow.png" alt="arrow-right" class="arrow-right">
-                        </button>
-                    </div>
-
-                </div>
-
-                <div class="bottom-left">
-                    <div class="event-rectangle" data-event-id="event1">
-                        <div class="event-time"></div>
-                        <div class="event-title-and-location"></div>
-                    </div>
-                    <div class="event-rectangle" data-event-id="event1">
-                        <div class="event-time"></div>
-                        <div class="event-title-and-location"></div>
-                    </div>
-                    <div class="event-rectangle" data-event-id="event1">
-                        <div class="event-time"></div>
-                        <div class="event-title-and-location"></div>
-                    </div>
-                    <div class="event-rectangle" data-event-id="event1">
-                        <div class="event-time"></div>
-                        <div class="event-title-and-location"></div>
-                    </div>
-                    <div class="event-rectangle" data-event-id="event1">
-                        <div class="event-time"></div>
-                        <div class="event-title-and-location"></div>
+            <h1 class="title-font text-2xl sm:text-5xl">Event Schedule</h1>
+            <div class="flex flex-col gap-8">
+                <!-- start code gen -->
+                <div class="calendar-container flex flex-col p-2 md:p-5 gap-3 bg-opacity-30 backdrop-blur-sm text-lg rounded-lg mt-5">
+                    <h3 class="title-font font-extrabold text-xl sm:text-3xl">Friday</h3>
+                    <div class="flex flex-col gap-2">
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Check-In Begins</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">5:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">12:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Main Gyms</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Check in to the event
+                            </p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="bottom-right">
-
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Kahoot Ice Breaker</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">6:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">6:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Feature Gym</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Get to know other people through Kahoot!
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Opening Ceremony</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">7:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">8:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Feature Gym</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Introducing the hackathon. We&#39;ll talk about rules, prizes, and more.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Team Building Ice Breakers</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">8:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">9:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Play games with other people to build teams and meet new people.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Dinner</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">9:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">11:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Dinner is served! Menu TBD
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Raffle Announcement</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">11:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">12:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Main Gym</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Our first raffle drawing!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Smash Tournament</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">11:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">1:30 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Main Gym</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Super Smash Bros tournament! Compete against other hackers for prizes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                    </div>
+                </div>
+                
+                <div class="calendar-container flex flex-col p-2 md:p-5 gap-3 bg-opacity-30 backdrop-blur-sm text-lg rounded-lg mt-5">
+                    <h3 class="title-font font-extrabold text-xl sm:text-3xl">Saturday</h3>
+                    <div class="flex flex-col gap-2">
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Midnight Snack</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">12:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">12:30 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                We&#39;ll provide a late night snack of cookies!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Breakfast</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">8:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">9:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Breakfast will be provided!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">MLH Mini Event 1</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">10:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">11:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Conference Room</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                MLH is hosting a mini event about GitHub.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Yoga</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">11:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">12:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Join us for Yoga led by a Co-Rec instructor.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Lunch</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">12:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">1:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Lunch on us!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Tech Talk w/ Prof. Chatterji</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">2:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">2:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Conference Room</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                A tech talk hosted by one of Purdue&#39;s professors.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Tech Talk w/ Bloomberg</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">3:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">4:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Conference Room</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                A tech talk hosted by Bloomberg.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">MLH Mini Event 2</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">4:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">5:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Bob Ross painting with Microsoft paint! (still show up if you don&#39;t have Microsoft Paint)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Dinner</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">6:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">7:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Dinner on us yet again
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Atlantis Adventure Carnival</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">9:30 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">12:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Feature Gym</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Join us for fun games and chances to win prizes!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                    </div>
+                </div>
+                
+                <div class="calendar-container flex flex-col p-2 md:p-5 gap-3 bg-opacity-30 backdrop-blur-sm text-lg rounded-lg mt-5">
+                    <h3 class="title-font font-extrabold text-xl sm:text-3xl">Sunday</h3>
+                    <div class="flex flex-col gap-2">
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Raffle Announcement \#2</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">12:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">12:05 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Main Gym</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Our next raffle drawing!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Breakfast</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">7:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">8:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Breakfast on us
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">HACKING ENDS/SUBMISSION DEADLINE!</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">9:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">9:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Symposium</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">10:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">11:00 am</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Hacking Gyms</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Present your projects to BM exec for judging. Walk around to other tables.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Lunch</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">12:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">1:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Gym 4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Last meal on us.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                            
+                <hr class="schedule-divider">
+                <div class="schedule-item">
+                    <h4 class="title-font font-bold text-xl">Closing Ceremony</h4>
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-16 p-3">
+                        <table class="table-auto border-separate border-spacing-2">
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Start</td>
+                                    <td class="text-right">2:15 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">End</td>
+                                    <td class="text-right">3:00 pm</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Location</td>
+                                    <td class="text-right">Feature Gym</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <h5 class="title-font text-semibold text-xl">Description</h5>
+                            <p>
+                                Boilermake XI wraps up. Finalists present and winners are announced.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                    </div>
+                </div>
+                
+                
+                
+                <!-- end code gen -->
+
             </div>
-            <img class="turtle" src="./assets/turtle.png" alt="turtle">
-            <div class="jellyfish-container">
-                <img class="jellyfish" src="assets/jellyfish_big.png" alt="Jellyfish">
-                <img class="baby-jellyfish" src="assets/jellyfish_small.png" alt="Baby Jellyfish">
-            </div>
-            <img class="bottom-right-bubbles" src="./assets/bottom_right_bubbles.png" alt="bubbles">
         </div>
 
-        <div id="faq">
-            <div class="faq-header">
-                <h1>FAQ</h1>
-                <hr />
-            </div>
-
-            <div class="faq-general">
-                <h3>General</h3>
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-item tracking-tight">
-                            <div class="faq-question">
-                                What's a hackathon?
-                            </div>
-                            <div class="faq-answer">
-                                A hackathon - or hacking marathon - is an event that promotes self-expression and
-                                creativity through technology. Anyone with or without a technical background can attend
-                                to learn, build, and share new things. Hackers form teams around a problem or idea,
-                                collaboratively build or code a unique solution from scratch, and compete for prizes
-                                with other teams.
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="faq-question">
-                                Is there a code of conduct?
-                            </div>
-                            <div class="faq-answer">
-                                <p>
-                                    Yes! You can read the code of conduct <a href="https://hackp.ac/coc"
-                                        target="_blank">here</a>.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">More Coming Soon</div>
-                        <!-- <div class="carousel-item">Is it free?</div>
-                      <div class="carousel-item">When will applications open?</div>
-                      <div class="carousel-item">My team was accepted but I wasn't.</div> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-registration">
-                <h3>Registration</h3>
-                <div class="carousel-container">
-                    <div class="carousel">
-                        <div class="carousel-item">Coming Soon</div>
-                        <!-- <div class="carousel-item">Is it free?</div>
-                      <div class="carousel-item">When will applications open?</div>
-                      <div class="carousel-item">My team was accepted but I wasn't.</div>
-                      <div class="carousel-item">What's a hackathon?</div>
-                      <div class="carousel-item">Is it free?</div>
-                      <div class="carousel-item">When will applications open?</div>
-                      <div class="carousel-item">My team was accepted but I wasn't.</div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
         <div id="sponsors">
-            <div class="faq-header">
-                <h1>SPONSORS</h1>
-                <hr />
-            </div>
-
-            <div class="faq-general">
-                <div class="grid mt-5">
-                    <div class="spn-box">
+            <h1 class="title-font text-2xl sm:text-5xl">Sponsors</h1>
+            <div class="flex flex-col gap-8">
+                <div class="flex flex-col sm:flex-row gap-4 px-16 flex-wrap">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/sfab_white.jpg">
                     </div>
                 </div>
-                <div class="spn-row">
-                    <div class="spn-box">
+                <div class="flex flex-col sm:flex-row gap-4 px-16 flex-wrap">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/bloomberg-white.png">
                     </div>
-                    <div class="spn-box">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/cat.png" class="white-background">
                     </div>
-                    <div class="spn-box">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/ecolab.png">
                     </div>
-                    <div class="spn-box">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/john-deere.png">
                     </div>
-                    <div class="spn-box">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/purdue-cs.svg" class="white-background fill-box">
                     </div>
                 </div>
-                <div class="spn-row">
-                    <div class="spn-box">
+                <div class="flex flex-col sm:flex-row gap-4 px-16 flex-wrap">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/college-of-engineering.svg" class="white-background" style="height: 100px;">
                     </div>
-                    <div class="spn-box">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/klaviyo_black.png" class="white-background"
                             style="height: 100px; object-fit: cover;">
                     </div>
-                    <div class="spn-box">
+                    <div class="spn-box flex items-center justify-center p-2 w-full sm:w-1/4">
                         <img src="./assets/sandia.jpg" class="white-background"
                             style="height: 100px; object-fit: contain;">
                     </div>
@@ -215,14 +837,6 @@
             </div>
         </div>
     </div>
-
-
-    <div id="end-screen">
-
-    </div>
-    <script src="script.js"></script>
-
-
 </body>
 
 </html>

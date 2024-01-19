@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Boilermake XI</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="home">
+            <div class="flex flex-row gap-2 md:gap-5 p-5 w-full fixed bg-black bg-opacity-15 backdrop-blur-sm z-50">
+                <a href="#"><img src="./assets/main_logo.png" alt="boilermake xi logo" class="w-8 h-8 md:w-14 md:h-14"></a>
+                <!-- <img src="./assets/mlh-logo-color.png" alt="mlh logo" class="logo-in-nav"> -->
+                <nav>
+                    <ul class="text-white text-sm gap-3 md:text-lg md:gap-6 lg:text-2xl lg:gap-10">
+                        <!-- <li><a href="#home">HOME</a></li> -->
+                        <li>
+                            <a href="#schedule" class="event-schedule">EVENT SCHEDULE</a>
+                            <a href="#schedule" class="mobile-schedule">SCHEDULE</a>
+                        </li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#sponsors">SPONSORS</a></li>
+                    </ul>
+                </nav>
+                <a id="mlh-trust-badge"
+                    class="right-5 md:right-12"
+                    style="display:block;max-width:100px;min-width:40px;position:fixed;top:0;width:10%;z-index:10000"
+                    href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=blue"
+                    target="_blank"><img
+                        src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-blue.svg"
+                        alt="Major League Hacking 2024 Hackathon Season"></a>
+            </div>
+            <div class="main-title-and-apply mt-20 md:mt-40 grid justify-items-center gap-4">
+                <h1 class="">BOILERMAKE XI</h1>
+                <div class="flex flex-col bg-black bg-opacity-30 backdrop-blur-sm text-white text-lg p-2 md:p-5 rounded-lg mt-5">
+                    <h3 class="event-info-title">
+                        <span class="">Event Location:</span>
+                        <a href="https://maps.app.goo.gl/t3KdbJsjY2CKT7nG7" target="_blank" class="underline decoration-dotted text-blue-100 hover:text-blue-200">France A. Córdova
+                            Recreational
+                            Sports Center</a>
+                    </h3>
+                    <h3 class="event-info-title">
+                        <span>Event Date:</span>
+                        January 19, 2024 - January 21, 2024
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div id="schedule">
+            <img class="bubbles" src="./assets/bubbles.png" alt="bubbles">
+            <div class="table">
+                <div class="top-left">
+                    Event Schedule
+                </div>
+                <div class="top-right" id="schedule-date">
+                    <div class="date">
+                        <button class="image-button">
+                            <img src="./assets/schedule-date-arrow.png" alt="arrow-left" class="arrow-left">
+                        </button>
+                        <span>Friday, January 19</span>
+                        <button class="image-button">
+                            <img src="./assets/schedule-date-arrow.png" alt="arrow-right" class="arrow-right">
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="bottom-left">
+                    <div class="event-rectangle" data-event-id="event1">
+                        <div class="event-time"></div>
+                        <div class="event-title-and-location"></div>
+                    </div>
+                    <div class="event-rectangle" data-event-id="event1">
+                        <div class="event-time"></div>
+                        <div class="event-title-and-location"></div>
+                    </div>
+                    <div class="event-rectangle" data-event-id="event1">
+                        <div class="event-time"></div>
+                        <div class="event-title-and-location"></div>
+                    </div>
+                    <div class="event-rectangle" data-event-id="event1">
+                        <div class="event-time"></div>
+                        <div class="event-title-and-location"></div>
+                    </div>
+                    <div class="event-rectangle" data-event-id="event1">
+                        <div class="event-time"></div>
+                        <div class="event-title-and-location"></div>
+                    </div>
+                </div>
+
+                <div class="bottom-right">
+
+                </div>
+            </div>
+            <img class="turtle" src="./assets/turtle.png" alt="turtle">
+            <div class="jellyfish-container">
+                <img class="jellyfish" src="assets/jellyfish_big.png" alt="Jellyfish">
+                <img class="baby-jellyfish" src="assets/jellyfish_small.png" alt="Baby Jellyfish">
+            </div>
+            <img class="bottom-right-bubbles" src="./assets/bottom_right_bubbles.png" alt="bubbles">
+        </div>
+
+        <div id="faq">
+            <div class="faq-header">
+                <h1>FAQ</h1>
+                <hr />
+            </div>
+
+            <div class="faq-general">
+                <h3>General</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-item tracking-tight">
+                            <div class="faq-question">
+                                What's a hackathon?
+                            </div>
+                            <div class="faq-answer">
+                                A hackathon - or hacking marathon - is an event that promotes self-expression and
+                                creativity through technology. Anyone with or without a technical background can attend
+                                to learn, build, and share new things. Hackers form teams around a problem or idea,
+                                collaboratively build or code a unique solution from scratch, and compete for prizes
+                                with other teams.
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="faq-question">
+                                Is there a code of conduct?
+                            </div>
+                            <div class="faq-answer">
+                                <p>
+                                    Yes! You can read the code of conduct <a href="https://hackp.ac/coc"
+                                        target="_blank">here</a>.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">More Coming Soon</div>
+                        <!-- <div class="carousel-item">Is it free?</div>
+                      <div class="carousel-item">When will applications open?</div>
+                      <div class="carousel-item">My team was accepted but I wasn't.</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-registration">
+                <h3>Registration</h3>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-item">Coming Soon</div>
+                        <!-- <div class="carousel-item">Is it free?</div>
+                      <div class="carousel-item">When will applications open?</div>
+                      <div class="carousel-item">My team was accepted but I wasn't.</div>
+                      <div class="carousel-item">What's a hackathon?</div>
+                      <div class="carousel-item">Is it free?</div>
+                      <div class="carousel-item">When will applications open?</div>
+                      <div class="carousel-item">My team was accepted but I wasn't.</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="sponsors">
+            <div class="faq-header">
+                <h1>SPONSORS</h1>
+                <hr />
+            </div>
+
+            <div class="faq-general">
+                <div class="grid mt-5">
+                    <div class="spn-box">
+                        <img src="./assets/sfab_white.jpg">
+                    </div>
+                </div>
+                <div class="spn-row">
+                    <div class="spn-box">
+                        <img src="./assets/bloomberg-white.png">
+                    </div>
+                    <div class="spn-box">
+                        <img src="./assets/cat.png" class="white-background">
+                    </div>
+                    <div class="spn-box">
+                        <img src="./assets/ecolab.png">
+                    </div>
+                    <div class="spn-box">
+                        <img src="./assets/john-deere.png">
+                    </div>
+                    <div class="spn-box">
+                        <img src="./assets/purdue-cs.svg" class="white-background fill-box">
+                    </div>
+                </div>
+                <div class="spn-row">
+                    <div class="spn-box">
+                        <img src="./assets/college-of-engineering.svg" class="white-background" style="height: 100px;">
+                    </div>
+                    <div class="spn-box">
+                        <img src="./assets/klaviyo_black.png" class="white-background"
+                            style="height: 100px; object-fit: cover;">
+                    </div>
+                    <div class="spn-box">
+                        <img src="./assets/sandia.jpg" class="white-background"
+                            style="height: 100px; object-fit: contain;">
+                    </div>
+                    <!-- <div class="spn-box spn-box-and-more">
+                        <h2>And more coming soon...</h2>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="end-screen">
+
+    </div>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

@@ -11,7 +11,7 @@ export default function SponsorSign() {
     return (
         <div className="relative w-full h-full flex items-center justify-center">
             <Image
-                src={"/landing-page/images/sign_3.png"}
+                src={"/images/sign_3.png"}
                 alt="Sponsors Sign"
                 width={200}
                 height={200}

@@ -28,9 +28,9 @@ export default function Header({ isMobile }: HeaderProps) {
                 {/* Logo */}
                 <a href="/">
                     {isMobile ? (
-                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={50} height={50} />
+                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={50} height={50} />
                     ) : (
-                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={50} height={50} />
+                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={50} height={50} />
                     )}
                 </a>
 

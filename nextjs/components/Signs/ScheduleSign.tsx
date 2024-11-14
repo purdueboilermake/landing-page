@@ -11,7 +11,7 @@ export default function ScheduleSign({isMobile}: {isMobile: boolean}) {
         <div className="w-full h-full">
             <div className="relative w-full h-auto flex items-center justify-center">
                 <Image
-                    src={"/landing-page/images/highway_sign.png"}
+                    src={"/images/highway_sign.png"}
                     alt="Schedule Sign"
                     className="w-full h-full object-contain"
                     width={200}

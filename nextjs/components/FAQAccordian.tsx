@@ -33,7 +33,7 @@ export default function FAQAccordian({ questions, isMobile }: FAQAccordianProps)
             >
               <span>{faq.question}</span>
               <Image
-                src={"/landing-page/images/pin.png"}
+                src={"/images/pin.png"}
                 alt="Pin Icon"
                 className={`w-4 md:w-6 lg:w-8 transition-transform duration-200 ${openIndex === index ? 'rotate-90' : ''}`}
                 width={32}

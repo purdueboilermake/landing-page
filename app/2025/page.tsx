@@ -1,17 +1,17 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
-import Header from '@/components/Header';
-import HeroText from '@/components/HeroText';
-import AboutSection from '@/components/AboutSection';
-import ScheduleSign from '@/components/Signs/ScheduleSign';
-import Statistic from '@/components/Statistic';
-import FAQSign from '@/components/Signs/FAQSign';
-import SponsorSign from '@/components/Signs/SponsorSign';
-import SponsorCard from '@/components/SponsorCard';
-import FAQAccordian from '@/components/FAQAccordian';
-import EventPreview from '@/components/Event/EventPreview';
-import ApplyButton from '@/components/ApplyButton';
+import Header from '../../components/Header';
+import HeroText from '../../components/HeroText';
+import AboutSection from '../../components/AboutSection';
+import ScheduleSign from '../../components/Signs/ScheduleSign';
+import Statistic from '../../components/Statistic';
+import FAQSign from '../../components/Signs/FAQSign';
+import SponsorSign from '../../components/Signs/SponsorSign';
+import SponsorCard from '../../components/SponsorCard';
+import FAQAccordian from '../../components/FAQAccordian';
+import EventPreview from '../../components/Event/EventPreview';
+import ApplyButton from '../../components/ApplyButton';
 
 const sponsors = [
   {

@@ -1,3 +1,5 @@
+## CURRENTLY UNDER DEVELOPMENT! SHOULD BE FIXED BY LATER TODAY, THURSDAY NOVEMBER 14th (Ashok Saravanan)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

@@ -13,7 +13,7 @@ export default function PastPage() {
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>In the Past | BoilerMake XII</title>
-            <link rel="icon" href="/landing-page/assets/favicon.ico" type="image/x-icon" />
+            <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
             <link
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
                 rel="stylesheet"
@@ -44,7 +44,7 @@ export default function PastPage() {
                 }}
             />
             <Image
-                src="/landing-page/assets/sun.png"
+                src="/assets/sun.png"
                 className="absolute top-0 left-0 z-10 w-0 h-0 md:w-36 md:h-36"
                 width={0}
                 height={0}
@@ -83,41 +83,41 @@ export default function PastPage() {
                         className="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none animate-infinite-scroll"
                     >
                         <li>
-                            <Image src="/landing-page/assets/pics/1.JPG" 
+                            <Image src="/assets/pics/1.JPG" 
                             className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 1" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/2.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 2" />
+                            <Image src="/assets/pics/2.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 2" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/3.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 3" />
+                            <Image src="/assets/pics/3.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 3" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/4.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 4" />
+                            <Image src="/assets/pics/4.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 4" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/5.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 5" />
+                            <Image src="/assets/pics/5.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 5" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/6.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 6" />
+                            <Image src="/assets/pics/6.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 6" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/7.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 7" />
+                            <Image src="/assets/pics/7.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 7" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/8.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 8" />
+                            <Image src="/assets/pics/8.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 8" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/9.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 9" />
+                            <Image src="/assets/pics/9.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 9" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/10.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 10" />
+                            <Image src="/assets/pics/10.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 10" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/11.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 11" />
+                            <Image src="/assets/pics/11.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 11" />
                         </li>
                         <li>
-                            <Image src="/landing-page/assets/pics/12.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 12" />
+                            <Image src="/assets/pics/12.JPG" className="rounded-xl h-72" width={500} height={1080} sizes="100vw" alt="Event photo 12" />
                         </li>
                     </ul>
                 </section>
@@ -127,7 +127,7 @@ export default function PastPage() {
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,_25%)] items-center justify-center justify-items-center gap-6 md:gap-8 place-items-center">
                         <Image
-                            src="/landing-page/assets/sponsors/cockroachdb.svg"
+                            src="/assets/sponsors/cockroachdb.svg"
                             alt="CockroachDB"
                             className="mx-auto"
                             width={1000}
@@ -136,7 +136,7 @@ export default function PastPage() {
                         />
                         <a href="https://www.sandia.gov/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/sandia.png"
+                                src="/assets/sponsors/sandia.png"
                                 alt="Sandia National Labs"
                                 className="mx-auto"
                                 width={1000}
@@ -146,7 +146,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.digitalocean.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/digitalocean.png"
+                                src="/assets/sponsors/digitalocean.png"
                                 alt="Digital Ocean"
                                 className="mx-auto"
                                 width={1000}
@@ -156,7 +156,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.deere.com/en/index.html" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/johndeere.png"
+                                src="/assets/sponsors/johndeere.png"
                                 alt="John Deere"
                                 className="mx-auto"
                                 width={1000}
@@ -166,7 +166,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.ecolab.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/ecolab.png"
+                                src="/assets/sponsors/ecolab.png"
                                 alt="EcoLab"
                                 className="mx-auto"
                                 width={1000}
@@ -176,7 +176,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.bloomberg.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/bloomberg.png"
+                                src="/assets/sponsors/bloomberg.png"
                                 alt="Bloomberg"
                                 className="mx-auto"
                                 width={1000}
@@ -186,7 +186,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.echo3d.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/echo3d.png"
+                                src="/assets/sponsors/echo3d.png"
                                 alt="Echo3D"
                                 className="mx-auto"
                                 width={1000}
@@ -196,7 +196,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.deloitte.com/global/en.html" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/deloitte.png"
+                                src="/assets/sponsors/deloitte.png"
                                 alt="Deloitte"
                                 className="mx-auto"
                                 width={1000}
@@ -206,7 +206,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.sketch.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/sketch.png"
+                                src="/assets/sponsors/sketch.png"
                                 alt="Sketch"
                                 className="mx-auto"
                                 width={1000}
@@ -216,7 +216,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.palantir.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/palantir.png"
+                                src="/assets/sponsors/palantir.png"
                                 alt="Palantir"
                                 className="mx-auto"
                                 width={1000}
@@ -226,7 +226,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.klaviyo.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/klaviyo.png"
+                                src="/assets/sponsors/klaviyo.png"
                                 alt="Klaviyo"
                                 className="mx-auto"
                                 width={1000}
@@ -238,11 +238,11 @@ export default function PastPage() {
                             href="https://corporate.ford.com/social-impact/community.html"
                             target="_blank"
                         >
-                            <Image src="/landing-page/assets/sponsors/ford.png" alt="Ford" className="mx-auto" width={1000} height={1000} sizes="100vw" />
+                            <Image src="/assets/sponsors/ford.png" alt="Ford" className="mx-auto" width={1000} height={1000} sizes="100vw" />
                         </a>
                         <a href="https://thecodex.me/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/codex.png"
+                                src="/assets/sponsors/codex.png"
                                 alt="The Codex"
                                 className="mx-auto"
                                 width={1000}
@@ -252,7 +252,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://dagshub.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/dagshub.svg"
+                                src="/assets/sponsors/dagshub.svg"
                                 alt="Dagshub"
                                 className="mx-auto"
                                 width={1000}
@@ -262,7 +262,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.caterpillar.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/cat.png"
+                                src="/assets/sponsors/cat.png"
                                 alt="Caterpillar"
                                 className="mx-auto"
                                 width={1000}
@@ -272,7 +272,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.qualcomm.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/qualcomm.png"
+                                src="/assets/sponsors/qualcomm.png"
                                 alt="Qualcomm"
                                 className="mx-auto"
                                 width={1000}
@@ -282,7 +282,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://wolfram.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/wolfram.png"
+                                src="/assets/sponsors/wolfram.png"
                                 alt="Wolfram"
                                 className="mx-auto"
                                 width={1000}
@@ -292,7 +292,7 @@ export default function PastPage() {
                         </a>
                         <a href="https://www.capitalone.com/" target="_blank">
                             <Image
-                                src="/landing-page/assets/sponsors/capitalone.png"
+                                src="/assets/sponsors/capitalone.png"
                                 alt="CapitalOne"
                                 className="mx-auto"
                                 width={1000}
@@ -309,7 +309,7 @@ export default function PastPage() {
                         !
                     </p>
                     <Image
-                        src="/landing-page/assets/campfire.png"
+                        src="/assets/campfire.png"
                         alt="Sun"
                         className="absolute bottom-0 right-0 h-0 w-0 md:h-32 md:w-32"
                         width={1000}

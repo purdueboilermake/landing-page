@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
+import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
 import Header from '../../components/Header';
 import HeroText from '../../components/HeroText';
 import AboutSection from '../../components/AboutSection';
@@ -85,17 +85,48 @@ const questions = [
 ];
 
 function App() {
-
   const [isMobile, setIsMobile] = useState(false);
+  const parallaxRef = React.useRef();
 
   useEffect(() => {
-    if (window.innerWidth <= 768) {
-      setIsMobile(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
+    // Handle smooth scrolling for fragment URLs
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          const elementPosition = element.getBoundingClientRect();
+          const offset = elementPosition.top / window.innerHeight;
+          (parallaxRef.current as any)?.scrollTo(offset);
+        } 
+      }
+    };
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    // Handle initial hash if present
+    handleHashChange();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('hashchange', handleHashChange);
     }
   }, []);
+  
   return (
     <div className='App'>
-      <Parallax pages={isMobile ? 4.25 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
+      <Parallax ref={parallaxRef as unknown as React.RefObject<IParallax>} pages={isMobile ? 4.25 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
         <Header isMobile={isMobile} />
         <ParallaxLayer offset={isMobile ? 0.3 : 0.5} speed={0}>
           <div id="about-background"></div>
@@ -192,12 +223,12 @@ function App() {
             <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} isMobile={isMobile} />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 1.73 : 3.05} speed={0}>
+        <ParallaxLayer offset={isMobile ? 1.73 : 3.00} speed={0}>
           <div id="event3">
             <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={3} popupType={2} isMobile={isMobile} />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 1.87 : 3.35} speed={0}>
+        <ParallaxLayer offset={isMobile ? 1.87 : 3.30} speed={0}>
           <div id="event4">
             <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} isMobile={isMobile} />
           </div>

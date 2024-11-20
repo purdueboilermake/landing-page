@@ -21,7 +21,7 @@ const CurvedText: React.FC<CurvedTextProps> = ({ text, position, className = '' 
   const pathId = isTop ? 'circlePathTop' : 'circlePathBottom';
   const d = isTop
     ? 'M 120, 120 m -50, 0 a 70,50 0 1,1 100,0 a 70,50 0 1,1 -100,0'
-    : 'M 120, 120 m -50, 0 a 70,50 0 1,0 100,0 a 70,50 0 1,0 -100,0';
+    : 'M 120, 110 m -50, 0 a 70,50 0 1,0 100,0 a 70,50 0 1,0 -100,0';
 
   return (
     <svg width="200" height="200" viewBox="0 0 200 200" className={className}>
@@ -136,7 +136,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({
 
   // Compute classNames for curved text positioning
   const curvedTextTopClassName = 'absolute top-[-45px] right-[-55px] md:right-[-15px]';
-  const curvedTextBottomClassName = 'absolute bottom-[-10px] md:bottom-[-20px]';
+  const curvedTextBottomClassName = 'absolute bottom-[-15px] md:bottom-[-25px]';
 
   let curvedTextBottomPositionClass = '';
   if (isMobile) {

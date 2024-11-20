@@ -24,20 +24,76 @@ export default function Header({ isMobile }: HeaderProps) {
 
     return (
         <header className="w-full p-4 fixed top-0 z-50">
-            <div className="container mx-auto flex justify-between items-center text-white">
+            <div className="flex justify-between items-center text-white">
                 {/* Logo */}
-                <a href="/">
+                <a href="/landing-page/2025">
                     {isMobile ? (
-                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={50} height={50} />
+                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={50} height={50} style={{ "objectPosition": "contain" }} />
                     ) : (
-                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={50} height={50} />
+                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={100} height={100} style={{ "objectPosition": "contain" }} />
                     )}
                 </a>
 
                 {/* Spacer */}
                 <div className="flex-grow"></div>
 
-                {/* Dropdown Button */}
+                {isMobile ? (
+                    <a href="/landing-page/2025">
+                        <Image src={"/landing-page/images/camera.png"} alt="Teams" width={50} height={50} style={{ "objectPosition": "contain" }} />
+                    </a>
+                ) : (
+                    <>
+                    <nav className="md:flex space-x-4 md:space-x-12 px-4 md:px-12">
+                        <ul className="flex space-x-8 md:space-x-12">
+                            <li>
+                                <a
+                                    href="#about"
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#teams"
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    Teams
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#schedule"
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    Schedule
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#faq"
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    FAQ
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#sponsors"
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    Sponsors
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    {/* Apply Button */}
+                        <ApplyButton size={"medium"} />
+                    </>
+                )}
+
+                {/* 
                 {isMobile ? (
                     <button
                         onClick={toggleDropdown}
@@ -72,6 +128,14 @@ export default function Header({ isMobile }: HeaderProps) {
                                 </li>
                                 <li>
                                     <a
+                                        href="#teams"
+                                        className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xl font-bold"
+                                    >
+                                        Teams
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
                                         href="#schedule"
                                         className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xl font-bold"
                                     >
@@ -97,12 +161,10 @@ export default function Header({ isMobile }: HeaderProps) {
                             </ul>
                         </nav>
 
-                        {/* Apply Button */}
                         <ApplyButton size="medium" />
                     </>
                 )}
 
-                {/* Dropdown Menu */}
                 {isDropdownOpen && (
                     <div
                         id="dropdown"
@@ -115,6 +177,14 @@ export default function Header({ isMobile }: HeaderProps) {
                                     className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                 >
                                     About
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#teams"
+                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                >
+                                    Teams
                                 </a>
                             </li>
                             <li>
@@ -151,7 +221,7 @@ export default function Header({ isMobile }: HeaderProps) {
                             </li>
                         </ul>
                     </div>
-                )}
+                )} */}
             </div>
         </header>
     );

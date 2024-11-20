@@ -21,7 +21,7 @@ export default function SponsorCard({ sponsor, isMobile }: SponsorCardProps) {
     return (
         <a href={sponsor.url} target="_blank" rel="noreferrer">
             <div className={`w-150 h-150 bg-black rounded-full flex items-center justify-center`}>
-                <Image src={sponsor.logo} alt={sponsor.name} height={100} width={100} />
+                <Image src={sponsor.logo} alt={sponsor.name} height={isMobile ? 50 : 100} width={isMobile ? 50 : 100} />
             </div>
         </a>
     )

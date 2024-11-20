@@ -53,7 +53,7 @@ export default function Home() {
       <main className="flex flex-col h-screen w-full overflow-hidden justify-end bg-[#ACDEFF]">
         <div className="flex flex-col h-3/4 mx-auto items-center justify-center md:justify-end [@media_((max-height:1080px)_and_(min-width:1620px))]:-mb-32    z-10">
           <Image
-            src="landing-page/assets/logo.png"
+            src="/landing-page/assets/logo.png"
             alt="Boilermake Logo"
             width={0}
             height={0}

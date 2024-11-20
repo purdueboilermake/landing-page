@@ -17,7 +17,6 @@ export default function SponsorSign() {
                 height={200}
                 className="absolute inset-0 w-full h-full object-contain"
             />
-            <h1 className="relative z-10 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-white pb-4 md: pb-8 lg:pb-12">Sponsors</h1>
         </div>
     )
 }

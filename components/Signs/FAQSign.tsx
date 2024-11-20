@@ -14,18 +14,10 @@ export default function FAQSign() {
             <Image
                 src={"/images/sign_post.png"}
                 alt="FAQ pole"
-                className="absolute inset-0 h-50 object-contain mt-52 ml-16"
+                className="absolute inset-0 h-50 object-contain pt-24 max-h-full"
                 width={300}
                 height={300}
             />
-            <Image
-                src={"/images/stop_sign.png"}
-                alt="FAQ Sign"
-                className="absolute inset-0 w-full h-80 object-contain"
-                width={80}
-                height={80}
-            />
-            <h1 className="relative z-10 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-white mt-40 md:mt-20 lg:mt-16">FAQ</h1>
         </div>
     )
 }

@@ -242,7 +242,7 @@ function App() {
         <ParallaxLayer offset={isMobile ? 2.25 : 4} speed={0}>
           <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* First Column: FAQSign (1/3 of the screen) */}
-            <div className="col-span-1 h-1/3 flex justify-center items-center">
+            <div className="col-span-1 flex justify-center items-center">
               <FAQSign />
             </div>
             {/* Second and Third Column: FAQAccordian (2/3 of the screen) */}

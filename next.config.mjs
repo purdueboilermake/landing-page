@@ -7,6 +7,7 @@ const nextConfig = {
      */
     output: "export",
     basePath: "/landing-page",
+    distDir: "docs",
     /**
      * Disable server-based image optimization. Next.js does not support
      * dynamic features with static exports.

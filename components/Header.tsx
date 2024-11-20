@@ -38,7 +38,7 @@ export default function Header({ isMobile }: HeaderProps) {
                 <div className="flex-grow"></div>
 
                 {isMobile ? (
-                    <a href="/2025">
+                    <a href="/teams">
                         <Image src={"/images/camera.png"} alt="Teams" width={50} height={50} style={{ "objectPosition": "contain" }} />
                     </a>
                 ) : (
@@ -55,7 +55,7 @@ export default function Header({ isMobile }: HeaderProps) {
                             </li>
                             <li>
                                 <a
-                                    href="#teams"
+                                    href="/teams"
                                     className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
                                 >
                                     Teams

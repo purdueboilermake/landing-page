@@ -28,9 +28,9 @@ export default function Header({ isMobile }: HeaderProps) {
                 {/* Logo */}
                 <a href="/2025">
                     {isMobile ? (
-                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={50} height={50} style={{ "objectPosition": "contain" }} />
+                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={50} height={50} style={{ minWidth: "50px",minHeight: "50px", "objectPosition": "contain" }} />
                     ) : (
-                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={100} height={100} style={{ "objectPosition": "contain" }} />
+                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={100} height={100} style={{ minWidth: "50px",minHeight: "50px", "objectPosition": "contain" }} />
                     )}
                 </a>
 

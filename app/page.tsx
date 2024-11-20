@@ -5,6 +5,8 @@
  * 11-14-2024
  */
 
+import Image from "next/image";
+
 export default function Home() {
   return (
     <>
@@ -50,9 +52,12 @@ export default function Home() {
       />
       <main className="flex flex-col h-screen w-full overflow-hidden justify-end bg-[#ACDEFF]">
         <div className="flex flex-col h-3/4 mx-auto items-center justify-center md:justify-end [@media_((max-height:1080px)_and_(min-width:1620px))]:-mb-32    z-10">
-          <img
+          <Image
             src="/assets/logo.png"
             alt="Boilermake Logo"
+            width={0}
+            height={0}
+            sizes={"100vw"}
             className="w-5/6 md:max-w-full"
           />
           <h1 className="text-4xl md:text-6xl w-full font-bold text-center">

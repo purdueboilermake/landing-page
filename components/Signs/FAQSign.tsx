@@ -12,14 +12,14 @@ export default function FAQSign() {
     return (
         <div className="relative w-full h-full flex items-center justify-center">
             <Image
-                src={"/images/sign_post.png"}
+                src={"/landing-page/images/sign_post.png"}
                 alt="FAQ pole"
                 className="absolute inset-0 h-50 object-contain mt-52 ml-16"
                 width={300}
                 height={300}
             />
             <Image
-                src={"/images/stop_sign.png"}
+                src={"/landing-page/images/stop_sign.png"}
                 alt="FAQ Sign"
                 className="absolute inset-0 w-full h-80 object-contain"
                 width={80}

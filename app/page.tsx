@@ -13,7 +13,7 @@ export default function Home() {
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>BoilerMake XII</title>
-      <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+      <link rel="icon" href="landing-page/assets/favicon.ico" type="image/x-icon" />
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         rel="stylesheet"
@@ -53,7 +53,7 @@ export default function Home() {
       <main className="flex flex-col h-screen w-full overflow-hidden justify-end bg-[#ACDEFF]">
         <div className="flex flex-col h-3/4 mx-auto items-center justify-center md:justify-end [@media_((max-height:1080px)_and_(min-width:1620px))]:-mb-32    z-10">
           <Image
-            src="/assets/logo.png"
+            src="landing-page/assets/logo.png"
             alt="Boilermake Logo"
             width={0}
             height={0}
@@ -73,6 +73,7 @@ export default function Home() {
             >
               Early Interest Form
             </a>
+            <a className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out" href="https://forms.gle/Vdhhjfmhg1v6XuTG9">Mentor Interest Form</a>
             <a
               href="/past"
               className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out"

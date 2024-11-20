@@ -16,47 +16,47 @@ import ApplyButton from '../../components/ApplyButton';
 const sponsors = [
   {
     name: 'Sponsor 1',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 2',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 3',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 4',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 5',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 6',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 7',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 8',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
   {
     name: 'Sponsor 9',
-    logo: "/images/logo.png",
+    logo: "/landing-page/images/logo.png",
     url: 'https://www.boilermake.org/'
   },
 ];

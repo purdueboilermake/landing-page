@@ -154,7 +154,7 @@ body {
 /* Cliff Section */
 #cliff {
   position: absolute;
-  background: url("/images/cliffside.png"), linear-gradient(to bottom, #DDB47D 41%, #C5E1E6 96%);
+  background: url("/landing-page/images/cliffside.png"), linear-gradient(to bottom, #DDB47D 41%, #C5E1E6 96%);
   background-size: cover;
   background-blend-mode: normal;
 }
@@ -173,7 +173,7 @@ body {
 #cloud1 {
   position: absolute;
   width: 60vw;
-  background: url("/images/cloud_transition_1.png") no-repeat center center;
+  background: url("/landing-page/images/cloud_transition_1.png") no-repeat center center;
   background-size: contain;
   left: 15%;
   top: 10%;
@@ -181,21 +181,21 @@ body {
 #cloud2 {
   position: absolute;
   width: 90vw;
-  background: url("/images/cloud_transition_2.png") no-repeat center center;
+  background: url("/landing-page/images/cloud_transition_2.png") no-repeat center center;
   background-size: contain;
   left: -15%;
 }
 #cloud3 {
   position: absolute;
   width: 70vw;
-  background: url("/images/cloud_transition_3.png") no-repeat center center;
+  background: url("/landing-page/images/cloud_transition_3.png") no-repeat center center;
   background-size: contain;
   left: 40%;
 }
 #cloud4 {
   position: absolute;
   width: 40vw;
-  background: url("/images/cloud_transition_4.png") no-repeat center center;
+  background: url("/landing-page/images/cloud_transition_4.png") no-repeat center center;
   background-size: contain;
   left: 50%;
   top: 10%;
@@ -203,7 +203,7 @@ body {
 #cloud5 {
   position: absolute;
   width: 25vw;
-  background: url("/images/cloud_transition_5.png") no-repeat center center;
+  background: url("/landing-page/images/cloud_transition_5.png") no-repeat center center;
   background-size: contain;
   left: 75%;
   top: -12%;
@@ -221,7 +221,7 @@ body {
   left: -40vw;
   width: 200vw;
   height: 200vh;
-  background: url("/images/road.png");
+  background: url("/landing-page/images/road.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -240,7 +240,7 @@ body {
 
 /* Footer Background */
 #footer-background {
-  background: url("/images/footer_background.png") repeat-x;
+  background: url("/landing-page/images/footer_background.png") repeat-x;
   height: 100vh;
   background-size: contain;
   position: relative;
@@ -255,7 +255,7 @@ body {
 #mini-cloud-left {
   position: absolute;
   width: 40vw;
-  background: url("/images/cloud_transition_5.png") no-repeat center center;
+  background: url("/landing-page/images/cloud_transition_5.png") no-repeat center center;
   background-size: contain;
   left: 5%;
   top: -37%;
@@ -263,7 +263,7 @@ body {
 #mini-cloud-right {
   position: absolute;
   width: 40vw;
-  background: url("/images/cloud_transition_4.png") no-repeat center center;
+  background: url("/landing-page/images/cloud_transition_4.png") no-repeat center center;
   opacity: 0.5;
   background-size: contain;
   left: 69%;
@@ -274,7 +274,7 @@ body {
 #sun {
   position: absolute;
   width: 45vw;
-  background: url("/images/sun.png") no-repeat center center;
+  background: url("/landing-page/images/sun.png") no-repeat center center;
   background-size: contain;
   left: -10%;
   top: -45%;

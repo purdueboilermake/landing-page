@@ -19,7 +19,7 @@ export default function Statistic({ statistic, variable }: StatisticProps) {
       {/* Relative container for positioning the text over the image */}
       <div className="relative w-20 md:w-30 lg:w-40 h-20 md:h-30 lg:h-40">
         <Image
-          src={"/landing-page/images/interstate_sign.png"}
+          src={"/images/interstate_sign.png"}
           alt={"Statistic: " + statistic + " " + variable}
           className="w-full h-full object-contain"
           width={200}

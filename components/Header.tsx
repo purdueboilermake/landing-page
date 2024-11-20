@@ -26,11 +26,11 @@ export default function Header({ isMobile }: HeaderProps) {
         <header className="w-full p-4 fixed top-0 z-50">
             <div className="flex justify-between items-center text-white">
                 {/* Logo */}
-                <a href="/landing-page/2025">
+                <a href="/2025">
                     {isMobile ? (
-                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={50} height={50} style={{ "objectPosition": "contain" }} />
+                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={50} height={50} style={{ "objectPosition": "contain" }} />
                     ) : (
-                        <Image src={"/landing-page/images/logo.png"} alt="Boilermake Logo" width={100} height={100} style={{ "objectPosition": "contain" }} />
+                        <Image src={"/images/logo.png"} alt="Boilermake Logo" width={100} height={100} style={{ "objectPosition": "contain" }} />
                     )}
                 </a>
 
@@ -38,8 +38,8 @@ export default function Header({ isMobile }: HeaderProps) {
                 <div className="flex-grow"></div>
 
                 {isMobile ? (
-                    <a href="/landing-page/2025">
-                        <Image src={"/landing-page/images/camera.png"} alt="Teams" width={50} height={50} style={{ "objectPosition": "contain" }} />
+                    <a href="/2025">
+                        <Image src={"/images/camera.png"} alt="Teams" width={50} height={50} style={{ "objectPosition": "contain" }} />
                     </a>
                 ) : (
                     <>

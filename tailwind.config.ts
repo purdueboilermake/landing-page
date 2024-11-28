@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        dosis: ['var(--font-dosis)'],
+        'averia-libre': ['var(--font-averia-libre)'],
+        arvo: ['var(--font-arvo)'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: var(--font-dosis), system-ui, sans-serif;
+  }
+}
+
 /* Root Colors */
 :root {
   --background: #ffffff;
@@ -18,7 +24,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Dosis", sans-serif;
 }
 
 /* About Background Styles */
@@ -215,7 +221,7 @@ body {
 }
 
 /* Road Section */
-#road {
+/* #road {
   position: absolute;
   top: -100vh;
   left: -40vw;
@@ -236,7 +242,7 @@ body {
     height: 150vh;
     transform: rotate(20deg) scale(1);
   }
-}
+} */
 
 /* Footer Background */
 #footer-background {

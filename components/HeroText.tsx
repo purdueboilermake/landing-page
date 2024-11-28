@@ -9,19 +9,16 @@ import ApplyButton from './ApplyButton';
 
 type HeroTextProps = {
     isMobile: boolean;
+    showButton?: boolean;
 }
 
-export default function HeroText({ isMobile }: HeroTextProps) {
+export default function HeroText({ isMobile, showButton = true }: HeroTextProps) {
     return (
         <div className={`container mx-auto text-white`}>
-            {/* BOILERMAKE in subtitle font */}
-            <h1 className="text-5xl md:text-8xl font-subtitle font-bold">BOILERMAKE</h1>
-
-            {/* XII in title font */}
-            <h2 className="text-[100px] md:text-[200px] font-title leading-none font-extrabold">XII</h2>
-
-            {/* Date in paragraph font */}
-            <p className="text-xl md:text-3xl font-body font-extrabold leading-none mb-4">1/19 - 1/23</p>
+            <h1 className={`text-5xl md:text-8xl font-averia-libre font-bold ${isMobile ? 'text-2xl' : ''}`}>BOILERMAKE</h1>
+            <h2 className={`text-[100px] md:text-[200px] font-arvo leading-none font-extrabold ${isMobile ? 'text-5xl' : ''}`}>XII</h2>
+            <p className={`text-xl md:text-3xl font-body font-extrabold leading-none mb-4 ${isMobile ? 'text-sm' : ''}`}>1/19 - 1/23</p>
+            {showButton && <ApplyButton size={isMobile ? 'medium' : 'large'} />}
         </div>
     );
 }

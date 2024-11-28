@@ -12,6 +12,7 @@ import SponsorCard from '../../components/SponsorCard';
 import FAQAccordian from '../../components/FAQAccordian';
 import EventPreview from '../../components/Event/EventPreview';
 import ApplyButton from '../../components/ApplyButton';
+import Image from 'next/image';
 
 const sponsors = [
   {
@@ -125,8 +126,8 @@ function App() {
   }, []);
   
   return (
-    <div className='App'>
-      <Parallax ref={parallaxRef as unknown as React.RefObject<IParallax>} pages={isMobile ? 4.25 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
+    <div className='App font-dosis'>
+      <Parallax ref={parallaxRef as unknown as React.RefObject<IParallax>} pages={isMobile ? 4.05 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
         <Header isMobile={isMobile} />
         <ParallaxLayer offset={isMobile ? 0.3 : 0.5} speed={0}>
           <div id="about-background"></div>
@@ -136,7 +137,23 @@ function App() {
           <div className="animation_layer parallax" id="cliff">
             <div className={`flex justify-end items-center ${isMobile ? "p-16" : "p-36"}`}>
               <div className={`text-right`}>
-                <HeroText isMobile={isMobile} />
+                <div className="container mx-auto text-white">
+                  <h1 className={`text-5xl md:text-8xl font-averia-libre font-bold ${isMobile ? 'text-2xl' : ''}`}>BOILERMAKE</h1>
+                  <h2 className={`text-[100px] md:text-[200px] font-arvo leading-none font-extrabold ${isMobile ? 'text-5xl' : ''}`}>XII</h2>
+                  <p className={`text-xl md:text-3xl font-body font-extrabold leading-none mb-4 ${isMobile ? 'text-sm' : ''}`}>1/19 - 1/23</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={0} speed={0.25} style={{ zIndex: 10 }}>
+          <div className={`flex justify-end items-center ${isMobile ? "p-16" : "p-36"}`}>
+            <div className={`text-right`}>
+              <div className="container mx-auto">
+                <div style={{paddingTop: isMobile ? '11rem' : '22rem' }}>
+                  <ApplyButton size={isMobile ? 'medium' : 'large'} />
+                </div>
               </div>
             </div>
           </div>
@@ -162,12 +179,6 @@ function App() {
           <div className="animation_layer parallax" id="cloud1"></div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 0.32 : 0.63} speed={0.25}>
-          <div className={`flex justify-end items-center ${isMobile ? "pr-12" : "pr-32"}`}>
-            <ApplyButton size={isMobile ? "medium" : "large"} />
-          </div>
-        </ParallaxLayer>
-
         <ParallaxLayer offset={isMobile ? 0.9 : 1.3} speed={0.3}>
           <div className="animation_layer parallax" id="mini-cloud-left"></div>
         </ParallaxLayer>
@@ -177,20 +188,32 @@ function App() {
 
         <ParallaxLayer offset={isMobile ? 0.28 : 1.0} speed={0.1}>
           <div id='stat1'>
-            <Statistic statistic='XX' variable='STATISTIC' />
+            <Statistic statistic='XX' variable='STATISTIC' isMobile={isMobile} />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
           <div id='stat2'>
-            <Statistic statistic='XX' variable='STATISTIC' />
+            <Statistic statistic='XX' variable='STATISTIC' isMobile={isMobile} />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
           <div id='stat3'>
-            <Statistic statistic='XX' variable='STATISTIC' />
+            <Statistic statistic='XX' variable='STATISTIC' isMobile={isMobile} />
           </div>
         </ParallaxLayer>
 
+        <ParallaxLayer offset={isMobile ? 2.05 : 4} speed={0}>
+          <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
+            {/* First Column: FAQSign (1/3 of the screen) */}
+            <div className="col-span-1 flex justify-center items-center h-[500px]">
+              <FAQSign />
+            </div>
+            {/* Second and Third Column: FAQAccordian (2/3 of the screen) */}
+            <div className="col-span-2 pt-36">
+              <FAQAccordian questions={questions} isMobile={isMobile} />
+            </div>
+          </div>
+        </ParallaxLayer>
 
         <ParallaxLayer offset={isMobile ? 1.25 : 2} speed={0}>
           <div id="schedule" className='h-full w-full'>
@@ -200,16 +223,23 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 0.85 : 1.6} speed={0}>
-          <div id="about" className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-12">
-            <div className="col-span-1 h-1/3 flex justify-center items-center">
-              <AboutSection />
-            </div>
+        <ParallaxLayer offset={isMobile ? 1.55 : 2.3} speed={0}>
+          <div className={`absolute ${isMobile ? "top-[-63vh]" : "top-[-40vh]"} left-1/2 -translate-x-1/2 ${isMobile ? 'w-[175vw] h-[175vh]' : 'w-[250vw] h-[250vh]'}`}>
+            <Image 
+              src="/images/road.png" 
+              alt="Road" 
+              fill
+              className={`object-contain ${isMobile ? 'scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
+            />
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 1.55 : 2.3} speed={0}>
-          <div className="animation_layer parallax" id="road"></div>
+        <ParallaxLayer offset={isMobile ? 0.85 : 1.6} speed={0}>
+          <div id="about" className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-12">
+            <div className="col-span-1 h-1/3 flex justify-center items-center">
+              <AboutSection isMobile={isMobile} />
+            </div>
+          </div>
         </ParallaxLayer>
 
         <ParallaxLayer offset={isMobile ? 1.33 : 2.2} speed={0}>
@@ -238,20 +268,7 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 2.25 : 4} speed={0}>
-          <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
-            {/* First Column: FAQSign (1/3 of the screen) */}
-            <div className="col-span-1 flex justify-center items-center">
-              <FAQSign />
-            </div>
-            {/* Second and Third Column: FAQAccordian (2/3 of the screen) */}
-            <div className="col-span-2 pt-24">
-              <FAQAccordian questions={questions} isMobile={isMobile} />
-            </div>
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={isMobile ? 3 : 5} speed={0}>
+        <ParallaxLayer offset={isMobile ? 2.75 : 5} speed={0}>
           <div id="sponsors" className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}>
               <SponsorSign />
@@ -264,10 +281,10 @@ function App() {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 3.75 : 6.5} speed={0}>
+        <ParallaxLayer offset={isMobile ? 3.5 : 6.5} speed={0}>
           <div id="footer">
             <div className="animation_layer parallax" id="footer-background">
-              {isMobile && <div className="flex justify-center items-center h-full pb-12 text-sm">
+              {isMobile && <div className={`flex justify-center items-center h-full text-sm pt-4`}>
                 <div className="text-white text-center">
                   Created With 💛 By&nbsp;
                   <a href="https://boilermake.org/">Boilermake</a>

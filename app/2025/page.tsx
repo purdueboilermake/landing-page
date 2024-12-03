@@ -202,13 +202,24 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 2.05 : 4} speed={0}>
+        {/* Background layer for FAQ */}
+        <ParallaxLayer offset={isMobile ? 2.08 : 4} speed={0}>
           <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* First Column: FAQSign (1/3 of the screen) */}
             <div className="col-span-1 flex justify-center items-center h-[500px]">
               <FAQSign />
             </div>
-            {/* Second and Third Column: FAQAccordian (2/3 of the screen) */}
+            {/* Empty space for accordion */}
+            <div className="col-span-2"></div>
+          </div>
+        </ParallaxLayer>
+
+        {/* Floating accordion layer */}
+        <ParallaxLayer offset={isMobile ? 2.05 : 4} speed={0} style={{ zIndex: 10 }}>
+          <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
+            {/* Empty space matching sign width */}
+            <div className="col-span-1"></div>
+            {/* Accordion floating above */}
             <div className="col-span-2 pt-36">
               <FAQAccordian questions={questions} isMobile={isMobile} />
             </div>

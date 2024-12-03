@@ -1,6 +1,6 @@
 /**
  * EventPreview.tsx
- * Displays an event preview with a green circle and optional curved text and time.
+ * Displays an event preview with a green circle and optional text and time.
  * On hover or click, it displays the event details in a popup.
  * @AshokSaravanan222
  * 09-15-2024
@@ -8,34 +8,6 @@
 
 import React, { useState } from 'react';
 import EventPopup from './EventPopup';
-
-// Sub-component for rendering curved text using SVG
-type CurvedTextProps = {
-  text: string;
-  position: 'top' | 'bottom';
-  className?: string;
-};
-
-const CurvedText: React.FC<CurvedTextProps> = ({ text, position, className = '' }) => {
-  const isTop = position === 'top';
-  const pathId = isTop ? 'circlePathTop' : 'circlePathBottom';
-  const d = isTop
-    ? 'M 120, 120 m -50, 0 a 70,50 0 1,1 100,0 a 70,50 0 1,1 -100,0'
-    : 'M 120, 110 m -50, 0 a 70,50 0 1,0 100,0 a 70,50 0 1,0 -100,0';
-
-  return (
-    <svg width="200" height="200" viewBox="0 0 200 200" className={className}>
-      <defs>
-        <path id={pathId} d={d} />
-      </defs>
-      <text className="text-[10px] md:text-[18px]" fontWeight="bold" fill="black">
-        <textPath href={`#${pathId}`} startOffset="25%" textAnchor="middle">
-          {text}
-        </textPath>
-      </text>
-    </svg>
-  );
-};
 
 // Sub-component for rendering the green circle
 type GreenCircleProps = {
@@ -62,9 +34,8 @@ const EventTime: React.FC<EventTimeProps> = ({ time, className = '' }) => {
 };
 
 type EventPreviewProps = {
-  isMobile: boolean;
   title: string;
-  cardType: 1 | 2 | 3; // 1 = curved top text above, circle middle, then date below, 2 = date above, circle middle, then curved bottom text below, 3 = circle middle, curved text below, then date to the right
+  cardType: 1 | 2 | 3; // 1 = text above, circle middle, then date below, 2 = date above, circle middle, then text below, 3 = circle middle, text below, then date to the right
   popupType: 1 | 2; // 1 = left popup, 2 = right popup
   date: string;
   location: string;
@@ -72,7 +43,6 @@ type EventPreviewProps = {
 };
 
 const EventPreview: React.FC<EventPreviewProps> = ({
-  isMobile,
   title,
   date,
   location,
@@ -97,12 +67,6 @@ const EventPreview: React.FC<EventPreviewProps> = ({
   // Determine if popup should be shown
   const showPopup = isPopupVisible || isClicked;
 
-  // Layout configurations based on cardType
-  const isCardType3 = cardType === 3;
-  const containerClasses = isCardType3
-    ? 'flex flex-row items-center space-x-4 cursor-pointer'
-    : 'flex flex-col items-center space-y-1 md:space-y-2 cursor-pointer';
-
   // Handlers for hover events
   const handleMouseEnter = () => {
     if (!isClicked) setIsPopupVisible(true);
@@ -112,85 +76,59 @@ const EventPreview: React.FC<EventPreviewProps> = ({
     if (!isClicked) setIsPopupVisible(false);
   };
 
-  // Compute classNames and styles for popup positioning
-  let popupPositionClass = '';
-  let popupStyle: React.CSSProperties = {};
-
-  if (popupType === 1) {
-    popupPositionClass = 'right-0';
-  } else {
-    popupPositionClass = cardType === 2 ? 'left-[130%]' : 'left-[90%]';
-  }
-
-  if (isMobile && cardType === 3 && popupType === 1) {
-    popupStyle = {
-      top: '20%',
-      transform: 'translateY(-80%) translateX(40%)',
-    };
-  } else {
-    popupStyle = {
-      top: '50%',
-      transform: 'translateY(-50%)',
-    };
-  }
-
-  // Compute classNames for curved text positioning
-  const curvedTextTopClassName = 'absolute top-[-45px] right-[-55px] md:right-[-15px]';
-  const curvedTextBottomClassName = 'absolute bottom-[-15px] md:bottom-[-25px]';
-
-  let curvedTextBottomPositionClass = '';
-  if (isMobile) {
-    curvedTextBottomPositionClass = cardType === 3 ? 'left-[-97px]' : 'left-[-97px]';
-  } else {
-    curvedTextBottomPositionClass = cardType === 3 ? 'right-[75px]' : 'right-[-15px]';
-  }
-  const curvedTextBottomFullClassName = `${curvedTextBottomClassName} ${curvedTextBottomPositionClass}`;
-
   return (
-    <div
-      className={`relative ${containerClasses}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* For cardType 2, display time above */}
-      {cardType === 2 && <EventTime time={eventTime} />}
+    <div className="relative">
+      <div
+        className={`flex flex-col items-center gap-4 cursor-pointer`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Top section */}
+        <div className="flex flex-col items-center gap-1">
+          {/* Time above for cardType 2 */}
+          {cardType === 2 && <EventTime time={eventTime} />}
 
-      <div className="relative">
-        {/* Curved text above for cardType 1 */}
-        {cardType === 1 && (
-          <CurvedText text={title} position="top" className={curvedTextTopClassName} />
-        )}
+          {/* Text above for cardType 1 */}
+          {cardType === 1 && (
+            <span className="text-xs md:text-base font-bold">{title}</span>
+          )}
 
-        {/* Green Circle */}
-        <div className="flex items-center">
-          <GreenCircle onClick={handleCircleClick} />
-          {/* For cardType 3, display time to the right */}
-          {cardType === 3 && <EventTime time={eventTime} className="ml-2 md:ml-4" />}
+          {/* Circle and optional side time */}
+          <div className="flex items-center gap-1">
+            <div className="flex flex-col items-center gap-1">
+              <GreenCircle onClick={handleCircleClick} />
+              {cardType === 3 && <span className="text-xs md:text-base font-bold">{title}</span>}
+            </div>
+            {cardType === 3 && <div className="pb-4"><EventTime time={eventTime} /></div>}
+          </div>
+
+          {/* Text below for cardType 2 & 3 */}
+          {cardType !== 1 && cardType !== 3 && (
+            <span className="text-xs md:text-base font-bold">{title}</span>
+          )}
+
+          {/* Time below for cardType 1 */}
+          {cardType === 1 && <EventTime time={eventTime} />}
         </div>
 
-        {/* Curved text below for cardType !== 1 */}
-        {cardType !== 1 && (
-          <CurvedText text={title} position="bottom" className={curvedTextBottomFullClassName} />
+        {/* Popup */}
+        {showPopup && (
+          <div className="absolute top-1/2 -translate-y-1/2">
+            <div className={`${
+              popupType === 1 
+                ? 'right-[calc(100%-0rem)] md:right-[calc(100%-5rem)] -translate-y-1/2' 
+                : `left-[calc(100%+5rem)] md:left-[calc(100%+7rem)] -translate-y-1/2`
+            } absolute w-[280px] md:w-[350px] lg:w-[600px]`}>
+              <EventPopup
+                title={title}
+                date={date}
+                location={location}
+                description={description}
+              />
+            </div>
+          </div>
         )}
       </div>
-
-      {/* For cardType 1, display time below */}
-      {cardType === 1 && <EventTime time={eventTime} />}
-
-      {/* Event Popup */}
-      {showPopup && (
-        <div
-          className={`absolute ${popupPositionClass} rounded-lg w-[280px] md:w-[350px] lg:w-[600px]`}
-          style={popupStyle}
-        >
-          <EventPopup
-            title={title}
-            date={date}
-            location={location}
-            description={description}
-          />
-        </div>
-      )}
     </div>
   );
 };

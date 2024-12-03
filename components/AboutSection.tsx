@@ -5,11 +5,11 @@
  * 09-15-2024
  */
 
-export default function AboutSection({ isMobile }: { isMobile: boolean }) {
+export default function AboutSection() {
     return (
-        <div className="container mx-auto text-left">
-            <h1 className={`text-2xl md:text-3xl lg:text-5xl font-semibold font-title pb-2 md:pb-4 lg:pb-6 ${isMobile ? 'text-xl' : ''}`}>About</h1>
-                <p className={`text-md md:text-xl lg:text-2xl ${isMobile ? 'text-sm' : ''}`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div className="container mx-auto text-left px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-20">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-title pb-2 sm:pb-3 md:pb-4 lg:pb-6">About</h1>
+            <p className="text-sm sm:text-md md:text-xl lg:text-2xl max-w-prose">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
     )
 }

@@ -9,10 +9,9 @@ import Image from 'next/image';
 
 type FAQAccordianProps = {
   questions: { question: string, answer: string }[];
-  isMobile: boolean;
 };
 
-export default function FAQAccordian({ questions, isMobile }: FAQAccordianProps) {
+export default function FAQAccordian({ questions }: FAQAccordianProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleAccordion = (index: number) => {

@@ -100,35 +100,16 @@ function App() {
     // Add event listener for window resize
     window.addEventListener('resize', checkMobile);
 
-    // Handle smooth scrolling for fragment URLs
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        const element = document.querySelector(hash);
-        if (element) {
-          const elementPosition = element.getBoundingClientRect();
-          const offset = elementPosition.top / window.innerHeight;
-          (parallaxRef.current as any)?.scrollTo(offset);
-        } 
-      }
-    };
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-    // Handle initial hash if present
-    handleHashChange();
-
     // Cleanup
     return () => {
       window.removeEventListener('resize', checkMobile);
-      window.removeEventListener('hashchange', handleHashChange);
     }
   }, []);
   
   return (
     <div className='App font-dosis'>
       <Parallax ref={parallaxRef as unknown as React.RefObject<IParallax>} pages={isMobile ? 4.05 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
-        <Header isMobile={isMobile} />
+        <Header />
         <ParallaxLayer offset={isMobile ? 0.3 : 0.5} speed={0}>
           <div id="about-background"></div>
         </ParallaxLayer>
@@ -188,17 +169,17 @@ function App() {
 
         <ParallaxLayer offset={isMobile ? 0.28 : 1.0} speed={0.1}>
           <div id='stat1'>
-            <Statistic statistic='XX' variable='STATISTIC' isMobile={isMobile} />
+            <Statistic statistic='XX' variable='STATISTIC' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
           <div id='stat2'>
-            <Statistic statistic='XX' variable='STATISTIC' isMobile={isMobile} />
+            <Statistic statistic='XX' variable='STATISTIC' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
           <div id='stat3'>
-            <Statistic statistic='XX' variable='STATISTIC' isMobile={isMobile} />
+            <Statistic statistic='XX' variable='STATISTIC' />
           </div>
         </ParallaxLayer>
 
@@ -221,7 +202,7 @@ function App() {
             <div className="col-span-1"></div>
             {/* Accordion floating above */}
             <div className="col-span-2 pt-36">
-              <FAQAccordian questions={questions} isMobile={isMobile} />
+              <FAQAccordian questions={questions} />
             </div>
           </div>
         </ParallaxLayer>
@@ -229,7 +210,7 @@ function App() {
         <ParallaxLayer offset={isMobile ? 1.25 : 2} speed={0}>
           <div id="schedule" className='h-full w-full'>
             <div className='w-1/3 h-1/3'>
-              <ScheduleSign isMobile={isMobile} />
+              <ScheduleSign />
             </div>
           </div>
         </ParallaxLayer>
@@ -248,34 +229,34 @@ function App() {
         <ParallaxLayer offset={isMobile ? 0.85 : 1.6} speed={0}>
           <div id="about" className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-12">
             <div className="col-span-1 h-1/3 flex justify-center items-center">
-              <AboutSection isMobile={isMobile} />
+              <AboutSection />
             </div>
           </div>
         </ParallaxLayer>
 
         <ParallaxLayer offset={isMobile ? 1.33 : 2.2} speed={0}>
           <div id="event1">
-            <EventPreview title='opening ceremony' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={1} popupType={1} isMobile={isMobile} />
+            <EventPreview title='opening ceremony' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={1} popupType={1} />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.47 : 2.6} speed={0}>
           <div id="event2">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} isMobile={isMobile} />
+            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.73 : 3.00} speed={0}>
           <div id="event3">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={3} popupType={2} isMobile={isMobile} />
+            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={3} popupType={2} />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.87 : 3.30} speed={0}>
           <div id="event4">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} isMobile={isMobile} />
+            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.98 : 3.6} speed={0}>
           <div id="event5">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={1} isMobile={isMobile} />
+            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={1} />
           </div>
         </ParallaxLayer>
 
@@ -287,7 +268,7 @@ function App() {
             {/* Sponsors */}
             <div className="grid grid-cols-3 gap-x-8 gap-y-20 justify-items-center">
               {sponsors.map((sponsor, index) => (
-                <SponsorCard sponsor={sponsor} key={index} isMobile={isMobile} />
+                <SponsorCard sponsor={sponsor} key={index} />
               ))}
             </div>
           </div>

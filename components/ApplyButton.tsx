@@ -9,9 +9,10 @@ import React from 'react';
 
 type ApplyButtonProps = {
     size: 'small' | 'medium' | 'large';
+    className?: string;
 }
 
-export default function ApplyButton({ size }: ApplyButtonProps) {
+export default function ApplyButton({ size, className }: ApplyButtonProps) {
     // Define classes for each size
     const sizeClasses = {
         small: 'py-2 px-2 text-sm rounded-full', // Larger border-radius for small
@@ -22,7 +23,7 @@ export default function ApplyButton({ size }: ApplyButtonProps) {
     return (
         <a href='https://boilermake.org/' target='_blank' rel='noreferrer'>
             <button
-                className={`bg-white shadow-md text-[#DDB47D] font-body font-extrabold hover:shadow-lg transition-shadow duration-300 ${sizeClasses[size]}`}
+                className={`bg-white shadow-md text-[#DDB47D] font-body font-extrabold hover:shadow-lg transition-shadow duration-300 ${sizeClasses[size]} ${className}`}
             >
                 Apply Now!
             </button>

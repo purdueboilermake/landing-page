@@ -9,7 +9,6 @@ import Image, { StaticImageData } from "next/image";
 import React from "react"
 
 type SponsorCardProps = {
-    isMobile: boolean;
     sponsor: {
         name: string; // for alt text
         logo: string;
@@ -17,11 +16,19 @@ type SponsorCardProps = {
     }
 }
 
-export default function SponsorCard({ sponsor, isMobile }: SponsorCardProps) {
+export default function SponsorCard({ sponsor }: SponsorCardProps) {
     return (
         <a href={sponsor.url} target="_blank" rel="noreferrer">
-            <div className={`w-150 h-150 bg-black rounded-full flex items-center justify-center`}>
-                <Image src={sponsor.logo} alt={sponsor.name} height={isMobile ? 50 : 100} width={isMobile ? 50 : 100} />
+            <div className="p-4 inline-block">
+                <div className="bg-black rounded-full p-4 flex items-center justify-center">
+                    <Image 
+                        src={sponsor.logo} 
+                        alt={sponsor.name} 
+                        className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
+                        width={100}
+                        height={100}
+                    />
+                </div>
             </div>
         </a>
     )

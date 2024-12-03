@@ -1,5 +1,6 @@
 "use client";
 
+import Header from '@/components/Header';
 import Image from 'next/image';
 
 export default function TeamsPage() {
@@ -13,6 +14,7 @@ export default function TeamsPage() {
   ];
   return (
     <div id="teams-page" className="flex flex-col items-center justify-center min-h-screen">
+      <Header showNav={false} />
       <h1 className="text-6xl font-bold mb-8">Teams Page</h1>
       <div className="flex flex-col items-center gap-16">
         {teams.map((team) => (

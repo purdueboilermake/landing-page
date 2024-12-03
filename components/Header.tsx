@@ -29,10 +29,10 @@ export default function Header({ showNav = true }: { showNav?: boolean }) {
 
                 {/* Mobile Camera Icon / Desktop Nav */}
                 <div className={`${showNav ? "md:hidden" : ""}`}>
-                    <a href="/teams">
+                    <a href="/about-us">
                         <Image
                             src={"/images/camera.png"}
-                            alt="Teams"
+                            alt="About Us"
                             width={100}
                             height={100}
                             className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
@@ -53,10 +53,10 @@ export default function Header({ showNav = true }: { showNav?: boolean }) {
                                 </li>
                                 <li>
                                     <a
-                                        href="/teams"
+                                        href="/about-us"
                                         className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
                                     >
-                                        Teams
+                                        About Us
                                     </a>
                                 </li>
                                 <li>

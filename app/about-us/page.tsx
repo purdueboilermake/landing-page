@@ -15,7 +15,7 @@ export default function TeamsPage() {
   return (
     <div id="teams-page" className="flex flex-col items-center justify-center min-h-screen">
       <Header showNav={false} />
-      <h1 className="text-6xl font-bold mb-8">Teams Page</h1>
+      <h1 className="text-6xl font-bold mb-8">About Us</h1>
       <div className="flex flex-col items-center gap-16">
         {teams.map((team) => (
           <div key={team.id} className="flex flex-col items-center">
@@ -48,7 +48,7 @@ export default function TeamsPage() {
                 />
               </div>
             </div>
-            <p className="mt-4 text-center max-w-xs">{team.description}</p>
+            <p className="mt-4 text-center max-w-xs text-lg md:text-xl lg:text-2xl font-semibold">{team.description}</p>
           </div>
         ))}
       </div>

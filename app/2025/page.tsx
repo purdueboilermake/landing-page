@@ -169,17 +169,17 @@ function App() {
 
         <ParallaxLayer offset={isMobile ? 0.28 : 1.0} speed={0.1}>
           <div id='stat1'>
-            <Statistic statistic='XX' variable='STATISTIC' />
+            <Statistic statistic='XX' variable='9 Universities Represented' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
           <div id='stat2'>
-            <Statistic statistic='XX' variable='STATISTIC' />
+            <Statistic statistic='XX' variable='70 Project Submissions' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
           <div id='stat3'>
-            <Statistic statistic='XX' variable='STATISTIC' />
+            <Statistic statistic='XX' variable='1:3 Female:Male Ratio' />
           </div>
         </ParallaxLayer>
 

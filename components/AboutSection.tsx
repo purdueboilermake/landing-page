@@ -9,7 +9,7 @@ export default function AboutSection() {
     return (
         <div className="container mx-auto text-left px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-20">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-title pb-2 sm:pb-3 md:pb-4 lg:pb-6">About</h1>
-            <p className="text-sm sm:text-md md:text-xl lg:text-2xl max-w-prose">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p className="text-sm sm:text-md md:text-xl lg:text-2xl max-w-prose">BoilerMake is Purdue University's premier hackathon, bringing together over 500 students from numerous universities and majors to compete in 36 hours of hacking for $4000+ in prizes. Designed for hackers of all levels, BoilerMake provides unique and valuable experiences regardless of skill level -- you can participate in fun activities, win cool prizes, get free swag and food, and most importantly, have a whole lot of fun! It’s also a great opportunity to network with large companies in industry and develop new skills. BoilerMake XII will take place February 21-23, 2025</p>
         </div>
     )
 }

@@ -87,7 +87,8 @@ const questions = [
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
-  const parallaxRef = React.useRef();
+  const parallaxRef = React.useRef<IParallax>(null);
+  const [activeEventId, setActiveEventId] = useState<number | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -106,10 +107,14 @@ function App() {
     }
   }, []);
   
+  const handleEventClick = (id: number) => {
+    setActiveEventId(activeEventId === id ? null : id);
+  };
+
   return (
     <div className='App font-dosis'>
-      <Parallax ref={parallaxRef as unknown as React.RefObject<IParallax>} pages={isMobile ? 4.05 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
-        <Header />
+      <Parallax ref={parallaxRef} pages={isMobile ? 4.25 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
+        <Header parallaxRef={parallaxRef} />
         <ParallaxLayer offset={isMobile ? 0.3 : 0.5} speed={0}>
           <div id="about-background"></div>
         </ParallaxLayer>
@@ -236,27 +241,72 @@ function App() {
 
         <ParallaxLayer offset={isMobile ? 1.33 : 2.2} speed={0}>
           <div id="event1">
-            <EventPreview title='opening ceremony' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={1} popupType={1} />
+            <EventPreview 
+              title='opening ceremony' 
+              date={new Date().toISOString()} 
+              location='Frances A. Cordova Recreational Sports Center' 
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
+              cardType={1} 
+              popupType={1}
+              isActive={activeEventId === 1}
+              onEventClick={() => handleEventClick(1)}
+            />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.47 : 2.6} speed={0}>
           <div id="event2">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} />
+            <EventPreview 
+              title='activity name' 
+              date={new Date().toISOString()} 
+              location='Frances A. Cordova Recreational Sports Center' 
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
+              cardType={2} 
+              popupType={2}
+              isActive={activeEventId === 2}
+              onEventClick={() => handleEventClick(2)}
+            />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.73 : 3.00} speed={0}>
           <div id="event3">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={3} popupType={2} />
+            <EventPreview 
+              title='activity name' 
+              date={new Date().toISOString()} 
+              location='Frances A. Cordova Recreational Sports Center' 
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
+              cardType={3} 
+              popupType={2}
+              isActive={activeEventId === 3}
+              onEventClick={() => handleEventClick(3)}
+            />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.87 : 3.30} speed={0}>
           <div id="event4">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={2} />
+            <EventPreview 
+              title='activity name' 
+              date={new Date().toISOString()} 
+              location='Frances A. Cordova Recreational Sports Center' 
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
+              cardType={2} 
+              popupType={2}
+              isActive={activeEventId === 4}
+              onEventClick={() => handleEventClick(4)}
+            />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.98 : 3.6} speed={0}>
           <div id="event5">
-            <EventPreview title='activity name' date={new Date().toISOString()} location='Frances A. Cordova Recreational Sports Center' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' cardType={2} popupType={1} />
+            <EventPreview 
+              title='activity name' 
+              date={new Date().toISOString()} 
+              location='Frances A. Cordova Recreational Sports Center' 
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
+              cardType={2} 
+              popupType={1}
+              isActive={activeEventId === 5}
+              onEventClick={() => handleEventClick(5)}
+            />
           </div>
         </ParallaxLayer>
 
@@ -273,17 +323,10 @@ function App() {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 3.5 : 6.5} speed={0}>
-          <div id="footer">
-            <div className="animation_layer parallax" id="footer-background">
-              {isMobile && <div className={`flex justify-center items-center h-full text-sm pt-4`}>
-                <div className="text-white text-center">
-                  Created With 💛 By&nbsp;
-                  <a href="https://boilermake.org/">Boilermake</a>
-                </div>
-              </div>}
-            </div>
-            <footer id='textblock-footer'>
+        <ParallaxLayer offset={isMobile ? 3.75 : 6.5} speed={0}>
+          <div id="footer" className="flex flex-col justify-end h-full w-full">
+            <div className="animation_layer parallax" id="footer-background"></div>
+            <footer id='textblock-footer' className="relative z-10">
               <div className='text-white'>
                 Created With 💛 By&nbsp;
                 <a href="https://boilermake.org/">Boilermake</a>

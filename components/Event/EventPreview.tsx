@@ -40,6 +40,8 @@ type EventPreviewProps = {
   date: string;
   location: string;
   description: string;
+  isActive: boolean;
+  onEventClick: () => void;
 };
 
 const EventPreview: React.FC<EventPreviewProps> = ({
@@ -49,9 +51,14 @@ const EventPreview: React.FC<EventPreviewProps> = ({
   description,
   cardType,
   popupType,
+  isActive,
+  onEventClick,
 }) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+
+  const handleCircleClick = () => {
+    onEventClick();
+  };
 
   // Extract event time from date string
   const eventTime = new Date(date).toLocaleTimeString([], {
@@ -59,21 +66,16 @@ const EventPreview: React.FC<EventPreviewProps> = ({
     minute: '2-digit',
   });
 
-  // Handle circle click to toggle popup
-  const handleCircleClick = () => {
-    setIsClicked(!isClicked);
-  };
-
-  // Determine if popup should be shown
-  const showPopup = isPopupVisible || isClicked;
+  // Show popup only when this event is active
+  const showPopup = isActive;
 
   // Handlers for hover events
   const handleMouseEnter = () => {
-    if (!isClicked) setIsPopupVisible(true);
+    if (!isActive) setIsPopupVisible(true);
   };
 
   const handleMouseLeave = () => {
-    if (!isClicked) setIsPopupVisible(false);
+    if (!isActive) setIsPopupVisible(false);
   };
 
   return (
@@ -112,7 +114,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({
         </div>
 
         {/* Popup */}
-        {showPopup && (
+        {(showPopup && isPopupVisible) && (
           <div className="absolute top-1/2 -translate-y-1/2">
             <div className={`${
               popupType === 1 

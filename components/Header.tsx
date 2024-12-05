@@ -8,8 +8,20 @@
 import React from 'react';
 import ApplyButton from './ApplyButton';
 import Image from 'next/image';
+import { IParallax } from '@react-spring/parallax';
 
-export default function Header({ showNav = true }: { showNav?: boolean }) {
+type HeaderProps = {
+    showNav?: boolean;
+    parallaxRef?: React.RefObject<IParallax>;
+};
+
+export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
+    const scrollTo = (offset: number) => {
+        if (parallaxRef?.current) {
+            parallaxRef.current.scrollTo(offset);
+        }
+    };
+
     return (
         <header className="w-full p-4 fixed top-0 z-50">
             <div className="flex justify-between items-center text-white">
@@ -41,52 +53,51 @@ export default function Header({ showNav = true }: { showNav?: boolean }) {
                 </div>
 
                 <div className={`${showNav ? "hidden md:flex" : "hidden"}`}>
-                        <nav className="flex space-x-4 md:space-x-12 px-4 md:px-12">
-                            <ul className="flex space-x-8 md:space-x-12">
-                                <li>
-                                    <a
-                                        href="#about"
-                                        className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
-                                    >
-                                        About
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/about-us"
-                                        className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
-                                    >
-                                        About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#schedule"
-                                        className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
-                                    >
-                                        Schedule
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#faq"
-                                        className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
-                                    >
-                                        FAQ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#sponsors"
-                                        className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
-                                    >
-                                        Sponsors
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                    <nav className="flex space-x-4 md:space-x-12 px-4 md:px-12">
+                        <ul className="flex space-x-8 md:space-x-12">
+                            <li>
+                                <button
+                                    onClick={() => scrollTo(1.6)}
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    About
+                                </button>
+                            </li>
+                            <li>
+                                <a
+                                    href="/about-us"
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <button
+                                    onClick={() => scrollTo(2.0)}
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    Schedule
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    onClick={() => scrollTo(4.0)}
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    FAQ
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    onClick={() => scrollTo(5.0)}
+                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                >
+                                    Sponsors
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
 
-                        {/* Apply Button */}
                     <ApplyButton size={"medium"} />
                 </div>
             </div>

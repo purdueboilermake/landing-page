@@ -78,14 +78,22 @@ body {
 }
 @media (max-width: 768px) {
   #sponsors {
-    height: 75vh;
+    height: 100vh;
   }
 }
 
 /* Footer Section */
 #footer {
   background-color: #7AA689;
-  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  #footer {
+    height: 50vh;
+  }
 }
 
 /* Text Block Containers */
@@ -118,16 +126,13 @@ body {
 }
 
 #textblock-footer {
-  color: #000000;
-  font-size: 15px;
-  font-weight: 400;
-  position: fixed;
+  position: relative;
   width: 100%;
-  bottom: 0px;
+  padding-bottom: 20px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 20px;
+  background: transparent;
 }
 
 #textblock-boilermake {
@@ -257,9 +262,14 @@ body {
 /* Footer Background */
 #footer-background {
   background: url("/images/footer_background.png") repeat-x;
-  height: 100vh;
+  height: 100%;
   background-size: contain;
-  position: relative;
+  background-position: bottom;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   animation: moveBackground 30s linear infinite;
 }
 @keyframes moveBackground {

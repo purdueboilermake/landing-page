@@ -27,12 +27,12 @@ export default function Statistic({ statistic, variable }: StatisticProps) {
           sizes="(max-width: 640px) 56px, (max-width: 768px) 80px, (max-width: 1024px) 120px, 160px"
         />
         {/* Absolutely positioned text centered over the image */}
-        <p className="absolute inset-0 flex items-center justify-center text-sm sm:text-2xl md:text-3xl lg:text-5xl text-white font-extrabold pt-2">
+        <p className="absolute inset-0 flex items-center justify-center text-sm sm:text-2xl md:text-3xl lg:text-5xl text-white font-extrabold pt-2 ">
           {statistic}
         </p>
       </div>
       {/* Statistic description text on the right */}
-      <p className="text-sm sm:text-xl md:text-2xl lg:text-5xl">{variable}</p>
+      <p className="text-sm sm:text-xl md:text-2xl lg:text-5xl text-black">{variable}</p>
     </div>
   );
 }

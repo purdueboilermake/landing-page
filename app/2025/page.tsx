@@ -94,8 +94,8 @@ function App() {
   const { width, height } = useResize({
     container: containerRef
   });
-  
-  
+
+
 
   useEffect(() => {
     const checkMobile = () => {
@@ -113,7 +113,7 @@ function App() {
       window.removeEventListener('resize', checkMobile);
     }
   }, []);
-  
+
   const handleEventClick = (id: number) => {
     setActiveEventId(activeEventId === id ? null : id);
   };
@@ -144,7 +144,7 @@ function App() {
           <div className={`flex justify-end items-center ${isMobile ? "p-16" : "p-36"}`}>
             <div className={`text-right`}>
               <div className="container mx-auto">
-                <div style={{paddingTop: isMobile ? '11rem' : '22rem' }}>
+                <div style={{ paddingTop: isMobile ? '11rem' : '22rem' }}>
                   <ApplyButton size={isMobile ? 'medium' : 'large'} />
                 </div>
               </div>
@@ -198,6 +198,16 @@ function App() {
         {/* Background layer for FAQ */}
         <ParallaxLayer offset={isMobile ? 2.08 : 4} speed={0}>
           <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
+            {/* Empty space matching sign width */}
+            <div className="col-span-1"></div>
+            {/* Empty space for accordion */}
+            <div className="col-span-2"></div>
+          </div>
+        </ParallaxLayer>
+
+        {/* Floating accordion layer */}
+        <ParallaxLayer offset={isMobile ? 2.08 : 4} speed={0} style={{ zIndex: 10 }}>
+          <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* First Column: FAQSign (1/3 of the screen) */}
             <div className="col-span-1 flex justify-center items-center h-[500px]">
               <FAQSign />
@@ -229,9 +239,9 @@ function App() {
 
         <ParallaxLayer offset={isMobile ? 1.55 : 2.3} speed={0}>
           <div className="absolute top-[-63vh] md:top-[-40vh] left-1/2 -translate-x-1/2 w-[170vw] md:w-[250vw] h-[175vh] md:h-[250vh]">
-            <Image 
-              src="/images/road.png" 
-              alt="Road" 
+            <Image
+              src="/images/road.png"
+              alt="Road"
               fill
               className={`object-contain ${isMobile ? 'scale-[1] sm:scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
             />
@@ -248,12 +258,12 @@ function App() {
 
         <ParallaxLayer offset={isMobile ? 1.33 : 2.2} speed={0}>
           <div id="event1">
-            <EventPreview 
-              title='opening ceremony' 
-              date={new Date().toISOString()} 
-              location='Frances A. Cordova Recreational Sports Center' 
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
-              cardType={1} 
+            <EventPreview
+              title='opening ceremony'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={1}
               popupType={1}
               isActive={activeEventId === 1}
               onEventClick={() => handleEventClick(1)}
@@ -262,12 +272,12 @@ function App() {
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.47 : 2.6} speed={0}>
           <div id="event2">
-            <EventPreview 
-              title='activity name' 
-              date={new Date().toISOString()} 
-              location='Frances A. Cordova Recreational Sports Center' 
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
-              cardType={2} 
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={2}
               popupType={2}
               isActive={activeEventId === 2}
               onEventClick={() => handleEventClick(2)}
@@ -276,12 +286,12 @@ function App() {
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.73 : 3.00} speed={0}>
           <div id="event3">
-            <EventPreview 
-              title='activity name' 
-              date={new Date().toISOString()} 
-              location='Frances A. Cordova Recreational Sports Center' 
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
-              cardType={3} 
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={3}
               popupType={2}
               isActive={activeEventId === 3}
               onEventClick={() => handleEventClick(3)}
@@ -290,12 +300,12 @@ function App() {
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.87 : 3.30} speed={0}>
           <div id="event4">
-            <EventPreview 
-              title='activity name' 
-              date={new Date().toISOString()} 
-              location='Frances A. Cordova Recreational Sports Center' 
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
-              cardType={2} 
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={2}
               popupType={2}
               isActive={activeEventId === 4}
               onEventClick={() => handleEventClick(4)}
@@ -304,12 +314,12 @@ function App() {
         </ParallaxLayer>
         <ParallaxLayer offset={isMobile ? 1.98 : 3.6} speed={0}>
           <div id="event5">
-            <EventPreview 
-              title='activity name' 
-              date={new Date().toISOString()} 
-              location='Frances A. Cordova Recreational Sports Center' 
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' 
-              cardType={2} 
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={2}
               popupType={1}
               isActive={activeEventId === 5}
               onEventClick={() => handleEventClick(5)}

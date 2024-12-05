@@ -30,7 +30,7 @@ type EventTimeProps = {
 };
 
 const EventTime: React.FC<EventTimeProps> = ({ time, className = '' }) => {
-  return <p className={`text-xs md:text-md lg:text-lg ${className}`}>{time}</p>;
+  return <p className={`text-xs md:text-md lg:text-lg ${className} text-black`}>{time}</p>;
 };
 
 type EventPreviewProps = {
@@ -92,21 +92,21 @@ const EventPreview: React.FC<EventPreviewProps> = ({
 
           {/* Text above for cardType 1 */}
           {cardType === 1 && (
-            <span className="text-xs md:text-base font-bold">{title}</span>
+            <span className="text-xs md:text-base font-bold text-black">{title}</span>
           )}
 
           {/* Circle and optional side time */}
           <div className="flex items-center gap-1">
             <div className="flex flex-col items-center gap-1">
               <GreenCircle onClick={handleCircleClick} />
-              {cardType === 3 && <span className="text-xs md:text-base font-bold">{title}</span>}
+              {cardType === 3 && <span className="text-xs md:text-base font-bold text-black">{title}</span>}
             </div>
             {cardType === 3 && <div className="pb-4"><EventTime time={eventTime} /></div>}
           </div>
 
           {/* Text below for cardType 2 & 3 */}
           {cardType !== 1 && cardType !== 3 && (
-            <span className="text-xs md:text-base font-bold">{title}</span>
+            <span className="text-xs md:text-base font-bold text-black">{title}</span>
           )}
 
           {/* Time below for cardType 1 */}

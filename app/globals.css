@@ -23,11 +23,11 @@
 
 #teams-page {
   background: linear-gradient(to top, #7AA689 0%, #C0E2F9 100%);
-  height: 400vh;
+  height: 450vh;
 }
 @media (max-width: 768px) {
   #teams-page {
-    height: 320vh;
+    height: 400vh;
   }
 }
 

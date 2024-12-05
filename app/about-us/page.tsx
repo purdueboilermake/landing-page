@@ -15,11 +15,11 @@ export default function TeamsPage() {
   return (
     <div id="teams-page" className="flex flex-col items-center justify-center min-h-screen">
       <Header showNav={false} />
-      <h1 className="text-6xl font-bold mb-8">About Us</h1>
+      <h1 className="text-6xl font-bold mb-8 font-dosis">About Us</h1>
       <div className="flex flex-col items-center gap-16">
         {teams.map((team) => (
           <div key={team.id} className="flex flex-col items-center">
-            <h3 className="text-2xl font-semibold mb-4">{team.name}</h3>
+            <h3 className="text-2xl font-semibold mb-4 font-dosis">{team.name}</h3>
             <div className="relative flex items-center justify-center w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
               {/* Main Team Image */}
               <Image
@@ -48,7 +48,7 @@ export default function TeamsPage() {
                 />
               </div>
             </div>
-            <p className="mt-4 text-center max-w-xs text-lg md:text-xl lg:text-2xl font-semibold">{team.description}</p>
+            <p className="mt-4 text-center max-w-xs text-lg md:text-xl lg:text-2xl font-semibold font-dosis">{team.description}</p>
           </div>
         ))}
       </div>

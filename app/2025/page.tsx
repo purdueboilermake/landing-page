@@ -13,6 +13,7 @@ import FAQAccordian from '../../components/FAQAccordian';
 import EventPreview from '../../components/Event/EventPreview';
 import ApplyButton from '../../components/ApplyButton';
 import Image from 'next/image';
+import { useResize } from '@react-spring/web';
 
 const sponsors = [
   {
@@ -87,8 +88,14 @@ const questions = [
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const parallaxRef = React.useRef<IParallax>(null);
   const [activeEventId, setActiveEventId] = useState<number | null>(null);
+  const { width, height } = useResize({
+    container: containerRef
+  });
+  
+  
 
   useEffect(() => {
     const checkMobile = () => {
@@ -112,7 +119,7 @@ function App() {
   };
 
   return (
-    <div className='App font-dosis'>
+    <div className='App font-dosis' ref={containerRef}>
       <Parallax ref={parallaxRef} pages={isMobile ? 4.25 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
         <Header parallaxRef={parallaxRef} />
         <ParallaxLayer offset={isMobile ? 0.3 : 0.5} speed={0}>
@@ -221,12 +228,12 @@ function App() {
         </ParallaxLayer>
 
         <ParallaxLayer offset={isMobile ? 1.55 : 2.3} speed={0}>
-          <div className={`absolute ${isMobile ? "top-[-63vh]" : "top-[-40vh]"} left-1/2 -translate-x-1/2 ${isMobile ? 'w-[175vw] h-[175vh]' : 'w-[250vw] h-[250vh]'}`}>
+          <div className="absolute top-[-63vh] md:top-[-40vh] left-1/2 -translate-x-1/2 w-[170vw] md:w-[250vw] h-[175vh] md:h-[250vh]">
             <Image 
               src="/images/road.png" 
               alt="Road" 
               fill
-              className={`object-contain ${isMobile ? 'scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
+              className={`object-contain ${isMobile ? 'scale-[1] sm:scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
             />
           </div>
         </ParallaxLayer>
@@ -316,7 +323,7 @@ function App() {
               <SponsorSign />
             </div>
             {/* Sponsors */}
-            <div className="grid grid-cols-3 gap-x-8 gap-y-20 justify-items-center">
+            <div className="grid grid-cols-3 gap-4 md:gap-x-8 md:gap-y-10 justify-items-center">
               {sponsors.map((sponsor, index) => (
                 <SponsorCard sponsor={sponsor} key={index} />
               ))}

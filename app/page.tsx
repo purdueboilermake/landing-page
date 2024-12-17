@@ -60,10 +60,10 @@ export default function Home() {
             sizes={"100vw"}
             className="w-5/6 md:max-w-full"
           />
-          <h1 className="text-4xl md:text-6xl w-full font-bold text-center">
+          <h1 className="text-4xl md:text-6xl w-full font-bold text-center text-black">
             BoilerMake XII
           </h1>
-          <p className="text-xl my-2 md:text-2xl text-center">
+          <p className="text-xl my-2 md:text-2xl text-center text-black">
             Adventure Awaits. February 2025
           </p>
           <div className="flex flex-row gap-2 mt-2">

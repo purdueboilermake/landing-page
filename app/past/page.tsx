@@ -52,7 +52,7 @@ export default function PastPage() {
                 alt="Sun"
             />
             <main className="flex flex-col bg-white h-full w-full pt-20 gap-8 md:gap-16 justify-between items-center">
-                <h1 className="font-bold text-5xl text-center">BoilerMake in the Past</h1>
+                <h1 className="font-bold text-5xl text-center text-black">BoilerMake in the Past</h1>
                 <section className="text-black flex flex-col items-center justify-center">
                     <div className="flex flex-col md:flex-row gap-10">
                         <div className="text-center">
@@ -122,7 +122,7 @@ export default function PastPage() {
                     </ul>
                 </section>
                 <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">
-                    <h2 className="text-3xl font-bold mb-6 md:mb-12 align-center">
+                    <h2 className="text-3xl font-bold mb-6 md:mb-12 align-center text-black">
                         Past Sponsors
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,_25%)] items-center justify-center justify-items-center gap-6 md:gap-8 place-items-center">
@@ -301,7 +301,7 @@ export default function PastPage() {
                             />
                         </a>
                     </div>
-                    <p className="my-16 text-xl text-center">
+                    <p className="my-16 text-xl text-center text-black">
                         Interested? Reach out to us at{" "}
                         <a href="mailto:sponsorship@boilermake.org" className="underline">
                             sponsorship@boilermake.org

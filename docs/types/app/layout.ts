@@ -1,4 +1,4 @@
-// File: /Users/ashoksaravanan/Coding/boilermake/app/layout.tsx
+// File: C:\Users\leony\Documents\Purdue\Boilermake\landing-page\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

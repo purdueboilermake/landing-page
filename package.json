@@ -13,7 +13,8 @@
     "next": "14.2.7",
     "react": "^18",
     "react-curved-text": "^3.0.1",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "swiper": "^11.1.15"
   },
   "devDependencies": {
     "@types/node": "^20",

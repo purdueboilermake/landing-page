@@ -42,7 +42,7 @@ export default function TeamsPage() {
       id: 2,
       name: "Development Team",
       imgSrc: "/assets/pics/dev.png",
-      description: "The development team comprises of skilled programmers and technical experts who create and maintain our digital infrastructure. From website development to real-time event management apps, they ensure all technical aspects run seamlessly while providing support to participants during the hackathon.",
+      description: "Creating and maintaining the BoilerMake website, application portal, and brand new mobile app, the Development team handles all of BoilerMake's technical needs.",
       members: [
         { name: "Dev One", image: "/assets/team/dev/person1.jpg" },
         { name: "Dev Two", image: "/assets/team/dev/person2.jpg" },
@@ -52,7 +52,7 @@ export default function TeamsPage() {
       id: 3,
       name: "Design Team",
       imgSrc: "/assets/pics/design.png",
-      description: "Our creative design team crafts the visual identity of BoilerMake, ensuring a cohesive and engaging brand experience. They work on everything from marketing materials to event spaces, creating an immersive atmosphere that inspires innovation and creativity.",
+      description: "Creating BoilerMake branding, swag, website design, and more, the Design team makes BoilerMake look impeccable.",
       members: [
         { name: "Designer One", image: "/assets/team/design/person1.jpg" },
         { name: "Designer Two", image: "/assets/team/design/person2.jpg" },
@@ -62,7 +62,7 @@ export default function TeamsPage() {
       id: 4,
       name: "User Experience Team",
       imgSrc: "/assets/pics/ux.png",
-      description: "The UX team focuses on creating seamless experiences for all hackathon participants. They conduct research, design intuitive interfaces, and optimize every touchpoint of the participant journey, from registration to project submission.",
+      description: "From layout to schedule to prizes, the UX team handles all event planning, organzation, and coordination for BoilerMake.",
       members: [
         { name: "UX One", image: "/assets/team/ux/person1.jpg" },
         { name: "UX Two", image: "/assets/team/ux/person2.jpg" },
@@ -72,7 +72,7 @@ export default function TeamsPage() {
       id: 5,
       name: "Sponsorship Team",
       imgSrc: "/assets/pics/spons.png",
-      description: "Our sponsorship team builds and maintains valuable relationships with industry partners and sponsors. They secure resources, organize sponsor involvement, and create meaningful opportunities for companies to connect with talented participants.",
+      description: "The Sponsorship Team maintains and develops connections with past, current, and future corporate partners and sponsors for BoilerMake.",
       members: [
         { name: "Sarthak Mangla", image: "/assets/team/spons/sarthak.png" },
         { name: "Sarthak Mangla2", image: "/assets/team/spons/sarthak.png" },
@@ -86,7 +86,7 @@ export default function TeamsPage() {
       id: 6,
       name: "Outreach",
       imgSrc: "/assets/pics/outreach.png",
-      description: "The outreach team connects BoilerMake with the broader tech community. They manage social media, organize promotional events, and ensure diverse participation from schools across the country while building lasting relationships with student organizations.",
+      description: "The Outreach team runs all BoilerMake social media and maintains connections across Purdue's campus and other universities.",
       members: [
         { name: "Outreach One", image: "/assets/team/outreach/person1.jpg" },
         { name: "Outreach Two", image: "/assets/team/outreach/person2.jpg" },

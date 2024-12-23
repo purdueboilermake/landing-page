@@ -25,7 +25,8 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "target": "ES2017"
   },
   "include": [
     "nextjs/next-env.d.ts",

@@ -6,7 +6,6 @@ import { useState, useMemo } from 'react';
 import TeamCarousel from '@/components/TeamCarousel';
 
 interface TeamMember {
-  name: string;
   image: string;
 }
 
@@ -33,9 +32,15 @@ export default function TeamsPage() {
       imgSrc: "/assets/pics/leads.png",
       description: "Our dedicated team leads bring years of experience in hackathon organization and event management. They coordinate between different departments, establish strategic goals, and ensure smooth operation of the entire event while fostering an environment of innovation and collaboration.",
       members: [
-        { name: "John Doe", image: "/assets/team/leads/person1.jpg" },
-        { name: "Jane Smith", image: "/assets/team/leads/person2.jpg" },
-        // Add more team members as needed
+        { image: "/assets/team/leads/daniel.png" },
+        { image: "/assets/team/leads/varun.png" },
+        { image: "/assets/team/leads/caleb.png" },
+        { image: "/assets/team/leads/leon.png" },
+        { image: "/assets/team/leads/nithin.png" },
+        { image: "/assets/team/leads/sanjhee.png" },
+        { image: "/assets/team/leads/sahiti.png" },
+
+
       ]
     },
     {
@@ -44,8 +49,11 @@ export default function TeamsPage() {
       imgSrc: "/assets/pics/dev.png",
       description: "Creating and maintaining the BoilerMake website, application portal, and brand new mobile app, the Development team handles all of BoilerMake's technical needs.",
       members: [
-        { name: "Dev One", image: "/assets/team/dev/person1.jpg" },
-        { name: "Dev Two", image: "/assets/team/dev/person2.jpg" },
+        { image: "/assets/team/dev/varun.png" },
+        { image: "/assets/team/dev/arushi.png" },
+        { image: "/assets/team/dev/aryamaan.png" },
+        { image: "/assets/team/dev/ashok.png" },
+        { image: "/assets/team/dev/dylan.png" },
       ]
     },
     {
@@ -54,8 +62,12 @@ export default function TeamsPage() {
       imgSrc: "/assets/pics/design.png",
       description: "Creating BoilerMake branding, swag, website design, and more, the Design team makes BoilerMake look impeccable.",
       members: [
-        { name: "Designer One", image: "/assets/team/design/person1.jpg" },
-        { name: "Designer Two", image: "/assets/team/design/person2.jpg" },
+        { image: "/assets/team/design/leon.png" },
+        { image: "/assets/team/design/anika.png" },
+        { image: "/assets/team/design/diya.png" },
+        { image: "/assets/team/design/amy.png" },
+        { image: "/assets/team/design/cailey.png" },
+        { image: "/assets/team/design/rosie.png" },
       ]
     },
     {
@@ -64,8 +76,16 @@ export default function TeamsPage() {
       imgSrc: "/assets/pics/ux.png",
       description: "From layout to schedule to prizes, the UX team handles all event planning, organzation, and coordination for BoilerMake.",
       members: [
-        { name: "UX One", image: "/assets/team/ux/person1.jpg" },
-        { name: "UX Two", image: "/assets/team/ux/person2.jpg" },
+        { image: "/assets/team/ux/caleb.png" },
+        { image: "/assets/team/ux/sahiti.png" },
+        { image: "/assets/team/ux/nelson.png" },
+        { image: "/assets/team/ux/leonard.png" },
+        { image: "/assets/team/ux/shreeya.png" },
+        { image: "/assets/team/ux/richie.png" },
+        { image: "/assets/team/ux/nihar.png" },
+        { image: "/assets/team/ux/aryan.png" },
+        { image: "/assets/team/ux/vivek.png" },
+        
       ]
     },
     {
@@ -74,12 +94,13 @@ export default function TeamsPage() {
       imgSrc: "/assets/pics/spons.png",
       description: "The Sponsorship Team maintains and develops connections with past, current, and future corporate partners and sponsors for BoilerMake.",
       members: [
-        { name: "Sarthak Mangla", image: "/assets/team/spons/sarthak.png" },
-        { name: "Sarthak Mangla2", image: "/assets/team/spons/sarthak.png" },
-        { name: "Sarthak Mangla3", image: "/assets/team/spons/sarthak.png" },
-        { name: "Sarthak Mangla4", image: "/assets/team/spons/sarthak.png" },
-        { name: "Sarthak Mangla5", image: "/assets/team/spons/sarthak.png" },
-        { name: "Sarthak Mangla6", image: "/assets/team/spons/sarthak.png" },
+        {  image: "/assets/team/spons/daniel.png" },
+        {  image: "/assets/team/spons/sarthak.png" },
+        { image: "/assets/team/spons/rygel.png" },
+        { image: "/assets/team/spons/pratheek.png" },
+        { image: "/assets/team/spons/shrinivas.png" },
+        { image: "/assets/team/spons/puja.png" },
+        { image: "/assets/team/spons/sam.png" },
       ]
     },
     {
@@ -88,8 +109,14 @@ export default function TeamsPage() {
       imgSrc: "/assets/pics/outreach.png",
       description: "The Outreach team runs all BoilerMake social media and maintains connections across Purdue's campus and other universities.",
       members: [
-        { name: "Outreach One", image: "/assets/team/outreach/person1.jpg" },
-        { name: "Outreach Two", image: "/assets/team/outreach/person2.jpg" },
+        {  image: "/assets/team/outreach/nithin.png" },
+        {  image: "/assets/team/outreach/anokhi.png" },
+        {  image: "/assets/team/outreach/mouli.png" },
+        {  image: "/assets/team/outreach/srihita.png" },
+        {  image: "/assets/team/outreach/sonal.png" },
+        {  image: "/assets/team/outreach/santosh.png" },
+
+
       ]
     },
   ];

@@ -11,7 +11,6 @@ import 'swiper/css/free-mode';
 import 'swiper/css/autoplay';
 
 interface TeamMember {
-  name: string;
   image: string;
 }
 
@@ -102,16 +101,13 @@ export default function TeamCarousel({ team, onClose }: TeamCarouselProps) {
               <div className="relative h-48 md:h-64 w-full mb-2">
                 <Image
                   src={member.image}
-                  alt={member.name}
+                  alt='Team Member'
                   fill
                   className="rounded-2xl md:rounded-3xl object-cover"
                 />
               </div>
               <div className="w-full flex justify-center -translate-y-8 md:-translate-y-12">
                 <div className='bg-white py-1 px-2 w-11/12 text-center rounded-lg text-black'>
-                  <p className="text-sm md:text-base font-semibold truncate">
-                    {member.name}
-                  </p>
                 </div>
               </div>
             </SwiperSlide>

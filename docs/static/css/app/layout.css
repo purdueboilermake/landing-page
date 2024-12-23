@@ -3,7 +3,7 @@
   \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 200;
   font-display: swap;
@@ -12,7 +12,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 200;
   font-display: swap;
@@ -21,7 +21,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 200;
   font-display: swap;
@@ -30,7 +30,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -39,7 +39,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -48,7 +48,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -57,7 +57,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -66,7 +66,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -75,7 +75,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -84,7 +84,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -93,7 +93,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -102,7 +102,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -111,7 +111,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -120,7 +120,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -129,7 +129,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -138,7 +138,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -147,7 +147,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -156,7 +156,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -165,7 +165,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -174,7 +174,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -183,15 +183,15 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
   src: url(/_next/static/media/c6e04b5f0940e652-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}@font-face {font-family: '__Dosis_Fallback_a26f35';src: local("Arial");ascent-override: 121.44%;descent-override: 28.03%;line-gap-override: 0.00%;size-adjust: 84.57%
-}.__className_a26f35 {font-family: '__Dosis_a26f35', '__Dosis_Fallback_a26f35';font-style: normal
-}.__variable_a26f35 {--font-dosis: '__Dosis_a26f35', '__Dosis_Fallback_a26f35'
+}@font-face {font-family: 'Dosis Fallback';src: local("Arial");ascent-override: 121.44%;descent-override: 28.03%;line-gap-override: 0.00%;size-adjust: 84.57%
+}.__className_a26f35 {font-family: 'Dosis', 'Dosis Fallback';font-style: normal
+}.__variable_a26f35 {--font-dosis: 'Dosis', 'Dosis Fallback'
 }
 
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
@@ -199,7 +199,7 @@
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* latin */
 @font-face {
-  font-family: '__Averia_Libre_25d991';
+  font-family: 'Averia Libre';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -208,7 +208,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Averia_Libre_25d991';
+  font-family: 'Averia Libre';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -217,15 +217,15 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Averia_Libre_25d991';
+  font-family: 'Averia Libre';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url(/_next/static/media/6de4c205a1e4d660-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}@font-face {font-family: '__Averia_Libre_Fallback_25d991';src: local("Arial");ascent-override: 94.59%;descent-override: 23.84%;line-gap-override: 0.00%;size-adjust: 100.77%
-}.__className_25d991 {font-family: '__Averia_Libre_25d991', '__Averia_Libre_Fallback_25d991';font-style: normal
-}.__variable_25d991 {--font-averia-libre: '__Averia_Libre_25d991', '__Averia_Libre_Fallback_25d991'
+}@font-face {font-family: 'Averia Libre Fallback';src: local("Arial");ascent-override: 94.59%;descent-override: 23.84%;line-gap-override: 0.00%;size-adjust: 100.77%
+}.__className_25d991 {font-family: 'Averia Libre', 'Averia Libre Fallback';font-style: normal
+}.__variable_25d991 {--font-averia-libre: 'Averia Libre', 'Averia Libre Fallback'
 }
 
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
@@ -233,7 +233,7 @@
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* latin */
 @font-face {
-  font-family: '__Arvo_7bafe4';
+  font-family: 'Arvo';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -242,19 +242,19 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Arvo_7bafe4';
+  font-family: 'Arvo';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url(/_next/static/media/10c5f798263c18e8-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}@font-face {font-family: '__Arvo_Fallback_7bafe4';src: local("Times New Roman");ascent-override: 79.95%;descent-override: 20.56%;line-gap-override: 2.23%;size-adjust: 120.19%
-}.__className_7bafe4 {font-family: '__Arvo_7bafe4', '__Arvo_Fallback_7bafe4';font-style: normal
-}.__variable_7bafe4 {--font-arvo: '__Arvo_7bafe4', '__Arvo_Fallback_7bafe4'
+}@font-face {font-family: 'Arvo Fallback';src: local("Times New Roman");ascent-override: 79.95%;descent-override: 20.56%;line-gap-override: 2.23%;size-adjust: 120.19%
+}.__className_7bafe4 {font-family: 'Arvo', 'Arvo Fallback';font-style: normal
+}.__variable_7bafe4 {--font-arvo: 'Arvo', 'Arvo Fallback'
 }
 
 /*!*************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./app/globals.css ***!
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css ***!
   \*************************************************************************************************************************************************************************************************************************************************************/
 *, ::before, ::after {
   --tw-border-spacing-x: 0;

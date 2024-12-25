@@ -8,11 +8,13 @@
 import React from 'react';
 
 type ApplyButtonProps = {
+    text: string;
+    link: string;
     size: 'small' | 'medium' | 'large';
     className?: string;
 }
 
-export default function ApplyButton({ size, className }: ApplyButtonProps) {
+export default function ApplyButton({text, link, size, className }: ApplyButtonProps) {
     // Define classes for each size
     const sizeClasses = {
         small: 'py-2 px-2 text-sm rounded-full', // Larger border-radius for small
@@ -21,11 +23,11 @@ export default function ApplyButton({ size, className }: ApplyButtonProps) {
     };
 
     return (
-        <a href='https://boilermake-apply.web.app/login' target='_blank' rel='noreferrer'>
+        <a href={link} target='_blank' rel='noreferrer'>
             <button
                 className={`bg-white shadow-md text-[#DDB47D] font-body font-extrabold hover:shadow-xl transition-shadow duration-300 ${sizeClasses[size]} ${className}`}
             >
-                Apply Now!
+                {text}
             </button>
         </a>
     );

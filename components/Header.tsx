@@ -58,7 +58,7 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                             <li>
                                 <button
                                     onClick={() => scrollTo(1.6)}
-                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
                                 >
                                     About
                                 </button>
@@ -66,7 +66,7 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                             <li>
                                 <a
                                     href="/about-us"
-                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
                                 >
                                     About Us
                                 </a>
@@ -74,7 +74,7 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                             <li>
                                 <button
                                     onClick={() => scrollTo(2.0)}
-                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
                                 >
                                     Schedule
                                 </button>
@@ -82,7 +82,7 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                             <li>
                                 <button
                                     onClick={() => scrollTo(4.0)}
-                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
                                 >
                                     FAQ
                                 </button>
@@ -90,7 +90,7 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                             <li>
                                 <button
                                     onClick={() => scrollTo(5.0)}
-                                    className="hover:text-blue-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
                                 >
                                     Sponsors
                                 </button>

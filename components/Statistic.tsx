@@ -32,7 +32,7 @@ export default function Statistic({ statistic, variable }: StatisticProps) {
         </p>
       </div>
       {/* Statistic description text on the right */}
-      <p className="text-sm sm:text-xl md:text-2xl lg:text-5xl text-black">{variable}</p>
+      <p className="text-sm sm:text-xl md:text-2xl lg:text-5xl text-black text-shadow-lg shadow-blue-100">{variable}</p>
     </div>
   );
 }

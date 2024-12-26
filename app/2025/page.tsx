@@ -145,7 +145,7 @@ function App() {
             <div className={`text-right`}>
               <div className="container mx-auto">
                 <div style={{ paddingTop: isMobile ? '11rem' : '22rem' }}>
-                  <ApplyButton text="Apply Now!" link='https://boilermake-apply.web.app/login' size={isMobile ? 'medium' : 'large'} />
+                  <ApplyButton text="Apply Now!" link='https://boilermake-apply.web.app' size={isMobile ? 'medium' : 'large'} />
                   <div className="h-4"></div>
                   <ApplyButton text="Mentor Interest Form" link='https://forms.gle/Vdhhjfmhg1v6XuTG9' size={isMobile ? 'medium' : 'large'} />
                 </div>

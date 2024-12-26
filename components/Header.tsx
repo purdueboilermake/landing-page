@@ -98,7 +98,7 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                         </ul>
                     </nav>
 
-                    <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app/login' size={"medium"} />
+                    <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"medium"} />
                 </div>
             </div>
         </header>

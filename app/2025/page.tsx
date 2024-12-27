@@ -73,7 +73,7 @@ const activities = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   }, 
   {
-    title: 'Workshops',
+    title: 'Carnival',
     startDate: "2025-02-22T21:00:00",
     endDate: "2025-02-23T00:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',

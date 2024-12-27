@@ -331,4 +331,16 @@ body {
   #event5 { left: 77%; }
 }
 
+/* Activities */
+#activity1 { position: absolute; left: 47%; }
+#activity2 { position: absolute; left: 72%; }
+#activity3 { position: absolute; left: 12%; }
+#activity4 { position: absolute; left: 37%; }
+@media (max-width: 768px) {
+  #activity1 { position: absolute; left: 47%; }
+  #activity2 { position: absolute; left: 72%; }
+  #activity3 { position: absolute; left: 12%; }
+  #activity4 { position: absolute; left: 37%; }
+}
+
 /* Header Section */

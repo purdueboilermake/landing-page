@@ -11,14 +11,20 @@ import Image from 'next/image';
 import { IParallax } from '@react-spring/parallax';
 
 type HeaderProps = {
-    showNav?: boolean;
     parallaxRef?: React.RefObject<IParallax>;
 };
 
-export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
-    const scrollTo = (offset: number) => {
-        if (parallaxRef?.current) {
-            parallaxRef.current.scrollTo(offset);
+export default function Header({ parallaxRef }: HeaderProps) {
+    const handleNavigation = (offset: number) => {
+        // Check if we're on the main page
+        if (window.location.pathname === '/2025') {
+            // If we are, just scroll
+            if (parallaxRef?.current) {
+                parallaxRef.current.scrollTo(offset);
+            }
+        } else {
+            // If we're not, navigate to main page with hash parameter
+            window.location.href = `/2025?scroll=${offset}`;
         }
     };
 
@@ -39,26 +45,13 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                 {/* Spacer */}
                 <div className="flex-grow"></div>
 
-                {/* Mobile Camera Icon / Desktop Nav */}
-                <div className={`${showNav ? "md:hidden" : ""}`}>
-                    <a href="/about-us">
-                        <Image
-                            src={"/images/camera.png"}
-                            alt="About Us"
-                            width={100}
-                            height={100}
-                            className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
-                        />
-                    </a>
-                </div>
-
-                <div className={`${showNav ? "hidden md:flex" : "hidden"}`}>
-                    <nav className="flex space-x-4 md:space-x-12 px-4 md:px-12">
-                        <ul className="flex space-x-8 md:space-x-12">
+                <div className="flex">
+                    <nav className="flex space-x-2 sm:space-x-4 md:space-x-12 px-4 md:px-12">
+                        <ul className="flex space-x-6 sm:space-x-8 md:space-x-12">
                             <li>
                                 <button
-                                    onClick={() => scrollTo(1.6)}
-                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    onClick={() => handleNavigation(1.6)}
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     About
                                 </button>
@@ -66,39 +59,46 @@ export default function Header({ showNav = true, parallaxRef }: HeaderProps) {
                             <li>
                                 <a
                                     href="/about-us"
-                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     About Us
                                 </a>
                             </li>
                             <li>
                                 <button
-                                    onClick={() => scrollTo(2.0)}
-                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    onClick={() => handleNavigation(2.0)}
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     Schedule
                                 </button>
                             </li>
                             <li>
                                 <button
-                                    onClick={() => scrollTo(4.0)}
-                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    onClick={() => handleNavigation(4.0)}
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     FAQ
                                 </button>
                             </li>
                             <li>
                                 <button
-                                    onClick={() => scrollTo(5.0)}
-                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold"
+                                    onClick={() => handleNavigation(5.0)}
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     Sponsors
                                 </button>
                             </li>
                         </ul>
                     </nav>
-
-                    <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"medium"} />
+                    <div className="sm:block md:hidden">
+                        <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"xsmall"} />
+                    </div>
+                    <div className="hidden md:block lg:hidden">
+                        <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"small"} />
+                    </div>
+                    <div className="hidden lg:block">
+                        <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"medium"} />
+                    </div>
                 </div>
             </div>
         </header>

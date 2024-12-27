@@ -14,6 +14,7 @@ import EventPreview from '../../components/Event/EventPreview';
 import ApplyButton from '../../components/ApplyButton';
 import Image from 'next/image';
 import { useResize } from '@react-spring/web';
+import ActivityPreview from '@/components/Event/ActivityPreview';
 
 const sponsors = [
   {
@@ -63,10 +64,37 @@ const sponsors = [
   },
 ];
 
+const activities = [
+  {
+    title: 'Opening Ceremony',
+    date: "2025-01-01",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  }, 
+  {
+    title: 'Workshops',
+    date: "2025-01-01",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  }, 
+  {
+    title: 'Judging',
+    date: "2025-01-01",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  }, 
+  {
+    title: 'Closing Ceremony',
+    date: "2025-01-01",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  }
+]
+
 const questions = [
   {
     question: 'What is a Hackathon?',
-    answer: 'The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you’ll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activties as well to keep the fun going, and provide a platform to network with companies in the tech sector and other likeminded individuals from numeroud backgrounds.'
+    answer: "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activties as well to keep the fun going, and provide a platform to network with companies in the tech sector and other likeminded individuals from numerous backgrounds."
   },
   {
     question: 'Who can attend and how much experience do I need to participate?',
@@ -219,12 +247,26 @@ const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 4.0,
     '2xl': 4.0
   },
+  'schedule-background': {
+    'sm': 1.25,
+    'md': 1.25,
+    'lg': 2.0,
+    'xl': 2.0,
+    '2xl': 2.0
+  },
   'schedule-sign': {
     'sm': 1.25,
     'md': 1.25,
     'lg': 2.0,
     'xl': 2.0,
     '2xl': 2.0
+  },
+  'windyroad': {
+    'sm': 1.35,
+    'md': 1.4,
+    'lg': 2.3,
+    'xl': 2.3,
+    '2xl': 2.3
   },
   'road': {
     'sm': 1.55,
@@ -239,7 +281,7 @@ const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'lg': 1.6,
     'xl': 1.6,
     '2xl': 1.6
-  }, 
+  },
   'event1': {
     'sm': 1.33,
     'md': 1.33,
@@ -288,6 +330,13 @@ const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'lg': 6.5,
     'xl': 6.5,
     '2xl': 6.5
+  },
+  'schedule-section': {
+    'sm': 1.25,
+    'md': 1.25,
+    'lg': 2.0,
+    'xl': 2.0,
+    '2xl': 2.0
   }
 };
 
@@ -295,10 +344,11 @@ function App() {
   const [screenSize, setScreenSize] = useState<ScreenSize>('lg');
   const containerRef = React.useRef<HTMLDivElement>(null);
   const parallaxRef = React.useRef<IParallax>(null);
-  const [activeEventId, setActiveEventId] = useState<number | null>(null);
+  const [activeEventId, setActiveEventId] = useState<number>(0);
   const { width, height } = useResize({
     container: containerRef
   });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const updateScreenSize = () => {
@@ -315,17 +365,47 @@ function App() {
     return () => window.removeEventListener('resize', updateScreenSize);
   }, []);
 
+  useEffect(() => {
+    // Set loaded state after component mounts
+    setIsLoaded(true);
+
+    // Check for scroll parameter in URL
+    const params = new URLSearchParams(window.location.search);
+    const scrollOffset = params.get('scroll');
+    
+    if (scrollOffset && parallaxRef.current && isLoaded) {
+      // Small delay to ensure parallax is fully initialized
+      setTimeout(() => {
+        // Remove the parameter from URL without refreshing the page
+        window.history.replaceState({}, '', '/2025');
+        // Scroll to the specified offset
+        parallaxRef.current?.scrollTo(parseFloat(scrollOffset));
+      }, 100);
+    }
+  }, [isLoaded]); // Add isLoaded to dependency array
+
   // Helper function to get offset for a layer
   const getOffset = (layerId: string) => LAYER_OFFSETS[layerId][screenSize];
 
   const handleEventClick = (id: number) => {
-    setActiveEventId(activeEventId === id ? null : id);
+    if (id === activeEventId) {
+      setActiveEventId(0);
+    } else {
+      setActiveEventId(id);
+    }
   };
+
+  const activity_vertical_offset: { [key: string]: string } = {
+    'activity1': "top-[7%] sm:top-[7%] md:top-[10%] lg:top-[10%] xl:top-[10%]",
+    'activity2': "top-[5%] sm:top-[5%] md:top-[20%] lg:top-[25%] xl:top-[25%]",
+    'activity3': "top-[15%] sm:top-[15%] md:top-[30%] lg:top-[50%] xl:top-[50%]",
+    'activity4': "top-[50%] sm:top-[50%] md:top-[75%] lg:top-[95%] xl:top-[95%]"
+  }
 
   return (
     <div className='App font-dosis' ref={containerRef}>
+      <Header parallaxRef={parallaxRef} />
       <Parallax ref={parallaxRef} pages={PAGES_BY_SCREEN[screenSize]} style={{ top: '0', left: '0' }} className="animation" key={screenSize}>
-        <Header parallaxRef={parallaxRef} />
         <ParallaxLayer offset={getOffset('about-background')} speed={0}>
           <div id="about-background"></div>
         </ParallaxLayer>
@@ -441,15 +521,50 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={getOffset('schedule-sign')} speed={0}>
+        <ParallaxLayer offset={getOffset('schedule-background')} speed={0}>
           <div id="schedule" className='h-full w-full'>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('windyroad')} speed={0}>
+          <div className="relative h-[600px] md:h-[800px] lg:h-[1000px] xl:h-[1200px] w-full">
+            <Image
+              src="/images/windyroad.png"
+              alt="Road"
+              fill
+            />
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('schedule-section')} speed={0} style={{ zIndex: 10 }}>
+          {/* Schedule Sign */}
+          <div id="schedule-sign" className='h-full w-full'>
             <div className='w-1/3 h-1/3'>
               <ScheduleSign />
             </div>
           </div>
+
+          {/* Activities */}
+          {activities.map((activity, index) => (
+            <div 
+              key={`activity${index + 1}`}
+              id={`activity${index + 1}`}
+              className={`absolute ${activity_vertical_offset[`activity${index + 1}`]}`}
+            >
+              <ActivityPreview 
+                title={activity.title}
+                date={activity.date}
+                location={activity.location}
+                description={activity.description}
+                isActive={activeEventId === index + 1}
+                onEventClick={() => handleEventClick(index + 1)}
+                size={index === 0 ? 'small' : index === 1 ? 'medium' : index === 2 ? 'large' : 'xlarge'}
+              />
+            </div>
+          ))}
         </ParallaxLayer>
 
-        <ParallaxLayer offset={getOffset('road')} speed={0}>
+        {/* <ParallaxLayer offset={getOffset('road')} speed={0}>
           <div className="absolute top-[-63vh] md:top-[-40vh] left-1/2 -translate-x-1/2 w-[170vw] md:w-[250vw] h-[175vh] md:h-[250vh]">
             <Image
               src="/images/road.png"
@@ -458,7 +573,7 @@ function App() {
               className={`object-contain ${screenSize === 'sm' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'md' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'lg' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'xl' ? 'scale-[1] sm:scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
             />
           </div>
-        </ParallaxLayer>
+        </ParallaxLayer> */}
 
         <ParallaxLayer offset={getOffset('about-text')} speed={0}>
           <div id="about" className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-12">
@@ -468,7 +583,7 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={getOffset('event1')} speed={0}>
+        {/* <ParallaxLayer offset={getOffset('event1')} speed={0}>
           <div id="event1">
             <EventPreview
               title='opening ceremony'
@@ -537,7 +652,7 @@ function App() {
               onEventClick={() => handleEventClick(5)}
             />
           </div>
-        </ParallaxLayer>
+        </ParallaxLayer> */}
 
         <ParallaxLayer offset={getOffset('sponsors')} speed={0}>
           <div id="sponsors" className='h-full w-full'>

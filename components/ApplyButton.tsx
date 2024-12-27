@@ -10,16 +10,17 @@ import React from 'react';
 type ApplyButtonProps = {
     text: string;
     link: string;
-    size: 'small' | 'medium' | 'large';
+    size: 'small' | 'medium' | 'large' | 'xsmall';
     className?: string;
 }
 
 export default function ApplyButton({text, link, size, className }: ApplyButtonProps) {
     // Define classes for each size
     const sizeClasses = {
-        small: 'py-2 px-2 text-sm rounded-full', // Larger border-radius for small
-        medium: 'py-3 px-4 text-md rounded-full', // Larger border-radius for medium
+        small: 'py-2 px-2 text-xs rounded-full', // Larger border-radius for small
+        medium: 'py-3 px-4 text-base rounded-full', // Larger border-radius for medium
         large: 'py-4 px-6 text-3xl rounded-2xl', // Moderate border-radius for large
+        xsmall: 'py-1 px-1 text-[10px] rounded-full', // Smallest border-radius for xsmall
     };
 
     return (

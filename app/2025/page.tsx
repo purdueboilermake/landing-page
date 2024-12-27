@@ -86,8 +86,213 @@ const questions = [
   }
 ];
 
+// Define screen breakpoint types
+type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+
+// Define page counts for different screen sizes
+const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
+  'sm': 4.25,  // mobile (will be same as 'md')
+  'md': 4.25,     // tablet (will be same as 'sm')
+  'lg': 7.5,   // desktop (will be same as 'xl')
+  'xl': 7.5,   // large desktop (will be same as 'lg')
+  '2xl': 7.5   // extra large desktop (will be same as 'lg')
+};
+
+// Define offsets for each parallax layer by screen size
+const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
+  'about-background': {
+    'sm': 0.3,
+    'md': 0.3,
+    'lg': 0.5,
+    'xl': 0.5,
+    '2xl': 0.5
+  },
+  'hero': {
+    'sm': 0,
+    'md': 0,
+    'lg': 0,
+    'xl': 0,
+    '2xl': 0
+  },
+  'apply': {
+    'sm': 0.25,
+    'md': 0,
+    'lg': 0.25,
+    'xl': 0,
+    '2xl': 0
+  },
+  'sun': {
+    'sm': 0.9,
+    'md': 0.9,
+    'lg': 1.15,
+    'xl': 1.15,
+    '2xl': 1.15
+  },
+  'cloud2': {
+    'sm': 0.3,
+    'md': 0.3,
+    'lg': 0.75,
+    'xl': 0.75,
+    '2xl': 0.75
+  },
+  'cloud4': {
+    'sm': 0.3,
+    'md': 0.3,
+    'lg': 0.75,
+    'xl': 0.75,
+    '2xl': 0.75
+  },
+  'cloud5': {
+    'sm': 0.3,
+    'md': 0.3,
+    'lg': 0.75,
+    'xl': 0.75,
+    '2xl': 0.75
+  },
+  'cloud3': {
+    'sm': 0.3,
+    'md': 0.3,
+    'lg': 0.75,
+    'xl': 0.75,
+    '2xl': 0.75
+  },
+  'cloud1': {
+    'sm': 0.3,
+    'md': 0.3,
+    'lg': 0.75,
+    'xl': 0.75,
+    '2xl': 0.75
+  },
+  'mini-cloud-left': {
+    'sm': 0.9,
+    'md': 0.9,
+    'lg': 1.3,
+    'xl': 1.3,
+    '2xl': 1.3
+  },
+  'mini-cloud-right': {
+    'sm': 0.8,
+    'md': 0.8,
+    'lg': 1.3,
+    'xl': 1.3,
+    '2xl': 1.3
+  },
+  'stat1': {
+    'sm': 0.28,
+    'md': 0.28,
+    'lg': 1.0,
+    'xl': 1.0,
+    '2xl': 1.0
+  },
+  'stat2': {
+    'sm': 0.4,
+    'md': 0.4,
+    'lg': 1.0,
+    'xl': 1.0,
+    '2xl': 1.0
+  },
+  'stat3': {
+    'sm': 0.4,
+    'md': 0.4,
+    'lg': 1.0,
+    'xl': 1.0,
+    '2xl': 1.0
+  },
+  'faq-background': {
+    'sm': 2.08,
+    'md': 2.08,
+    'lg': 4.0,
+    'xl': 4.0,
+    '2xl': 4.0
+  }, 
+  'faq-sign': {
+    'sm': 2.08,
+    'md': 2.08,
+    'lg': 4.0,
+    'xl': 4.0,
+    '2xl': 4.0
+  },
+  'faq-accordion': {
+    'sm': 2.05,
+    'md': 2.05,
+    'lg': 4.0,
+    'xl': 4.0,
+    '2xl': 4.0
+  },
+  'schedule-sign': {
+    'sm': 1.25,
+    'md': 1.25,
+    'lg': 2.0,
+    'xl': 2.0,
+    '2xl': 2.0
+  },
+  'road': {
+    'sm': 1.55,
+    'md': 1.55,
+    'lg': 2.3,
+    'xl': 2.3,
+    '2xl': 2.3
+  },
+  'about-text': {
+    'sm': 0.85,
+    'md': 0.85,
+    'lg': 1.6,
+    'xl': 1.6,
+    '2xl': 1.6
+  }, 
+  'event1': {
+    'sm': 1.33,
+    'md': 1.33,
+    'lg': 2.2,
+    'xl': 2.2,
+    '2xl': 2.2
+  }, 
+  'event2': {
+    'sm': 1.47,
+    'md': 1.47,
+    'lg': 2.6,
+    'xl': 2.6,
+    '2xl': 2.6
+  }, 
+  'event3': {
+    'sm': 1.73,
+    'md': 1.73,
+    'lg': 3.00,
+    'xl': 3.00,
+    '2xl': 3.00
+  }, 
+  'event4': {
+    'sm': 1.87,
+    'md': 1.87,
+    'lg': 3.30,
+    'xl': 3.30,
+    '2xl': 3.30
+  }, 
+  'event5': {
+    'sm': 1.98,
+    'md': 1.98,
+    'lg': 3.6,
+    'xl': 3.6,
+    '2xl': 3.6
+  },  
+  'sponsors': {
+    'sm': 2.76,
+    'md': 2.75,
+    'lg': 5.0,
+    'xl': 5.0,
+    '2xl': 5.0
+  }, 
+  'footer': {
+    'sm': 3.75,
+    'md': 3.75,
+    'lg': 6.5,
+    'xl': 6.5,
+    '2xl': 6.5
+  }
+};
+
 function App() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [screenSize, setScreenSize] = useState<ScreenSize>('lg');
   const containerRef = React.useRef<HTMLDivElement>(null);
   const parallaxRef = React.useRef<IParallax>(null);
   const [activeEventId, setActiveEventId] = useState<number | null>(null);
@@ -95,24 +300,23 @@ function App() {
     container: containerRef
   });
 
-
-
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+    const updateScreenSize = () => {
+      const width = window.innerWidth;
+      if (width < 640) setScreenSize('sm');
+      else if (width < 768) setScreenSize('md');
+      else if (width < 1024) setScreenSize('lg');
+      else if (width < 1280) setScreenSize('xl');
+      else setScreenSize('2xl');
     };
 
-    // Initial check
-    checkMobile();
-
-    // Add event listener for window resize
-    window.addEventListener('resize', checkMobile);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    }
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
   }, []);
+
+  // Helper function to get offset for a layer
+  const getOffset = (layerId: string) => LAYER_OFFSETS[layerId][screenSize];
 
   const handleEventClick = (id: number) => {
     setActiveEventId(activeEventId === id ? null : id);
@@ -120,85 +324,91 @@ function App() {
 
   return (
     <div className='App font-dosis' ref={containerRef}>
-      <Parallax ref={parallaxRef} pages={isMobile ? 4.25 : 7.5} style={{ top: '0', left: '0' }} className="animation" key={isMobile ? 'mobile' : 'desktop'}>
+      <Parallax ref={parallaxRef} pages={PAGES_BY_SCREEN[screenSize]} style={{ top: '0', left: '0' }} className="animation" key={screenSize}>
         <Header parallaxRef={parallaxRef} />
-        <ParallaxLayer offset={isMobile ? 0.3 : 0.5} speed={0}>
+        <ParallaxLayer offset={getOffset('about-background')} speed={0}>
           <div id="about-background"></div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={0.25}>
+        <ParallaxLayer offset={getOffset('hero')} speed={0.25}>
           <div className="animation_layer parallax" id="cliff">
-            <div className={`flex justify-end items-center ${isMobile ? "p-16" : "p-36"}`}>
-              <div className={`text-right`}>
+            <div className="flex justify-end items-center p-16 sm:p-16 md:p-24 lg:p-24 xl:p-36">
+              <div className="text-right">
                 <div className="container mx-auto text-white">
-                  <h1 className={`text-5xl md:text-8xl font-averia-libre font-bold ${isMobile ? 'text-2xl' : ''}`}>BOILERMAKE</h1>
-                  <h2 className={`text-[100px] md:text-[200px] font-arvo leading-none font-extrabold ${isMobile ? 'text-5xl' : ''}`}>XII</h2>
-                  <p className={`text-xl md:text-3xl font-body font-extrabold leading-none mb-4 ${isMobile ? 'text-sm' : ''}`}>1/19 - 1/23</p>
+                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-averia-libre font-bold">
+                    BOILERMAKE
+                  </h1>
+                  <h2 className="text-[100px] md:text-[200px] font-arvo leading-none font-extrabold">
+                    XII
+                  </h2>
+                  <p className="text-xl md:text-3xl font-body font-extrabold leading-none mb-4">
+                    2/21 - 2/23
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={0.25} style={{ zIndex: 10 }}>
-          <div className={`flex justify-end items-center ${isMobile ? "p-16" : "p-36"}`}>
-            <div className={`text-right`}>
+        <ParallaxLayer offset={getOffset('apply')} speed={0.25} style={{ zIndex: 10 }}>
+          <div className="flex justify-end items-center p-16 sm:p-16 md:p-16 lg:p-24 xl:p-36">
+            <div className="text-right">
               <div className="container mx-auto">
-                <div style={{ paddingTop: isMobile ? '11rem' : '22rem' }}>
-                  <ApplyButton text="Apply Now!" link='https://boilermake-apply.web.app' size={isMobile ? 'medium' : 'large'} />
+                <div className='sm:pt-[12rem] md:pt-[12rem] lg:pt-[22rem] xl:pt-[22rem]'>
+                  <ApplyButton text="Apply Now!" link='https://boilermake-apply.web.app' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
                   <div className="h-4"></div>
-                  <ApplyButton text="Mentor Interest Form" link='https://forms.gle/Vdhhjfmhg1v6XuTG9' size={isMobile ? 'medium' : 'large'} />
+                  <ApplyButton text="Mentor Interest Form" link='https://forms.gle/Vdhhjfmhg1v6XuTG9' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
                 </div>
               </div>
             </div>
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 0.9 : 1.15} speed={0.35}>
+        <ParallaxLayer offset={getOffset('sun')} speed={0.35}>
           <div className="animation_layer parallax" id="sun"></div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 0.3 : 0.75} speed={0.3}>
+        <ParallaxLayer offset={getOffset('cloud2')} speed={0.3}>
           <div className="animation_layer parallax" id="cloud2"></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 0.3 : 0.75} speed={0.25}>
+        <ParallaxLayer offset={getOffset('cloud4')} speed={0.25}>
           <div className="animation_layer parallax" id="cloud4"></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 0.3 : 0.75} speed={0.1}>
+        <ParallaxLayer offset={getOffset('cloud5')} speed={0.1}>
           <div className="animation_layer parallax" id="cloud5"></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 0.3 : 0.75} speed={0.4}>
+        <ParallaxLayer offset={getOffset('cloud3')} speed={0.4}>
           <div className="animation_layer parallax" id="cloud3"></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 0.3 : 0.75} speed={0.3}>
+        <ParallaxLayer offset={getOffset('cloud1')} speed={0.3}>
           <div className="animation_layer parallax" id="cloud1"></div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 0.9 : 1.3} speed={0.3}>
+        <ParallaxLayer offset={getOffset('mini-cloud-left')} speed={0.3}>
           <div className="animation_layer parallax" id="mini-cloud-left"></div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 0.80 : 1.3} speed={0.3}>
+        <ParallaxLayer offset={getOffset('mini-cloud-right')} speed={0.3}>
           <div className="animation_layer parallax" id="mini-cloud-right"></div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 0.28 : 1.0} speed={0.1}>
+        <ParallaxLayer offset={getOffset('stat1')} speed={0.1}>
           <div id='stat1'>
             <Statistic statistic='9' variable='Universities Represented' />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
+        <ParallaxLayer offset={getOffset('stat2')} speed={0.1}>
           <div id='stat2'>
             <Statistic statistic='70' variable='Project Submissions' />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 0.40 : 1.0} speed={0.1}>
+        <ParallaxLayer offset={getOffset('stat3')} speed={0.1}>
           <div id='stat3'>
             <Statistic statistic='1:3' variable='Female:Male Ratio' />
           </div>
         </ParallaxLayer>
 
         {/* Background layer for FAQ */}
-        <ParallaxLayer offset={isMobile ? 2.08 : 4} speed={0}>
+        <ParallaxLayer offset={getOffset('faq-background')} speed={0}>
           <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* Empty space matching sign width */}
             <div className="col-span-1"></div>
@@ -208,7 +418,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Floating accordion layer */}
-        <ParallaxLayer offset={isMobile ? 2.08 : 4} speed={0} style={{ zIndex: 10 }}>
+        <ParallaxLayer offset={getOffset('faq-sign')} speed={0} style={{ zIndex: 10 }}>
           <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* First Column: FAQSign (1/3 of the screen) */}
             <div className="col-span-1 flex justify-center items-center h-[500px]">
@@ -220,18 +430,18 @@ function App() {
         </ParallaxLayer>
 
         {/* Floating accordion layer */}
-        <ParallaxLayer offset={isMobile ? 2.05 : 4} speed={0} style={{ zIndex: 10 }}>
+        <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 10 }}>
           <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* Empty space matching sign width */}
             <div className="col-span-1"></div>
             {/* Accordion floating above */}
-            <div className="col-span-2 pt-36">
+            <div className="col-span-2 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36">
               <FAQAccordian questions={questions} />
             </div>
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 1.25 : 2} speed={0}>
+        <ParallaxLayer offset={getOffset('schedule-sign')} speed={0}>
           <div id="schedule" className='h-full w-full'>
             <div className='w-1/3 h-1/3'>
               <ScheduleSign />
@@ -239,18 +449,18 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 1.55 : 2.3} speed={0}>
+        <ParallaxLayer offset={getOffset('road')} speed={0}>
           <div className="absolute top-[-63vh] md:top-[-40vh] left-1/2 -translate-x-1/2 w-[170vw] md:w-[250vw] h-[175vh] md:h-[250vh]">
             <Image
               src="/images/road.png"
               alt="Road"
               fill
-              className={`object-contain ${isMobile ? 'scale-[1] sm:scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
+              className={`object-contain ${screenSize === 'sm' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'md' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'lg' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'xl' ? 'scale-[1] sm:scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
             />
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 0.85 : 1.6} speed={0}>
+        <ParallaxLayer offset={getOffset('about-text')} speed={0}>
           <div id="about" className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-12">
             <div className="col-span-1 h-1/3 flex justify-center items-center">
               <AboutSection />
@@ -258,7 +468,7 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 1.33 : 2.2} speed={0}>
+        <ParallaxLayer offset={getOffset('event1')} speed={0}>
           <div id="event1">
             <EventPreview
               title='opening ceremony'
@@ -272,7 +482,7 @@ function App() {
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 1.47 : 2.6} speed={0}>
+        <ParallaxLayer offset={getOffset('event2')} speed={0}>
           <div id="event2">
             <EventPreview
               title='activity name'
@@ -286,7 +496,7 @@ function App() {
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 1.73 : 3.00} speed={0}>
+        <ParallaxLayer offset={getOffset('event3')} speed={0}>
           <div id="event3">
             <EventPreview
               title='activity name'
@@ -300,7 +510,7 @@ function App() {
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 1.87 : 3.30} speed={0}>
+        <ParallaxLayer offset={getOffset('event4')} speed={0}>
           <div id="event4">
             <EventPreview
               title='activity name'
@@ -314,7 +524,7 @@ function App() {
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 1.98 : 3.6} speed={0}>
+        <ParallaxLayer offset={getOffset('event5')} speed={0}>
           <div id="event5">
             <EventPreview
               title='activity name'
@@ -329,7 +539,7 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={isMobile ? 2.75 : 5} speed={0}>
+        <ParallaxLayer offset={getOffset('sponsors')} speed={0}>
           <div id="sponsors" className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}>
               <SponsorSign />
@@ -342,7 +552,8 @@ function App() {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={isMobile ? 3.75 : 6.5} speed={0}>
+
+        <ParallaxLayer offset={getOffset('footer')} speed={0}>
           <div id="footer" className="flex flex-col justify-end h-full w-full">
             <div className="animation_layer parallax" id="footer-background"></div>
             <footer id='textblock-footer' className="relative z-10">

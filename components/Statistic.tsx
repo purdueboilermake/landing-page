@@ -17,7 +17,7 @@ export default function Statistic({ statistic, variable }: StatisticProps) {
   return (
     <div className="container flex flex-row items-center gap-3">
       {/* Relative container for positioning the text over the image */}
-      <div className="relative w-14 sm:w-20 md:w-30 lg:w-40 h-14 sm:h-20 md:h-30 lg:h-40">
+      <div className="relative w-14 sm:w-20 md:w-30 lg:w-32 h-14 sm:h-20 md:h-30 lg:h-40">
         <Image
           src={"/images/interstate_sign.png"}
           alt={"Statistic: " + statistic + " " + variable}
@@ -27,12 +27,12 @@ export default function Statistic({ statistic, variable }: StatisticProps) {
           sizes="(max-width: 640px) 56px, (max-width: 768px) 80px, (max-width: 1024px) 120px, 160px"
         />
         {/* Absolutely positioned text centered over the image */}
-        <p className="absolute inset-0 flex items-center justify-center text-sm sm:text-2xl md:text-3xl lg:text-5xl text-white font-extrabold pt-2 ">
+        <p className="absolute inset-0 flex items-center justify-center text-sm sm:text-2xl md:text-2xl lg:text-4xl text-white font-extrabold pt-2 ">
           {statistic}
         </p>
       </div>
       {/* Statistic description text on the right */}
-      <p className="text-sm sm:text-xl md:text-2xl lg:text-5xl text-black text-shadow-lg shadow-blue-100">{variable}</p>
+      <p className="text-sm sm:text-xl md:text-2xl lg:text-4xl text-black text-shadow-lg shadow-blue-100">{variable}</p>
     </div>
   );
 }

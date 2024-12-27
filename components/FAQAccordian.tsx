@@ -42,7 +42,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
           </h2>
           <div
             id={`accordion-collapse-body-${index}`}
-            className={`${openIndex === index ? 'block' : 'hidden'} p-2 md:p-3 lg:p-5 border border-white bg-[#E1E5E7] rounded-b-xl w-full text-xs md:text-md lg:text-xl text-left`}
+            className={`${openIndex === index ? 'block' : 'hidden'} p-2 md:p-3 lg:p-5 border border-white bg-[#E1E5E7] rounded-b-xl w-full text-[10px] md:text-md lg:text-xl text-left`}
             aria-labelledby={`accordion-collapse-heading-${index}`}
           >
             <p className="mb-2 text-black">{faq.answer}</p>

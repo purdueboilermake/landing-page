@@ -10,7 +10,6 @@ import FAQSign from '../../components/Signs/FAQSign';
 import SponsorSign from '../../components/Signs/SponsorSign';
 import SponsorCard from '../../components/SponsorCard';
 import FAQAccordian from '../../components/FAQAccordian';
-import EventPreview from '../../components/Event/EventPreview';
 import ApplyButton from '../../components/ApplyButton';
 import Image from 'next/image';
 import { useResize } from '@react-spring/web';

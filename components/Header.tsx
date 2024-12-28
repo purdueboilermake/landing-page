@@ -53,7 +53,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
                         <ul className="flex space-x-4 sm:space-x-8 md:space-x-12">
                             <li>
                                 <button
-                                    onClick={() => handleNavigation('mini-cloud-left')}
+                                    onClick={() => handleNavigation('stat3')}
                                     className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     About

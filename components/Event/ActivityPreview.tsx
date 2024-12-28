@@ -12,7 +12,8 @@ import ActivitySign from "../Signs/ActivitySign";
 
 type ActivityPreviewProps = {
     title: string;
-    date: string;
+    startDate: string;
+    endDate: string;
     location: string;
     description: string;
     isActive: boolean;
@@ -23,7 +24,8 @@ type ActivityPreviewProps = {
 
 const ActivityPreview: React.FC<ActivityPreviewProps> = ({
     title,
-    date,
+    startDate,
+    endDate,
     location,
     description,
     isActive,
@@ -37,7 +39,7 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
     };
   
     // Extract event time from date string
-    const eventTime = new Date(date).toLocaleTimeString([], {
+    const startTime = new Date(startDate).toLocaleTimeString([], {
       hour: '2-digit',
       minute: '2-digit',
     });
@@ -70,14 +72,15 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <ActivitySign title={title} time={eventTime} size={size} />
+          <ActivitySign title={title} time={startTime} size={size} />
 
           {/* Popup */}
           {(showPopup && isPopupVisible) && (
             <div className={`absolute top-1/2 -translate-y-1/2 ${popupPosition} z-50`}>
               <EventPopup
                 title={title}
-                date={date}
+                startDate={startDate}
+                endDate={endDate}
                 location={location}
                 description={description}
               />

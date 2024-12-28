@@ -9,17 +9,18 @@ import React from 'react';
 
 type EventPopupProps = {
     title: string;
-    date: string;
+    startDate: string;
+    endDate: string;
     location: string;
     description: string;
 }
 
-export default function EventPopup({ title, date, location, description }: EventPopupProps) {
+export default function EventPopup({ title, startDate, endDate, location, description }: EventPopupProps) {
     // Format the date: "Day of the week, start time - end time"
-    const eventDate = new Date(date);
+    const eventDate = new Date(startDate);
     const dayOfWeek = eventDate.toLocaleDateString(undefined, { weekday: 'long' });
     const startTime = eventDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const endTime = new Date(eventDate.getTime() + 60 * 60 * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const endTime = new Date(endDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     return (
         <div className="bg-[#E4F0F3] p-2 sm:p-3 md:p-6 rounded-lg shadow-lg w-[200px] sm:w-[280px] md:w-[350px] lg:w-[400px] space-y-2 text-left cursor-default whitespace-normal break-words z-50">

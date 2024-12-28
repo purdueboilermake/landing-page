@@ -121,12 +121,12 @@ const EventPreview: React.FC<EventPreviewProps> = ({
                 ? 'right-[calc(100%-0rem)] md:right-[calc(100%-5rem)] -translate-y-1/2' 
                 : `left-[calc(100%+5rem)] md:left-[calc(100%+7rem)] -translate-y-1/2`
             } absolute w-[280px] md:w-[350px] lg:w-[600px]`}>
-              <EventPopup
+              {/* <EventPopup
                 title={title}
                 date={date}
                 location={location}
                 description={description}
-              />
+              /> */}
             </div>
           </div>
         )}

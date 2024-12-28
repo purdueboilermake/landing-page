@@ -306,7 +306,6 @@ body {
   background: url("/images/cloud_transition_5.png") no-repeat center center;
   background-size: contain;
   left: 5%;
-  top: -37%;
 }
 #mini-cloud-right {
   position: absolute;
@@ -315,7 +314,6 @@ body {
   opacity: 0.5;
   background-size: contain;
   left: 69%;
-  top: -20%;
 }
 
 /* Sun */
@@ -325,7 +323,6 @@ body {
   background: url("/images/sun.png") no-repeat center center;
   background-size: contain;
   left: -10%;
-  top: -45%;
 }
 
 /* Statistics */
@@ -334,9 +331,9 @@ body {
   background-size: 20%;
   background-repeat: no-repeat;
 }
-#stat1 { top: 57%; left: 60%; transform: rotate(-6deg); }
-#stat2 { top: 37%; left: 45%; transform: translateX(-50%) rotate(-3deg); }
-#stat3 { top: 30%; left: 77%; transform: translateX(-50%) rotate(5deg); }
+#stat1 { left: 60%; transform: rotate(-6deg); }
+#stat2 { left: 45%; transform: translateX(-50%) rotate(-3deg); }
+#stat3 { left: 77%; transform: translateX(-50%) rotate(5deg); }
 @media (max-width: 768px) { #stat1 { left: 57%; } }
 
 /* Events */
@@ -354,15 +351,19 @@ body {
 }
 
 /* Activities */
-#activity1 { position: absolute; left: 42%; }
-#activity2 { position: absolute; left: 65%; }
-#activity3 { position: absolute; left: 2%; }
-#activity4 { position: absolute; left: 37%; }
+#activity1 { position: absolute; left: 65%; }
+#activity2 { position: absolute; left: 40%; }
+#activity3 { position: absolute; left: 10%; }
+#activity4 { position: absolute; left: 45%; }
+#activity5 { position: absolute; left: 65%; }
+#activity6 { position: absolute; left: 20%; }
 @media (max-width: 768px) {
-  #activity1 { position: absolute; left: 47%; }
-  #activity2 { position: absolute; left: 65%; }
-  #activity3 { position: absolute; left: 0%; }
-  #activity4 { position: absolute; left: 37%; }
+  #activity1 { position: absolute; left: 65%; }
+  #activity2 { position: absolute; left: 47%; }
+  #activity3 { position: absolute; left: 7%; }
+  #activity4 { position: absolute; left: 45%; }
+  #activity5 { position: absolute; left: 65%; }
+  #activity6 { position: absolute; left: 20%; }
 }
 
 /* Header Section */

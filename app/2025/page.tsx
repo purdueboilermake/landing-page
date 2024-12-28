@@ -70,28 +70,42 @@ const activities = [
     startDate: "2025-02-21T19:00:00",
     endDate: "2025-02-21T20:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Introduction to BoilerMake'
-  }, 
+    description: 'Introduction to BoilerMake.'
+  },
+  {
+    title: 'Hacking Starts',
+    startDate: "2025-02-21T20:00:00",
+    endDate: "2025-02-21T20:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Hackers can start coding.'
+  },
   {
     title: 'Carnival',
     startDate: "2025-02-22T21:00:00",
     endDate: "2025-02-23T00:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Event filled with fun games and activities'
-  }, 
+    description: 'Event filled with fun games and activities.'
+  },
+  {
+    title: 'Hacking Ends',
+    startDate: "2025-02-23T08:00:00",
+    endDate: "2025-02-23T08:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Hackers must stop coding.'
+  },
   {
     title: 'Judging',
     startDate: "2025-02-23T10:00:00",
     endDate: "2025-02-23T14:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'First round of judging (all submitted projects)'
-  }, 
+    description: 'First round of judging (all submitted projects).'
+  },
   {
     title: 'Closing Ceremony',
     startDate: "2025-02-23T14:15:00",
     endDate: "2025-02-23T15:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Final round of judging and all prize winners announced'
+    description: 'Final round of judging and all prize winners announced.'
   }
 ]
 
@@ -150,7 +164,7 @@ function App() {
     // Check for scroll parameter in URL
     const params = new URLSearchParams(window.location.search);
     const scrollOffset = params.get('scroll');
-    
+
     if (scrollOffset && parallaxRef.current && isLoaded) {
       // Small delay to ensure parallax is fully initialized
       setTimeout(() => {
@@ -174,10 +188,12 @@ function App() {
   };
 
   const activity_vertical_offset: { [key: string]: string } = {
-    'activity1': "top-[7%] sm:top-[7%] md:top-[10%] lg:top-[10%] xl:top-[10%]",
-    'activity2': "top-[5%] sm:top-[7%] md:top-[15%] lg:top-[18%] xl:top-[20%]",
-    'activity3': "top-[15%] sm:top-[20%] md:top-[30%] lg:top-[40%] xl:top-[45%]",
-    'activity4': "top-[50%] sm:top-[50%] md:top-[75%] lg:top-[85%] xl:top-[92%]"
+    'activity1': "top-[5%] sm:top-[7%] md:top-[13%] lg:top-[11%] xl:top-[10%]",
+    'activity2': "top-[7%] sm:top-[9%] md:top-[14%] lg:top-[10%] xl:top-[12%]",
+    'activity3': "top-[15%] sm:top-[17%] md:top-[25%] lg:top-[35%] xl:top-[35%]",
+    'activity4': "top-[20%] sm:top-[19%] md:top-[32%] lg:top-[40%] xl:top-[45%]", // change this one
+    'activity5': "top-[42%] sm:top-[42%] md:top-[65%] lg:top-[80%] xl:top-[70%]", // change this one
+    'activity6': "top-[50%] sm:top-[50%] md:top-[80%] lg:top-[85%] xl:top-[95%]",
   }
 
   return (
@@ -185,7 +201,7 @@ function App() {
       <Header parallaxRef={parallaxRef} screenSize={screenSize} />
       <Parallax ref={parallaxRef} pages={PAGES_BY_SCREEN[screenSize]} style={{ top: '0', left: '0' }} className="animation" key={screenSize}>
 
-      <ParallaxLayer offset={getOffset('about-background')} speed={0}>
+        <ParallaxLayer offset={getOffset('about-background')} speed={0}>
           <div id="about-background"></div>
         </ParallaxLayer>
 
@@ -195,10 +211,10 @@ function App() {
 
         <ParallaxLayer offset={getOffset('cliff')} speed={0.25}>
           <div id='cliff'>
-            <Image 
-              src="/images/cliffside.png" 
-              alt="Cliff" 
-              height={0} 
+            <Image
+              src="/images/cliffside.png"
+              alt="Cliff"
+              height={0}
               width={0}
               sizes='100vh'
               className='w-full h-full object-cover'
@@ -208,7 +224,7 @@ function App() {
 
         <ParallaxLayer offset={getOffset('hero-text')} speed={0.25}>
           <div className="animation_layer parallax">
-            <div className="flex justify-end items-center p-16 sm:p-16 md:p-24 lg:p-24 xl:p-36">
+            <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
               <div className="text-right">
                 <div className="container mx-auto text-white">
                   <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-averia-libre font-bold">
@@ -227,7 +243,7 @@ function App() {
         </ParallaxLayer>
 
         <ParallaxLayer offset={getOffset('apply')} speed={0.25} style={{ zIndex: 10 }}>
-          <div className="flex justify-end items-center p-16 sm:p-16 md:p-16 lg:p-24 xl:p-36">
+          <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
             <div className="text-right">
               <div className="container mx-auto">
                 <div className='sm:pt-[12rem] md:pt-[12rem] lg:pt-[22rem] xl:pt-[22rem]'>
@@ -261,20 +277,22 @@ function App() {
         </ParallaxLayer>
 
         <ParallaxLayer offset={getOffset('mini-cloud-left')} speed={0.3}>
-          <div className="animation_layer parallax" id="mini-cloud-left"></div>
+          <div className='lg:mt-[175px] xl:mt-[-60px]'>
+            <div className="animation_layer parallax" id="mini-cloud-left"></div>
+          </div>
         </ParallaxLayer>
         <ParallaxLayer offset={getOffset('mini-cloud-right')} speed={0.3}>
           <div className="animation_layer parallax" id="mini-cloud-right"></div>
         </ParallaxLayer>
 
         <ParallaxLayer offset={getOffset('stat1')} speed={0.1}>
-          <div id='stat1'>
-            <Statistic statistic='9' variable='Universities Represented' />
+            <div id='stat1' className='pt-16 sm:pt-0'>
+              <Statistic statistic='9' variable='Universities Represented' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={getOffset('stat2')} speed={0.1}>
-          <div id='stat2'>
-            <Statistic statistic='70' variable='Project Submissions' />
+            <div id='stat2'>
+              <Statistic statistic='70' variable='Project Submissions' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={getOffset('stat3')} speed={0.1}>
@@ -342,12 +360,12 @@ function App() {
 
           {/* Activities */}
           {activities.map((activity, index) => (
-            <div 
+            <div
               key={`activity${index + 1}`}
               id={`activity${index + 1}`}
               className={`absolute ${activity_vertical_offset[`activity${index + 1}`]}`}
             >
-              <ActivityPreview 
+              <ActivityPreview
                 title={activity.title}
                 startDate={activity.startDate}
                 endDate={activity.endDate}
@@ -355,7 +373,8 @@ function App() {
                 description={activity.description}
                 isActive={activeEventId === index + 1}
                 onEventClick={() => handleEventClick(index + 1)}
-                size={index === 0 ? 'small' : index === 1 ? 'medium' : index === 2 ? 'large' : 'xlarge'}
+                size={index < 2 ? 'small' : index < 4 ? 'medium' : index < 5 ? 'large' : 'xlarge'}
+                popup={(index === 2 || index === 5) ? 'right' : 'left'}
               />
             </div>
           ))}

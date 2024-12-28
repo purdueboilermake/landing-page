@@ -15,7 +15,7 @@ type StatisticProps = {
 
 export default function Statistic({ statistic, variable }: StatisticProps) {
   return (
-    <div className="container flex flex-row items-center gap-3">
+    <div className="container flex flex-row items-center gap-0 sm:gap-1 md:gap-2 lg:gap-3">
       {/* Relative container for positioning the text over the image */}
       <div className="relative w-14 sm:w-20 md:w-30 lg:w-32 h-14 sm:h-20 md:h-30 lg:h-40">
         <Image

@@ -20,7 +20,7 @@ const sizeMap = {
 
 const textOffset = {
     'small': 'pt-[23px] sm:pt-[30px] md:pt-[50px] lg:pt-[65px] xl:pt-[75px]',
-    'medium': 'pt-[45px] sm:pt-[65px] md:pt-[80px] lg:pt-[100px] xl:pt-[120px]',
+    'medium': 'pt-[45px] sm:pt-[55px] md:pt-[80px] lg:pt-[100px] xl:pt-[120px]',
     'large': 'pt-[55px] sm:pt-[80px] md:pt-[110px] lg:pt-[120px] xl:pt-[140px]',
     'xlarge': 'pt-[65px] sm:pt-[100px] md:pt-[130px] lg:pt-[160px] xl:pt-[180px]'
 }
@@ -41,7 +41,7 @@ const titleSize = {
 
 const textMargin = {
     'small': 'mt-0 sm:mt-0 md:mt-1',
-    'medium': 'mt-0 sm:mt-1 md:mt-2',
+    'medium': 'mt-0 sm:mt-0 md:mt-2',
     'large': 'mt-1 sm:mt-1 md:mt-3',
     'xlarge': 'mt-1 sm:mt-2 md:mt-4'
 }

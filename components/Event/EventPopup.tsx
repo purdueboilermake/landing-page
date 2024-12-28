@@ -29,7 +29,7 @@ export default function EventPopup({ title, startDate, endDate, location, descri
 
             {/* Location and Date Section */}
             <div className="text-xs md:text-sm font-subtitle text-[#357049] space-y-1">
-                <p className="whitespace-normal text-black">{`${dayOfWeek}, ${startTime} - ${endTime}`}</p>
+                <p className="whitespace-normal text-black">{`${dayOfWeek}, ${startTime}${startDate !== endDate ? ' - ' + endTime : ''}`}</p>
                 <p className="whitespace-normal">{location}</p>
             </div>
 

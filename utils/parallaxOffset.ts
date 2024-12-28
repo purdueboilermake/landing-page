@@ -3,9 +3,9 @@ export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 // Define page counts for different screen sizes
 export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-  'sm': 4,  // mobile (will be same as 'md')
+  'sm': 3.75,  // mobile (will be same as 'md')
   'md': 4.5,     // tablet (will be same as 'sm')
-  'lg': 6.5,   // desktop (will be same as 'xl')
+  'lg': 6.0,   // desktop (will be same as 'xl')
   'xl': 7,   // large desktop (will be same as 'lg')
   '2xl': 7   // extra large desktop (will be same as 'lg')
 };
@@ -34,25 +34,25 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 0
   },
   'hero-text': {
-    'sm': 0.05,
+    'sm': 0.07,
     'md': 0.1,
-    'lg': 0,
-    'xl': 0,
-    '2xl': 0
+    'lg': 0.1,
+    'xl': 0.1,
+    '2xl': 0.1
   },
   'apply': {
     'sm': 0.3,
     'md': 0.1,
-    'lg': 0.2,
-    'xl': 0,
-    '2xl': 0
+    'lg': 0.25,
+    'xl': 0.1,
+    '2xl': 0.1
   },
   'sun': {
-    'sm': 1.0,
-    'md': 1.0,
-    'lg': 1.0,
-    'xl': 1.1,
-    '2xl': 1.15
+    'sm': 0.75,
+    'md': 0.8,
+    'lg': 0.8,
+    'xl': 0.9,
+    '2xl': 0.95
   },
   'cloud2': {
     'sm': 0.6,
@@ -90,72 +90,79 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 0.75
   },
   'mini-cloud-left': {
-    'sm': 1.0,
-    'md': 1.1,
-    'lg': 1.05,
-    'xl': 1.25,
-    '2xl': 1.3
+    'sm': 0.8,
+    'md': 0.9,
+    'lg': 0.9,
+    'xl': 0.9,
+    '2xl': 1.0
   },
   'mini-cloud-right': {
-    'sm': 0.9,
+    'sm': 0.85,
+    'md': 0.97,
+    'lg': 0.97,
+    'xl': 1.05,
+    '2xl': 1.1
+  },
+  'stat1': {
+    'sm': 0.99,
     'md': 1.0,
-    'lg': 1.05,
+    'lg': 1.25,
+    'xl': 1.5,
+    '2xl': 1.55
+  },
+  'stat2': {
+    'sm': 0.99,
+    'md': 0.95,
+    'lg': 1.15,
+    'xl': 1.35,
+    '2xl': 1.4
+  },
+  'stat3': {
+    'sm': 0.99,
+    'md': 0.97,
+    'lg': 1.1,
     'xl': 1.25,
     '2xl': 1.3
   },
-  'stat1': {
-    'sm': 0.58,
-    'md': 0.58,
-    'lg': 0.85,
-    'xl': 0.95,
-    '2xl': 1.0
-  },
-  'stat2': {
-    'sm': 0.7,
-    'md': 0.7,
-    'lg': 0.85,
-    'xl': 0.95,
-    '2xl': 1.0
-  },
-  'stat3': {
-    'sm': 0.7,
-    'md': 0.7,
-    'lg': 0.85,
-    'xl': 0.95,
-    '2xl': 1.0
-  },
   'faq-background': {
-    'sm': 2.1,
+    'sm': 1.95,
     'md': 2.4,
-    'lg': 3.45,
+    'lg': 3.25,
     'xl': 3.75,
     '2xl': 3.75
   },
   'faq-sign': {
-    'sm': 2.1,
+    'sm': 1.95,
     'md': 2.33,
-    'lg': 3.4,
+    'lg': 3.2,
     'xl': 3.8,
     '2xl': 3.8
   },
   'faq-accordion': {
-    'sm': 2.23,
+    'sm': 2.08,
     'md': 2.4,
-    'lg': 3.45,
+    'lg': 3.25,
     'xl': 3.75,
     '2xl': 3.75
   },
   'schedule-background': {
-    'sm': 1.5,
+    'sm': 1.4,
     'md': 1.5,
-    'lg': 2.0,
+    'lg': 1.82,
+    'xl': 2.0,
+    '2xl': 2.0
+  },
+  'schedule-section': {
+    'sm': 1.3,
+    'md': 1.4,
+    'lg': 1.85,
     'xl': 2.0,
     '2xl': 2.0
   },
   'windyroad': {
-    'sm': 1.50,
+    'sm': 1.40,
     'md': 1.55,
-    'lg': 2.3,
+    'lg': 2.12,
     'xl': 2.3,
     '2xl': 2.3
   },
@@ -167,11 +174,11 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 2.3
   },
   'about-text': {
-    'sm': 1.05,
-    'md': 1.1,
-    'lg': 1.5,
+    'sm': 1.0,
+    'md': 1.05,
+    'lg': 1.45,
     'xl': 1.6,
-    '2xl': 1.6
+    '2xl': 1.65
   },
   'event1': {
     'sm': 1.33,
@@ -209,38 +216,31 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 3.6
   },
   'sponsors-background': {
-    'sm': 2.75,
+    'sm': 2.55,
     'md': 3.01,
-    'lg': 4.35,
+    'lg': 4.0,
     'xl': 4.75,
     '2xl': 4.75
   },
   'sponsors-sign': {
-    'sm': 2.75,
+    'sm': 2.55,
     'md': 3.1,
-    'lg': 4.35,
+    'lg': 4.0,
     'xl': 4.75,
     '2xl': 4.75
   },
   'sponsors-content': {
-    'sm': 2.7,
+    'sm': 2.5,
     'md': 3.1,
-    'lg': 4.35,
+    'lg': 4.0,
     'xl': 4.75,
     '2xl': 4.75
   },
   'footer': {
-    'sm': 3.5,
+    'sm': 3.25,
     'md': 4.0,
-    'lg': 5.5,
+    'lg': 5.0,
     'xl': 6.0,
     '2xl': 6.0
   },
-  'schedule-section': {
-    'sm': 1.4,
-    'md': 1.4,
-    'lg': 2.03,
-    'xl': 2.0,
-    '2xl': 2.0
-  }
 };

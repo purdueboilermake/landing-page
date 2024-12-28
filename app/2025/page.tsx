@@ -15,6 +15,7 @@ import ApplyButton from '../../components/ApplyButton';
 import Image from 'next/image';
 import { useResize } from '@react-spring/web';
 import ActivityPreview from '@/components/Event/ActivityPreview';
+import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffset';
 
 const sponsors = [
   {
@@ -114,232 +115,6 @@ const questions = [
   }
 ];
 
-// Define screen breakpoint types
-type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-
-// Define page counts for different screen sizes
-const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-  'sm': 4.25,  // mobile (will be same as 'md')
-  'md': 4.25,     // tablet (will be same as 'sm')
-  'lg': 7.5,   // desktop (will be same as 'xl')
-  'xl': 7.5,   // large desktop (will be same as 'lg')
-  '2xl': 7.5   // extra large desktop (will be same as 'lg')
-};
-
-// Define offsets for each parallax layer by screen size
-const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
-  'about-background': {
-    'sm': 0.3,
-    'md': 0.3,
-    'lg': 0.5,
-    'xl': 0.5,
-    '2xl': 0.5
-  },
-  'hero': {
-    'sm': 0,
-    'md': 0,
-    'lg': 0,
-    'xl': 0,
-    '2xl': 0
-  },
-  'apply': {
-    'sm': 0.25,
-    'md': 0,
-    'lg': 0.25,
-    'xl': 0,
-    '2xl': 0
-  },
-  'sun': {
-    'sm': 0.9,
-    'md': 0.9,
-    'lg': 1.15,
-    'xl': 1.15,
-    '2xl': 1.15
-  },
-  'cloud2': {
-    'sm': 0.3,
-    'md': 0.3,
-    'lg': 0.75,
-    'xl': 0.75,
-    '2xl': 0.75
-  },
-  'cloud4': {
-    'sm': 0.3,
-    'md': 0.3,
-    'lg': 0.75,
-    'xl': 0.75,
-    '2xl': 0.75
-  },
-  'cloud5': {
-    'sm': 0.3,
-    'md': 0.3,
-    'lg': 0.75,
-    'xl': 0.75,
-    '2xl': 0.75
-  },
-  'cloud3': {
-    'sm': 0.3,
-    'md': 0.3,
-    'lg': 0.75,
-    'xl': 0.75,
-    '2xl': 0.75
-  },
-  'cloud1': {
-    'sm': 0.3,
-    'md': 0.3,
-    'lg': 0.75,
-    'xl': 0.75,
-    '2xl': 0.75
-  },
-  'mini-cloud-left': {
-    'sm': 0.9,
-    'md': 0.9,
-    'lg': 1.3,
-    'xl': 1.3,
-    '2xl': 1.3
-  },
-  'mini-cloud-right': {
-    'sm': 0.8,
-    'md': 0.8,
-    'lg': 1.3,
-    'xl': 1.3,
-    '2xl': 1.3
-  },
-  'stat1': {
-    'sm': 0.28,
-    'md': 0.28,
-    'lg': 1.0,
-    'xl': 1.0,
-    '2xl': 1.0
-  },
-  'stat2': {
-    'sm': 0.4,
-    'md': 0.4,
-    'lg': 1.0,
-    'xl': 1.0,
-    '2xl': 1.0
-  },
-  'stat3': {
-    'sm': 0.4,
-    'md': 0.4,
-    'lg': 1.0,
-    'xl': 1.0,
-    '2xl': 1.0
-  },
-  'faq-background': {
-    'sm': 2.08,
-    'md': 2.08,
-    'lg': 4.0,
-    'xl': 4.0,
-    '2xl': 4.0
-  }, 
-  'faq-sign': {
-    'sm': 2.08,
-    'md': 2.08,
-    'lg': 4.0,
-    'xl': 4.0,
-    '2xl': 4.0
-  },
-  'faq-accordion': {
-    'sm': 2.05,
-    'md': 2.05,
-    'lg': 4.0,
-    'xl': 4.0,
-    '2xl': 4.0
-  },
-  'schedule-background': {
-    'sm': 1.25,
-    'md': 1.25,
-    'lg': 2.0,
-    'xl': 2.0,
-    '2xl': 2.0
-  },
-  'schedule-sign': {
-    'sm': 1.25,
-    'md': 1.25,
-    'lg': 2.0,
-    'xl': 2.0,
-    '2xl': 2.0
-  },
-  'windyroad': {
-    'sm': 1.35,
-    'md': 1.4,
-    'lg': 2.3,
-    'xl': 2.3,
-    '2xl': 2.3
-  },
-  'road': {
-    'sm': 1.55,
-    'md': 1.55,
-    'lg': 2.3,
-    'xl': 2.3,
-    '2xl': 2.3
-  },
-  'about-text': {
-    'sm': 0.85,
-    'md': 0.85,
-    'lg': 1.6,
-    'xl': 1.6,
-    '2xl': 1.6
-  },
-  'event1': {
-    'sm': 1.33,
-    'md': 1.33,
-    'lg': 2.2,
-    'xl': 2.2,
-    '2xl': 2.2
-  }, 
-  'event2': {
-    'sm': 1.47,
-    'md': 1.47,
-    'lg': 2.6,
-    'xl': 2.6,
-    '2xl': 2.6
-  }, 
-  'event3': {
-    'sm': 1.73,
-    'md': 1.73,
-    'lg': 3.00,
-    'xl': 3.00,
-    '2xl': 3.00
-  }, 
-  'event4': {
-    'sm': 1.87,
-    'md': 1.87,
-    'lg': 3.30,
-    'xl': 3.30,
-    '2xl': 3.30
-  }, 
-  'event5': {
-    'sm': 1.98,
-    'md': 1.98,
-    'lg': 3.6,
-    'xl': 3.6,
-    '2xl': 3.6
-  },  
-  'sponsors': {
-    'sm': 2.76,
-    'md': 2.75,
-    'lg': 5.0,
-    'xl': 5.0,
-    '2xl': 5.0
-  }, 
-  'footer': {
-    'sm': 3.75,
-    'md': 3.75,
-    'lg': 6.5,
-    'xl': 6.5,
-    '2xl': 6.5
-  },
-  'schedule-section': {
-    'sm': 1.25,
-    'md': 1.25,
-    'lg': 2.0,
-    'xl': 2.0,
-    '2xl': 2.0
-  }
-};
-
 function App() {
   const [screenSize, setScreenSize] = useState<ScreenSize>('lg');
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -397,21 +172,39 @@ function App() {
 
   const activity_vertical_offset: { [key: string]: string } = {
     'activity1': "top-[7%] sm:top-[7%] md:top-[10%] lg:top-[10%] xl:top-[10%]",
-    'activity2': "top-[5%] sm:top-[5%] md:top-[20%] lg:top-[25%] xl:top-[25%]",
-    'activity3': "top-[15%] sm:top-[15%] md:top-[30%] lg:top-[50%] xl:top-[50%]",
-    'activity4': "top-[50%] sm:top-[50%] md:top-[75%] lg:top-[95%] xl:top-[95%]"
+    'activity2': "top-[5%] sm:top-[7%] md:top-[15%] lg:top-[18%] xl:top-[20%]",
+    'activity3': "top-[15%] sm:top-[20%] md:top-[30%] lg:top-[40%] xl:top-[45%]",
+    'activity4': "top-[50%] sm:top-[50%] md:top-[75%] lg:top-[85%] xl:top-[92%]"
   }
 
   return (
     <div className='App font-dosis' ref={containerRef}>
-      <Header parallaxRef={parallaxRef} />
+      <Header parallaxRef={parallaxRef} screenSize={screenSize} />
       <Parallax ref={parallaxRef} pages={PAGES_BY_SCREEN[screenSize]} style={{ top: '0', left: '0' }} className="animation" key={screenSize}>
-        <ParallaxLayer offset={getOffset('about-background')} speed={0}>
+
+      <ParallaxLayer offset={getOffset('about-background')} speed={0}>
           <div id="about-background"></div>
         </ParallaxLayer>
 
         <ParallaxLayer offset={getOffset('hero')} speed={0.25}>
-          <div className="animation_layer parallax" id="cliff">
+          <div className="animation_layer parallax" id="hero"></div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('cliff')} speed={0.25}>
+          <div id='cliff'>
+            <Image 
+              src="/images/cliffside.png" 
+              alt="Cliff" 
+              height={0} 
+              width={0}
+              sizes='100vh'
+              className='w-full h-full object-cover'
+            />
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('hero-text')} speed={0.25}>
+          <div className="animation_layer parallax">
             <div className="flex justify-end items-center p-16 sm:p-16 md:p-24 lg:p-24 xl:p-36">
               <div className="text-right">
                 <div className="container mx-auto text-white">
@@ -654,12 +447,25 @@ function App() {
           </div>
         </ParallaxLayer> */}
 
-        <ParallaxLayer offset={getOffset('sponsors')} speed={0}>
+        {/* Background layer for Sponsors */}
+        <ParallaxLayer offset={getOffset('sponsors-background')} speed={0}>
           <div id="sponsors" className='h-full w-full'>
+          </div>
+        </ParallaxLayer>
+
+        {/* Sponsors Sign Layer */}
+        <ParallaxLayer offset={getOffset('sponsors-sign')} speed={0} style={{ zIndex: 10 }}>
+          <div className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}>
               <SponsorSign />
             </div>
-            {/* Sponsors */}
+          </div>
+        </ParallaxLayer>
+
+        {/* Sponsors Content Layer */}
+        <ParallaxLayer offset={getOffset('sponsors-content')} speed={0} style={{ zIndex: 10 }}>
+          <div className='h-full w-full'>
+            <div className={`w-1/3 h-1/3`}></div>
             <div className="grid grid-cols-3 gap-4 md:gap-x-8 md:gap-y-10 justify-items-center">
               {sponsors.map((sponsor, index) => (
                 <SponsorCard sponsor={sponsor} key={index} />

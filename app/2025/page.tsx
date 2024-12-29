@@ -291,7 +291,7 @@ function App() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={getOffset('stat2')} speed={0.1}>
-            <div id='stat2'>
+            <div id='stat2' className='pt-8 sm:pt-0'>
               <Statistic statistic='70' variable='Project Submissions' />
           </div>
         </ParallaxLayer>

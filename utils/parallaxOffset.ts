@@ -3,7 +3,7 @@ export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 // Define page counts for different screen sizes
 export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-  'sm': 3.75,  // mobile (will be same as 'md')
+  'sm': 4.25,  // mobile (will be same as 'md')
   'md': 4.5,     // tablet (will be same as 'sm')
   'lg': 6.0,   // desktop (will be same as 'xl')
   'xl': 7,   // large desktop (will be same as 'lg')
@@ -41,7 +41,7 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 0.1
   },
   'apply': {
-    'sm': 0.3,
+    'sm': 0.32,
     'md': 0.1,
     'lg': 0.25,
     'xl': 0.1,
@@ -125,42 +125,42 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 1.3
   },
   'faq-background': {
-    'sm': 1.95,
+    'sm': 2.1,
     'md': 2.4,
     'lg': 3.25,
     'xl': 3.75,
     '2xl': 3.75
   },
   'faq-sign': {
-    'sm': 1.95,
+    'sm': 2.1,
     'md': 2.33,
     'lg': 3.2,
     'xl': 3.8,
     '2xl': 3.8
   },
   'faq-accordion': {
-    'sm': 2.08,
+    'sm': 2.23,
     'md': 2.4,
     'lg': 3.25,
     'xl': 3.75,
     '2xl': 3.75
   },
   'schedule-background': {
-    'sm': 1.4,
+    'sm': 1.5,
     'md': 1.5,
     'lg': 1.82,
     'xl': 2.0,
     '2xl': 2.0
   },
   'schedule-section': {
-    'sm': 1.3,
+    'sm': 1.4,
     'md': 1.4,
     'lg': 1.85,
     'xl': 2.0,
     '2xl': 2.0
   },
   'windyroad': {
-    'sm': 1.40,
+    'sm': 1.5,
     'md': 1.55,
     'lg': 2.12,
     'xl': 2.3,
@@ -174,7 +174,7 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 2.3
   },
   'about-text': {
-    'sm': 1.0,
+    'sm': 1.05,
     'md': 1.05,
     'lg': 1.45,
     'xl': 1.6,
@@ -216,28 +216,28 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 3.6
   },
   'sponsors-background': {
-    'sm': 2.55,
+    'sm': 2.85,
     'md': 3.01,
     'lg': 4.0,
     'xl': 4.75,
     '2xl': 4.75
   },
   'sponsors-sign': {
-    'sm': 2.55,
+    'sm': 2.85,
     'md': 3.1,
     'lg': 4.0,
     'xl': 4.75,
     '2xl': 4.75
   },
   'sponsors-content': {
-    'sm': 2.5,
+    'sm': 2.8,
     'md': 3.1,
     'lg': 4.0,
     'xl': 4.75,
     '2xl': 4.75
   },
   'footer': {
-    'sm': 3.25,
+    'sm': 3.75,
     'md': 4.0,
     'lg': 5.0,
     'xl': 6.0,

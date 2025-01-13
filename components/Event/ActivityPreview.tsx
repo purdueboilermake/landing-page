@@ -19,6 +19,7 @@ type ActivityPreviewProps = {
     isActive: boolean;
     onEventClick: () => void;
     size: 'small' | 'medium' | 'large' | 'xlarge';
+    popup: 'left' | 'right'
   };
 
 
@@ -30,7 +31,8 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
     description,
     isActive,
     onEventClick,
-    size
+    size,
+    popup
   }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
   
@@ -48,12 +50,14 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
     const showPopup = isActive;
   
     // Determine popup position based on size
-    const popupPosition = size === 'large'
+    const popupPosition = popup === 'right'
       ? 'left-full -ml-8' // Position to the right
       : size === 'xlarge'
       ? '-left-full ml-16 sm:ml-32 md:ml-44 lg:ml-56' // Position to the left
       : size === 'medium'
       ? '-left-full -ml-5 sm:-ml-0 md:-ml-0 lg:-ml-0' // Position to the left
+      : size === 'large' ?
+      '-left-full -ml-16 sm:-ml-24 md:-ml-28 lg:ml-36'
       : '-left-full -ml-32 sm:-ml-40 md:-ml-32 lg:-ml-20'; // Position to the left
   
     // Handlers for hover events

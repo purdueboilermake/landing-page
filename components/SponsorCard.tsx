@@ -20,13 +20,14 @@ export default function SponsorCard({ sponsor }: SponsorCardProps) {
     return (
         <a href={sponsor.url} target="_blank" rel="noreferrer">
             <div className="p-4 inline-block">
-                <div className="bg-black rounded-full p-4 flex items-center justify-center">
+                <div className="bg-black rounded-full p-2 md:p-4 lg:p-8 flex items-center justify-center">
                     <Image 
                         src={sponsor.logo} 
                         alt={sponsor.name} 
-                        className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
-                        width={100}
-                        height={100}
+                        className="w-[50px] h-[50px] md:w-[50px] md:h-[50px] lg:w-[100px] lg:h-[100px] object-contain"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
                     />
                 </div>
             </div>

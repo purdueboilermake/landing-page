@@ -9,13 +9,16 @@ import React from 'react';
 import ApplyButton from './ApplyButton';
 import Image from 'next/image';
 import { IParallax } from '@react-spring/parallax';
+import { LAYER_OFFSETS, ScreenSize } from '@/utils/parallaxOffset';
 
 type HeaderProps = {
+    screenSize: ScreenSize;
     parallaxRef?: React.RefObject<IParallax>;
 };
 
-export default function Header({ parallaxRef }: HeaderProps) {
-    const handleNavigation = (offset: number) => {
+export default function Header({ screenSize, parallaxRef }: HeaderProps) {
+    const handleNavigation = (section: string) => {
+        const offset = LAYER_OFFSETS[section][screenSize]
         // Check if we're on the main page
         if (window.location.pathname === '/2025') {
             // If we are, just scroll
@@ -47,10 +50,10 @@ export default function Header({ parallaxRef }: HeaderProps) {
 
                 <div className="flex">
                     <nav className="flex space-x-2 sm:space-x-4 md:space-x-12 px-4 md:px-12">
-                        <ul className="flex space-x-6 sm:space-x-8 md:space-x-12">
+                        <ul className="flex space-x-4 sm:space-x-8 md:space-x-12">
                             <li>
                                 <button
-                                    onClick={() => handleNavigation(1.6)}
+                                    onClick={() => handleNavigation('stat3')}
                                     className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     About
@@ -59,14 +62,14 @@ export default function Header({ parallaxRef }: HeaderProps) {
                             <li>
                                 <a
                                     href="/about-us"
-                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
+                                    className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] truncate"
                                 >
                                     About Us
                                 </a>
                             </li>
                             <li>
                                 <button
-                                    onClick={() => handleNavigation(2.0)}
+                                    onClick={() => handleNavigation('schedule-section')}
                                     className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     Schedule
@@ -74,7 +77,7 @@ export default function Header({ parallaxRef }: HeaderProps) {
                             </li>
                             <li>
                                 <button
-                                    onClick={() => handleNavigation(4.0)}
+                                    onClick={() => handleNavigation('faq-sign')}
                                     className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     FAQ
@@ -82,7 +85,7 @@ export default function Header({ parallaxRef }: HeaderProps) {
                             </li>
                             <li>
                                 <button
-                                    onClick={() => handleNavigation(5.0)}
+                                    onClick={() => handleNavigation('sponsors-sign')}
                                     className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                 >
                                     Sponsors

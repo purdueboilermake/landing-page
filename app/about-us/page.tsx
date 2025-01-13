@@ -2,8 +2,9 @@
 
 import Header from '@/components/Header';
 import Image from 'next/image';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import TeamCarousel from '@/components/TeamCarousel';
+import { ScreenSize } from '@/utils/parallaxOffset';
 
 interface TeamMember {
   image: string;
@@ -24,6 +25,7 @@ const getRandomCloud = () => {
 
 export default function TeamsPage() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
+  const [screenSize, setScreenSize] = useState<ScreenSize>('lg');
 
   const teams: Team[] = [
     {
@@ -131,9 +133,24 @@ export default function TeamsPage() {
     }), {});
   }, []);
 
+  useEffect(() => {
+    const updateScreenSize = () => {
+      const width = window.innerWidth;
+      if (width < 640) setScreenSize('sm');
+      else if (width < 768) setScreenSize('md');
+      else if (width < 1024) setScreenSize('lg');
+      else if (width < 1280) setScreenSize('xl');
+      else setScreenSize('2xl');
+    };
+
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+
   return (
     <div className="bg-blue-200 flex flex-col items-center h-full py-12 md:py-24 px-4 md:px-24 lg:px-32">
-      <Header />
+      <Header screenSize={screenSize} />
       <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-dosis text-center">About Us</h1>
       <div className="grid grid-flow-row justify-center items-center gap-12 md:gap-20 w-full">
         {teams.map((team) => (

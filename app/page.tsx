@@ -297,7 +297,7 @@ function App() {
         </ParallaxLayer>
         <ParallaxLayer offset={getOffset('stat3')} speed={0.1}>
           <div id='stat3'>
-            <Statistic statistic='1:3' variable='Female:Male Ratio' />
+            <Statistic statistic='$4k' variable='In Prizes' />
           </div>
         </ParallaxLayer>
 
@@ -489,11 +489,18 @@ function App() {
         <ParallaxLayer offset={getOffset('sponsors-content')} speed={0} style={{ zIndex: 10 }}>
           <div className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}></div>
+
+            <div className="flex justify-center items-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">Coming Soon!</h2>
+            </div>
+
+            {/*
             <div className="grid grid-cols-3 gap-4 md:gap-x-8 md:gap-y-10 justify-items-center">
               {sponsors.map((sponsor, index) => (
                 <SponsorCard sponsor={sponsor} key={index} />
               ))}
             </div>
+            */}
           </div>
         </ParallaxLayer>
 

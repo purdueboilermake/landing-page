@@ -11,15 +11,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/home/page": [
+    "/about-us/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/home/page.js"
-    ],
-    "/past/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/past/page.js"
+      "static/css/app/about-us/page.css",
+      "static/chunks/app/about-us/page.js"
     ]
   }
 }

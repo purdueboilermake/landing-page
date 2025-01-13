@@ -16,6 +16,15 @@ const nextConfig = {
     images: {
       unoptimized: true,
     },
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/2025',
+          permanent: true, // Use a 308 permanent redirect
+        },
+      ];
+    },
   };
   
   export default nextConfig;

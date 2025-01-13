@@ -1,139 +1,517 @@
-/**
- * app/page.tsx
- * Home page
- * @unkn-wn, @VarunJasti
- * 11-14-2024
- */
+"use client"
+import React, { useEffect, useState } from 'react';
+import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
+import Header from '@/components/Header';
+import HeroText from '@/components/HeroText';
+import AboutSection from '@/components/AboutSection';
+import ScheduleSign from '@/components/Signs/ScheduleSign';
+import Statistic from '@/components/Statistic';
+import FAQSign from '@/components/Signs/FAQSign';
+import SponsorSign from '@/components/Signs/SponsorSign';
+import SponsorCard from '@/components/SponsorCard';
+import FAQAccordian from '@/components/FAQAccordian';
+import ApplyButton from '@/components/ApplyButton';
+import Image from 'next/image';
+import { useResize } from '@react-spring/web';
+import ActivityPreview from '@/components/Event/ActivityPreview';
+import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffset';
 
-import Image from "next/image";
+const sponsors = [
+  {
+    name: 'Sponsor 1',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 2',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 3',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 4',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 5',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 6',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 7',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 8',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+  {
+    name: 'Sponsor 9',
+    logo: "/images/logo.png",
+    url: '/home'
+  },
+];
 
-export default function Home() {
+const activities = [
+  {
+    title: 'Opening Ceremony',
+    startDate: "2025-02-21T19:00:00",
+    endDate: "2025-02-21T20:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Introduction to BoilerMake.'
+  },
+  {
+    title: 'Hacking Starts',
+    startDate: "2025-02-21T20:00:00",
+    endDate: "2025-02-21T20:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Hackers can start coding.'
+  },
+  {
+    title: 'Carnival',
+    startDate: "2025-02-22T21:00:00",
+    endDate: "2025-02-23T00:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Event filled with fun games and activities.'
+  },
+  {
+    title: 'Hacking Ends',
+    startDate: "2025-02-23T08:00:00",
+    endDate: "2025-02-23T08:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Hackers must stop coding.'
+  },
+  {
+    title: 'Judging',
+    startDate: "2025-02-23T10:00:00",
+    endDate: "2025-02-23T14:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'First round of judging (all submitted projects).'
+  },
+  {
+    title: 'Closing Ceremony',
+    startDate: "2025-02-23T14:15:00",
+    endDate: "2025-02-23T15:00:00",
+    location: 'Frances A. Cordova Recreational Sports Center',
+    description: 'Final round of judging and all prize winners announced.'
+  }
+]
+
+const questions = [
+  {
+    question: 'What is a Hackathon?',
+    answer: "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activties as well to keep the fun going, and provide a platform to network with companies in the tech sector and other likeminded individuals from numerous backgrounds."
+  },
+  {
+    question: 'Who can attend and how much experience do I need to participate?',
+    answer: 'Any undergraduate university student 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.'
+  },
+  {
+    question: 'How does the application process work?',
+    answer: 'Once applications open, try to submit as soon as possible make sure to write thoughtful responses in the application and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.'
+  },
+  {
+    question: 'What projects can I make at BoilerMake?',
+    answer: 'You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies and applications with different projects made, and even see hardware-based projects — the possibilities are endless!'
+  },
+  {
+    question: 'Does BoilerMake offer travel reimbursements?',
+    answer: 'Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking passes to those who need them. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.'
+  }
+];
+
+function App() {
+  const [screenSize, setScreenSize] = useState<ScreenSize>('lg');
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const parallaxRef = React.useRef<IParallax>(null);
+  const [activeEventId, setActiveEventId] = useState<number>(0);
+  const { width, height } = useResize({
+    container: containerRef
+  });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const updateScreenSize = () => {
+      const width = window.innerWidth;
+      if (width < 640) setScreenSize('sm');
+      else if (width < 768) setScreenSize('md');
+      else if (width < 1024) setScreenSize('lg');
+      else if (width < 1280) setScreenSize('xl');
+      else setScreenSize('2xl');
+    };
+
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+
+  useEffect(() => {
+    // Set loaded state after component mounts
+    setIsLoaded(true);
+
+    // Check for scroll parameter in URL
+    const params = new URLSearchParams(window.location.search);
+    const scrollOffset = params.get('scroll');
+
+    if (scrollOffset && parallaxRef.current && isLoaded) {
+      // Small delay to ensure parallax is fully initialized
+      setTimeout(() => {
+        // Remove the parameter from URL without refreshing the page
+        window.history.replaceState({}, '', '/');
+        // Scroll to the specified offset
+        parallaxRef.current?.scrollTo(parseFloat(scrollOffset));
+      }, 100);
+    }
+  }, [isLoaded]); // Add isLoaded to dependency array
+
+  // Helper function to get offset for a layer
+  const getOffset = (layerId: string) => LAYER_OFFSETS[layerId][screenSize];
+
+  const handleEventClick = (id: number) => {
+    if (id === activeEventId) {
+      setActiveEventId(0);
+    } else {
+      setActiveEventId(id);
+    }
+  };
+
+  const activity_vertical_offset: { [key: string]: string } = {
+    'activity1': "top-[5%] sm:top-[7%] md:top-[13%] lg:top-[11%] xl:top-[10%]",
+    'activity2': "top-[7%] sm:top-[9%] md:top-[14%] lg:top-[10%] xl:top-[12%]",
+    'activity3': "top-[15%] sm:top-[17%] md:top-[25%] lg:top-[35%] xl:top-[35%]",
+    'activity4': "top-[20%] sm:top-[19%] md:top-[32%] lg:top-[40%] xl:top-[45%]", // change this one
+    'activity5': "top-[42%] sm:top-[42%] md:top-[65%] lg:top-[80%] xl:top-[70%]", // change this one
+    'activity6': "top-[50%] sm:top-[50%] md:top-[80%] lg:top-[85%] xl:top-[95%]",
+  }
+
   return (
-    <>
-      <meta charSet="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>BoilerMake XII</title>
-      <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-        rel="stylesheet"
-      />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
-        rel="stylesheet"
-      />
-      <meta name="title" content="BoilerMake XII" />
-      <meta
-        name="description"
-        content="Purdue University's flagship hackathon, BoilerMake, is back in February 2025. Adventure Awaits."
-      />
-      <meta
-        name="keywords"
-        content="boilermake, purdue, midwest, hackathon, boilermaker, uiuc, chicago, Indiana, illinois"
-      />
-      <meta name="robots" content="index, follow" />
-      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="language" content="English" />
-      <style
-        dangerouslySetInnerHTML={{
-          __html:
-            '\n            body {\n                font-family: "Dosis", sans-serif;\n                font-weight: 500;\n            }\n\n            h1 {\n                font-family: "Arvo", serif;\n            }\n        '
-        }}
-      />
-      <main className="flex flex-col h-screen w-full overflow-hidden justify-end bg-[#ACDEFF]">
-        <div className="flex flex-col h-3/4 mx-auto items-center justify-center md:justify-end [@media_((max-height:1080px)_and_(min-width:1620px))]:-mb-32    z-10">
-          <Image
-            src="/assets/logo.png"
-            alt="Boilermake Logo"
-            width={0}
-            height={0}
-            sizes={"100vw"}
-            className="w-5/6 md:max-w-full"
-          />
-          <h1 className="text-4xl md:text-6xl w-full font-bold text-center text-black">
-            BoilerMake XII
-          </h1>
-          <p className="text-xl my-2 md:text-2xl text-center text-black">
-            Adventure Awaits. February 2025
-          </p>
-          <div className="flex flex-row gap-2 mt-2">
-            <a
-              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdEvajhXUU7ygN8Uy8Vt62OxmXKNAGPhDYC8TnTiyeiRlnbSg/viewform"
-            >
-              Early Interest Form
-            </a>
-            <a className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out" href="https://forms.gle/Vdhhjfmhg1v6XuTG9">Mentor Interest Form</a>
-            <a
-              href="/past"
-              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out"
-            >
-              In the Past
-            </a>
-          </div>
-          <div className="flex flex-row gap-3 mt-6">
-            <a
-              href="mailto:team@boilermake.org"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
-            >
-              <i className="fas fa-xl fa-envelope" />
-            </a>
-            <a
-              href="https://www.instagram.com/boilermake/?hl=en"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
-            >
-              <i className="fab fa-xl fa-instagram" />
-            </a>
-            <a
-              href="https://x.com/BoilerMake1"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
-            >
-              <i className="fab fa-xl fa-twitter" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/boilermake/"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
-            >
-              <i className="fab fa-xl fa-linkedin" />
-            </a>
-          </div>
-        </div>
-        <div className="flex flex-col z-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path
-              fill="#8f250c"
-              fillOpacity="0.7"
-              d="M0,224L26.7,229.3C53.3,235,107,245,160,213.3C213.3,181,267,107,320,106.7C373.3,107,427,181,480,197.3C533.3,213,587,171,640,170.7C693.3,171,747,213,800,218.7C853.3,224,907,192,960,149.3C1013.3,107,1067,53,1120,32C1173.3,11,1227,21,1280,64C1333.3,107,1387,181,1413,218.7L1440,256L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
-            ></path>
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 80"
-            preserveAspectRatio="none"
-            className="md:-mt-8 lg:-mt-16"
-          >
-            <rect fill="#333" width={1440} height={80} />
-            <path
-              fill="none"
-              stroke="#fff"
-              strokeWidth={8}
-              strokeDasharray="15,30"
-              d="M0,40H1440"
+    <div className='App font-dosis' ref={containerRef}>
+      <Header parallaxRef={parallaxRef} screenSize={screenSize} />
+      <Parallax ref={parallaxRef} pages={PAGES_BY_SCREEN[screenSize]} style={{ top: '0', left: '0' }} className="animation" key={screenSize}>
+
+        <ParallaxLayer offset={getOffset('about-background')} speed={0}>
+          <div id="about-background"></div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('hero')} speed={0.25}>
+          <div className="animation_layer parallax" id="hero"></div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('cliff')} speed={0.25}>
+          <div id='cliff'>
+            <Image
+              src="/images/cliffside.png"
+              alt="Cliff"
+              height={0}
+              width={0}
+              sizes='100vh'
+              className='w-full h-full object-cover'
             />
-          </svg>
-          <div className="h-4 md:h-8 w-full bg-[#7BCF98]"></div>
-        </div>
-      </main>
-    </>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('hero-text')} speed={0.25}>
+          <div className="animation_layer parallax">
+            <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
+              <div className="text-right">
+                <div className="container mx-auto text-white">
+                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-averia-libre font-bold">
+                    BOILERMAKE
+                  </h1>
+                  <h2 className="text-[100px] md:text-[200px] font-arvo leading-none font-extrabold">
+                    XII
+                  </h2>
+                  <p className="text-xl md:text-3xl font-body font-extrabold leading-none mb-4">
+                    2/21 - 2/23
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('apply')} speed={0.25} style={{ zIndex: 10 }}>
+          <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
+            <div className="text-right">
+              <div className="container mx-auto">
+                <div className='sm:pt-[12rem] md:pt-[12rem] lg:pt-[22rem] xl:pt-[22rem]'>
+                  <ApplyButton text="Apply Now!" link='https://boilermake-apply.web.app' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
+                  <div className="h-4"></div>
+                  <ApplyButton text="Mentor Interest Form" link='https://forms.gle/Vdhhjfmhg1v6XuTG9' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('sun')} speed={0.35}>
+          <div className="animation_layer parallax" id="sun"></div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('cloud2')} speed={0.3}>
+          <div className="animation_layer parallax" id="cloud2"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('cloud4')} speed={0.25}>
+          <div className="animation_layer parallax" id="cloud4"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('cloud5')} speed={0.1}>
+          <div className="animation_layer parallax" id="cloud5"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('cloud3')} speed={0.4}>
+          <div className="animation_layer parallax" id="cloud3"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('cloud1')} speed={0.3}>
+          <div className="animation_layer parallax" id="cloud1"></div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('mini-cloud-left')} speed={0.3}>
+          <div className='lg:mt-[175px] xl:mt-[-60px]'>
+            <div className="animation_layer parallax" id="mini-cloud-left"></div>
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('mini-cloud-right')} speed={0.3}>
+          <div className="animation_layer parallax" id="mini-cloud-right"></div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('stat1')} speed={0.1}>
+            <div id='stat1' className='pt-16 sm:pt-0'>
+              <Statistic statistic='9' variable='Universities Represented' />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('stat2')} speed={0.1}>
+            <div id='stat2' className='pt-8 sm:pt-0'>
+              <Statistic statistic='70' variable='Project Submissions' />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('stat3')} speed={0.1}>
+          <div id='stat3'>
+            <Statistic statistic='1:3' variable='Female:Male Ratio' />
+          </div>
+        </ParallaxLayer>
+
+        {/* Background layer for FAQ */}
+        <ParallaxLayer offset={getOffset('faq-background')} speed={0}>
+          <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
+            {/* Empty space matching sign width */}
+            <div className="col-span-1"></div>
+            {/* Empty space for accordion */}
+            <div className="col-span-2"></div>
+          </div>
+        </ParallaxLayer>
+
+        {/* Floating accordion layer */}
+        <ParallaxLayer offset={getOffset('faq-sign')} speed={0} style={{ zIndex: 10 }}>
+          <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
+            {/* First Column: FAQSign (1/3 of the screen) */}
+            <div className="col-span-1 flex justify-center items-center h-[500px]">
+              <FAQSign />
+            </div>
+            {/* Empty space for accordion */}
+            <div className="col-span-2"></div>
+          </div>
+        </ParallaxLayer>
+
+        {/* Floating accordion layer */}
+        <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 10 }}>
+          <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
+            {/* Empty space matching sign width */}
+            <div className="col-span-1"></div>
+            {/* Accordion floating above */}
+            <div className="col-span-2 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36">
+              <FAQAccordian questions={questions} />
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('schedule-background')} speed={0}>
+          <div id="schedule" className='h-full w-full'>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('windyroad')} speed={0}>
+          <div className="relative h-[600px] md:h-[800px] lg:h-[1000px] xl:h-[1200px] w-full">
+            <Image
+              src="/images/windyroad.png"
+              alt="Road"
+              fill
+            />
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('schedule-section')} speed={0} style={{ zIndex: 10 }}>
+          {/* Schedule Sign */}
+          <div id="schedule-sign" className='h-full w-full'>
+            <div className='w-1/3 h-1/3'>
+              <ScheduleSign />
+            </div>
+          </div>
+
+          {/* Activities */}
+          {activities.map((activity, index) => (
+            <div
+              key={`activity${index + 1}`}
+              id={`activity${index + 1}`}
+              className={`absolute ${activity_vertical_offset[`activity${index + 1}`]}`}
+            >
+              <ActivityPreview
+                title={activity.title}
+                startDate={activity.startDate}
+                endDate={activity.endDate}
+                location={activity.location}
+                description={activity.description}
+                isActive={activeEventId === index + 1}
+                onEventClick={() => handleEventClick(index + 1)}
+                size={index < 2 ? 'small' : index < 4 ? 'medium' : index < 5 ? 'large' : 'xlarge'}
+                popup={(index === 2 || index === 5) ? 'right' : 'left'}
+              />
+            </div>
+          ))}
+        </ParallaxLayer>
+
+        {/* <ParallaxLayer offset={getOffset('road')} speed={0}>
+          <div className="absolute top-[-63vh] md:top-[-40vh] left-1/2 -translate-x-1/2 w-[170vw] md:w-[250vw] h-[175vh] md:h-[250vh]">
+            <Image
+              src="/images/road.png"
+              alt="Road"
+              fill
+              className={`object-contain ${screenSize === 'sm' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'md' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'lg' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'xl' ? 'scale-[1] sm:scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
+            />
+          </div>
+        </ParallaxLayer> */}
+
+        <ParallaxLayer offset={getOffset('about-text')} speed={0}>
+          <div id="about" className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-12">
+            <div className="col-span-1 h-1/3 flex justify-center items-center">
+              <AboutSection />
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        {/* <ParallaxLayer offset={getOffset('event1')} speed={0}>
+          <div id="event1">
+            <EventPreview
+              title='opening ceremony'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={1}
+              popupType={1}
+              isActive={activeEventId === 1}
+              onEventClick={() => handleEventClick(1)}
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('event2')} speed={0}>
+          <div id="event2">
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={2}
+              popupType={2}
+              isActive={activeEventId === 2}
+              onEventClick={() => handleEventClick(2)}
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('event3')} speed={0}>
+          <div id="event3">
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={3}
+              popupType={2}
+              isActive={activeEventId === 3}
+              onEventClick={() => handleEventClick(3)}
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('event4')} speed={0}>
+          <div id="event4">
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={2}
+              popupType={2}
+              isActive={activeEventId === 4}
+              onEventClick={() => handleEventClick(4)}
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={getOffset('event5')} speed={0}>
+          <div id="event5">
+            <EventPreview
+              title='activity name'
+              date={new Date().toISOString()}
+              location='Frances A. Cordova Recreational Sports Center'
+              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              cardType={2}
+              popupType={1}
+              isActive={activeEventId === 5}
+              onEventClick={() => handleEventClick(5)}
+            />
+          </div>
+        </ParallaxLayer> */}
+
+        {/* Background layer for Sponsors */}
+        <ParallaxLayer offset={getOffset('sponsors-background')} speed={0}>
+          <div id="sponsors" className='h-full w-full'>
+          </div>
+        </ParallaxLayer>
+
+        {/* Sponsors Sign Layer */}
+        <ParallaxLayer offset={getOffset('sponsors-sign')} speed={0} style={{ zIndex: 10 }}>
+          <div className='h-full w-full'>
+            <div className={`w-1/3 h-1/3`}>
+              <SponsorSign />
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        {/* Sponsors Content Layer */}
+        <ParallaxLayer offset={getOffset('sponsors-content')} speed={0} style={{ zIndex: 10 }}>
+          <div className='h-full w-full'>
+            <div className={`w-1/3 h-1/3`}></div>
+            <div className="grid grid-cols-3 gap-4 md:gap-x-8 md:gap-y-10 justify-items-center">
+              {sponsors.map((sponsor, index) => (
+                <SponsorCard sponsor={sponsor} key={index} />
+              ))}
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={getOffset('footer')} speed={0}>
+          <div id="footer" className="flex flex-col justify-end h-full w-full">
+            <div className="animation_layer parallax" id="footer-background"></div>
+            <footer id='textblock-footer' className="relative z-10">
+              <div className='text-white'>
+                Created With 💛 By&nbsp;
+                <a href="/home">Boilermake</a>
+              </div>
+            </footer>
+          </div>
+        </ParallaxLayer>
+
+      </Parallax>
+    </div>
   );
 }
+
+export default App;

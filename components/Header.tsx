@@ -20,14 +20,14 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
     const handleNavigation = (section: string) => {
         const offset = LAYER_OFFSETS[section][screenSize]
         // Check if we're on the main page
-        if (window.location.pathname === '/2025') {
+        if (window.location.pathname === '/') {
             // If we are, just scroll
             if (parallaxRef?.current) {
                 parallaxRef.current.scrollTo(offset);
             }
         } else {
             // If we're not, navigate to main page with hash parameter
-            window.location.href = `/2025?scroll=${offset}`;
+            window.location.href = `/?scroll=${offset}`;
         }
     };
 
@@ -35,7 +35,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
         <header className="w-full p-4 fixed top-0 z-50">
             <div className="flex justify-between items-center text-white">
                 {/* Logo */}
-                <a href="/2025">
+                <a href="/">
                     <Image
                         src={"/images/logo.png"}
                         alt="Boilermake Logo"

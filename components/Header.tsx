@@ -35,8 +35,15 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
 
     return (
         <header className="w-full fixed top-0 z-50">
+
+            <a id="mlh-trust-badge" className="block max-w-[100px] min-w-[60px] fixed left-[75px] md:left-[100px] top-0 w-[10%] z-[10000]" href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" alt="Major League Hacking 2025 Hackathon Season" style={{ width: '100%' }} /></a>
+
             {/* Background with blur */}
-            <div className={`absolute inset-0 transition-colors ${isMenuOpen ? 'bg-black/50 backdrop-blur-sm' : 'bg-black/10'}`} />
+            <div className={`absolute inset-0 transition-colors ${
+                isMenuOpen
+                ? 'bg-black/50 backdrop-blur-sm'
+                : 'bg-gradient-to-b from-black/50 to-transparent'
+            }`} />
 
             {/* Content */}
             <div className="relative px-4 py-1">

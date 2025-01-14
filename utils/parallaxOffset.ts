@@ -236,20 +236,6 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 4.75,
     '2xl': 4.75
   },
-  // 'sponsors-background': {
-  //   'sm': 2.85,
-  //   'md': 3.01,
-  //   'lg': 4.0,
-  //   'xl': 4.75,
-  //   '2xl': 4.75
-  // },
-  // 'sponsors-sign': {
-  //   'sm': 2.85,
-  //   'md': 3.1,
-  //   'lg': 4.0,
-  //   'xl': 4.75,
-  //   '2xl': 4.75
-  // },
   // 'sponsors-content': {
   //   'sm': 2.8,
   //   'md': 3.1,

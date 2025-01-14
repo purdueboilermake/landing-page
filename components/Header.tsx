@@ -32,25 +32,25 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
     };
 
     return (
-        <header className="w-full p-4 fixed top-0 z-50">
+        <header className="w-full p-4 fixed top-0 z-50 backdrop-brightness-90">
             <div className="flex justify-between items-center text-white">
                 {/* Logo */}
                 <a href="/">
                     <Image
                         src={"/images/logo.png"}
                         alt="Boilermake Logo"
-                        width={100}
-                        height={100}
-                        className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
+                        width={75}
+                        height={75}
+                        className="object-contain"
                     />
                 </a>
 
                 {/* Spacer */}
                 <div className="flex-grow"></div>
 
-                <div className="flex">
-                    <nav className="flex space-x-2 sm:space-x-4 md:space-x-12 px-4 md:px-12">
-                        <ul className="flex space-x-4 sm:space-x-8 md:space-x-12">
+                <div className="flex items-center">
+                    <nav className="flex items-center space-x-2 sm:space-x-4 md:space-x-12 px-4 md:px-12">
+                        <ul className="flex items-center space-x-4 sm:space-x-8 md:space-x-12">
                             <li>
                                 <button
                                     onClick={() => handleNavigation('stat3')}

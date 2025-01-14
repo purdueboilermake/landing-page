@@ -354,6 +354,20 @@ function App() {
           </div>
         </ParallaxLayer>
 
+        {/* Add tents layer */}
+        <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 20 }}>
+          <div className="absolute left-6 sm:left-8 lg:left-16">
+            <Image
+              src="/images/tents.png"
+              alt="Tents"
+              width={50}
+              height={50}
+              className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
+              priority
+            />
+          </div>
+        </ParallaxLayer>
+
         <ParallaxLayer offset={getOffset('windyroad')} speed={0}>
           <div className="relative h-[600px] md:h-[800px] lg:h-[1000px] xl:h-[1200px] w-full">
             <Image
@@ -543,6 +557,20 @@ function App() {
             />
           </div>
         </ParallaxLayer> */}
+
+        {/* Campfires layer */}
+        <ParallaxLayer offset={getOffset('campfires')} speed={0} style={{ zIndex: 20 }}>
+          <div className="absolute -right-6 sm:-right-6 lg:-right-12">
+            <Image
+              src="/images/campfires.png"
+              alt="Tents"
+              width={50}
+              height={50}
+              className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
+              priority
+            />
+          </div>
+        </ParallaxLayer>
 
         {/* Background layer for Sponsors */}
         <ParallaxLayer offset={getOffset('sponsors-background')} speed={0}>

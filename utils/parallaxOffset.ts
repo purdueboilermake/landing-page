@@ -203,6 +203,13 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 2.0,
     '2xl': 2.0
   },
+  'tents': {
+    'sm': 1.7,
+    'md': 1.75,
+    'lg': 2.3,
+    'xl': 2.55,
+    '2xl': 2.6
+  },
   'event1': {
     'sm': 1.33,
     'md': 1.33,
@@ -244,6 +251,13 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'lg': 3.1,
     'xl': 3.3,
     '2xl': 3.5
+  },
+  'campfires': {
+    'sm': 2.9,
+    'md': 3.0,
+    'lg': 3.9,
+    'xl': 4.5,
+    '2xl': 4.5
   },
   'sponsors-background': {
     'sm': 2.85,

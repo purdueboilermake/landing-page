@@ -405,3 +405,12 @@ body {
     transform: translateY(0px);
   }
 }
+
+/* Tents Section */
+#tents {
+  position: absolute;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}

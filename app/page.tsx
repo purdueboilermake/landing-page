@@ -304,19 +304,14 @@ function App() {
         {/* Tumbleweed */}
         <ParallaxLayer offset={getOffset('tumbleweed')} speed={0} style={{ zIndex: 99999 }}>
           <div className="absolute animate-tumble">
-            {/* <div className="bg-red-500 p-8 rounded-lg shadow-2xl"> */}
-              {/* <p className="text-white text-3xl font-bold mb-4">DEBUG: Tumbleweed at offset 2.0</p> */}
-              {/* <div className="border-4 border-white p-4"> */}
-                <Image
-                  src="/images/tumbleweed.png"
-                  alt="Tumbleweed"
-                  width={200}
-                  height={200}
-                  className="animate-[tumble_8s_linear_infinite]"
-                  priority
-                />
-              {/* </div> */}
-            {/* </div> */}
+            <Image
+              src="/images/tumbleweed.png"
+              alt="Tumbleweed"
+              width={200}
+              height={200}
+              className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[175px] md:h-[175px] lg:w-[200px] lg:h-[200px] animate-[tumble_8s_linear_infinite]"
+              priority
+            />
           </div>
         </ParallaxLayer>
 
@@ -401,13 +396,13 @@ function App() {
 
         {/* Birds near About section */}
         <ParallaxLayer offset={getOffset('birds-about')} speed={0}>
-          <div className="absolute w-[200px] h-[200px]" style={{ left: '80%', top: '15%' }}>
+          <div className="absolute w-full left-[80%] top-[5%] sm:top-[0] md:top-[10%]">
             <Image
               src="/images/bird1.png"
               alt="Bird 1"
               width={65}
               height={65}
-              className="absolute animate-[float_3s_ease-in-out_infinite]"
+              className="absolute w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
               style={{ left: '0', top: '0' }}
             />
             <Image
@@ -415,7 +410,7 @@ function App() {
               alt="Bird 2"
               width={65}
               height={65}
-              className="absolute animate-[float_3s_ease-in-out_infinite]"
+              className="absolute  w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
               style={{ left: '-10px', top: '40px', animationDelay: '0.5s' }}
             />
             <Image
@@ -423,7 +418,7 @@ function App() {
               alt="Bird 3"
               width={65}
               height={65}
-              className="absolute animate-[float_3s_ease-in-out_infinite]"
+              className="absolute w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
               style={{ left: '50px', top: '20px', animationDelay: '1s' }}
             />
           </div>
@@ -431,13 +426,13 @@ function App() {
 
         {/* Birds near Schedule section */}
         <ParallaxLayer offset={getOffset('birds-schedule')} speed={0}>
-          <div className="absolute w-[200px] h-[200px]" style={{ left: '27%', top: '10%' }}>
+          <div className="absolute w-full left-[27%] top-[-7%] sm:top-[-4%] md:top-[10%]">
             <Image
               src="/images/bird2.png"
               alt="Bird 2"
               width={65}
               height={65}
-              className="absolute animate-[float-flipped_3s_ease-in-out_infinite]"
+              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
               style={{ left: '50px', top: '15px', animationDelay: '0.8s' }}
             />
             <Image
@@ -445,7 +440,7 @@ function App() {
               alt="Bird 1"
               width={65}
               height={65}
-              className="absolute animate-[float-flipped_3s_ease-in-out_infinite]"
+              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
               style={{ left: '15px', top: '0', animationDelay: '0.3s' }}
             />
             <Image
@@ -453,7 +448,7 @@ function App() {
               alt="Bird 3"
               width={45}
               height={45}
-              className="absolute animate-[float-flipped_3s_ease-in-out_infinite]"
+              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
               style={{ left: '0', top: '40px', animationDelay: '1.2s' }}
             />
           </div>

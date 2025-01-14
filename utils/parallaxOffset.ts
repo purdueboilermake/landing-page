@@ -239,8 +239,8 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 3.6
   },
   'tumbleweed': {
-    'sm': 2.1,
-    'md': 2.6,
+    'sm': 2.2,
+    'md': 2.3,
     'lg': 3.1,
     'xl': 3.3,
     '2xl': 3.5

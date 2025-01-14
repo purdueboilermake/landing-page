@@ -6,7 +6,7 @@
  */
 
 import Image, { StaticImageData } from "next/image";
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 type SponsorCardProps = {
     sponsor: {
@@ -25,8 +25,42 @@ const sizeClasses = {
 };
 
 export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) {
+    const [isVisible, setIsVisible] = useState(false);
+    const cardRef = useRef<HTMLAnchorElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '50px'
+            }
+        );
+
+        if (cardRef.current) {
+            observer.observe(cardRef.current);
+        }
+
+        return () => {
+            if (cardRef.current) {
+                observer.unobserve(cardRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <a href={sponsor.url} target="_blank" rel="noreferrer" className="transition-transform hover:scale-110">
+        <a 
+            href={sponsor.url} 
+            target="_blank" 
+            rel="noreferrer" 
+            ref={cardRef}
+            className={`transition-all duration-700 hover:scale-110 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
             <Image 
                 src={sponsor.logo} 
                 alt={sponsor.name} 

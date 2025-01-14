@@ -48,7 +48,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
                             alt="Boilermake Logo"
                             width={75}
                             height={75}
-                            className="object-contain"
+                            className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
                         />
                     </a>
 
@@ -115,7 +115,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
                         className="md:hidden p-2"
                     >
                         <div className="w-6 h-5 flex flex-col justify-between">
-                            <span className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                            <span className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
                             <span className={`w-full h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
                             <span className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
                         </div>

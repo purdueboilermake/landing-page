@@ -35,20 +35,14 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
     popup
   }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
-  
+
     const handleCircleClick = () => {
         onEventClick();
     };
-  
-    // Extract event time from date string
-    const startTime = new Date(startDate).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  
+
     // Show popup only when this event is active
     const showPopup = isActive;
-  
+
     // Determine popup position based on size
     const popupPosition = popup === 'right'
       ? 'left-full -ml-8' // Position to the right
@@ -59,16 +53,16 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
       : size === 'large' ?
       '-left-full -ml-16 sm:-ml-24 md:-ml-28 lg:ml-36'
       : '-left-full -ml-32 sm:-ml-40 md:-ml-32 lg:-ml-20'; // Position to the left
-  
+
     // Handlers for hover events
     const handleMouseEnter = () => {
       if (!isActive) setIsPopupVisible(true);
     };
-  
+
     const handleMouseLeave = () => {
       if (!isActive) setIsPopupVisible(false);
     };
-  
+
     return (
       <div className="relative cursor-pointer" onClick={handleCircleClick}>
         <div
@@ -76,7 +70,7 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <ActivitySign title={title} time={startTime} size={size} />
+          <ActivitySign title={title} startDate={startDate} size={size} />
 
           {/* Popup */}
           {(showPopup && isPopupVisible) && (

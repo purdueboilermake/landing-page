@@ -888,6 +888,10 @@ video {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
 .-ml-16 {
   margin-left: -4rem;
 }
@@ -1038,6 +1042,21 @@ video {
 .h-1 {
   height: 0.25rem;
 }
+.h-16 {
+  height: 4rem;
+}
+.h-\[150px\] {
+  height: 150px;
+}
+.h-\[225px\] {
+  height: 225px;
+}
+.h-\[275px\] {
+  height: 275px;
+}
+.h-\[325px\] {
+  height: 325px;
+}
 .max-h-full {
   max-height: 100%;
 }
@@ -1107,6 +1126,18 @@ video {
 .w-6 {
   width: 1.5rem;
 }
+.w-\[150px\] {
+  width: 150px;
+}
+.w-\[225px\] {
+  width: 225px;
+}
+.w-\[275px\] {
+  width: 275px;
+}
+.w-\[325px\] {
+  width: 325px;
+}
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -1154,6 +1185,18 @@ video {
 }
 .translate-y-2 {
   --tw-translate-y: 0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.translate-y-3 {
+  --tw-translate-y: 0.75rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.translate-y-\[2\.5\] {
+  --tw-translate-y: 2.5;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.translate-y-2\.5 {
+  --tw-translate-y: 0.625rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .rotate-90 {
@@ -2295,6 +2338,10 @@ body {
     height: 375px;
   }
 
+  .sm\:h-\[175px\] {
+    height: 175px;
+  }
+
   .sm\:w-20 {
     width: 5rem;
   }
@@ -2325,6 +2372,10 @@ body {
 
   .sm\:w-\[375px\] {
     width: 375px;
+  }
+
+  .sm\:w-\[175px\] {
+    width: 175px;
   }
 
   .sm\:scale-\[0\.8\] {
@@ -2614,6 +2665,22 @@ body {
     height: 500px;
   }
 
+  .md\:h-2 {
+    height: 0.5rem;
+  }
+
+  .md\:h-auto {
+    height: auto;
+  }
+
+  .md\:h-16 {
+    height: 4rem;
+  }
+
+  .md\:h-\[250px\] {
+    height: 250px;
+  }
+
   .md\:\!w-64 {
     width: 16rem !important;
   }
@@ -2678,12 +2745,29 @@ body {
     width: 500px;
   }
 
+  .md\:w-auto {
+    width: auto;
+  }
+
+  .md\:w-16 {
+    width: 4rem;
+  }
+
+  .md\:w-\[250px\] {
+    width: 250px;
+  }
+
   .md\:max-w-full {
     max-width: 100%;
   }
 
   .md\:-translate-y-12 {
     --tw-translate-y: -3rem;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .md\:translate-y-16 {
+    --tw-translate-y: 4rem;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
@@ -3011,6 +3095,18 @@ body {
     height: 600px;
   }
 
+  .lg\:h-20 {
+    height: 5rem;
+  }
+
+  .lg\:h-\[325px\] {
+    height: 325px;
+  }
+
+  .lg\:h-\[400px\] {
+    height: 400px;
+  }
+
   .lg\:w-32 {
     width: 8rem;
   }
@@ -3063,6 +3159,23 @@ body {
     width: 500px;
   }
 
+  .lg\:w-20 {
+    width: 5rem;
+  }
+
+  .lg\:w-\[325px\] {
+    width: 325px;
+  }
+
+  .lg\:translate-y-32 {
+    --tw-translate-y: 8rem;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:gap-3 {
     gap: 0.75rem;
   }
@@ -3087,6 +3200,11 @@ body {
   .lg\:px-72 {
     padding-left: 18rem;
     padding-right: 18rem;
+  }
+
+  .lg\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 
   .lg\:pb-6 {
@@ -3259,6 +3377,18 @@ body {
     height: 700px;
   }
 
+  .xl\:h-\[350px\] {
+    height: 350px;
+  }
+
+  .xl\:h-\[450px\] {
+    height: 450px;
+  }
+
+  .xl\:h-\[650px\] {
+    height: 650px;
+  }
+
   .xl\:w-\[300px\] {
     width: 300px;
   }
@@ -3285,6 +3415,18 @@ body {
 
   .xl\:w-\[700px\] {
     width: 700px;
+  }
+
+  .xl\:w-\[350px\] {
+    width: 350px;
+  }
+
+  .xl\:w-\[450px\] {
+    width: 450px;
+  }
+
+  .xl\:w-\[650px\] {
+    width: 650px;
   }
 
   .xl\:p-16 {

@@ -7,7 +7,7 @@ import Image from "next/image";
 
 type ActivitySignProps = {
     title: string;
-    time: string;
+    startDate: string;  // Changed from time: string
     size: 'small' | 'medium' | 'large' | 'xlarge';
 }
 
@@ -46,7 +46,11 @@ const textMargin = {
     'xlarge': 'mt-1 sm:mt-2 md:mt-4'
 }
 
-export default function ActivitySign({ title, time, size }: ActivitySignProps) {
+export default function ActivitySign({ title, startDate, size }: ActivitySignProps) {
+    const date = new Date(startDate);
+    const weekday = date.toLocaleString([], { weekday: 'short' });
+    const time = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+
     return (
         <div className="relative w-full h-full flex items-center justify-cente hover:-translate-y-1 transition">
             <div className={`relative w-${sizeMap[size]}  h-${sizeMap[size]}`}>
@@ -54,7 +58,11 @@ export default function ActivitySign({ title, time, size }: ActivitySignProps) {
                 <div
                     className={`absolute inset-0 flex flex-col items-center select-none ${textOffset[size]}`}
                 >
-                    <p className={`text-white ${timeSize[size]} font-semibold font-title`}>{time}</p>
+                    <div className={`text-white ${timeSize[size]} font-semibold font-title`}>
+                        <span>{weekday}</span>
+                        <span className="mx-1">·</span>
+                        <span>{time}</span>
+                    </div>
                     <p className={`text-white ${titleSize[size]} font-semibold font-title leading-none ${textMargin[size]}`}>
                         {title.split(' ').length === 2 ? (
                             <>

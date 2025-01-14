@@ -39,7 +39,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
             <div className={`absolute inset-0 transition-colors ${isMenuOpen ? 'bg-black/50 backdrop-blur-sm' : 'bg-black/10'}`} />
 
             {/* Content */}
-            <div className="relative p-4">
+            <div className="relative px-4 py-1">
                 <div className="flex justify-between items-center text-white">
                     {/* Logo */}
                     <a href="/" className='hover:scale-105 transition'>

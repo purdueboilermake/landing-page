@@ -302,7 +302,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Tumbleweed */}
-        <ParallaxLayer offset={getOffset('tumbleweed')} speed={0} style={{ zIndex: 99999 }}>
+        <ParallaxLayer offset={getOffset('tumbleweed')} speed={0} style={{ zIndex: 15, pointerEvents: 'none' }}>
           <div className="absolute animate-tumble">
             <Image
               src="/images/tumbleweed.png"
@@ -355,7 +355,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Add tents layer */}
-        <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 20 }}>
+        <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 5, pointerEvents: 'none' }}>
           <div className="absolute left-6 sm:left-8 lg:left-16">
             <Image
               src="/images/tents.png"
@@ -559,14 +559,14 @@ function App() {
         </ParallaxLayer> */}
 
         {/* Campfires layer */}
-        <ParallaxLayer offset={getOffset('campfires')} speed={0} style={{ zIndex: 20 }}>
+        <ParallaxLayer offset={getOffset('campfires')} speed={0} style={{ zIndex: 5, pointerEvents: 'none' }}>
           <div className="absolute -right-6 sm:-right-6 lg:-right-12">
             <Image
               src="/images/campfires.png"
               alt="Tents"
               width={50}
               height={50}
-              className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
+              className="w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
               priority
             />
           </div>

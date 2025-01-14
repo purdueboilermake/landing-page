@@ -9,14 +9,13 @@ import Image from 'next/image';
 export default function ScheduleSign() {
     return (
         <div className="w-full h-full">
-            <div className="relative w-full h-auto flex items-center justify-center">
+            <div className="relative w-full h-auto flex items-center justify-center max-w-4xl mx-auto">
                 <Image
                     src={"/images/highway_sign.png"}
                     alt="Schedule Sign"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain max-w-4xl max-h-[450px]"
                     width={0}
                     height={0}
-                    sizes='100vw'
                 />
                 <div className='absolute z-10 flex flex-col items-center justify-center'>
                     <h1 className="text-xl font-semibold text-white font-title mt-2 md:mt-8"></h1>

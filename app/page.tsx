@@ -227,7 +227,7 @@ function App() {
             <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
               <div className="text-right">
                 <div className="container mx-auto text-white">
-                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-averia-libre font-bold">
+                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-arvo font-bold">
                     BOILERMAKE
                   </h1>
                   <h2 className="text-[100px] md:text-[200px] font-arvo leading-none font-extrabold">

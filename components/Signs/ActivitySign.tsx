@@ -49,7 +49,7 @@ const textMargin = {
 export default function ActivitySign({ title, time, size }: ActivitySignProps) {
     return (
         <div className="relative w-full h-full flex items-center justify-cente hover:-translate-y-1 transition">
-            <div className={`relative w-${sizeMap[size]} h-${sizeMap[size]}`}>
+            <div className={`relative w-${sizeMap[size]}  h-${sizeMap[size]}`}>
                 <Image src="/images/activity_sign.png" alt="Activity Card" className={sizeMap[size]} width={0} height={0} sizes="100vh" />
                 <div
                     className={`absolute inset-0 flex flex-col items-center select-none ${textOffset[size]}`}

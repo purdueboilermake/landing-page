@@ -786,6 +786,9 @@ video {
     max-width: 1536px;
   }
 }
+.pointer-events-none {
+  pointer-events: none;
+}
 .visible {
   visibility: visible;
 }
@@ -969,6 +972,9 @@ video {
 }
 .mt-6 {
   margin-top: 1.5rem;
+}
+.mt-\[100vh\] {
+  margin-top: 100vh;
 }
 .block {
   display: block;

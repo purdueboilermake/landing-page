@@ -338,7 +338,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Floating accordion layer */}
-        <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 10 }}>
+        <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 50 }}>
           <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* Empty space matching sign width */}
             <div className="col-span-1"></div>
@@ -355,7 +355,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Add tents layer */}
-        <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 5, pointerEvents: 'none' }}>
+        <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 20, pointerEvents: 'none' }}>
           <div className="absolute left-6 sm:left-8 lg:left-16">
             <Image
               src="/images/tents.png"
@@ -579,7 +579,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Sponsors Sign Layer */}
-        <ParallaxLayer offset={getOffset('sponsors-sign')} speed={0} style={{ zIndex: 10 }}>
+        <ParallaxLayer offset={getOffset('sponsors-sign')} speed={0} style={{ zIndex: 0 }}>
           <div className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}>
               <SponsorSign />

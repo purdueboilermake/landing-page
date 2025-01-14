@@ -62,7 +62,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
                                 <li>
                                     <button
                                         onClick={() => handleNavigation('stat3')}
-                                        className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
+                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                     >
                                         About
                                     </button>
@@ -70,15 +70,15 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
                                 <li>
                                     <a
                                         href="/about-us"
-                                        className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] truncate"
+                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] truncate"
                                     >
-                                        About Us
+                                        Team
                                     </a>
                                 </li>
                                 <li>
                                     <button
                                         onClick={() => handleNavigation('schedule-section')}
-                                        className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
+                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                     >
                                         Schedule
                                     </button>
@@ -86,7 +86,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
                                 <li>
                                     <button
                                         onClick={() => handleNavigation('faq-sign')}
-                                        className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
+                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                     >
                                         FAQ
                                     </button>
@@ -94,7 +94,7 @@ export default function Header({ screenSize, parallaxRef }: HeaderProps) {
                                 <li>
                                     <button
                                         onClick={() => handleNavigation('sponsors-sign')}
-                                        className="hover:text-amber-600 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
+                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
                                     >
                                         Sponsors
                                     </button>

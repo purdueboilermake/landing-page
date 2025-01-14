@@ -17,51 +17,83 @@ import ActivityPreview from '@/components/Event/ActivityPreview';
 import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffset';
 
 const sponsors = [
-  {
-    name: 'Sponsor 1',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 2',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 3',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 4',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 5',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 6',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 7',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 8',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 9',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
+  [
+    {
+      name: 'CAT',
+      logo: "/assets/sponsors/cat.png",
+      url: 'https://www.caterpillar.com/'
+    },
+  ],
+  [
+    {
+      name: 'D.E. Shaw',
+      logo: "/assets/sponsors/deshaw.svg",
+      url: 'https://www.deshaw.com/'
+    },
+    {
+      name: 'RCAC',
+      logo: "/assets/sponsors/rcac.png",
+      url: 'https://www.rcac.purdue.edu/'
+    },
+  ],
+  [
+    {
+      name: 'CoE',
+      logo: "/assets/sponsors/coe.svg",
+      url: 'https://engineering.purdue.edu/Engr'
+    },
+    {
+      name: 'Klaviyo',
+      logo: "/assets/sponsors/klaviyo.png",
+      url: 'https://www.klaviyo.com/'
+    },
+    {
+      name: 'Purdue Innovates',
+      logo: "/assets/sponsors/purdueinnovates.png",
+      url: 'https://purdueinnovates.org/'
+    },
+  ],
+  [
+    {
+      name: 'Sync',
+      logo: "/assets/sponsors/sync.png",
+      url: 'https://sync.so/'
+    },
+    {
+      name: 'Blip',
+      logo: "/assets/sponsors/blip.png",
+      url: 'https://www.blippayments.com/'
+    },
+    {
+      name: 'Roboflow',
+      logo: "/assets/sponsors/roboflow.png",
+      url: 'https://roboflow.com/'
+    },
+    {
+      name: 'Modal',
+      logo: "/assets/sponsors/modal.svg",
+      url: 'https://modal.com/'
+    },
+    
+  ],
+  [
+    {
+      name: 'Cartesia',
+      logo: "/assets/sponsors/cartesia.svg",
+      url: 'https://www.cartesia.ai/'
+    },
+    {
+      name: 'Warp',
+      logo: "/assets/sponsors/warp.png",
+      url: 'https://www.warp.dev/'
+    },
+    
+    {
+      name: 'Wolfram',
+      logo: "/assets/sponsors/wolfram.png",
+      url: 'https://www.wolfram.com/'
+    },
+  ]
 ];
 
 const activities = [
@@ -592,17 +624,29 @@ function App() {
           <div className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}></div>
 
-            <div className="flex justify-center items-center">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">Coming Soon!</h2>
+            <div className="px-8 sm:px-10 md:px-12 lg:px-16 xl:px-20 max-w-[1600px] mx-auto">
+              <div className="flex flex-col gap-1 md:gap-2 lg:gap-4">
+                {sponsors.map((sponsorRow, rowIndex) => (
+                  <div 
+                    key={rowIndex} 
+                    className={`flex justify-center items-center ${
+                      rowIndex === 0 ? 'gap-8 md:gap-16 lg:gap-20' :
+                      rowIndex === 1 ? 'gap-6 md:gap-14 lg:gap-16' :
+                      rowIndex === 2 ? 'gap-4 md:gap-12 lg:gap-14' :
+                      'gap-3 md:gap-8 lg:gap-12'
+                    }`}
+                  >
+                    {sponsorRow.map((sponsor, index) => (
+                      <SponsorCard 
+                        key={index} 
+                        sponsor={sponsor} 
+                        size={rowIndex === 0 ? "xl" : rowIndex === 1 ? "lg" : rowIndex === 2 ? "md" : "sm"}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
-
-            {/*
-            <div className="grid grid-cols-3 gap-4 md:gap-x-8 md:gap-y-10 justify-items-center">
-              {sponsors.map((sponsor, index) => (
-                <SponsorCard sponsor={sponsor} key={index} />
-              ))}
-            </div>
-            */}
           </div>
         </ParallaxLayer>
 

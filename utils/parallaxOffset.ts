@@ -2,22 +2,22 @@
 export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 // Define page counts for different screen sizes
-// export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-//   'sm': 4.25,  // mobile (will be same as 'md')
-//   'md': 4.5,     // tablet (will be same as 'sm')
-//   'lg': 6.0,   // desktop (will be same as 'xl')
-//   'xl': 7,   // large desktop (will be same as 'lg')
-//   '2xl': 7   // extra large desktop (will be same as 'lg')
-// };
+export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
+  'sm': 4,  // mobile (will be same as 'md')
+  'md': 4.5,     // tablet (will be same as 'sm')
+  'lg': 6.0,   // desktop (will be same as 'xl')
+  'xl': 7,   // large desktop (will be same as 'lg')
+  '2xl': 7   // extra large desktop (will be same as 'lg')
+};
 
 // COPIED FOR the "coming soon" TEXT
-export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-  'sm': 3.7,  // mobile (will be same as 'md')
-  'md': 4.1,     // tablet (will be same as 'sm')
-  'lg': 5.0,   // desktop (will be same as 'xl')
-  'xl': 6,   // large desktop (will be same as 'lg')
-  '2xl': 6   // extra large desktop (will be same as 'lg')
-};
+// export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
+//   'sm': 3.7,  // mobile (will be same as 'md')
+//   'md': 4.1,     // tablet (will be same as 'sm')
+//   'lg': 5.0,   // desktop (will be same as 'xl')
+//   'xl': 6,   // large desktop (will be same as 'lg')
+//   '2xl': 6   // extra large desktop (will be same as 'lg')
+// };
 
 // Define offsets for each parallax layer by screen size
 export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
@@ -281,18 +281,18 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 4.75
   },
   // original footer for sponsors, the one below this is for the coming soon text
-  // 'footer': {
-  //   'sm': 3.75,
-  //   'md': 4.0,
-  //   'lg': 5.0,
-  //   'xl': 6.0,
-  //   '2xl': 6.0
-  // },
   'footer': {
-    'sm': 3.2,
-    'md': 3.4,
-    'lg': 4.4,
-    'xl': 5.0,
-    '2xl': 5.0
+    'sm': 3.65,
+    'md': 4.0,
+    'lg': 5.0,
+    'xl': 6.0,
+    '2xl': 6.0
   },
+  // 'footer': {
+  //   'sm': 3.2,
+  //   'md': 3.4,
+  //   'lg': 4.4,
+  //   'xl': 5.0,
+  //   '2xl': 5.0
+  // },
 };

@@ -367,3 +367,41 @@ body {
 }
 
 /* Header Section */
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes float-flipped {
+  0% { transform: translateY(0px) scaleX(-1); }
+  50% { transform: translateY(-10px) scaleX(-1); }
+  100% { transform: translateY(0px) scaleX(-1); }
+}
+
+
+/* Add more natural bounce physics with cubic-bezier */
+.animate-tumble {
+  animation:
+    /* tumble 8s linear infinite, */
+    bounce 0.6s cubic-bezier(0.63, 0.09, 0.75, 0.46) infinite alternate;
+}
+
+@keyframes tumble {
+  0% {
+    transform: translateX(-20vw) rotate(0deg);
+  }
+  100% {
+    transform: translateX(120vw) rotate(1800deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 10% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

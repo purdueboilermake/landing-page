@@ -189,6 +189,20 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 1.6,
     '2xl': 1.65
   },
+  'birds-about': {
+    'sm': 1.05,
+    'md': 1.05,
+    'lg': 1.45,
+    'xl': 1.6,
+    '2xl': 1.65
+  },
+  'birds-schedule': {
+    'sm': 1.5,
+    'md': 1.5,
+    'lg': 1.82,
+    'xl': 2.0,
+    '2xl': 2.0
+  },
   'event1': {
     'sm': 1.33,
     'md': 1.33,
@@ -224,6 +238,13 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 3.6,
     '2xl': 3.6
   },
+  'tumbleweed': {
+    'sm': 2.1,
+    'md': 2.6,
+    'lg': 3.1,
+    'xl': 3.3,
+    '2xl': 3.5
+  },
   'sponsors-background': {
     'sm': 2.85,
     'md': 3.01,
@@ -245,6 +266,7 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 4.75,
     '2xl': 4.75
   },
+  // original footer for sponsors, the one below this is for the coming soon text
   // 'footer': {
   //   'sm': 3.75,
   //   'md': 4.0,

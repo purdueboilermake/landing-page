@@ -17,51 +17,83 @@ import ActivityPreview from '@/components/Event/ActivityPreview';
 import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffset';
 
 const sponsors = [
-  {
-    name: 'Sponsor 1',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 2',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 3',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 4',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 5',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 6',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 7',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 8',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
-  {
-    name: 'Sponsor 9',
-    logo: "/images/logo.png",
-    url: '/home'
-  },
+  [
+    {
+      name: 'CAT',
+      logo: "/assets/sponsors/cat.png",
+      url: 'https://www.caterpillar.com/'
+    },
+  ],
+  [
+    {
+      name: 'D.E. Shaw',
+      logo: "/assets/sponsors/deshaw.svg",
+      url: 'https://www.deshaw.com/'
+    },
+    {
+      name: 'RCAC',
+      logo: "/assets/sponsors/rcac.png",
+      url: 'https://www.rcac.purdue.edu/'
+    },
+  ],
+  [
+    {
+      name: 'CoE',
+      logo: "/assets/sponsors/coe.svg",
+      url: 'https://engineering.purdue.edu/Engr'
+    },
+    {
+      name: 'Klaviyo',
+      logo: "/assets/sponsors/klaviyo.png",
+      url: 'https://www.klaviyo.com/'
+    },
+    {
+      name: 'Purdue Innovates',
+      logo: "/assets/sponsors/purdueinnovates.png",
+      url: 'https://purdueinnovates.org/'
+    },
+  ],
+  [
+    {
+      name: 'Sync',
+      logo: "/assets/sponsors/sync.png",
+      url: 'https://sync.so/'
+    },
+    {
+      name: 'Blip',
+      logo: "/assets/sponsors/blip.png",
+      url: 'https://www.blippayments.com/'
+    },
+    {
+      name: 'Roboflow',
+      logo: "/assets/sponsors/roboflow.png",
+      url: 'https://roboflow.com/'
+    },
+    {
+      name: 'Modal',
+      logo: "/assets/sponsors/modal.svg",
+      url: 'https://modal.com/'
+    },
+
+  ],
+  [
+    {
+      name: 'Cartesia',
+      logo: "/assets/sponsors/cartesia.svg",
+      url: 'https://www.cartesia.ai/'
+    },
+    {
+      name: 'Warp',
+      logo: "/assets/sponsors/warp.png",
+      url: 'https://www.warp.dev/'
+    },
+
+    {
+      name: 'Wolfram',
+      logo: "/assets/sponsors/wolfram.png",
+      url: 'https://www.wolfram.com/'
+    },
+  ]
 ];
 
 const activities = [
@@ -227,7 +259,7 @@ function App() {
             <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
               <div className="text-right">
                 <div className="container mx-auto text-white">
-                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-averia-libre font-bold">
+                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-arvo font-bold">
                     BOILERMAKE
                   </h1>
                   <h2 className="text-[100px] md:text-[200px] font-arvo leading-none font-extrabold">
@@ -286,18 +318,32 @@ function App() {
         </ParallaxLayer>
 
         <ParallaxLayer offset={getOffset('stat1')} speed={0.1}>
-            <div id='stat1' className='pt-16 sm:pt-0'>
-              <Statistic statistic='9' variable='Universities Represented' />
+          <div id='stat1' className='pt-16 sm:pt-0'>
+            <Statistic statistic='9' variable='Universities Represented' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={getOffset('stat2')} speed={0.1}>
-            <div id='stat2' className='pt-8 sm:pt-0'>
-              <Statistic statistic='70' variable='Project Submissions' />
+          <div id='stat2' className='pt-8 sm:pt-0'>
+            <Statistic statistic='70' variable='Project Submissions' />
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={getOffset('stat3')} speed={0.1}>
           <div id='stat3'>
-            <Statistic statistic='1:3' variable='Female:Male Ratio' />
+            <Statistic statistic='$4k' variable='In Prizes' />
+          </div>
+        </ParallaxLayer>
+
+        {/* Tumbleweed */}
+        <ParallaxLayer offset={getOffset('tumbleweed')} speed={0} style={{ zIndex: 15, pointerEvents: 'none' }}>
+          <div className="absolute animate-tumble">
+            <Image
+              src="/images/tumbleweed.png"
+              alt="Tumbleweed"
+              width={200}
+              height={200}
+              className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[175px] md:h-[175px] lg:w-[200px] lg:h-[200px] animate-[tumble_8s_linear_infinite]"
+              priority
+            />
           </div>
         </ParallaxLayer>
 
@@ -324,7 +370,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Floating accordion layer */}
-        <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 10 }}>
+        <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 50 }}>
           <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
             {/* Empty space matching sign width */}
             <div className="col-span-1"></div>
@@ -337,6 +383,20 @@ function App() {
 
         <ParallaxLayer offset={getOffset('schedule-background')} speed={0}>
           <div id="schedule" className='h-full w-full'>
+          </div>
+        </ParallaxLayer>
+
+        {/* Add tents layer */}
+        <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 20, pointerEvents: 'none' }}>
+          <div className="absolute left-6 sm:left-8 lg:left-16">
+            <Image
+              src="/images/tents.png"
+              alt="Tents"
+              width={50}
+              height={50}
+              className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
+              priority
+            />
           </div>
         </ParallaxLayer>
 
@@ -378,6 +438,66 @@ function App() {
               />
             </div>
           ))}
+        </ParallaxLayer>
+
+        {/* Birds near About section */}
+        <ParallaxLayer offset={getOffset('birds-about')} speed={0}>
+          <div className="absolute w-full left-[80%] top-[5%] sm:top-[0] md:top-[10%]">
+            <Image
+              src="/images/bird1.png"
+              alt="Bird 1"
+              width={65}
+              height={65}
+              className="absolute w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
+              style={{ left: '0', top: '0' }}
+            />
+            <Image
+              src="/images/bird2.png"
+              alt="Bird 2"
+              width={65}
+              height={65}
+              className="absolute  w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
+              style={{ left: '-10px', top: '40px', animationDelay: '0.5s' }}
+            />
+            <Image
+              src="/images/bird3.png"
+              alt="Bird 3"
+              width={65}
+              height={65}
+              className="absolute w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
+              style={{ left: '50px', top: '20px', animationDelay: '1s' }}
+            />
+          </div>
+        </ParallaxLayer>
+
+        {/* Birds near Schedule section */}
+        <ParallaxLayer offset={getOffset('birds-schedule')} speed={0}>
+          <div className="absolute w-full left-[27%] top-[-7%] sm:top-[-4%] md:top-[10%]">
+            <Image
+              src="/images/bird2.png"
+              alt="Bird 2"
+              width={65}
+              height={65}
+              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
+              style={{ left: '50px', top: '15px', animationDelay: '0.8s' }}
+            />
+            <Image
+              src="/images/bird1.png"
+              alt="Bird 1"
+              width={65}
+              height={65}
+              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
+              style={{ left: '15px', top: '0', animationDelay: '0.3s' }}
+            />
+            <Image
+              src="/images/bird3.png"
+              alt="Bird 3"
+              width={45}
+              height={45}
+              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
+              style={{ left: '0', top: '40px', animationDelay: '1.2s' }}
+            />
+          </div>
         </ParallaxLayer>
 
         {/* <ParallaxLayer offset={getOffset('road')} speed={0}>
@@ -470,6 +590,20 @@ function App() {
           </div>
         </ParallaxLayer> */}
 
+        {/* Campfires layer */}
+        <ParallaxLayer offset={getOffset('campfires')} speed={0} style={{ zIndex: 5, pointerEvents: 'none' }}>
+          <div className="absolute -right-6 sm:-right-6 lg:-right-12">
+            <Image
+              src="/images/campfires.png"
+              alt="Tents"
+              width={50}
+              height={50}
+              className="w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
+              priority
+            />
+          </div>
+        </ParallaxLayer>
+
         {/* Background layer for Sponsors */}
         <ParallaxLayer offset={getOffset('sponsors-background')} speed={0}>
           <div id="sponsors" className='h-full w-full'>
@@ -477,7 +611,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Sponsors Sign Layer */}
-        <ParallaxLayer offset={getOffset('sponsors-sign')} speed={0} style={{ zIndex: 10 }}>
+        <ParallaxLayer offset={getOffset('sponsors-sign')} speed={0} style={{ zIndex: 0 }}>
           <div className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}>
               <SponsorSign />
@@ -489,10 +623,30 @@ function App() {
         <ParallaxLayer offset={getOffset('sponsors-content')} speed={0} style={{ zIndex: 10 }}>
           <div className='h-full w-full'>
             <div className={`w-1/3 h-1/3`}></div>
-            <div className="grid grid-cols-3 gap-4 md:gap-x-8 md:gap-y-10 justify-items-center">
-              {sponsors.map((sponsor, index) => (
-                <SponsorCard sponsor={sponsor} key={index} />
-              ))}
+
+            <div className="px-8 sm:px-10 md:px-12 lg:px-16 xl:px-20 max-w-[1600px] mx-auto">
+              <div className="flex flex-col gap-1 md:gap-2 lg:gap-4">
+                <h3 className='text-4xl font-bold'>Coming Soon!</h3>
+                {/* {sponsors.map((sponsorRow, rowIndex) => (
+                  <div
+                    key={rowIndex}
+                    className={`flex justify-center items-center ${
+                      rowIndex === 0 ? 'gap-8 md:gap-16 lg:gap-20' :
+                      rowIndex === 1 ? 'gap-6 md:gap-14 lg:gap-16' :
+                      rowIndex === 2 ? 'gap-4 md:gap-12 lg:gap-14' :
+                      'gap-3 md:gap-8 lg:gap-12'
+                    }`}
+                  >
+                    {sponsorRow.map((sponsor, index) => (
+                      <SponsorCard
+                        key={index}
+                        sponsor={sponsor}
+                        size={rowIndex === 0 ? "xl" : rowIndex === 1 ? "lg" : rowIndex === 2 ? "md" : "sm"}
+                      />
+                    ))}
+                  </div>
+                ))} */}
+              </div>
             </div>
           </div>
         </ParallaxLayer>

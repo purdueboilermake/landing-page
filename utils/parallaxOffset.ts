@@ -2,12 +2,21 @@
 export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 // Define page counts for different screen sizes
+// export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
+//   'sm': 4,  // mobile (will be same as 'md')
+//   'md': 4.5,     // tablet (will be same as 'sm')
+//   'lg': 6.0,   // desktop (will be same as 'xl')
+//   'xl': 7,   // large desktop (will be same as 'lg')
+//   '2xl': 7   // extra large desktop (will be same as 'lg')
+// };
+
+// COPIED FOR the "coming soon" TEXT
 export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-  'sm': 4.25,  // mobile (will be same as 'md')
-  'md': 4.5,     // tablet (will be same as 'sm')
-  'lg': 6.0,   // desktop (will be same as 'xl')
-  'xl': 7,   // large desktop (will be same as 'lg')
-  '2xl': 7   // extra large desktop (will be same as 'lg')
+  'sm': 3.7,  // mobile (will be same as 'md')
+  'md': 4.1,     // tablet (will be same as 'sm')
+  'lg': 5.0,   // desktop (will be same as 'xl')
+  'xl': 6,   // large desktop (will be same as 'lg')
+  '2xl': 6   // extra large desktop (will be same as 'lg')
 };
 
 // Define offsets for each parallax layer by screen size
@@ -34,14 +43,14 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 0
   },
   'hero-text': {
-    'sm': 0.07,
+    'sm': 0.1,
     'md': 0.1,
     'lg': 0.1,
     'xl': 0.1,
     '2xl': 0.1
   },
   'apply': {
-    'sm': 0.32,
+    'sm': 0.4,
     'md': 0.1,
     'lg': 0.25,
     'xl': 0.1,
@@ -180,6 +189,27 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 1.6,
     '2xl': 1.65
   },
+  'birds-about': {
+    'sm': 1.05,
+    'md': 1.05,
+    'lg': 1.45,
+    'xl': 1.6,
+    '2xl': 1.65
+  },
+  'birds-schedule': {
+    'sm': 1.5,
+    'md': 1.5,
+    'lg': 1.82,
+    'xl': 2.0,
+    '2xl': 2.0
+  },
+  'tents': {
+    'sm': 1.7,
+    'md': 1.75,
+    'lg': 2.3,
+    'xl': 2.55,
+    '2xl': 2.6
+  },
   'event1': {
     'sm': 1.33,
     'md': 1.33,
@@ -215,6 +245,20 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 3.6,
     '2xl': 3.6
   },
+  'tumbleweed': {
+    'sm': 2.2,
+    'md': 2.3,
+    'lg': 3.1,
+    'xl': 3.3,
+    '2xl': 3.5
+  },
+  'campfires': {
+    'sm': 2.7,
+    'md': 3.0,
+    'lg': 3.9,
+    'xl': 4.6,
+    '2xl': 4.6
+  },
   'sponsors-background': {
     'sm': 2.85,
     'md': 3.01,
@@ -236,11 +280,19 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     'xl': 4.75,
     '2xl': 4.75
   },
+  // original footer for sponsors, the one below this is for the coming soon text
+  // 'footer': {
+  //   'sm': 3.65,
+  //   'md': 4.0,
+  //   'lg': 5.0,
+  //   'xl': 6.0,
+  //   '2xl': 6.0
+  // },
   'footer': {
-    'sm': 3.75,
-    'md': 4.0,
-    'lg': 5.0,
-    'xl': 6.0,
-    '2xl': 6.0
+    'sm': 3.2,
+    'md': 3.4,
+    'lg': 4.4,
+    'xl': 5.0,
+    '2xl': 5.0
   },
 };

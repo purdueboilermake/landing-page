@@ -7,7 +7,7 @@ import Image from "next/image";
 
 type ActivitySignProps = {
     title: string;
-    time: string;
+    startDate: string;  // Changed from time: string
     size: 'small' | 'medium' | 'large' | 'xlarge';
 }
 
@@ -22,21 +22,21 @@ const textOffset = {
     'small': 'pt-[23px] sm:pt-[30px] md:pt-[50px] lg:pt-[65px] xl:pt-[75px]',
     'medium': 'pt-[45px] sm:pt-[55px] md:pt-[80px] lg:pt-[100px] xl:pt-[120px]',
     'large': 'pt-[55px] sm:pt-[80px] md:pt-[110px] lg:pt-[120px] xl:pt-[140px]',
-    'xlarge': 'pt-[65px] sm:pt-[100px] md:pt-[130px] lg:pt-[160px] xl:pt-[180px]'
+    'xlarge': 'pt-[60px] sm:pt-[90px] md:pt-[120px] lg:pt-[150px] xl:pt-[170px]'
 }
 
 const timeSize = {
     'small': 'text-[8px] sm:text-[10px] md:text-sm lg:text-lg',
-    'medium': 'text-sm sm:text-base md:text-lg lg:text-xl',
-    'large': 'text-base sm:text-lg md:text-xl lg:text-2xl',
-    'xlarge': 'text-lg sm:text-xl md:text-2xl lg:text-3xl'
+    'medium': 'text-base sm:text-base md:text-lg lg:text-xl',
+    'large': 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
+    'xlarge': 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'
 }
 
 const titleSize = {
     'small': 'text-[10px] sm:text-[12px] md:text-sm lg:text-base',
-    'medium': 'text-sm sm:text-base md:text-lg lg:text-xl',
-    'large': 'text-base sm:text-lg md:text-xl lg:text-2xl',
-    'xlarge': 'text-lg sm:text-xl md:text-2xl lg:text-3xl'
+    'medium': 'text-base sm:text-base md:text-lg lg:text-xl',
+    'large': 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
+    'xlarge': 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
 }
 
 const textMargin = {
@@ -46,15 +46,23 @@ const textMargin = {
     'xlarge': 'mt-1 sm:mt-2 md:mt-4'
 }
 
-export default function ActivitySign({ title, time, size }: ActivitySignProps) {
+export default function ActivitySign({ title, startDate, size }: ActivitySignProps) {
+    const date = new Date(startDate);
+    const weekday = date.toLocaleString([], { weekday: 'short' });
+    const time = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+
     return (
-        <div className="relative w-full h-full flex items-center justify-center">
-            <div className={`relative w-${sizeMap[size]} h-${sizeMap[size]}`}>
+        <div className="relative w-full h-full flex items-center justify-cente hover:-translate-y-1 transition">
+            <div className={`relative w-${sizeMap[size]}  h-${sizeMap[size]}`}>
                 <Image src="/images/activity_sign.png" alt="Activity Card" className={sizeMap[size]} width={0} height={0} sizes="100vh" />
-                <div 
+                <div
                     className={`absolute inset-0 flex flex-col items-center select-none ${textOffset[size]}`}
                 >
-                    <p className={`text-white ${timeSize[size]} font-semibold font-title`}>{time}</p>
+                    <div className={`text-white ${timeSize[size]} font-semibold font-title`}>
+                        <span>{weekday}</span>
+                        <span className="mx-1">·</span>
+                        <span>{time}</span>
+                    </div>
                     <p className={`text-white ${titleSize[size]} font-semibold font-title leading-none ${textMargin[size]}`}>
                         {title.split(' ').length === 2 ? (
                             <>

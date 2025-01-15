@@ -29,6 +29,15 @@ export default function TeamsPage() {
 
   const teams: Team[] = [
     {
+      id: 0,
+      name: "Director",
+      imgSrc: "/assets/pics/sanjhee.png",
+      description: "Sanjhee leads the BoilerMake XII Organizers and coordinates progress between all teams and groups to make BoilerMake happen!",
+      members: [
+        { image: "/assets/team/leads/sanjhee.png" },
+      ]
+    },
+    {
       id: 1,
       name: "Team Leads",
       imgSrc: "/assets/pics/leads.png",

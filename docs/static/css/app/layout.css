@@ -1,9 +1,9 @@
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[13].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app\\layout.tsx","import":"Dosis","arguments":[{"subsets":["latin"],"weight":["200","300","400","500","600","700","800"],"variable":"--font-dosis"}],"variableName":"dosis"} ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[13].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app/layout.tsx","import":"Dosis","arguments":[{"subsets":["latin"],"weight":["200","300","400","500","600","700","800"],"variable":"--font-dosis"}],"variableName":"dosis"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 200;
   font-display: swap;
@@ -12,7 +12,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 200;
   font-display: swap;
@@ -21,7 +21,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 200;
   font-display: swap;
@@ -30,7 +30,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -39,7 +39,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -48,7 +48,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -57,7 +57,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -66,7 +66,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -75,7 +75,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -84,7 +84,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -93,7 +93,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -102,7 +102,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -111,7 +111,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -120,7 +120,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -129,7 +129,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -138,7 +138,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -147,7 +147,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -156,7 +156,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -165,7 +165,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -174,7 +174,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -183,23 +183,23 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Dosis_a26f35';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
   src: url(/_next/static/media/c6e04b5f0940e652-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}@font-face {font-family: '__Dosis_Fallback_a26f35';src: local("Arial");ascent-override: 121.44%;descent-override: 28.03%;line-gap-override: 0.00%;size-adjust: 84.57%
-}.__className_a26f35 {font-family: '__Dosis_a26f35', '__Dosis_Fallback_a26f35';font-style: normal
-}.__variable_a26f35 {--font-dosis: '__Dosis_a26f35', '__Dosis_Fallback_a26f35'
+}@font-face {font-family: 'Dosis Fallback';src: local("Arial");ascent-override: 121.44%;descent-override: 28.03%;line-gap-override: 0.00%;size-adjust: 84.57%
+}.__className_a26f35 {font-family: 'Dosis', 'Dosis Fallback';font-style: normal
+}.__variable_a26f35 {--font-dosis: 'Dosis', 'Dosis Fallback'
 }
 
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[13].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app\\layout.tsx","import":"Averia_Libre","arguments":[{"subsets":["latin"],"weight":["300","400","700"],"variable":"--font-averia-libre"}],"variableName":"averiaLibre"} ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[13].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app/layout.tsx","import":"Averia_Libre","arguments":[{"subsets":["latin"],"weight":["300","400","700"],"variable":"--font-averia-libre"}],"variableName":"averiaLibre"} ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* latin */
 @font-face {
-  font-family: '__Averia_Libre_25d991';
+  font-family: 'Averia Libre';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -208,7 +208,7 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Averia_Libre_25d991';
+  font-family: 'Averia Libre';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -217,23 +217,23 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Averia_Libre_25d991';
+  font-family: 'Averia Libre';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url(/_next/static/media/6de4c205a1e4d660-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}@font-face {font-family: '__Averia_Libre_Fallback_25d991';src: local("Arial");ascent-override: 94.59%;descent-override: 23.84%;line-gap-override: 0.00%;size-adjust: 100.77%
-}.__className_25d991 {font-family: '__Averia_Libre_25d991', '__Averia_Libre_Fallback_25d991';font-style: normal
-}.__variable_25d991 {--font-averia-libre: '__Averia_Libre_25d991', '__Averia_Libre_Fallback_25d991'
+}@font-face {font-family: 'Averia Libre Fallback';src: local("Arial");ascent-override: 94.59%;descent-override: 23.84%;line-gap-override: 0.00%;size-adjust: 100.77%
+}.__className_25d991 {font-family: 'Averia Libre', 'Averia Libre Fallback';font-style: normal
+}.__variable_25d991 {--font-averia-libre: 'Averia Libre', 'Averia Libre Fallback'
 }
 
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[13].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app\\layout.tsx","import":"Arvo","arguments":[{"subsets":["latin"],"weight":["400","700"],"variable":"--font-arvo"}],"variableName":"arvo"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[13].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"app/layout.tsx","import":"Arvo","arguments":[{"subsets":["latin"],"weight":["400","700"],"variable":"--font-arvo"}],"variableName":"arvo"} ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* latin */
 @font-face {
-  font-family: '__Arvo_7bafe4';
+  font-family: 'Arvo';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -242,19 +242,19 @@
 }
 /* latin */
 @font-face {
-  font-family: '__Arvo_7bafe4';
+  font-family: 'Arvo';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url(/_next/static/media/10c5f798263c18e8-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}@font-face {font-family: '__Arvo_Fallback_7bafe4';src: local("Times New Roman");ascent-override: 79.95%;descent-override: 20.56%;line-gap-override: 2.23%;size-adjust: 120.19%
-}.__className_7bafe4 {font-family: '__Arvo_7bafe4', '__Arvo_Fallback_7bafe4';font-style: normal
-}.__variable_7bafe4 {--font-arvo: '__Arvo_7bafe4', '__Arvo_Fallback_7bafe4'
+}@font-face {font-family: 'Arvo Fallback';src: local("Times New Roman");ascent-override: 79.95%;descent-override: 20.56%;line-gap-override: 2.23%;size-adjust: 120.19%
+}.__className_7bafe4 {font-family: 'Arvo', 'Arvo Fallback';font-style: normal
+}.__variable_7bafe4 {--font-arvo: 'Arvo', 'Arvo Fallback'
 }
 
 /*!*************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./app/globals.css ***!
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./app/globals.css ***!
   \*************************************************************************************************************************************************************************************************************************************************************/
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
@@ -786,12 +786,6 @@ video {
     max-width: 1536px;
   }
 }
-.visible {
-  visibility: visible;
-}
-.invisible {
-  visibility: hidden;
-}
 .fixed {
   position: fixed;
 }
@@ -810,9 +804,6 @@ video {
 .-left-full {
   left: -100%;
 }
-.-right-6 {
-  right: -1.5rem;
-}
 .bottom-0 {
   bottom: 0px;
 }
@@ -821,18 +812,6 @@ video {
 }
 .left-1\/2 {
   left: 50%;
-}
-.left-6 {
-  left: 1.5rem;
-}
-.left-\[27\%\] {
-  left: 27%;
-}
-.left-\[75px\] {
-  left: 75px;
-}
-.left-\[80\%\] {
-  left: 80%;
 }
 .left-\[calc\(100\%\+5rem\)\] {
   left: calc(100% + 5rem);
@@ -855,9 +834,6 @@ video {
 .top-\[-63vh\] {
   top: -63vh;
 }
-.top-\[-7\%\] {
-  top: -7%;
-}
 .top-\[15\%\] {
   top: 15%;
 }
@@ -876,9 +852,6 @@ video {
 .top-\[7\%\] {
   top: 7%;
 }
-.top-full {
-  top: 100%;
-}
 .z-0 {
   z-index: 0;
 }
@@ -888,18 +861,11 @@ video {
 .z-50 {
   z-index: 50;
 }
-.z-\[10000\] {
-  z-index: 10000;
-}
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
 .col-span-2 {
   grid-column: span 2 / span 2;
-}
-.mx-1 {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -946,9 +912,6 @@ video {
 .mt-1 {
   margin-top: 0.25rem;
 }
-.mt-16 {
-  margin-top: 4rem;
-}
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -957,6 +920,9 @@ video {
 }
 .block {
   display: block;
+}
+.inline-block {
+  display: inline-block;
 }
 .flex {
   display: flex;
@@ -972,9 +938,6 @@ video {
 }
 .h-0 {
   height: 0px;
-}
-.h-0\.5 {
-  height: 0.125rem;
 }
 .h-1\/3 {
   height: 33.333333%;
@@ -997,9 +960,6 @@ video {
 .h-48 {
   height: 12rem;
 }
-.h-5 {
-  height: 1.25rem;
-}
 .h-60 {
   height: 15rem;
 }
@@ -1008,9 +968,6 @@ video {
 }
 .h-\[100px\] {
   height: 100px;
-}
-.h-\[150px\] {
-  height: 150px;
 }
 .h-\[175px\] {
   height: 175px;
@@ -1027,11 +984,11 @@ video {
 .h-\[500px\] {
   height: 500px;
 }
+.h-\[50px\] {
+  height: 50px;
+}
 .h-\[600px\] {
   height: 600px;
-}
-.h-\[65px\] {
-  height: 65px;
 }
 .h-auto {
   height: auto;
@@ -1041,9 +998,6 @@ video {
 }
 .h-screen {
   height: 100vh;
-}
-.max-h-\[450px\] {
-  max-height: 450px;
 }
 .max-h-full {
   max-height: 100%;
@@ -1075,23 +1029,11 @@ video {
 .w-5\/6 {
   width: 83.333333%;
 }
-.w-6 {
-  width: 1.5rem;
-}
 .w-60 {
   width: 15rem;
 }
-.w-\[10\%\] {
-  width: 10%;
-}
 .w-\[100px\] {
   width: 100px;
-}
-.w-\[125px\] {
-  width: 125px;
-}
-.w-\[150px\] {
-  width: 150px;
 }
 .w-\[170vw\] {
   width: 170vw;
@@ -1108,29 +1050,14 @@ video {
 .w-\[280px\] {
   width: 280px;
 }
-.w-\[300px\] {
-  width: 300px;
-}
-.w-\[65px\] {
-  width: 65px;
+.w-\[50px\] {
+  width: 50px;
 }
 .w-full {
   width: 100%;
 }
-.min-w-\[60px\] {
-  min-width: 60px;
-}
-.max-w-4xl {
-  max-width: 56rem;
-}
 .max-w-7xl {
   max-width: 80rem;
-}
-.max-w-\[100px\] {
-  max-width: 100px;
-}
-.max-w-\[1600px\] {
-  max-width: 1600px;
 }
 .max-w-full {
   max-width: 100%;
@@ -1158,10 +1085,6 @@ video {
   --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.-translate-y-2 {
-  --tw-translate-y: -0.5rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
 .-translate-y-8 {
   --tw-translate-y: -2rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1170,28 +1093,8 @@ video {
   --tw-translate-x: 50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.translate-y-0 {
-  --tw-translate-y: 0px;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
 .translate-y-1\/2 {
   --tw-translate-y: 50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.translate-y-10 {
-  --tw-translate-y: 2.5rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.translate-y-2\.5 {
-  --tw-translate-y: 0.625rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.-rotate-45 {
-  --tw-rotate: -45deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.rotate-45 {
-  --tw-rotate: 45deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .rotate-90 {
@@ -1209,15 +1112,6 @@ video {
 }
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.animate-\[float-flipped_3s_ease-in-out_infinite\] {
-  animation: float-flipped 3s ease-in-out infinite;
-}
-.animate-\[float_3s_ease-in-out_infinite\] {
-  animation: float 3s ease-in-out infinite;
-}
-.animate-\[tumble_8s_linear_infinite\] {
-  animation: tumble 8s linear infinite;
 }
 @keyframes infinite-scroll {
 
@@ -1345,11 +1239,6 @@ video {
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
-.space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1427,9 +1316,6 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
 }
-.bg-black\/50 {
-  background-color: rgb(0 0 0 / 0.5);
-}
 .bg-blue-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity, 1));
@@ -1454,17 +1340,6 @@ video {
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
-}
-.bg-gradient-to-b {
-  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-}
-.from-black\/50 {
-  --tw-gradient-from: rgb(0 0 0 / 0.5) var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.to-transparent {
-  --tw-gradient-to: transparent var(--tw-gradient-to-position);
 }
 .object-contain {
   object-fit: contain;
@@ -1501,10 +1376,6 @@ video {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -1530,6 +1401,9 @@ video {
 }
 .pb-4 {
   padding-bottom: 1rem;
+}
+.pt-0 {
+  padding-top: 0px;
 }
 .pt-14 {
   padding-top: 3.5rem;
@@ -1558,8 +1432,8 @@ video {
 .pt-\[55px\] {
   padding-top: 55px;
 }
-.pt-\[60px\] {
-  padding-top: 60px;
+.pt-\[65px\] {
+  padding-top: 65px;
 }
 .text-left {
   text-align: left;
@@ -1661,10 +1535,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(53 112 73 / var(--tw-text-opacity, 1));
 }
-.text-\[\#C6A270\] {
-  --tw-text-opacity: 1;
-  color: rgb(198 162 112 / var(--tw-text-opacity, 1));
-}
 .text-\[\#DDB47D\] {
   --tw-text-opacity: 1;
   color: rgb(221 180 125 / var(--tw-text-opacity, 1));
@@ -1685,18 +1555,11 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
-.text-yellow-500 {
-  --tw-text-opacity: 1;
-  color: rgb(234 179 8 / var(--tw-text-opacity, 1));
-}
 .underline {
   text-decoration-line: underline;
 }
 .opacity-0 {
   opacity: 0;
-}
-.opacity-100 {
-  opacity: 1;
 }
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -1712,18 +1575,12 @@ video {
   --tw-shadow-color: #dbeafe;
   --tw-shadow: var(--tw-shadow-colored);
 }
-.blur {
-  --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+.outline {
+  outline-style: solid;
 }
 .drop-shadow-\[0_2px_2px_rgba\(0\2c 0\2c 0\2c 0\.3\)\] {
   --tw-drop-shadow: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-.backdrop-blur-sm {
-  --tw-backdrop-blur: blur(4px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -1732,11 +1589,6 @@ video {
 }
 .transition-all {
   transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1758,9 +1610,6 @@ video {
 }
 .duration-500 {
   transition-duration: 500ms;
-}
-.duration-700 {
-  transition-duration: 700ms;
 }
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2129,111 +1978,43 @@ body {
 
 /* Header Section */
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes float-flipped {
-  0% { transform: translateY(0px) scaleX(-1); }
-  50% { transform: translateY(-10px) scaleX(-1); }
-  100% { transform: translateY(0px) scaleX(-1); }
-}
-
-
-/* Add more natural bounce physics with cubic-bezier */
-.animate-tumble {
-  animation:
-    /* tumble 8s linear infinite, */
-    bounce 0.6s cubic-bezier(0.63, 0.09, 0.75, 0.46) infinite alternate;
-}
-
-@keyframes tumble {
-  0% {
-    transform: translateX(-20vw) rotate(0deg);
-  }
-  100% {
-    transform: translateX(120vw) rotate(1800deg);
-  }
-}
-
-@keyframes bounce {
-  0%, 10% {
-    transform: translateY(-40px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-/* Tents Section */
-#tents {
-  position: absolute;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
-}
-.hover\:-translate-y-1:hover {
-  --tw-translate-y: -0.25rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.hover\:scale-110:hover {
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
+
 .hover\:bg-\[\#8f250c\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(143 37 12 / var(--tw-bg-opacity, 1));
 }
+
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }
+
 .hover\:text-\[\#8f250c\]:hover {
   --tw-text-opacity: 1;
   color: rgb(143 37 12 / var(--tw-text-opacity, 1));
 }
+
 .hover\:text-amber-600:hover {
   --tw-text-opacity: 1;
   color: rgb(217 119 6 / var(--tw-text-opacity, 1));
 }
-.hover\:text-orange-300:hover {
-  --tw-text-opacity: 1;
-  color: rgb(253 186 116 / var(--tw-text-opacity, 1));
-}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
+
 .hover\:shadow-xl:hover {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
 @media (min-width: 640px) {
-
-  .sm\:-right-6 {
-    right: -1.5rem;
-  }
-
-  .sm\:left-8 {
-    left: 2rem;
-  }
-
-  .sm\:top-\[-4\%\] {
-    top: -4%;
-  }
-
-  .sm\:top-\[0\] {
-    top: 0;
-  }
 
   .sm\:top-\[17\%\] {
     top: 17%;
@@ -2303,20 +2084,8 @@ body {
     height: 125px;
   }
 
-  .sm\:h-\[150px\] {
-    height: 150px;
-  }
-
-  .sm\:h-\[200px\] {
-    height: 200px;
-  }
-
   .sm\:h-\[225px\] {
     height: 225px;
-  }
-
-  .sm\:h-\[250px\] {
-    height: 250px;
   }
 
   .sm\:h-\[275px\] {
@@ -2335,20 +2104,8 @@ body {
     width: 125px;
   }
 
-  .sm\:w-\[150px\] {
-    width: 150px;
-  }
-
-  .sm\:w-\[200px\] {
-    width: 200px;
-  }
-
   .sm\:w-\[225px\] {
     width: 225px;
-  }
-
-  .sm\:w-\[250px\] {
-    width: 250px;
   }
 
   .sm\:w-\[275px\] {
@@ -2361,10 +2118,6 @@ body {
 
   .sm\:w-\[325px\] {
     width: 325px;
-  }
-
-  .sm\:w-\[375px\] {
-    width: 375px;
   }
 
   .sm\:scale-\[0\.8\] {
@@ -2397,11 +2150,6 @@ body {
     padding: 1rem;
   }
 
-  .sm\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-
   .sm\:pb-3 {
     padding-bottom: 0.75rem;
   }
@@ -2418,6 +2166,10 @@ body {
     padding-top: 6rem;
   }
 
+  .sm\:pt-\[100px\] {
+    padding-top: 100px;
+  }
+
   .sm\:pt-\[12rem\] {
     padding-top: 12rem;
   }
@@ -2432,10 +2184,6 @@ body {
 
   .sm\:pt-\[80px\] {
     padding-top: 80px;
-  }
-
-  .sm\:pt-\[90px\] {
-    padding-top: 90px;
   }
 
   .sm\:text-2xl {
@@ -2476,11 +2224,8 @@ body {
     line-height: 1.75rem;
   }
 }
-@media (min-width: 768px) {
 
-  .md\:left-\[100px\] {
-    left: 100px;
-  }
+@media (min-width: 768px) {
 
   .md\:left-\[calc\(100\%\+7rem\)\] {
     left: calc(100% + 7rem);
@@ -2492,10 +2237,6 @@ body {
 
   .md\:top-\[-40vh\] {
     top: -40vh;
-  }
-
-  .md\:top-\[10\%\] {
-    top: 10%;
   }
 
   .md\:top-\[13\%\] {
@@ -2570,16 +2311,8 @@ body {
     display: block;
   }
 
-  .md\:flex {
-    display: flex;
-  }
-
   .md\:hidden {
     display: none;
-  }
-
-  .md\:h-16 {
-    height: 4rem;
   }
 
   .md\:h-24 {
@@ -2606,8 +2339,8 @@ body {
     height: 20rem;
   }
 
-  .md\:h-\[175px\] {
-    height: 175px;
+  .md\:h-\[100px\] {
+    height: 100px;
   }
 
   .md\:h-\[200px\] {
@@ -2616,10 +2349,6 @@ body {
 
   .md\:h-\[250vh\] {
     height: 250vh;
-  }
-
-  .md\:h-\[275px\] {
-    height: 275px;
   }
 
   .md\:h-\[300px\] {
@@ -2634,16 +2363,16 @@ body {
     height: 450px;
   }
 
+  .md\:h-\[50px\] {
+    height: 50px;
+  }
+
   .md\:h-\[800px\] {
     height: 800px;
   }
 
   .md\:\!w-64 {
     width: 16rem !important;
-  }
-
-  .md\:w-16 {
-    width: 4rem;
   }
 
   .md\:w-24 {
@@ -2666,32 +2395,20 @@ body {
     width: 20rem;
   }
 
-  .md\:w-\[175px\] {
-    width: 175px;
+  .md\:w-\[100px\] {
+    width: 100px;
   }
 
   .md\:w-\[200px\] {
     width: 200px;
   }
 
-  .md\:w-\[225px\] {
-    width: 225px;
-  }
-
   .md\:w-\[250vw\] {
     width: 250vw;
   }
 
-  .md\:w-\[275px\] {
-    width: 275px;
-  }
-
   .md\:w-\[300px\] {
     width: 300px;
-  }
-
-  .md\:w-\[325px\] {
-    width: 325px;
   }
 
   .md\:w-\[350px\] {
@@ -2700,6 +2417,10 @@ body {
 
   .md\:w-\[450px\] {
     width: 450px;
+  }
+
+  .md\:w-\[50px\] {
+    width: 50px;
   }
 
   .md\:max-w-full {
@@ -2735,10 +2456,6 @@ body {
     gap: 3rem;
   }
 
-  .md\:gap-14 {
-    gap: 3.5rem;
-  }
-
   .md\:gap-16 {
     gap: 4rem;
   }
@@ -2759,6 +2476,14 @@ body {
     gap: 2rem;
   }
 
+  .md\:gap-x-8 {
+    column-gap: 2rem;
+  }
+
+  .md\:gap-y-10 {
+    row-gap: 2.5rem;
+  }
+
   .md\:space-x-12 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
     margin-right: calc(3rem * var(--tw-space-x-reverse));
@@ -2771,6 +2496,10 @@ body {
 
   .md\:p-3 {
     padding: 0.75rem;
+  }
+
+  .md\:p-4 {
+    padding: 1rem;
   }
 
   .md\:p-6 {
@@ -2822,12 +2551,12 @@ body {
     padding-top: 110px;
   }
 
-  .md\:pt-\[120px\] {
-    padding-top: 120px;
-  }
-
   .md\:pt-\[12rem\] {
     padding-top: 12rem;
+  }
+
+  .md\:pt-\[130px\] {
+    padding-top: 130px;
   }
 
   .md\:pt-\[50px\] {
@@ -2895,15 +2624,8 @@ body {
     line-height: 1.75rem;
   }
 }
+
 @media (min-width: 1024px) {
-
-  .lg\:-right-12 {
-    right: -3rem;
-  }
-
-  .lg\:left-16 {
-    left: 4rem;
-  }
 
   .lg\:top-\[10\%\] {
     top: 10%;
@@ -2961,10 +2683,6 @@ body {
     display: none;
   }
 
-  .lg\:h-20 {
-    height: 5rem;
-  }
-
   .lg\:h-32 {
     height: 8rem;
   }
@@ -2985,8 +2703,8 @@ body {
     height: 1000px;
   }
 
-  .lg\:h-\[200px\] {
-    height: 200px;
+  .lg\:h-\[100px\] {
+    height: 100px;
   }
 
   .lg\:h-\[275px\] {
@@ -3005,10 +2723,6 @@ body {
     height: 550px;
   }
 
-  .lg\:w-20 {
-    width: 5rem;
-  }
-
   .lg\:w-32 {
     width: 8rem;
   }
@@ -3025,12 +2739,8 @@ body {
     width: 24rem;
   }
 
-  .lg\:w-\[200px\] {
-    width: 200px;
-  }
-
-  .lg\:w-\[225px\] {
-    width: 225px;
+  .lg\:w-\[100px\] {
+    width: 100px;
   }
 
   .lg\:w-\[275px\] {
@@ -3039,10 +2749,6 @@ body {
 
   .lg\:w-\[350px\] {
     width: 350px;
-  }
-
-  .lg\:w-\[375px\] {
-    width: 375px;
   }
 
   .lg\:w-\[400px\] {
@@ -3061,28 +2767,8 @@ body {
     width: 600px;
   }
 
-  .lg\:gap-12 {
-    gap: 3rem;
-  }
-
-  .lg\:gap-14 {
-    gap: 3.5rem;
-  }
-
-  .lg\:gap-16 {
-    gap: 4rem;
-  }
-
-  .lg\:gap-20 {
-    gap: 5rem;
-  }
-
   .lg\:gap-3 {
     gap: 0.75rem;
-  }
-
-  .lg\:gap-4 {
-    gap: 1rem;
   }
 
   .lg\:p-16 {
@@ -3093,9 +2779,8 @@ body {
     padding: 1.25rem;
   }
 
-  .lg\:px-16 {
-    padding-left: 4rem;
-    padding-right: 4rem;
+  .lg\:p-8 {
+    padding: 2rem;
   }
 
   .lg\:px-32 {
@@ -3128,8 +2813,8 @@ body {
     padding-top: 120px;
   }
 
-  .lg\:pt-\[150px\] {
-    padding-top: 150px;
+  .lg\:pt-\[160px\] {
+    padding-top: 160px;
   }
 
   .lg\:pt-\[22rem\] {
@@ -3194,6 +2879,7 @@ body {
     line-height: 1.75rem;
   }
 }
+
 @media (min-width: 1280px) {
 
   .xl\:top-\[10\%\] {
@@ -3264,11 +2950,6 @@ body {
     padding: 4rem;
   }
 
-  .xl\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-
   .xl\:pt-28 {
     padding-top: 7rem;
   }
@@ -3285,8 +2966,8 @@ body {
     padding-top: 140px;
   }
 
-  .xl\:pt-\[170px\] {
-    padding-top: 170px;
+  .xl\:pt-\[180px\] {
+    padding-top: 180px;
   }
 
   .xl\:pt-\[22rem\] {
@@ -3302,13 +2983,16 @@ body {
     line-height: 1;
   }
 }
+
 .\[\&_img\]\:max-w-none img {
   max-width: none;
 }
+
 .\[\&_li\]\:mx-2 li {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
+
 @media ((max-height:1080px) and (min-width:1620px)) {
 
   .\[\@media_\(\(max-height\:1080px\)_and_\(min-width\:1620px\)\)\]\:-mb-32 {

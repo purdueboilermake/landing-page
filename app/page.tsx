@@ -387,7 +387,7 @@ function App() {
         </ParallaxLayer>
 
         {/* Add tents layer */}
-        <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 20, pointerEvents: 'none' }}>
+        {/* <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 20, pointerEvents: 'none' }}>
           <div className="absolute left-6 sm:left-8 lg:left-16">
             <Image
               src="/images/tents.png"
@@ -398,7 +398,7 @@ function App() {
               priority
             />
           </div>
-        </ParallaxLayer>
+        </ParallaxLayer> */}
 
         <ParallaxLayer offset={getOffset('windyroad')} speed={0}>
           <div className="relative h-[600px] md:h-[800px] lg:h-[1000px] xl:h-[1200px] w-full">
@@ -416,6 +416,18 @@ function App() {
             <div className='w-1/3 h-1/3'>
               <ScheduleSign />
             </div>
+          </div>
+
+          {/* Tents */}
+          <div className="absolute left-6 top-[30%] sm:left-8 lg:left-16 sm:top-[35%] md:top-[45%] lg:top-[60%] z-10">
+            <Image
+              src="/images/tents.png"
+              alt="Tents"
+              width={50}
+              height={50}
+              className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
+              priority
+            />
           </div>
 
           {/* Activities */}

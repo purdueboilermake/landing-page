@@ -74,7 +74,7 @@ const sponsors = [
       logo: "/assets/sponsors/modal.svg",
       url: 'https://modal.com/'
     },
-    
+
   ],
   [
     {
@@ -87,7 +87,7 @@ const sponsors = [
       logo: "/assets/sponsors/warp.png",
       url: 'https://www.warp.dev/'
     },
-    
+
     {
       name: 'Wolfram',
       logo: "/assets/sponsors/wolfram.png",
@@ -626,9 +626,10 @@ function App() {
 
             <div className="px-8 sm:px-10 md:px-12 lg:px-16 xl:px-20 max-w-[1600px] mx-auto">
               <div className="flex flex-col gap-1 md:gap-2 lg:gap-4">
-                {sponsors.map((sponsorRow, rowIndex) => (
-                  <div 
-                    key={rowIndex} 
+                <h3 className='text-4xl font-bold'>Coming Soon!</h3>
+                {/* {sponsors.map((sponsorRow, rowIndex) => (
+                  <div
+                    key={rowIndex}
                     className={`flex justify-center items-center ${
                       rowIndex === 0 ? 'gap-8 md:gap-16 lg:gap-20' :
                       rowIndex === 1 ? 'gap-6 md:gap-14 lg:gap-16' :
@@ -637,14 +638,14 @@ function App() {
                     }`}
                   >
                     {sponsorRow.map((sponsor, index) => (
-                      <SponsorCard 
-                        key={index} 
-                        sponsor={sponsor} 
+                      <SponsorCard
+                        key={index}
+                        sponsor={sponsor}
                         size={rowIndex === 0 ? "xl" : rowIndex === 1 ? "lg" : rowIndex === 2 ? "md" : "sm"}
                       />
                     ))}
                   </div>
-                ))}
+                ))} */}
               </div>
             </div>
           </div>

@@ -23,17 +23,10 @@ const sponsors = [
       logo: "/assets/sponsors/cat.png",
       url: 'https://www.caterpillar.com/'
     },
-  ],
-  [
     {
       name: 'D.E. Shaw',
       logo: "/assets/sponsors/deshaw.svg",
       url: 'https://www.deshaw.com/'
-    },
-    {
-      name: 'RCAC',
-      logo: "/assets/sponsors/rcac.png",
-      url: 'https://www.rcac.purdue.edu/'
     },
   ],
   [
@@ -46,12 +39,12 @@ const sponsors = [
       name: 'Klaviyo',
       logo: "/assets/sponsors/klaviyo.png",
       url: 'https://www.klaviyo.com/'
-    },
+    } /* ,
     {
-      name: 'Purdue Innovates',
-      logo: "/assets/sponsors/purdueinnovates.png",
-      url: 'https://purdueinnovates.org/'
-    },
+      name: 'Runpod',
+      logo: "/assets/sponsors/Runpod.png",
+      url: 'https://www.runpod.io/'
+    }, */
   ],
   [
     {
@@ -144,23 +137,23 @@ const activities = [
 const questions = [
   {
     question: 'What is a Hackathon?',
-    answer: "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activties as well to keep the fun going, and provide a platform to network with companies in the tech sector and other likeminded individuals from numerous backgrounds."
+    answer: "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activities as well to keep the fun going, and provide a platform to network with companies in the tech sector and other like-minded individuals from numerous backgrounds."
   },
   {
     question: 'Who can attend and how much experience do I need to participate?',
-    answer: 'Any undergraduate university student 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.'
+    answer: 'Any undergraduate university student age 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.'
   },
   {
     question: 'How does the application process work?',
-    answer: 'Once applications open, try to submit as soon as possible make sure to write thoughtful responses in the application and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.'
+    answer: 'Once applications open, try to submit as soon as possible, make sure to write thoughtful responses in the application, and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.'
   },
   {
     question: 'What projects can I make at BoilerMake?',
-    answer: 'You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies and applications with different projects made, and even see hardware-based projects — the possibilities are endless!'
+    answer: 'You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies used and various applications for projects, and even see hardware-based projects — the possibilities are endless!'
   },
   {
     question: 'Does BoilerMake offer travel reimbursements?',
-    answer: 'Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking passes to those who need them. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.'
+    answer: 'Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking to those who need it. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.'
   }
 ];
 
@@ -638,16 +631,15 @@ function App() {
 
             <div className="px-8 sm:px-10 md:px-12 lg:px-16 xl:px-20 max-w-[1600px] mx-auto">
               <div className="flex flex-col gap-1 md:gap-2 lg:gap-4">
-                <h3 className='text-4xl font-bold'>Coming Soon!</h3>
-                {/* {sponsors.map((sponsorRow, rowIndex) => (
+                { /* <h3 className='text-4xl font-bold'>Coming Soon!</h3> */ }
+                {sponsors.map((sponsorRow, rowIndex) => (
                   <div
                     key={rowIndex}
                     className={`flex justify-center items-center ${
                       rowIndex === 0 ? 'gap-8 md:gap-16 lg:gap-20' :
                       rowIndex === 1 ? 'gap-6 md:gap-14 lg:gap-16' :
                       rowIndex === 2 ? 'gap-4 md:gap-12 lg:gap-14' :
-                      'gap-3 md:gap-8 lg:gap-12'
-                    }`}
+                      'gap-3 md:gap-8 lg:gap-12'}`}
                   >
                     {sponsorRow.map((sponsor, index) => (
                       <SponsorCard
@@ -657,7 +649,7 @@ function App() {
                       />
                     ))}
                   </div>
-                ))} */}
+                ))}
               </div>
             </div>
           </div>

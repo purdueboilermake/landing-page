@@ -23,17 +23,10 @@ const sponsors = [
       logo: "/assets/sponsors/cat.png",
       url: 'https://www.caterpillar.com/'
     },
-  ],
-  [
     {
       name: 'D.E. Shaw',
       logo: "/assets/sponsors/deshaw.svg",
       url: 'https://www.deshaw.com/'
-    },
-    {
-      name: 'RCAC',
-      logo: "/assets/sponsors/rcac.png",
-      url: 'https://www.rcac.purdue.edu/'
     },
   ],
   [
@@ -46,12 +39,12 @@ const sponsors = [
       name: 'Klaviyo',
       logo: "/assets/sponsors/klaviyo.png",
       url: 'https://www.klaviyo.com/'
-    },
+    } /* ,
     {
-      name: 'Purdue Innovates',
-      logo: "/assets/sponsors/purdueinnovates.png",
-      url: 'https://purdueinnovates.org/'
-    },
+      name: 'Runpod',
+      logo: "/assets/sponsors/Runpod.png",
+      url: 'https://www.runpod.io/'
+    }, */
   ],
   [
     {
@@ -638,16 +631,15 @@ function App() {
 
             <div className="px-8 sm:px-10 md:px-12 lg:px-16 xl:px-20 max-w-[1600px] mx-auto">
               <div className="flex flex-col gap-1 md:gap-2 lg:gap-4">
-                <h3 className='text-4xl font-bold'>Coming Soon!</h3>
-                {/* {sponsors.map((sponsorRow, rowIndex) => (
+                { /* <h3 className='text-4xl font-bold'>Coming Soon!</h3> */ }
+                {sponsors.map((sponsorRow, rowIndex) => (
                   <div
                     key={rowIndex}
                     className={`flex justify-center items-center ${
                       rowIndex === 0 ? 'gap-8 md:gap-16 lg:gap-20' :
                       rowIndex === 1 ? 'gap-6 md:gap-14 lg:gap-16' :
                       rowIndex === 2 ? 'gap-4 md:gap-12 lg:gap-14' :
-                      'gap-3 md:gap-8 lg:gap-12'
-                    }`}
+                      'gap-3 md:gap-8 lg:gap-12'}`}
                   >
                     {sponsorRow.map((sponsor, index) => (
                       <SponsorCard
@@ -657,7 +649,7 @@ function App() {
                       />
                     ))}
                   </div>
-                ))} */}
+                ))}
               </div>
             </div>
           </div>

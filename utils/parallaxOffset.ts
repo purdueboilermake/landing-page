@@ -12,11 +12,11 @@ export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 // COPIED FOR the "coming soon" TEXT
 export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-  'sm': 3.7,  // mobile (will be same as 'md')
-  'md': 4.1,     // tablet (will be same as 'sm')
-  'lg': 5.0,   // desktop (will be same as 'xl')
-  'xl': 6,   // large desktop (will be same as 'lg')
-  '2xl': 6   // extra large desktop (will be same as 'lg')
+  'sm': 4.1,  // mobile (will be same as 'md')
+  'md': 4.5,     // tablet (will be same as 'sm')
+  'lg': 6.2,   // desktop (will be same as 'xl')
+  'xl': 7,   // large desktop (will be same as 'lg')
+  '2xl': 7   // extra large desktop (will be same as 'lg')
 };
 
 // Define offsets for each parallax layer by screen size
@@ -261,7 +261,7 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
   },
   'sponsors-background': {
     'sm': 2.85,
-    'md': 3.01,
+    'md': 3.1,
     'lg': 4.0,
     'xl': 4.75,
     '2xl': 4.75
@@ -281,18 +281,20 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
     '2xl': 4.75
   },
   // original footer for sponsors, the one below this is for the coming soon text
-  // 'footer': {
-  //   'sm': 3.65,
-  //   'md': 4.0,
-  //   'lg': 5.0,
-  //   'xl': 6.0,
-  //   '2xl': 6.0
-  // },
-  'footer': {
-    'sm': 3.2,
-    'md': 3.4,
-    'lg': 4.4,
-    'xl': 5.0,
-    '2xl': 5.0
-  },
+  /*
+   'footer': {
+     'sm': 4.65,
+     'md': 5.0,
+     'lg': 6.0,
+     'xl': 7.0,
+     '2xl': 8.0
+   },
+   */
+   'footer': {
+    'sm': 3.6,
+    'md': 4.0,
+    'lg': 5.2,
+    'xl': 6.0,
+    '2xl': 6.0
+  }, 
 };

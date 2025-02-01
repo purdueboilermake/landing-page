@@ -39,12 +39,12 @@ const sponsors = [
       name: 'Klaviyo',
       logo: "/assets/sponsors/klaviyo.png",
       url: 'https://www.klaviyo.com/'
-    },
+    } /* ,
     {
       name: 'Runpod',
       logo: "/assets/sponsors/Runpod.png",
       url: 'https://www.runpod.io/'
-    },
+    }, */
   ],
   [
     {

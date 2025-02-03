@@ -36,9 +36,9 @@ const sponsors = [
       url: 'https://engineering.purdue.edu/Engr'
     },
     {
-      name: 'Klaviyo',
-      logo: "/assets/sponsors/klaviyo.png",
-      url: 'https://www.klaviyo.com/'
+      name: 'Blip',
+      logo: "/assets/sponsors/blip.png",
+      url: 'https://www.blippayments.com/'
     } /* ,
     {
       name: 'Runpod',
@@ -52,11 +52,13 @@ const sponsors = [
       logo: "/assets/sponsors/sync.png",
       url: 'https://sync.so/'
     },
+    /*
     {
-      name: 'Blip',
-      logo: "/assets/sponsors/blip.png",
-      url: 'https://www.blippayments.com/'
-    },
+      name: 'Klaviyo',
+      logo: "/assets/sponsors/klaviyo.png",
+      url: 'https://www.klaviyo.com/'
+    }, 
+    */
     {
       name: 'Roboflow',
       logo: "/assets/sponsors/roboflow.png",

@@ -18,16 +18,25 @@ import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffs
 
 const sponsors = [
   [
+    /*
     {
       name: 'CAT',
       logo: "/assets/sponsors/cat.png",
       url: 'https://www.caterpillar.com/'
     },
+    */
     {
       name: 'D.E. Shaw',
       logo: "/assets/sponsors/deshaw.svg",
       url: 'https://www.deshaw.com/'
     },
+    /*
+    {
+      name: 'Runpod',
+      logo: "/assets/sponsors/Runpod.png",
+      url: 'https://www.runpod.io/'
+    }
+    */
   ],
   [
     {
@@ -39,26 +48,19 @@ const sponsors = [
       name: 'Blip',
       logo: "/assets/sponsors/blip.png",
       url: 'https://www.blippayments.com/'
-    } /* ,
+    },
     {
-      name: 'Runpod',
-      logo: "/assets/sponsors/Runpod.png",
-      url: 'https://www.runpod.io/'
-    }, */
+      name: 'Klaviyo',
+      logo: "/assets/sponsors/klaviyo.png",
+      url: 'https://www.klaviyo.com/'
+    },
   ],
   [
     {
       name: 'Sync',
       logo: "/assets/sponsors/sync.png",
       url: 'https://sync.so/'
-    },
-    /*
-    {
-      name: 'Klaviyo',
-      logo: "/assets/sponsors/klaviyo.png",
-      url: 'https://www.klaviyo.com/'
     }, 
-    */
     {
       name: 'Roboflow',
       logo: "/assets/sponsors/roboflow.png",

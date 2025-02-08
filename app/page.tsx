@@ -17,26 +17,44 @@ import ActivityPreview from '@/components/Event/ActivityPreview';
 import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffset';
 
 const sponsors = [
-  [
-    /*
+  [ // XL logos
     {
       name: 'CAT',
       logo: "/assets/sponsors/cat.png",
       url: 'https://www.caterpillar.com/'
     },
-    */
     {
       name: 'D.E. Shaw',
-      logo: "/assets/sponsors/deshaw.svg",
+      logo: "/assets/sponsors/deshaw.png",
       url: 'https://www.deshaw.com/'
     },
-    /*
+  ],
+  [ // LG logos
+  ],
+  [ // MD logos
+  ],
+  [ // SM logos
     {
-      name: 'Runpod',
-      logo: "/assets/sponsors/Runpod.png",
-      url: 'https://www.runpod.io/'
-    }
-    */
+      name: 'Klaviyo',
+      logo: "/assets/sponsors/klaviyo.png",
+      url: 'https://www.klaviyo.com/'
+    },
+    {
+      name: 'Blip',
+      logo: "/assets/sponsors/blip.png",
+      url: 'https://www.blippayments.com/'
+    },
+    {
+      name: 'Sync',
+      logo: "/assets/sponsors/sync.png",
+      url: 'https://sync.so/'
+    }, 
+    {
+      name: 'Modal',
+      logo: "/assets/sponsors/modal.svg",
+      url: 'https://modal.com/'
+    },
+
   ],
   [
     {
@@ -45,33 +63,20 @@ const sponsors = [
       url: 'https://engineering.purdue.edu/Engr'
     },
     {
-      name: 'Blip',
-      logo: "/assets/sponsors/blip.png",
-      url: 'https://www.blippayments.com/'
+      name: 'Purdue Innovates',
+      logo: "/assets/sponsors/purdue_innovates.png",
+      url: 'https://purdueinnovates.org/'
     },
-    {
-      name: 'Klaviyo',
-      logo: "/assets/sponsors/klaviyo.png",
-      url: 'https://www.klaviyo.com/'
-    },
-  ],
-  [
-    {
-      name: 'Sync',
-      logo: "/assets/sponsors/sync.png",
-      url: 'https://sync.so/'
-    }, 
     {
       name: 'Roboflow',
       logo: "/assets/sponsors/roboflow.png",
       url: 'https://roboflow.com/'
     },
     {
-      name: 'Modal',
-      logo: "/assets/sponsors/modal.svg",
-      url: 'https://modal.com/'
-    },
-
+      name: 'Runpod',
+      logo: "/assets/sponsors/Runpod.png",
+      url: 'https://www.runpod.io/'
+    }
   ],
   [
     {
@@ -84,12 +89,11 @@ const sponsors = [
       logo: "/assets/sponsors/warp.png",
       url: 'https://www.warp.dev/'
     },
-
     {
       name: 'Wolfram',
       logo: "/assets/sponsors/wolfram.png",
       url: 'https://www.wolfram.com/'
-    },
+    }
   ]
 ];
 

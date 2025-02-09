@@ -74,7 +74,7 @@ const sponsors = [
     },
     {
       name: 'Runpod',
-      logo: "/assets/sponsors/Runpod.png",
+      logo: "/assets/sponsors/runpod_color.png",
       url: 'https://www.runpod.io/'
     }
   ],

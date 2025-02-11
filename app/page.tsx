@@ -87,7 +87,7 @@ const sponsors = [
     {
       name: 'Taco Bell',
       logo: "/assets/sponsors/TacoBell.svg",
-      url: 'https://www.yum.com/wps/portal/yumbrands/Yumbrands/company/our-brands/taco-bell'
+      url: 'https://www.tacobell.com/'
     },
     {
       name: 'Cartesia',

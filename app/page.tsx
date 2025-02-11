@@ -23,17 +23,44 @@ const sponsors = [
       logo: "/assets/sponsors/cat.png",
       url: 'https://www.caterpillar.com/'
     },
+  ],
+  [ // LG logos
+  ],
+  [ // MD logos
     {
       name: 'D.E. Shaw',
       logo: "/assets/sponsors/deshaw.png",
       url: 'https://www.deshaw.com/'
     },
-  ],
-  [ // LG logos
-  ],
-  [ // MD logos
+    {
+      name: 'RCAC',
+      logo: "/assets/sponsors/RCAC.png",
+      url: 'https://www.rcac.purdue.edu/'
+    },
   ],
   [ // SM logos
+    {
+      name: 'CoE',
+      logo: "/assets/sponsors/coe.svg",
+      url: 'https://engineering.purdue.edu/Engr'
+    },
+    {
+      name: 'Purdue Innovates',
+      logo: "/assets/sponsors/purdue_innovates.png",
+      url: 'https://purdueinnovates.org/'
+    },
+    {
+      name: 'Roboflow',
+      logo: "/assets/sponsors/roboflow.png",
+      url: 'https://roboflow.com/'
+    },
+    {
+      name: 'Runpod',
+      logo: "/assets/sponsors/runpod_color.png",
+      url: 'https://www.runpod.io/'
+    }
+  ],
+  [
     {
       name: 'Klaviyo',
       logo: "/assets/sponsors/klaviyo.png",
@@ -58,27 +85,10 @@ const sponsors = [
   ],
   [
     {
-      name: 'CoE',
-      logo: "/assets/sponsors/coe.svg",
-      url: 'https://engineering.purdue.edu/Engr'
+      name: 'Taco Bell',
+      logo: "/assets/sponsors/TacoBell.svg",
+      url: 'https://www.yum.com/wps/portal/yumbrands/Yumbrands/company/our-brands/taco-bell'
     },
-    {
-      name: 'Purdue Innovates',
-      logo: "/assets/sponsors/purdue_innovates.png",
-      url: 'https://purdueinnovates.org/'
-    },
-    {
-      name: 'Roboflow',
-      logo: "/assets/sponsors/roboflow.png",
-      url: 'https://roboflow.com/'
-    },
-    {
-      name: 'Runpod',
-      logo: "/assets/sponsors/runpod_color.png",
-      url: 'https://www.runpod.io/'
-    }
-  ],
-  [
     {
       name: 'Cartesia',
       logo: "/assets/sponsors/cartesia.svg",
@@ -93,7 +103,7 @@ const sponsors = [
       name: 'Wolfram',
       logo: "/assets/sponsors/wolfram.png",
       url: 'https://www.wolfram.com/'
-    }
+    },
   ]
 ];
 

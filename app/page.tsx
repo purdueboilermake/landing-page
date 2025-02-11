@@ -34,7 +34,7 @@ const sponsors = [
     },
     {
       name: 'RCAC',
-      logo: "/assets/sponsors/RCAC.png",
+      logo: "/assets/sponsors/RCAC_Logo.png",
       url: 'https://www.rcac.purdue.edu/'
     },
   ],

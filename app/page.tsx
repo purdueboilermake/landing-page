@@ -291,8 +291,6 @@ function App() {
               <div className="container mx-auto">
                 <div className='sm:pt-[12rem] md:pt-[12rem] lg:pt-[22rem] xl:pt-[22rem]'>
                   <ApplyButton text="Apply Now!" link='https://boilermake-apply.web.app' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
-                  <div className="h-4"></div>
-                  <ApplyButton text="Mentor Interest Form" link='https://forms.gle/Vdhhjfmhg1v6XuTG9' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
                 </div>
               </div>
             </div>

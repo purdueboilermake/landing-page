@@ -110,29 +110,29 @@ const sponsors = [
 const activities = [
   {
     title: 'Opening Ceremony',
-    startDate: "2025-02-21T19:00:00",
+    startDate: "2025-02-21T19:30:00",
     endDate: "2025-02-21T20:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
     description: 'Introduction to BoilerMake.'
   },
   {
     title: 'Hacking Starts',
-    startDate: "2025-02-21T20:00:00",
-    endDate: "2025-02-21T20:00:00",
+    startDate: "2025-02-21T21:00:00",
+    endDate: "2025-02-21T21:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
     description: 'Hackers can start coding.'
   },
   {
     title: 'Carnival',
-    startDate: "2025-02-22T21:00:00",
-    endDate: "2025-02-23T00:00:00",
+    startDate: "2025-02-22T21:30:00",
+    endDate: "2025-02-23T23:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
     description: 'Event filled with fun games and activities.'
   },
   {
     title: 'Hacking Ends',
-    startDate: "2025-02-23T08:00:00",
-    endDate: "2025-02-23T08:00:00",
+    startDate: "2025-02-23T09:00:00",
+    endDate: "2025-02-23T09:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
     description: 'Hackers must stop coding.'
   },
@@ -145,7 +145,7 @@ const activities = [
   },
   {
     title: 'Closing Ceremony',
-    startDate: "2025-02-23T14:15:00",
+    startDate: "2025-02-23T13:30:00",
     endDate: "2025-02-23T15:00:00",
     location: 'Frances A. Cordova Recreational Sports Center',
     description: 'Final round of judging and all prize winners announced.'

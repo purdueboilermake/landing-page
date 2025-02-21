@@ -78,7 +78,7 @@ body {
 }
 @media (max-width: 768px) {
   #sponsors {
-    height: 100vh;
+    height: 200vh;
   }
 }
 

@@ -12,11 +12,11 @@ export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 // COPIED FOR the "coming soon" TEXT
 export const PAGES_BY_SCREEN: Record<ScreenSize, number> = {
-  'sm': 4.1,  // mobile (will be same as 'md')
-  'md': 4.5,     // tablet (will be same as 'sm')
-  'lg': 6.2,   // desktop (will be same as 'xl')
-  'xl': 7,   // large desktop (will be same as 'lg')
-  '2xl': 7   // extra large desktop (will be same as 'lg')
+  'sm': 4.25,  // mobile (will be same as 'md')
+  'md': 4.8,     // tablet (will be same as 'sm')
+  'lg': 6.0,   // desktop (will be same as 'xl')
+  'xl': 7.2,   // large desktop (will be same as 'lg')
+  '2xl': 7.2   // extra large desktop (will be same as 'lg')
 };
 
 // Define offsets for each parallax layer by screen size
@@ -291,10 +291,10 @@ export const LAYER_OFFSETS: Record<string, Record<ScreenSize, number>> = {
    },
    */
    'footer': {
-    'sm': 3.6,
-    'md': 4.0,
+    'sm': 3.75,
+    'md': 4.3,
     'lg': 5.2,
-    'xl': 6.0,
-    '2xl': 6.0
+    'xl': 6.2,
+    '2xl': 6.2
   }, 
 };

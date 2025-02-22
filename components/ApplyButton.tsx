@@ -27,7 +27,7 @@ export default function ApplyButton({text, link, size, className }: ApplyButtonP
         <a href={link} target='_blank' rel='noreferrer'>
             {/* text-[#DDB47D] was original color*/}
             <button
-                className={`bg-white shadow-md text-[#C6A270] font-body font-extrabold hover:shadow-xl transition-shadow duration-300 ${sizeClasses[size]} ${className}`}
+                className={`bg-white shadow-md text-[#C6A270] font-body font-extrabold hover:shadow-xl transition-shadow duration-300 ${sizeClasses[size]} ${className} mr-4`}
             >
                 {text}
             </button>

@@ -23,10 +23,20 @@ const sponsors = [
       logo: "/assets/sponsors/cat.png",
       url: 'https://www.caterpillar.com/'
     },
+    {
+      name: 'SFAB',
+      logo: "/assets/sponsors/SFAB.png",
+      url: 'https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html'
+    }
   ],
   [ // LG logos
   ],
   [ // MD logos
+    {
+      name: 'Purdue CS',
+      logo: "/assets/sponsors/PurdueCS.svg",
+      url: 'https://www.cs.purdue.edu/'
+    },
     {
       name: 'D.E. Shaw',
       logo: "/assets/sponsors/deshaw.png",
@@ -45,11 +55,6 @@ const sponsors = [
       url: 'https://engineering.purdue.edu/Engr'
     },
     {
-      name: 'Purdue Innovates',
-      logo: "/assets/sponsors/purdue_innovates.png",
-      url: 'https://purdueinnovates.org/'
-    },
-    {
       name: 'Roboflow',
       logo: "/assets/sponsors/roboflow.png",
       url: 'https://roboflow.com/'
@@ -58,6 +63,11 @@ const sponsors = [
       name: 'Runpod',
       logo: "/assets/sponsors/runpod_color.png",
       url: 'https://www.runpod.io/'
+    },
+    {
+      name: 'Purdue Innovates',
+      logo: "/assets/sponsors/purdue_innovates.png",
+      url: 'https://purdueinnovates.org/'
     }
   ],
   [

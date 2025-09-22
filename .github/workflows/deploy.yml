@@ -76,6 +76,12 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
+      # Ensure Pages picks up the custom domain and serves assets without Jekyll processing
+      - name: Prepare Pages artifact (CNAME and .nojekyll)
+        run: |
+          cp CNAME ./docs/CNAME
+          touch ./docs/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

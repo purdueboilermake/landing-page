@@ -25,7 +25,7 @@ export default function Home() {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <link
-        href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200..800&family=Inter:wght@100..900&family=Roboto+Mono:wght@400;500;600;700&family=Days+One&display=swap"
         rel="stylesheet"
       />
       <link
@@ -99,37 +99,62 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex flex-col h-3/4 mx-auto items-center justify-center md:justify-end [@media_((max-height:1080px)_and_(min-width:1620px))]:-mb-32    z-20">
+        <div className="flex flex-col items-center justify-center min-h-screen w-full relative z-20">
           <Image
             src="/images/logo_BMXIII.png"
-            alt="Boilermake Logo"
-            width={0}
-            height={0}
-            sizes={"100vw"}
-            className="w-5/6 md:max-w-full"
+            alt="BoilerMake Logo"
+            width={158}
+            height={149}
+            className=""
+            style={{
+              width: `min(${(158 / 1280) * 100}vw, 200px)`,
+              height: 'auto',
+            }}
           />
-          <h1 className="text-4xl md:text-6xl w-full font-bold text-center text-black">
-            BoilerMake XIII
+          <h2 
+            className="text-center"
+            style={{
+              fontFamily: 'Roboto Mono',
+              fontWeight: 400,
+              fontSize: 'clamp(18px, 3.5vw, 28px)',
+              lineHeight: '100%',
+              letterSpacing: '0.1em',
+              color: '#FFFFFF',
+              textShadow: '0px 0px 15px #FFDE00',
+            }}
+          >
+            COMING JANUARY 2026
+          </h2>
+          <h1 
+            className="text-center"
+            style={{
+              fontFamily: 'Days One',
+              fontWeight: 500,
+              fontSize: 'clamp(32px, 8vw, 60px)',
+              lineHeight: '100%',
+              letterSpacing: '0.1em',
+              color: '#FFE958',
+              textShadow: '0px 0px 15px #FFDE00',
+            }}
+          >
+            BOILERMAKE XIII
           </h1>
-          <p className="text-xl my-2 md:text-2xl text-center text-black">
-            Adventure Awaits. <a href="/" style={{textDecoration: 'underline'}}>February 2025</a>
-          </p>
-          <div className="flex flex-row gap-2 mt-2">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center">
             <a
-              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out"
+              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out text-center whitespace-nowrap"
               href="https://docs.google.com/forms/d/e/1FAIpQLSdEvajhXUU7ygN8Uy8Vt62OxmXKNAGPhDYC8TnTiyeiRlnbSg/viewform"
             >
               Early Interest Form
             </a>
-            <a className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out" href="https://forms.gle/Vdhhjfmhg1v6XuTG9">Mentor Interest Form</a>
+            <a className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out text-center whitespace-nowrap" href="https://forms.gle/Vdhhjfmhg1v6XuTG9">Mentor Interest Form</a>
             <a
               href="/past"
-              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out"
+              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out text-center whitespace-nowrap"
             >
               In the Past
             </a>
           </div>
-          <div className="flex flex-row gap-3 mt-6">
+          <div className="flex flex-row gap-3">
             <a
               href="mailto:team@boilermake.org"
               className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"

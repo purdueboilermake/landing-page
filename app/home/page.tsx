@@ -1,7 +1,9 @@
+"use client";
+
 /**
  * app/page.tsx
  * Home page
- * @unkn-wn, @DylanMiller
+ * @DylanMiller
  * 9-28-2025
  */
 
@@ -99,85 +101,228 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center min-h-screen w-full relative z-20">
+        {/* Stars left image */}
+        <div className="absolute bottom-0 left-0 pointer-events-none" style={{ zIndex: 15 }}>
           <Image
-            src="/images/logo_BMXIII.png"
-            alt="BoilerMake Logo"
-            width={158}
-            height={149}
-            className=""
+            src="/images/stars_left.png"
+            alt=""
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-auto h-auto"
             style={{
-              width: `min(${(158 / 1280) * 100}vw, 200px)`,
-              height: 'auto',
+              paddingLeft: '3.984375vw' // 51px / 1280px * 100 = 3.984375vw
             }}
           />
-          <h2 
-            className="text-center"
+        </div>
+        {/* Stars right image */}
+        <div className="absolute bottom-0 right-0 pointer-events-none" style={{ zIndex: 15 }}>
+          <Image
+            src="/images/stars_right.png"
+            alt=""
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-auto h-auto"
             style={{
-              fontFamily: 'Roboto Mono',
-              fontWeight: 400,
-              fontSize: 'clamp(18px, 3.5vw, 28px)',
-              lineHeight: '100%',
-              letterSpacing: '0.1em',
-              color: '#FFFFFF',
-              textShadow: '0px 0px 15px #FFDE00',
+              paddingRight: '2.421875vw', // 31px / 1280px * 100 = 2.421875vw
+              paddingBottom: '3.125vw' // 26px / 832px * 100 = 3.125vw
             }}
-          >
-            COMING JANUARY 2026
-          </h2>
-          <h1 
-            className="text-center"
-            style={{
-              fontFamily: 'Days One',
-              fontWeight: 500,
-              fontSize: 'clamp(32px, 8vw, 60px)',
-              lineHeight: '100%',
-              letterSpacing: '0.1em',
-              color: '#FFE958',
-              textShadow: '0px 0px 15px #FFDE00',
-            }}
-          >
-            BOILERMAKE XIII
-          </h1>
-          <div className="flex flex-col sm:flex-row gap-2 justify-center">
-            <a
-              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out text-center whitespace-nowrap"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdEvajhXUU7ygN8Uy8Vt62OxmXKNAGPhDYC8TnTiyeiRlnbSg/viewform"
+          />
+        </div>
+        <div className="flex flex-col items-center justify-between min-h-screen w-full relative z-20" style={{ paddingTop: `${(158 / 832) * 100}vh` }}>
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/logo_BMXIII.png"
+              alt="BoilerMake Logo"
+              width={158}
+              height={149}
+              className="mb-8"
+              style={{
+                height: `min(${(149 / 832) * 100}vh, 149px)`,
+                width: 'auto',
+              }}
+            />
+            <h2 
+              className="text-center mb-6"
+              style={{
+                fontFamily: 'Roboto Mono',
+                fontWeight: 500,
+                fontSize: 'clamp(18px, 3.5vw, 28px)',
+                lineHeight: '100%',
+                letterSpacing: '0.1em',
+                color: '#FFFFFF',
+                textShadow: '0px 0px 15px #FFDE00',
+              }}
             >
-              Early Interest Form
-            </a>
-            <a className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out text-center whitespace-nowrap" href="https://forms.gle/Vdhhjfmhg1v6XuTG9">Mentor Interest Form</a>
-            <a
-              href="/past"
-              className="bg-[#333333] text-white px-4 py-2 rounded-md hover:bg-[#8f250c] transition duration-500 ease-in-out text-center whitespace-nowrap"
+              COMING JANUARY 2026
+            </h2>
+            <h1 
+              className="text-center mb-12"
+              style={{
+                fontFamily: 'Days One',
+                fontWeight: 400,
+                fontSize: 'clamp(32px, 8vw, 60px)',
+                lineHeight: '100%',
+                letterSpacing: '0.1em',
+                color: '#FFE958',
+                textShadow: '0px 0px 15px #FFDE00',
+              }}
             >
-              In the Past
-            </a>
+              BOILERMAKE XIII
+            </h1>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <a
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center relative"
+                href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                style={{
+                  fontFamily: 'Roboto Mono',
+                  fontWeight: 700,
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '50px',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '30px',
+                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
+                  paddingRight: 'clamp(12px, 3.5vw, 40px)'
+                }}
+              >
+                <span style={{ marginBottom: '3px' }}>Early Interest Form</span>
+                <div 
+                  style={{
+                    position: 'absolute',
+                    bottom: '6px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '33.33%',
+                    height: '1px',
+                    backgroundColor: '#FFFFFF'
+                  }}
+                />
+              </a>
+              <a 
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center relative" 
+                href="https://forms.gle/Vdhhjfmhg1v6XuTG9"
+                style={{
+                  fontFamily: 'Roboto Mono',
+                  fontWeight: 700,
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '50px',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '30px',
+                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
+                  paddingRight: 'clamp(12px, 3.5vw, 40px)'
+                }}
+              >
+                <span style={{ marginBottom: '3px' }}>Mentor Interest Form</span>
+                <div 
+                  style={{
+                    position: 'absolute',
+                    bottom: '6px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '33.33%',
+                    height: '1px',
+                    backgroundColor: '#FFFFFF'
+                  }}
+                />
+              </a>
+              <a
+                href="/past"
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center relative"
+                style={{
+                  fontFamily: 'Roboto Mono',
+                  fontWeight: 700,
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '50px',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '30px',
+                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
+                  paddingRight: 'clamp(12px, 3.5vw, 40px)'
+                }}
+              >
+                <span style={{ marginBottom: '3px' }}>In the Past</span>
+                <div 
+                  style={{
+                    position: 'absolute',
+                    bottom: '6px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '33.33%',
+                    height: '1px',
+                    backgroundColor: '#FFFFFF'
+                  }}
+                />
+              </a>
+            </div>
           </div>
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-row gap-5 pt-8 pb-16">
             <a
               href="mailto:team@boilermake.org"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
             >
-              <i className="fas fa-xl fa-envelope" />
+              <i className="fas fa-envelope" style={{ fontSize: '1.75em' }} />
             </a>
             <a
               href="https://www.instagram.com/boilermake/?hl=en"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
             >
-              <i className="fab fa-xl fa-instagram" />
-            </a>
-            <a
-              href="https://x.com/BoilerMake1"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
-            >
-              <i className="fab fa-xl fa-twitter" />
+              <i className="fab fa-instagram" style={{ fontSize: '1.75em' }} />
             </a>
             <a
               href="https://www.linkedin.com/company/boilermake/"
-              className="text-[#333333] hover:text-[#8f250c] transition duration-300 ease-in-out"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
             >
-              <i className="fab fa-xl fa-linkedin" />
+              <i className="fab fa-linkedin" style={{ fontSize: '1.75em' }} />
+            </a>
+            <a
+              href="https://x.com/BoilerMake1"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
+            >
+              <i className="fab fa-twitter" style={{ fontSize: '1.75em' }} />
             </a>
           </div>
         </div>

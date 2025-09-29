@@ -65,10 +65,12 @@ export default function Home() {
             />
           </div>
         </div>
+        {/* Gradient layer: fit full viewport height and stretch to width */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('/images/Gradient.png')",
+            backgroundSize: '100% 100%', // force stretch both directions to always fill
             zIndex: 20
           }}
           aria-hidden

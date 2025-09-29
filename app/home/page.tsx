@@ -1,8 +1,8 @@
 /**
  * app/page.tsx
  * Home page
- * @unkn-wn, @VarunJasti
- * 11-14-2024
+ * @unkn-wn, @DylanMiller
+ * 9-28-2025
  */
 
 import Image from "next/image";
@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>BoilerMake XII</title>
+      <title>BoilerMake XIII</title>
       <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -50,10 +50,56 @@ export default function Home() {
             '\n            body {\n                font-family: "Dosis", sans-serif;\n                font-weight: 500;\n            }\n\n            h1 {\n                font-family: "Arvo", serif;\n            }\n        '
         }}
       />
-      <main className="flex flex-col h-screen w-full overflow-hidden justify-end bg-[#ACDEFF]">
-        <div className="flex flex-col h-3/4 mx-auto items-center justify-center md:justify-end [@media_((max-height:1080px)_and_(min-width:1620px))]:-mb-32    z-10">
+      <main
+        className="flex flex-col h-screen w-full overflow-hidden justify-center items-center bg-[#1E1E1E] relative"
+      >
+        {/* Ellipse backdrop layer (below everything) */}
+        <div className="absolute inset-0 pointer-events-none z-1">
+          <div className="relative w-full h-full">
+            <Image
+              src="/images/rings.png"
+              alt="Rings background"
+              fill
+              priority
+              className="object-cover object-center"
+            />
+          </div>
+        </div>
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/Gradient.png')",
+            zIndex: 20
+          }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 pointer-events-none flex justify-center overflow-hidden">
+          {/* Wider container with transparent side padding so blur can extend without hard edge */}
+          <div
+            className="relative h-screen px-[15vw] box-content"
+            style={{
+              zIndex: 10,
+              backgroundClip: 'padding-box'
+            }}
+          >
+            {/* Sharp (top) layer */}
+            <Image
+              src="/images/Circle.png"
+              alt=""
+              width={1049}
+              height={1049}
+              priority
+              className="h-screen w-auto max-w-none select-none"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)',
+                maskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)'
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col h-3/4 mx-auto items-center justify-center md:justify-end [@media_((max-height:1080px)_and_(min-width:1620px))]:-mb-32    z-20">
           <Image
-            src="/assets/logo.png"
+            src="/images/logo_BMXIII.png"
             alt="Boilermake Logo"
             width={0}
             height={0}
@@ -61,7 +107,7 @@ export default function Home() {
             className="w-5/6 md:max-w-full"
           />
           <h1 className="text-4xl md:text-6xl w-full font-bold text-center text-black">
-            BoilerMake XII
+            BoilerMake XIII
           </h1>
           <p className="text-xl my-2 md:text-2xl text-center text-black">
             Adventure Awaits. <a href="/" style={{textDecoration: 'underline'}}>February 2025</a>
@@ -111,27 +157,12 @@ export default function Home() {
         <div className="flex flex-col z-0">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
-              fill="#8f250c"
+              fill="#fffbfaff"
               fillOpacity="0.7"
               d="M0,224L26.7,229.3C53.3,235,107,245,160,213.3C213.3,181,267,107,320,106.7C373.3,107,427,181,480,197.3C533.3,213,587,171,640,170.7C693.3,171,747,213,800,218.7C853.3,224,907,192,960,149.3C1013.3,107,1067,53,1120,32C1173.3,11,1227,21,1280,64C1333.3,107,1387,181,1413,218.7L1440,256L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
             ></path>
           </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 80"
-            preserveAspectRatio="none"
-            className="md:-mt-8 lg:-mt-16"
-          >
-            <rect fill="#333" width={1440} height={80} />
-            <path
-              fill="none"
-              stroke="#fff"
-              strokeWidth={8}
-              strokeDasharray="15,30"
-              d="M0,40H1440"
-            />
-          </svg>
-          <div className="h-4 md:h-8 w-full bg-[#7BCF98]"></div>
+          
         </div>
       </main>
     </>

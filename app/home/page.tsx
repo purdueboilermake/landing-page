@@ -173,7 +173,7 @@ export default function Home() {
             </h1>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a
-                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center relative"
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
                 href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                 style={{
                   fontFamily: 'Roboto Mono',
@@ -190,21 +190,10 @@ export default function Home() {
                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
                 }}
               >
-                <span style={{ marginBottom: '3px' }}>Early Interest Form</span>
-                <div 
-                  style={{
-                    position: 'absolute',
-                    bottom: '6px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '33.33%',
-                    height: '1px',
-                    backgroundColor: '#FFFFFF'
-                  }}
-                />
+                Early Interest Form
               </a>
               <a 
-                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center relative" 
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center" 
                 href="https://forms.gle/Vdhhjfmhg1v6XuTG9"
                 style={{
                   fontFamily: 'Roboto Mono',
@@ -221,22 +210,11 @@ export default function Home() {
                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
                 }}
               >
-                <span style={{ marginBottom: '3px' }}>Mentor Interest Form</span>
-                <div 
-                  style={{
-                    position: 'absolute',
-                    bottom: '6px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '33.33%',
-                    height: '1px',
-                    backgroundColor: '#FFFFFF'
-                  }}
-                />
+                Mentor Interest Form
               </a>
               <a
                 href="/past"
-                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center relative"
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
                 style={{
                   fontFamily: 'Roboto Mono',
                   fontWeight: 700,
@@ -252,18 +230,7 @@ export default function Home() {
                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
                 }}
               >
-                <span style={{ marginBottom: '3px' }}>In the Past</span>
-                <div 
-                  style={{
-                    position: 'absolute',
-                    bottom: '6px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '33.33%',
-                    height: '1px',
-                    backgroundColor: '#FFFFFF'
-                  }}
-                />
+                In the Past
               </a>
             </div>
           </div>

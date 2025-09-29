@@ -57,8 +57,8 @@ export default function Home() {
         <div className="absolute inset-0 pointer-events-none z-1">
           <div className="relative w-full h-full">
             <Image
-              src="/images/rings.png"
-              alt="Rings background"
+              src="/images/ellipses.png"
+              alt="Ellipses Background"
               fill
               priority
               className="object-cover object-center"

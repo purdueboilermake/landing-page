@@ -20,16 +20,11 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       animation: {
-        'infinite-scroll': 'infinite-scroll 120s linear infinite',
         'infinite-scroll-right': 'infinite-scroll-right 120s linear infinite',
         'fade-on-load': 'fade-in 10s ease-in-out',
         'slide-in': 'slide-in 0.5s ease-out forwards',
       },
       keyframes: {
-        'infinite-scroll': {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-100%)' },
-        },
         'infinite-scroll-right': {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(200%)' },

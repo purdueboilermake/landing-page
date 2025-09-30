@@ -414,3 +414,17 @@ body {
   background-position: center;
   z-index: 1;
 }
+
+/* Infinite Scroll Animation for Image Carousel */
+.infinite-scroll-container {
+  animation: infiniteScroll linear infinite;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--scroll-distance));
+  }
+}

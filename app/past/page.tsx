@@ -96,35 +96,40 @@ export default function PastPage() {
                     </div>
                 </div>
                 <div className="flex flex-col w-full relative z-30 gap-8 md:gap-16 items-center">
-                <h1 className="font-bold text-6xl text-center text-[#FFE958]" style={{
-                    fontFamily: 'Days One',
-                    textShadow: '0px 0px 15px #FFDE00'
-                }}>BoilerMake In The Past</h1>
+                <h1
+                    className="font-bold text-4xl md:text-6xl text-center text-[#FFE958] px-4 md:px-0 leading-tight"
+                    style={{
+                        fontFamily: 'Days One',
+                        textShadow: '0px 0px 15px #FFDE00'
+                    }}
+                >
+                    BoilerMake In The Past
+                </h1>
                 <section className="text-white flex flex-col items-center justify-center">
                     <div className="flex flex-col md:flex-row gap-10">
                         <div className="text-center">
-                            <h3 className="text-4xl" style={{
+                            <h3 className="text-2xl md:text-4xl leading-tight" style={{
                                 fontFamily: 'Roboto Mono',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>500+</h3>
-                            <p style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Attendees</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Attendees</p>
                         </div>
                         <div className="text-center">
-                            <h3 className="text-4xl" style={{
+                            <h3 className="text-2xl md:text-4xl leading-tight" style={{
                                 fontFamily: 'Roboto Mono',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>36</h3>
-                            <p style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Hours of Hacking</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Hours of Hacking</p>
                         </div>
                         <div className="text-center">
-                            <h3 className="text-4xl" style={{
+                            <h3 className="text-2xl md:text-4xl leading-tight" style={{
                                 fontFamily: 'Roboto Mono',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>$10,000+</h3>
-                            <p style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Prizes Awarded</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Prizes Awarded</p>
                         </div>
                     </div>
                 </section>

@@ -130,6 +130,7 @@ export default function PastPage() {
                 </section>
                 <ImageCarousel
                     images={[
+                        { src: "/assets/pics/0.JPG", alt: "Event photo 0" },
                         { src: "/assets/pics/1.JPG", alt: "Event photo 1" },
                         { src: "/assets/pics/2.JPG", alt: "Event photo 2" },
                         { src: "/assets/pics/3.JPG", alt: "Event photo 3" },
@@ -141,7 +142,25 @@ export default function PastPage() {
                         { src: "/assets/pics/9.JPG", alt: "Event photo 9" },
                         { src: "/assets/pics/10.JPG", alt: "Event photo 10" },
                         { src: "/assets/pics/11.JPG", alt: "Event photo 11" },
-                        { src: "/assets/pics/12.JPG", alt: "Event photo 12" }
+                        { src: "/assets/pics/12.JPG", alt: "Event photo 12" },
+                        { src: "/assets/pics/13.JPG", alt: "Event photo 13" },
+                        { src: "/assets/pics/14.JPG", alt: "Event photo 14" },
+                        { src: "/assets/pics/15.JPG", alt: "Event photo 15" },
+                        { src: "/assets/pics/16.JPG", alt: "Event photo 16" },
+                        { src: "/assets/pics/17.JPG", alt: "Event photo 17" },
+                        { src: "/assets/pics/18.JPG", alt: "Event photo 18" },
+                        { src: "/assets/pics/19.JPG", alt: "Event photo 19" },
+                        { src: "/assets/pics/20.JPG", alt: "Event photo 20" },
+                        { src: "/assets/pics/21.JPG", alt: "Event photo 21" },
+                        { src: "/assets/pics/22.JPG", alt: "Event photo 22" },
+                        { src: "/assets/pics/23.JPG", alt: "Event photo 23" },
+                        { src: "/assets/pics/24.JPG", alt: "Event photo 24" },
+                        { src: "/assets/pics/25.JPG", alt: "Event photo 25" },
+                        { src: "/assets/pics/26.JPG", alt: "Event photo 26" },
+                        { src: "/assets/pics/27.JPG", alt: "Event photo 27" },
+                        { src: "/assets/pics/28.JPG", alt: "Event photo 28" },
+                        { src: "/assets/pics/29.JPG", alt: "Event photo 29" },
+                        { src: "/assets/pics/30.JPG", alt: "Event photo 30" }
                     ]}
                     speed={45}
                     className="w-full"

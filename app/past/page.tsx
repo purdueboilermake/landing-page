@@ -99,7 +99,7 @@ export default function PastPage() {
                 <h1
                     className="font-bold text-4xl md:text-6xl text-center text-[#FFE958] px-4 md:px-0 leading-tight"
                     style={{
-                        fontFamily: 'Days One',
+                        fontFamily: 'var(--font-disket-mono)',
                         textShadow: '0px 0px 15px #FFDE00'
                     }}
                 >
@@ -109,27 +109,27 @@ export default function PastPage() {
                     <div className="flex flex-col md:flex-row gap-10">
                         <div className="text-center">
                             <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'Roboto Mono',
+                                fontFamily: 'var(--font-futura-cyrillic)',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>500+</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Attendees</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Attendees</p>
                         </div>
                         <div className="text-center">
                             <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'Roboto Mono',
+                                fontFamily: 'var(--font-futura-cyrillic)',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>36</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Hours of Hacking</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Hours of Hacking</p>
                         </div>
                         <div className="text-center">
                             <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'Roboto Mono',
+                                fontFamily: 'var(--font-futura-cyrillic)',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>$10,000+</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Prizes Awarded</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Prizes Awarded</p>
                         </div>
                     </div>
                 </section>
@@ -172,10 +172,10 @@ export default function PastPage() {
                 />
                 <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">
                     <h2 className="text-3xl font-bold mb-6 md:mb-12 text-center text-[#FFE958]" style={{
-                        fontFamily: 'Days One',
+                        fontFamily: 'var(--font-disket-mono)',
                         textShadow: '0px 0px 15px #FFDE00'
                     }}>
-                        BMXII Sponsors
+                        BM XII Sponsors
                     </h2>
                     <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 mb-16">
                         <a href="https://www.caterpillar.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
@@ -386,7 +386,7 @@ export default function PastPage() {
                 </section>
                 <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">
                     <h2 className="text-3xl font-bold mb-6 md:mb-12 text-center text-[#FFE958]" style={{
-                        fontFamily: 'Days One',
+                        fontFamily: 'var(--font-disket-mono)',
                         textShadow: '0px 0px 15px #FFDE00'
                     }}>
                         More Past Sponsors
@@ -570,7 +570,7 @@ export default function PastPage() {
                             </div>
                         </a>
                     </div>
-                    <p className="my-16 text-lg text-center text-white" style={{ fontFamily: 'Roboto Mono' }}>
+                    <p className="my-16 text-lg text-center text-white" style={{ fontFamily: 'var(--font-futura-cyrillic)' }}>
                         Interested? Reach out to us at{" "}
                         <a href="mailto:sponsorship@boilermake.org" className="underline text-[#FFE958] hover:text-[#FFDE00]">
                             sponsorship@boilermake.org

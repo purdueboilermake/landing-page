@@ -21,9 +21,9 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
-      <div className="text-center mb-8">
-          FAQ
-      </div>
+       <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-300 drop-shadow-lg font-disket-mono mb-8">
+           FAQ
+       </div>
 
       {/* Individual question boxes matching the image */}
       <div className="space-y-4">

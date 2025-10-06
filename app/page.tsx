@@ -4,6 +4,7 @@ import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
 import Header from '@/components/Header';
 import HeroText from '@/components/HeroText';
 import AboutSection from '@/components/AboutSection';
+import TypedText, { TypedHeading } from '@/components/TypedText';
 import ScheduleSign from '@/components/Signs/ScheduleSign';
 import Statistic from '@/components/Statistic';
 import FAQSign from '@/components/Signs/FAQSign';
@@ -392,11 +393,8 @@ function App() {
 
         {/* Floating accordion layer */}
         <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 50 }}>
-          <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
-            {/* Empty space matching sign width */}
-            <div className="col-span-1"></div>
-            {/* Accordion floating above */}
-            <div className="col-span-2 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36">
+          <div className="h-full w-full flex items-center justify-center p-12">
+            <div className="w-full max-w-6xl">
               <FAQAccordian questions={questions} />
             </div>
           </div>

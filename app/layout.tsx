@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Dosis, Averia_Libre, Arvo } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css';
+import { TypingProvider } from '@/contexts/TypingContext';
 
 
 export const metadata: Metadata = {
@@ -46,7 +47,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${dosis.variable} ${averiaLibre.variable} ${arvo.variable} ${disketMono.variable} ${futuraCyrillic.variable}`}>
-      <body>{children}</body>
+      <body>
+        <TypingProvider
+          initialSettings={{
+            defaultSpeed: 150,
+            defaultDelay: 0,
+            globalSkipAnimation: false,
+            enableCursor: false,
+            cursorChar: '|',
+            cursorSpeed: 500,
+          }}
+        >
+          {children}
+        </TypingProvider>
+      </body>
     </html>
   )
 }

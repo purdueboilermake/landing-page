@@ -428,3 +428,13 @@ body {
     transform: translateX(var(--scroll-distance));
   }
 }
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}

@@ -13,7 +13,7 @@ export default function PastPage() {
         <>
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>In the Past | BoilerMake XII</title>
+            <title>In the Past | BoilerMake XIII</title>
             <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
             <link
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -33,7 +33,7 @@ export default function PastPage() {
                 href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
                 rel="stylesheet"
             />
-            <meta name="title" content="In the Past | BoilerMake XII" />
+            <meta name="title" content="In the Past | BoilerMake XIII" />
             <meta
                 name="description"
                 content="Purdue University's flagship hackathon, BoilerMake, is back in January 2025. Adventure Awaits."
@@ -139,24 +139,22 @@ export default function PastPage() {
                         { src: "/assets/pics/1.JPG", alt: "Event photo 1" },
                         { src: "/assets/pics/2.JPG", alt: "Event photo 2" },
                         { src: "/assets/pics/3.JPG", alt: "Event photo 3" },
-                        { src: "/assets/pics/4.JPG", alt: "Event photo 4" },
                         { src: "/assets/pics/5.JPG", alt: "Event photo 5" },
                         { src: "/assets/pics/6.JPG", alt: "Event photo 6" },
-                        { src: "/assets/pics/7.JPG", alt: "Event photo 7" },
                         { src: "/assets/pics/8.JPG", alt: "Event photo 8" },
-                        { src: "/assets/pics/9.JPG", alt: "Event photo 9" },
-                        { src: "/assets/pics/10.JPG", alt: "Event photo 10" },
+                        { src: "/assets/pics/16.JPG", alt: "Event photo 16" },
+                        { src: "/assets/pics/21.JPG", alt: "Event photo 21" },
                         { src: "/assets/pics/11.JPG", alt: "Event photo 11" },
                         { src: "/assets/pics/12.JPG", alt: "Event photo 12" },
                         { src: "/assets/pics/13.JPG", alt: "Event photo 13" },
+                        { src: "/assets/pics/9.JPG", alt: "Event photo 9" },
+                        { src: "/assets/pics/10.JPG", alt: "Event photo 10" },
                         { src: "/assets/pics/14.JPG", alt: "Event photo 14" },
                         { src: "/assets/pics/15.JPG", alt: "Event photo 15" },
-                        { src: "/assets/pics/16.JPG", alt: "Event photo 16" },
                         { src: "/assets/pics/17.JPG", alt: "Event photo 17" },
                         { src: "/assets/pics/18.JPG", alt: "Event photo 18" },
                         { src: "/assets/pics/19.JPG", alt: "Event photo 19" },
                         { src: "/assets/pics/20.JPG", alt: "Event photo 20" },
-                        { src: "/assets/pics/21.JPG", alt: "Event photo 21" },
                         { src: "/assets/pics/22.JPG", alt: "Event photo 22" },
                         { src: "/assets/pics/23.JPG", alt: "Event photo 23" },
                         { src: "/assets/pics/24.JPG", alt: "Event photo 24" },
@@ -165,9 +163,11 @@ export default function PastPage() {
                         { src: "/assets/pics/27.JPG", alt: "Event photo 27" },
                         { src: "/assets/pics/28.JPG", alt: "Event photo 28" },
                         { src: "/assets/pics/29.JPG", alt: "Event photo 29" },
-                        { src: "/assets/pics/30.JPG", alt: "Event photo 30" }
+                        { src: "/assets/pics/30.JPG", alt: "Event photo 30" },
+                        { src: "/assets/pics/4.JPG", alt: "Event photo 4" },
+                        { src: "/assets/pics/7.JPG", alt: "Event photo 7" },
                     ]}
-                    speed={45}
+                    speed={120} // higher is slower, speed = seconds for one complete scroll cycle
                     className="w-full"
                 />
                 <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">

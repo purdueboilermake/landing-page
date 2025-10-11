@@ -420,6 +420,10 @@ body {
   animation: infiniteScroll linear infinite;
 }
 
+.infinite-scroll-container:hover {
+  animation-play-state: paused;
+}
+
 @keyframes infiniteScroll {
   0% {
     transform: translateX(0);

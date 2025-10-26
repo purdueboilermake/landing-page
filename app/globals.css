@@ -639,18 +639,6 @@ body {
 .infinite-scroll-container:hover {
   animation-play-state: paused;
 }
-
-@keyframes infiniteScroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  .sponsor-row {
-    gap: 0.5rem;
-  }
-
-  .sponsors-grid {
-    gap: 1rem;
   }
 }
 
@@ -665,6 +653,21 @@ body {
   filter: blur(3px);
   /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
 }
+
+/* Infinite Scroll Animation for Image Carousel */
+.infinite-scroll-container {
+  animation: infiniteScroll linear infinite;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--scroll-distance));
+  }
+}
+
 /* Blinking cursor animation */
 @keyframes blink {
   0%, 50% {

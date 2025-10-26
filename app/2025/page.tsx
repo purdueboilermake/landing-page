@@ -122,46 +122,39 @@ const sponsors = [
 
 const activities = [
   {
-    title: "Opening Ceremony",
+    title: "Activity Name",
     startDate: "2025-02-21T19:30:00",
     endDate: "2025-02-21T20:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Introduction to BoilerMake.",
   },
   {
-    title: "Hacking Starts",
+    title: "Activity Name",
     startDate: "2025-02-21T21:00:00",
     endDate: "2025-02-21T21:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Hackers can start coding.",
   },
   {
-    title: "Carnival",
+    title: "Activity Name",
     startDate: "2025-02-22T21:30:00",
     endDate: "2025-02-23T23:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Event filled with fun games and activities.",
   },
   {
-    title: "Hacking Ends",
+    title: "Activity Name",
     startDate: "2025-02-23T09:00:00",
     endDate: "2025-02-23T09:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Hackers must stop coding.",
   },
   {
-    title: "Judging",
+    title: "Activity Name",
     startDate: "2025-02-23T10:00:00",
     endDate: "2025-02-23T14:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "First round of judging (all submitted projects).",
-  },
-  {
-    title: "Closing Ceremony",
-    startDate: "2025-02-23T13:30:00",
-    endDate: "2025-02-23T15:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "Final round of judging and all prize winners announced.",
   },
 ];
 
@@ -407,14 +400,11 @@ function App() {
         {/* Schedule Section */}
         <section id="schedule" className="schedule-section">
           <div className="schedule-content">
-            <div className="schedule-sign">
-              <ScheduleSign />
-            </div>
             <div className="schedule-activities">
               {activities.map((activity, index) => (
                 <div
                   key={`activity${index + 1}`}
-                  className={`activity-item activity-${index + 1}`}
+                  className={`activity-item activity-${index + 1} absolute ${activity_offset[`activity${index + 1}`]}`}
                 >
                   <ActivityPreview
                     title={activity.title}
@@ -424,31 +414,12 @@ function App() {
                     description={activity.description}
                     isActive={activeEventId === index + 1}
                     onEventClick={() => handleEventClick(index + 1)}
-                    size={
-                      index < 2
-                        ? "small"
-                        : index < 4
-                        ? "medium"
-                        : index < 5
-                        ? "large"
-                        : "xlarge"
-                    }
+                    size="large"
                     popup={index === 2 || index === 5 ? "right" : "left"}
                   />
                 </div>
               ))}
             </div>
-            {/* Tents decoration */}
-            <div className="tents-decoration">
-              <Image
-                src="/images/tents.png"
-                alt="Tents"
-                width={350}
-                height={350}
-                className="tents-image"
-              />
-            </div>
-          </div>
           {/* Birds animation for schedule */}
           <div className="birds-container birds-schedule">
             <Image

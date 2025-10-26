@@ -1,499 +1,309 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Header from "@/components/Header";
-import HeroText from "@/components/HeroText";
-import AboutSection from "@/components/AboutSection";
-import ScheduleSign from "@/components/Signs/ScheduleSign";
-import Statistic from "@/components/Statistic";
-import FAQSign from "@/components/Signs/FAQSign";
-import SponsorSign from "@/components/Signs/SponsorSign";
-import SponsorCard from "@/components/SponsorCard";
-import FAQAccordian from "@/components/FAQAccordian";
-import ApplyButton from "@/components/ApplyButton";
+
+/**
+ * app/page.tsx
+ * Home page
+ * @DylanMiller
+ * 9-28-2025
+ */
+
 import Image from "next/image";
-import ActivityPreview from "@/components/Event/ActivityPreview";
-import BackgroundManager from "@/components/BackgroundManager";
-import { BackgroundScaleMode } from "@/components/BackgroundLayer";
 
-const sponsors = [
-  [
-    // XL logos
-    {
-      name: "CAT",
-      logo: "/assets/sponsors/cat.png",
-      url: "https://www.caterpillar.com/",
-    },
-    {
-      name: "SFAB",
-      logo: "/assets/sponsors/SFAB.png",
-      url: "https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html",
-    },
-  ],
-  [
-    // LG logos
-  ],
-  [
-    // MD logos
-    {
-      name: "Purdue CS",
-      logo: "/assets/sponsors/PurdueCS.svg",
-      url: "https://www.cs.purdue.edu/",
-    },
-    {
-      name: "D.E. Shaw",
-      logo: "/assets/sponsors/deshaw.png",
-      url: "https://www.deshaw.com/",
-    },
-    {
-      name: "RCAC",
-      logo: "/assets/sponsors/RCAC_Logo.png",
-      url: "https://www.rcac.purdue.edu/",
-    },
-  ],
-  [
-    // SM logos
-    {
-      name: "CoE",
-      logo: "/assets/sponsors/coe.svg",
-      url: "https://engineering.purdue.edu/Engr",
-    },
-    {
-      name: "Roboflow",
-      logo: "/assets/sponsors/roboflow.png",
-      url: "https://roboflow.com/",
-    },
-    {
-      name: "Runpod",
-      logo: "/assets/sponsors/runpod_color.png",
-      url: "https://www.runpod.io/",
-    },
-    {
-      name: "Purdue Innovates",
-      logo: "/assets/sponsors/purdue_innovates.png",
-      url: "https://purdueinnovates.org/",
-    },
-  ],
-  [
-    {
-      name: "Klaviyo",
-      logo: "/assets/sponsors/klaviyo.png",
-      url: "https://www.klaviyo.com/",
-    },
-    {
-      name: "Blip",
-      logo: "/assets/sponsors/blip.png",
-      url: "https://www.blippayments.com/",
-    },
-    {
-      name: "Sync",
-      logo: "/assets/sponsors/sync.png",
-      url: "https://sync.so/",
-    },
-    {
-      name: "Modal",
-      logo: "/assets/sponsors/modal.svg",
-      url: "https://modal.com/",
-    },
-  ],
-  [
-    {
-      name: "Taco Bell",
-      logo: "/assets/sponsors/TacoBell.svg",
-      url: "https://www.tacobell.com/",
-    },
-    {
-      name: "Cartesia",
-      logo: "/assets/sponsors/cartesia.svg",
-      url: "https://www.cartesia.ai/",
-    },
-    {
-      name: "Warp",
-      logo: "/assets/sponsors/warp.png",
-      url: "https://www.warp.dev/",
-    },
-    {
-      name: "Wolfram",
-      logo: "/assets/sponsors/wolfram.png",
-      url: "https://www.wolfram.com/",
-    },
-  ],
-];
-
-const activities = [
-  {
-    title: "Opening Ceremony",
-    startDate: "2025-02-21T19:30:00",
-    endDate: "2025-02-21T20:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "Introduction to BoilerMake.",
-  },
-  {
-    title: "Hacking Starts",
-    startDate: "2025-02-21T21:00:00",
-    endDate: "2025-02-21T21:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "Hackers can start coding.",
-  },
-  {
-    title: "Carnival",
-    startDate: "2025-02-22T21:30:00",
-    endDate: "2025-02-23T23:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "Event filled with fun games and activities.",
-  },
-  {
-    title: "Hacking Ends",
-    startDate: "2025-02-23T09:00:00",
-    endDate: "2025-02-23T09:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "Hackers must stop coding.",
-  },
-  {
-    title: "Judging",
-    startDate: "2025-02-23T10:00:00",
-    endDate: "2025-02-23T14:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "First round of judging (all submitted projects).",
-  },
-  {
-    title: "Closing Ceremony",
-    startDate: "2025-02-23T13:30:00",
-    endDate: "2025-02-23T15:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "Final round of judging and all prize winners announced.",
-  },
-];
-
-const questions = [
-  {
-    question: "What is a Hackathon?",
-    answer:
-      "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activities as well to keep the fun going, and provide a platform to network with companies in the tech sector and other like-minded individuals from numerous backgrounds.",
-  },
-  {
-    question:
-      "Who can attend and how much experience do I need to participate?",
-    answer:
-      "Any undergraduate university student age 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.",
-  },
-  {
-    question: "How does the application process work?",
-    answer:
-      "Once applications open, try to submit as soon as possible, make sure to write thoughtful responses in the application, and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.",
-  },
-  {
-    question: "What projects can I make at BoilerMake?",
-    answer:
-      "You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies used and various applications for projects, and even see hardware-based projects — the possibilities are endless!",
-  },
-  {
-    question: "Does BoilerMake offer travel reimbursements?",
-    answer:
-      "Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking to those who need it. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.",
-  },
-];
-
-function App() {
-  const [activeEventId, setActiveEventId] = useState<number>(0);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // Set loaded state after component mounts
-    setIsLoaded(true);
-
-    // Check if mobile on initial load
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const handleEventClick = (id: number) => {
-    if (id === activeEventId) {
-      setActiveEventId(0);
-    } else {
-      setActiveEventId(id);
-    }
-  };
-
-  // Background layer configuration with responsive heights
-  const backgroundLayers = [
-    {
-      id: "solid-bg-color",
-      imageUrl: "/this/is/a/fake/image.png", // This will fail to load, showing fallback
-      zIndex: -100,
-      opacity: 1,
-      fallbackColor: "#2A2627", // This should show as the background color
-    },
-    {
-      id: "rainbow-blob",
-      imageUrl: "images/homepage_gradient_upper.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 1,
-      top: 0,
-      blendMode: "normal",
-      scaleMode: "cover" as BackgroundScaleMode,
-      height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
-      fallbackColor: "#ffffff",
-    },
-    {
-      id: "upper-center-circle",
-      imageUrl: "/images/Upper_center_circle.png",
-      position: "absolute" as const,
-      zIndex: -80, // Under content but above dark background layers
-      opacity: 0.8,
-      top: "-10vh", // 10% above viewport to cut off top
-      left: "0%", // Center horizontally
-      height: "100vh", // Square aspect ratio
-      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-      backgroundPosition: "center",
-      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-      fallbackColor: "transparent",
-    },
-    {
-      id: "stars-left",
-      imageUrl: "/images/stars-left.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 0.8,
-      top: "80vh",
-      left: "-35%",
-      height: "30vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "stars-right",
-      imageUrl: "/images/stars-right.png",
-      position: "absolute" as const,
-      zIndex: -99,
-      opacity: 0.8,
-      top: "60vh", // A bit higher than stars-left (80vh)
-      left: "35%", // Positioned on the right side (100% + 35% overhang = 135%)
-      height: "30vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "about-circle",
-      imageUrl: "/images/about-circle.png",
-      position: "absolute" as const,
-      zIndex: -80, // Under content but above dark background layers
-      opacity: 0.8,
-      top: "100vh", // 10% above viewport to cut off top
-      left: "0%", // Center horizontally
-      height: "100vh", // Square aspect ratio
-      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-      // backgroundPosition: "center",
-      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-      fallbackColor: "transparent",
-    },
-  ];
-
+export default function Home() {
   return (
-    <div className="App font-dosis">
-      {/* Background Manager - replaces parallax background system */}
-      <BackgroundManager
-        layers={backgroundLayers}
-        globalFallbackColor="#C5E1E6"
+    <>
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>BoilerMake XIII</title>
+      <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        rel="stylesheet"
       />
-
-      {/* Header - updated to work without parallax */}
-      <Header />
-
-      {/* Main content container with CSS Grid layout */}
-      <main className="main-content">
-        {/* Hero Section */}
-        <section id="hero" className="hero-section">
-          <div className="hero-content">
-            <div className="hero-text">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-arvo font-bold text-white">
-                BOILERMAKE
-              </h1>
-              <h2 className="text-[100px] md:text-[200px] font-arvo leading-none font-extrabold text-white">
-                XII
-              </h2>
-              <p className="text-xl md:text-3xl font-body font-extrabold leading-none mb-4 text-white">
-                2/21 - 2/23
-              </p>
-            </div>
-            <div className="hero-buttons">
-              <ApplyButton
-                text="Organizer Application"
-                link="https://forms.gle/inJw2FP3UwLMtNcZA"
-                size="large"
-              />
-              <ApplyButton
-                text="Devpost"
-                link="https://boilermake-xii.devpost.com/"
-                size="large"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Statistics Section */}
-        <section id="statistics" className="statistics-section">
-          <div className="statistics-grid">
-            <Statistic statistic="9" variable="Universities Represented" />
-            <Statistic statistic="70" variable="Project Submissions" />
-            <Statistic statistic="$4k" variable="In Prizes" />
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="about-section">
-          <div className="about-content">
-            <AboutSection />
-          </div>
-        </section>
-
-        {/* Schedule Section */}
-        <section id="schedule" className="schedule-section">
-          <div className="schedule-content">
-            <div className="schedule-sign">
-              <ScheduleSign />
-            </div>
-            <div className="schedule-activities">
-              {activities.map((activity, index) => (
-                <div
-                  key={`activity${index + 1}`}
-                  className={`activity-item activity-${index + 1}`}
-                >
-                  <ActivityPreview
-                    title={activity.title}
-                    startDate={activity.startDate}
-                    endDate={activity.endDate}
-                    location={activity.location}
-                    description={activity.description}
-                    isActive={activeEventId === index + 1}
-                    onEventClick={() => handleEventClick(index + 1)}
-                    size={
-                      index < 2
-                        ? "small"
-                        : index < 4
-                        ? "medium"
-                        : index < 5
-                        ? "large"
-                        : "xlarge"
-                    }
-                    popup={index === 2 || index === 5 ? "right" : "left"}
-                  />
-                </div>
-              ))}
-            </div>
-            {/* Tents decoration */}
-            <div className="tents-decoration">
-              <Image
-                src="/images/tents.png"
-                alt="Tents"
-                width={350}
-                height={350}
-                className="tents-image"
-              />
-            </div>
-          </div>
-          {/* Birds animation for schedule */}
-          <div className="birds-container birds-schedule">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet"
+      />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200..800&family=Inter:wght@100..900&family=Roboto+Mono:wght@400;500;600;700&family=Days+One&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet"
+      />
+      <meta name="title" content="BoilerMake XII" />
+      <meta
+        name="description"
+        content="Purdue University's flagship hackathon, BoilerMake, is back in February 2025. Adventure Awaits."
+      />
+      <meta
+        name="keywords"
+        content="boilermake, purdue, midwest, hackathon, boilermaker, uiuc, chicago, Indiana, illinois"
+      />
+      <meta name="robots" content="index, follow" />
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="language" content="English" />
+      <style
+        dangerouslySetInnerHTML={{
+          __html:
+            '\n            body {\n                font-family: "Dosis", sans-serif;\n                font-weight: 500;\n            }\n\n            h1 {\n                font-family: "Arvo", serif;\n            }\n        '
+        }}
+      />
+      <main
+        className="flex flex-col h-screen w-full overflow-hidden justify-center items-center bg-[#1E1E1E] relative"
+      >
+        {/* Ellipse backdrop layer (below everything) */}
+        <div className="absolute inset-0 pointer-events-none z-1">
+          <div className="relative w-full h-full">
             <Image
-              src="/images/bird2.png"
-              alt="Bird 2"
-              width={65}
-              height={65}
-              className="bird bird-1"
-            />
-            <Image
-              src="/images/bird1.png"
-              alt="Bird 1"
-              width={65}
-              height={65}
-              className="bird bird-2"
-            />
-            <Image
-              src="/images/bird3.png"
-              alt="Bird 3"
-              width={65}
-              height={65}
-              className="bird bird-3"
+              src="/images/ellipses.png"
+              alt="Ellipses Background"
+              fill
+              priority
+              className="object-cover object-center"
             />
           </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section id="faq" className="faq-section">
-          <div className="faq-content">
-            <div className="faq-sign">
-              <FAQSign />
-            </div>
-            <div className="faq-accordion">
-              <FAQAccordian questions={questions} />
-            </div>
-          </div>
-        </section>
-
-        {/* Sponsors Section */}
-        <section id="sponsors" className="sponsors-section">
-          <div className="sponsors-content">
-            <div className="sponsors-sign">
-              <SponsorSign />
-            </div>
-            <div className="sponsors-grid">
-              {sponsors.map((sponsorRow, rowIndex) => (
-                <div
-                  key={rowIndex}
-                  className={`sponsor-row sponsor-row-${rowIndex}`}
-                >
-                  {sponsorRow.map((sponsor, index) => (
-                    <SponsorCard
-                      key={index}
-                      sponsor={sponsor}
-                      size={
-                        rowIndex === 0
-                          ? "xl"
-                          : rowIndex === 1
-                          ? "lg"
-                          : rowIndex === 2
-                          ? "md"
-                          : "sm"
-                      }
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Campfires decoration */}
-          <div className="campfires-decoration">
+        </div>
+        {/* Gradient layer: fit full viewport height and stretch to width */}
+        <div
+          className="absolute inset-0 bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/Gradient.png')",
+            backgroundSize: '100% 100%', // force stretch both directions to always fill
+            zIndex: 20
+          }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 pointer-events-none flex justify-center overflow-hidden">
+          {/* Wider container with transparent side padding so blur can extend without hard edge */}
+          <div
+            className="relative h-screen px-[15vw] box-content"
+            style={{
+              zIndex: 10,
+              backgroundClip: 'padding-box'
+            }}
+          >
+            {/* Sharp (top) layer */}
             <Image
-              src="/images/campfires.png"
-              alt="Campfires"
-              width={350}
-              height={350}
-              className="campfires-image"
+              src="/images/Circle.png"
+              alt=""
+              width={1049}
+              height={1049}
+              priority
+              className="h-screen w-auto max-w-none select-none"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)',
+                maskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)'
+              }}
             />
           </div>
-        </section>
-
-        {/* Footer Section */}
-        <section id="footer" className="footer-section">
-          <footer className="footer-content">
-            <p className="text-white text-center">
-              © 2025 BoilerMake. All rights reserved.
-            </p>
-          </footer>
-        </section>
+        </div>
+        {/* Stars left image */}
+        <div className="absolute bottom-0 left-0 pointer-events-none" style={{ zIndex: 15 }}>
+          <Image
+            src="/images/stars_left.png"
+            alt=""
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-auto h-auto"
+            style={{
+              paddingLeft: '3.984375vw' // 51px / 1280px * 100 = 3.984375vw
+            }}
+          />
+        </div>
+        {/* Stars right image */}
+        <div className="absolute bottom-0 right-0 pointer-events-none" style={{ zIndex: 15 }}>
+          <Image
+            src="/images/stars_right.png"
+            alt=""
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-auto h-auto"
+            style={{
+              paddingRight: '2.421875vw', // 31px / 1280px * 100 = 2.421875vw
+              paddingBottom: '3.125vw' // 26px / 832px * 100 = 3.125vw
+            }}
+          />
+        </div>
+        <div className="flex flex-col items-center justify-between min-h-screen w-full relative z-20" style={{ paddingTop: `${(158 / 832) * 100}vh` }}>
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/logo_BMXIII.png"
+              alt="BoilerMake Logo"
+              width={158}
+              height={149}
+              className="mb-8"
+              style={{
+                height: `min(${(149 / 832) * 100}vh, 149px)`,
+                width: 'auto',
+              }}
+            />
+            <h2 
+              className="text-center mb-6"
+              style={{
+                fontFamily: 'Roboto Mono',
+                fontWeight: 500,
+                fontSize: 'clamp(18px, 3.5vw, 28px)',
+                lineHeight: '100%',
+                letterSpacing: '0.1em',
+                color: '#FFFFFF',
+                textShadow: '0px 0px 15px #FFDE00',
+              }}
+            >
+              COMING JANUARY 2026
+            </h2>
+            <h1 
+              className="text-center mb-12"
+              style={{
+                fontFamily: 'Days One',
+                fontWeight: 400,
+                fontSize: 'clamp(32px, 8vw, 60px)',
+                lineHeight: '100%',
+                letterSpacing: '0.1em',
+                color: '#FFE958',
+                textShadow: '0px 0px 15px #FFDE00',
+              }}
+            >
+              BOILERMAKE XIII
+            </h1>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <a
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
+                href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                style={{
+                  fontFamily: 'Roboto Mono',
+                  fontWeight: 700,
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '50px',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '30px',
+                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
+                  paddingRight: 'clamp(12px, 3.5vw, 40px)'
+                }}
+              >
+                Early Interest Form
+              </a>
+              <a 
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center" 
+                href="https://forms.gle/Vdhhjfmhg1v6XuTG9"
+                style={{
+                  fontFamily: 'Roboto Mono',
+                  fontWeight: 700,
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '50px',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '30px',
+                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
+                  paddingRight: 'clamp(12px, 3.5vw, 40px)'
+                }}
+              >
+                Mentor Interest Form
+              </a>
+              <a
+                href="/past"
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
+                style={{
+                  fontFamily: 'Roboto Mono',
+                  fontWeight: 700,
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '50px',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '30px',
+                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
+                  paddingRight: 'clamp(12px, 3.5vw, 40px)'
+                }}
+              >
+                In the Past
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-row gap-5 pt-8 pb-16">
+            <a
+              href="mailto:team@boilermake.org"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
+            >
+              <i className="fas fa-envelope" style={{ fontSize: '1.75em' }} />
+            </a>
+            <a
+              href="https://www.instagram.com/boilermake/?hl=en"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
+            >
+              <i className="fab fa-instagram" style={{ fontSize: '1.75em' }} />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/boilermake/"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
+            >
+              <i className="fab fa-linkedin" style={{ fontSize: '1.75em' }} />
+            </a>
+            <a
+              href="https://x.com/BoilerMake1"
+              className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = '0px 0px 15px #FFE958';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.textShadow = 'none';
+              }}
+            >
+              <i className="fab fa-twitter" style={{ fontSize: '1.75em' }} />
+            </a>
+          </div>
+        </div>
+        <div className="flex flex-col z-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path
+              fill="#fffbfaff"
+              fillOpacity="0.7"
+              d="M0,224L26.7,229.3C53.3,235,107,245,160,213.3C213.3,181,267,107,320,106.7C373.3,107,427,181,480,197.3C533.3,213,587,171,640,170.7C693.3,171,747,213,800,218.7C853.3,224,907,192,960,149.3C1013.3,107,1067,53,1120,32C1173.3,11,1227,21,1280,64C1333.3,107,1387,181,1413,218.7L1440,256L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+            ></path>
+          </svg>
+          
+        </div>
       </main>
-    </div>
+    </>
   );
 }
-
-export default App;

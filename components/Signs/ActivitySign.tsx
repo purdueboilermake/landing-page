@@ -1,78 +1,115 @@
 /**
- * ActivitySign.tsx
- * Component used to show an activity, with time and description
- */
-
-import Image from "next/image";
+* ActivitySign.tsx
+* Component used to show an activity, with time and description
+*/
+import { useState, useEffect } from "react";
 
 type ActivitySignProps = {
     title: string;
-    startDate: string;  // Changed from time: string
+    startDate: string;
     size: 'small' | 'medium' | 'large' | 'xlarge';
+    location?: string;
+    isExpanded?: boolean;
+    description?: string;
 }
 
-const sizeMap = {
-    'small': 'w-[100px] h-[100px] sm:w-[125px] sm:h-[125px] md:w-[200px] md:h-[200px] lg:w-[275px] lg:h-[275px] xl:w-[300px] xl:h-[300px]',
-    'medium': 'w-[175px] h-[175px] sm:w-[225px] sm:h-[225px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px]',
-    'large': 'w-[200px] h-[200px] sm:w-[275px] sm:h-[275px] md:w-[350px] md:h-[350px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px]',
-    'xlarge': 'w-[250px] h-[250px] sm:w-[325px] sm:h-[350px] md:w-[450px] md:h-[450px] lg:w-[550px] lg:h-[550px] xl:w-[600px] xl:h-[600px]'
+// change this to implement Tristan's typewriter later
+function useTypewriter(text: string, delay: number, startTyping: boolean) {
+    const [currentText, setCurrentText] = useState('');
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        if (!startTyping) {
+            setCurrentText('');
+            setCurrentIndex(0);
+            return;
+        }
+
+        if (currentIndex < text.length) {
+            const timeout = setTimeout(() => {
+                setCurrentText(prev => prev + text[currentIndex]);
+                setCurrentIndex(prev => prev + 1);
+            }, delay);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [text, delay, currentIndex, startTyping]);
+
+    return currentText;
 }
 
-const textOffset = {
-    'small': 'pt-[23px] sm:pt-[30px] md:pt-[50px] lg:pt-[65px] xl:pt-[75px]',
-    'medium': 'pt-[45px] sm:pt-[55px] md:pt-[80px] lg:pt-[100px] xl:pt-[120px]',
-    'large': 'pt-[55px] sm:pt-[80px] md:pt-[110px] lg:pt-[120px] xl:pt-[140px]',
-    'xlarge': 'pt-[60px] sm:pt-[90px] md:pt-[120px] lg:pt-[150px] xl:pt-[170px]'
+const widthMap = {
+    'small': 'w-52 sm:w-56 md:w-64 lg:w-72',
+    'medium': 'w-56 sm:w-64 md:w-72 lg:w-80',
+    'large': 'w-52 sm:w-56 md:w-64 lg:w-72',
+    'xlarge': 'w-56 sm:w-64 md:w-72 lg:w-80'
 }
 
-const timeSize = {
-    'small': 'text-[8px] sm:text-[10px] md:text-sm lg:text-lg',
-    'medium': 'text-base sm:text-base md:text-lg lg:text-xl',
-    'large': 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
-    'xlarge': 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'
+const verticalPadding = {
+    'small': 'py-2 sm:py-2 md:py-3 lg:py-3',
+    'medium': 'py-3 sm:py-3 md:py-4 lg:py-4',
+    'large': 'py-3 sm:py-4 md:py-5 lg:py-5',
+    'xlarge': 'py-4 sm:py-5 md:py-6 lg:py-6'
 }
 
-const titleSize = {
-    'small': 'text-[10px] sm:text-[12px] md:text-sm lg:text-base',
-    'medium': 'text-base sm:text-base md:text-lg lg:text-xl',
-    'large': 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
-    'xlarge': 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl'
-}
+const timeClass = 'text-xs sm:text-sm md:text-sm lg:text-base tracking-widest';
+const titleClass = 'text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold';
+const contentClass = 'text-xs sm:text-sm md:text-sm lg:text-base';
+const titleMargin = 'mt-1';
 
-const textMargin = {
-    'small': 'mt-0 sm:mt-0 md:mt-1',
-    'medium': 'mt-0 sm:mt-0 md:mt-2',
-    'large': 'mt-1 sm:mt-1 md:mt-3',
-    'xlarge': 'mt-1 sm:mt-2 md:mt-4'
-}
-
-export default function ActivitySign({ title, startDate, size }: ActivitySignProps) {
+export default function ActivitySign({ title, startDate, size, location, isExpanded, description }: ActivitySignProps) {
     const date = new Date(startDate);
-    const weekday = date.toLocaleString([], { weekday: 'short' });
     const time = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+    const [showDescription, setShowDescription] = useState(false);
+
+    useEffect(() => {
+        if (!isExpanded) {
+            setShowDescription(false);
+            return;
+        }
+    }, [isExpanded]);
+
+    const typedLocation = useTypewriter(location || '', 30, isExpanded || false);
+    const typedDescription = useTypewriter(description || '', 30, showDescription);
+
+    useEffect(() => {
+        if (location && typedLocation.length === location.length) {
+            const timeout = setTimeout(() => setShowDescription(true), 300);
+            return () => clearTimeout(timeout);
+        }
+    }, [typedLocation, location]);
 
     return (
-        <div className="relative w-full h-full flex items-center justify-cente hover:-translate-y-1 transition">
-            <div className={`relative w-${sizeMap[size]}  h-${sizeMap[size]}`}>
-                <Image src="/images/activity_sign.png" alt="Activity Card" className={sizeMap[size]} width={0} height={0} sizes="100vh" />
-                <div
-                    className={`absolute inset-0 flex flex-col items-center select-none ${textOffset[size]}`}
-                >
-                    <div className={`text-white ${timeSize[size]} font-semibold font-title`}>
-                        <span>{weekday}</span>
-                        <span className="mx-1">·</span>
-                        <span>{time}</span>
-                    </div>
-                    <p className={`text-white ${titleSize[size]} font-semibold font-title leading-none ${textMargin[size]}`}>
-                        {title.split(' ').length === 2 ? (
-                            <>
-                                {title.split(' ')[0]}<br />
-                                {title.split(' ')[1]}
-                            </>
-                        ) : title}
-                    </p>
+        <div className="relative w-full h-full flex items-start justify-center hover:-translate-y-1 transition">
+            <div className={`${widthMap[size]} ${verticalPadding[size]} ${isExpanded ? 'pb-8 sm:pb-10 md:pb-12 lg:pb-14' : ''} ${size === 'medium' ? 'px-8 sm:px-11 md:px-14 lg:px-15' : 'px-4 sm:px-6 md:px-8 lg:px-10'} border-[4px] bg-[#2A2627BF] border-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out max-w-[100vw] sm:max-w-none`}>
+                <div className={`text-white ${timeClass} font-normal`} style={{
+                    fontFamily: 'var(--font-disket-mono)'
+                }}>
+                    <span>{time}</span>
                 </div>
+                <p className={`text-[#FFE42D] ${titleClass} font-semibold leading-none ${titleMargin} text-center`} style={{
+                    fontFamily: 'var(--font-futura-cyrillic)',
+                }}>
+                    {title.split(' ').length === 2 ? (
+                        <>
+                            {title.split(' ')[0]}<br />
+                            {title.split(' ')[1]}
+                        </>
+                    ) : title}
+                </p>
+                {isExpanded && (
+                    <div className={`text-white ${contentClass} font-body mt-2 sm:mt-3 md:mt-4 text-center transition-all duration-300 ease-in-out max-w-full px-2`} style={{
+                        fontFamily: 'var(--font-disket-mono)'
+                    }}>
+                        <div className="pb-3 min-h-[1.5em]">{typedLocation}</div>
+                        {showDescription && (
+                            <div className="pt-3 min-h-[3em]">{typedDescription}</div>
+                        )}
+                    </div>
+                )}
             </div>
-        </div>
+        </div >
     );
 }
+
+

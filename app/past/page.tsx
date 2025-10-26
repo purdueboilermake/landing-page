@@ -13,7 +13,7 @@ export default function PastPage() {
         <>
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>In the Past | BoilerMake XII</title>
+            <title>In the Past | BoilerMake XIII</title>
             <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
             <link
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -33,7 +33,7 @@ export default function PastPage() {
                 href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
                 rel="stylesheet"
             />
-            <meta name="title" content="In the Past | BoilerMake XII" />
+            <meta name="title" content="In the Past | BoilerMake XIII" />
             <meta
                 name="description"
                 content="Purdue University's flagship hackathon, BoilerMake, is back in January 2025. Adventure Awaits."
@@ -99,7 +99,7 @@ export default function PastPage() {
                 <h1
                     className="font-bold text-4xl md:text-6xl text-center text-[#FFE958] px-4 md:px-0 leading-tight"
                     style={{
-                        fontFamily: 'Days One',
+                        fontFamily: 'var(--font-disket-mono)',
                         textShadow: '0px 0px 15px #FFDE00'
                     }}
                 >
@@ -109,27 +109,27 @@ export default function PastPage() {
                     <div className="flex flex-col md:flex-row gap-10">
                         <div className="text-center">
                             <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'Roboto Mono',
+                                fontFamily: 'var(--font-futura-cyrillic)',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>500+</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Attendees</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Attendees</p>
                         </div>
                         <div className="text-center">
                             <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'Roboto Mono',
+                                fontFamily: 'var(--font-futura-cyrillic)',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>36</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Hours of Hacking</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Hours of Hacking</p>
                         </div>
                         <div className="text-center">
                             <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'Roboto Mono',
+                                fontFamily: 'var(--font-futura-cyrillic)',
                                 color: '#FFE958',
                                 textShadow: '0px 0px 15px #FFDE00'
                             }}>$10,000+</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'Roboto Mono', color: '#FFFFFF' }}>Prizes Awarded</p>
+                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Prizes Awarded</p>
                         </div>
                     </div>
                 </section>
@@ -139,24 +139,22 @@ export default function PastPage() {
                         { src: "/assets/pics/1.JPG", alt: "Event photo 1" },
                         { src: "/assets/pics/2.JPG", alt: "Event photo 2" },
                         { src: "/assets/pics/3.JPG", alt: "Event photo 3" },
-                        { src: "/assets/pics/4.JPG", alt: "Event photo 4" },
                         { src: "/assets/pics/5.JPG", alt: "Event photo 5" },
                         { src: "/assets/pics/6.JPG", alt: "Event photo 6" },
-                        { src: "/assets/pics/7.JPG", alt: "Event photo 7" },
                         { src: "/assets/pics/8.JPG", alt: "Event photo 8" },
-                        { src: "/assets/pics/9.JPG", alt: "Event photo 9" },
-                        { src: "/assets/pics/10.JPG", alt: "Event photo 10" },
+                        { src: "/assets/pics/16.JPG", alt: "Event photo 16" },
+                        { src: "/assets/pics/21.JPG", alt: "Event photo 21" },
                         { src: "/assets/pics/11.JPG", alt: "Event photo 11" },
                         { src: "/assets/pics/12.JPG", alt: "Event photo 12" },
                         { src: "/assets/pics/13.JPG", alt: "Event photo 13" },
+                        { src: "/assets/pics/9.JPG", alt: "Event photo 9" },
+                        { src: "/assets/pics/10.JPG", alt: "Event photo 10" },
                         { src: "/assets/pics/14.JPG", alt: "Event photo 14" },
                         { src: "/assets/pics/15.JPG", alt: "Event photo 15" },
-                        { src: "/assets/pics/16.JPG", alt: "Event photo 16" },
                         { src: "/assets/pics/17.JPG", alt: "Event photo 17" },
                         { src: "/assets/pics/18.JPG", alt: "Event photo 18" },
                         { src: "/assets/pics/19.JPG", alt: "Event photo 19" },
                         { src: "/assets/pics/20.JPG", alt: "Event photo 20" },
-                        { src: "/assets/pics/21.JPG", alt: "Event photo 21" },
                         { src: "/assets/pics/22.JPG", alt: "Event photo 22" },
                         { src: "/assets/pics/23.JPG", alt: "Event photo 23" },
                         { src: "/assets/pics/24.JPG", alt: "Event photo 24" },
@@ -165,17 +163,19 @@ export default function PastPage() {
                         { src: "/assets/pics/27.JPG", alt: "Event photo 27" },
                         { src: "/assets/pics/28.JPG", alt: "Event photo 28" },
                         { src: "/assets/pics/29.JPG", alt: "Event photo 29" },
-                        { src: "/assets/pics/30.JPG", alt: "Event photo 30" }
+                        { src: "/assets/pics/30.JPG", alt: "Event photo 30" },
+                        { src: "/assets/pics/4.JPG", alt: "Event photo 4" },
+                        { src: "/assets/pics/7.JPG", alt: "Event photo 7" },
                     ]}
-                    speed={45}
+                    speed={120} // higher is slower, speed = seconds for one complete scroll cycle
                     className="w-full"
                 />
                 <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">
                     <h2 className="text-3xl font-bold mb-6 md:mb-12 text-center text-[#FFE958]" style={{
-                        fontFamily: 'Days One',
+                        fontFamily: 'var(--font-disket-mono)',
                         textShadow: '0px 0px 15px #FFDE00'
                     }}>
-                        BMXII Sponsors
+                        BM XII Sponsors
                     </h2>
                     <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 mb-16">
                         <a href="https://www.caterpillar.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
@@ -386,7 +386,7 @@ export default function PastPage() {
                 </section>
                 <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">
                     <h2 className="text-3xl font-bold mb-6 md:mb-12 text-center text-[#FFE958]" style={{
-                        fontFamily: 'Days One',
+                        fontFamily: 'var(--font-disket-mono)',
                         textShadow: '0px 0px 15px #FFDE00'
                     }}>
                         More Past Sponsors
@@ -570,7 +570,7 @@ export default function PastPage() {
                             </div>
                         </a>
                     </div>
-                    <p className="my-16 text-lg text-center text-white" style={{ fontFamily: 'Roboto Mono' }}>
+                    <p className="my-16 text-lg text-center text-white" style={{ fontFamily: 'var(--font-futura-cyrillic)' }}>
                         Interested? Reach out to us at{" "}
                         <a href="mailto:sponsorship@boilermake.org" className="underline text-[#FFE958] hover:text-[#FFDE00]">
                             sponsorship@boilermake.org

@@ -636,6 +636,13 @@ body {
 @media (max-width: 640px) {
   .hero-buttons {
     align-items: center;
+.infinite-scroll-container:hover {
+  animation-play-state: paused;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
   }
 
   .sponsor-row {
@@ -657,4 +664,13 @@ body {
 [data-layer-id="about-circle"] {
   filter: blur(3px);
   /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
+}
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
 }

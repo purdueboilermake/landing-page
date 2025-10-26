@@ -34,10 +34,10 @@ export default function Home() {
         href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
         rel="stylesheet"
       />
-      <meta name="title" content="BoilerMake XIII" />
+      <meta name="title" content="BoilerMake XII" />
       <meta
         name="description"
-        content="Purdue University's flagship hackathon, BoilerMake, is back in January 2026."
+        content="Purdue University's flagship hackathon, BoilerMake, is back in February 2025. Adventure Awaits."
       />
       <meta
         name="keywords"
@@ -146,7 +146,7 @@ export default function Home() {
             <h2 
               className="text-center mb-6"
               style={{
-                fontFamily: 'var(--font-futura-cyrillic)',
+                fontFamily: 'Roboto Mono',
                 fontWeight: 500,
                 fontSize: 'clamp(18px, 3.5vw, 28px)',
                 lineHeight: '100%',
@@ -160,7 +160,7 @@ export default function Home() {
             <h1 
               className="text-center mb-12"
               style={{
-                fontFamily: 'var(--font-disket-mono)',
+                fontFamily: 'Days One',
                 fontWeight: 400,
                 fontSize: 'clamp(32px, 8vw, 60px)',
                 lineHeight: '100%',
@@ -176,9 +176,9 @@ export default function Home() {
                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
                 href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                 style={{
-                  fontFamily: 'var(--font-futura-cyrillic)',
+                  fontFamily: 'Roboto Mono',
                   fontWeight: 700,
-                  fontSize: 'clamp(14px, 1.68vh, 14px)',
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
                   lineHeight: '100%',
                   letterSpacing: '0.05em',
                   textAlign: 'center',
@@ -194,11 +194,11 @@ export default function Home() {
               </a>
               <a 
                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center" 
-                href="https://docs.google.com/forms/d/e/1FAIpQLScmpc_zMGpQGUZy5vFkCTbkh-3oG5WMKx1eDES1ziDDSOqA4w/viewform?fbclid=IwY2xjawNP1a9leHRuA2FlbQIxMQABHj7g1iNATy2UCWCaVhKaWZOvWNXsQKN0AitmKPQf9ooawqWT7DzS62f-BHDz_aem_PIYSrJMHHUEkErPd19lyuw"
+                href="https://forms.gle/Vdhhjfmhg1v6XuTG9"
                 style={{
-                  fontFamily: 'var(--font-futura-cyrillic)',
+                  fontFamily: 'Roboto Mono',
                   fontWeight: 700,
-                  fontSize: 'clamp(14px, 1.68vh, 14px)',
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
                   lineHeight: '100%',
                   letterSpacing: '0.05em',
                   textAlign: 'center',
@@ -210,15 +210,15 @@ export default function Home() {
                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
                 }}
               >
-                Mentor Application Form
+                Mentor Interest Form
               </a>
               <a
                 href="/past"
                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
                 style={{
-                  fontFamily: 'var(--font-futura-cyrillic)',
+                  fontFamily: 'Roboto Mono',
                   fontWeight: 700,
-                  fontSize: 'clamp(14px, 1.68vh, 14px)',
+                  fontSize: 'clamp(10px, 1.68vh, 14px)',
                   lineHeight: '100%',
                   letterSpacing: '0.05em',
                   textAlign: 'center',

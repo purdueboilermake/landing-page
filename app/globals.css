@@ -9,7 +9,7 @@
 }
 
 /* Root Colors */
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -19,12 +19,13 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 #teams-page {
   background: linear-gradient(to top, #7AA689 0%, #C0E2F9 100%);
   height: 450vh;
 }
+
 @media (max-width: 768px) {
   #teams-page {
     height: 400vh;
@@ -39,10 +40,11 @@ body {
 
 /* About Background Styles */
 #about-background {
-  background: linear-gradient(to bottom, #C5E1E6 0%, #C3E1ED 36%, #C0E2F9 100%);
+  /* background: linear-gradient(to bottom, #C5E1E6 0%, #C3E1ED 36%, #C0E2F9 100%); */
   height: 200vh;
   position: relative;
 }
+
 @media (max-width: 768px) {
   #about-background {
     height: 100vh;
@@ -51,9 +53,10 @@ body {
 
 /* Schedule Section */
 #schedule {
-  background: linear-gradient(to top, #7AA689 0%, #C0E2F9 100%);
+  /* background: linear-gradient(to top, #7AA689 0%, #C0E2F9 100%); */
   height: 200vh;
 }
+
 @media (max-width: 768px) {
   #schedule {
     height: 101vh;
@@ -62,9 +65,10 @@ body {
 
 /* FAQ Section */
 #faq {
-  background-color: #7AA689;
+  /* background-color: #7AA689; */
   height: 101vh;
 }
+
 @media (max-width: 768px) {
   #faq {
     height: 76vh;
@@ -73,9 +77,10 @@ body {
 
 /* Sponsors Section */
 #sponsors {
-  background-color: #7AA689;
+  /* background-color: #7AA689; */
   height: 150vh;
 }
+
 @media (max-width: 768px) {
   #sponsors {
     height: 200vh;
@@ -148,19 +153,25 @@ body {
 }
 
 /* Animation Styles */
-.animation, .animation_layer {
+.animation,
+.animation_layer {
   height: 1000px;
 }
+
 @media (max-width: 768px) {
-  .animation, .animation_layer {
+
+  .animation,
+  .animation_layer {
     height: 500px;
   }
 }
+
 .animation {
   display: block;
   position: relative;
   z-index: 10;
 }
+
 .animation_layer {
   background-position: bottom center;
   background-size: auto 1038px;
@@ -168,258 +179,463 @@ body {
   width: 100%;
   position: absolute;
 }
+
 .animation_layer.parallax {
   position: fixed;
 }
 
 #hero {
-  background: linear-gradient(to bottom, #DDB47D 41%, #C5E1E6 96%);
   height: 100vh;
 }
+
 @media (max-width: 768px) {
   #hero {
     height: 75vh;
   }
 }
 
-/* Cliff Section */
-#cliff {
-  position: absolute;
-  background: none;
-  background-size: cover;
-  background-blend-mode: normal;
-}
-#cliff::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, #C5E1E6 100%);
-  pointer-events: none;
-}
+/* ===== NEW CSS GRID LAYOUT SYSTEM ===== */
+/* Replaces parallax-based positioning with CSS Grid */
 
-@media (max-width: 1024px) {
-  #cliff {
-    height: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  #cliff {
-    height: 100%;
-  }
-}
-
-/* Cloud Layers */
-#cloud1 {
-  position: absolute;
-  width: 60vw;
-  background: url("/images/cloud_transition_1.png") no-repeat center center;
-  background-size: contain;
-  left: 15%;
-  top: 10%;
-}
-#cloud2 {
-  position: absolute;
-  width: 90vw;
-  background: url("/images/cloud_transition_2.png") no-repeat center center;
-  background-size: contain;
-  left: -15%;
-}
-#cloud3 {
-  position: absolute;
-  width: 70vw;
-  background: url("/images/cloud_transition_3.png") no-repeat center center;
-  background-size: contain;
-  left: 40%;
-}
-#cloud4 {
-  position: absolute;
-  width: 40vw;
-  background: url("/images/cloud_transition_4.png") no-repeat center center;
-  background-size: contain;
-  left: 50%;
-  top: 10%;
-}
-#cloud5 {
-  position: absolute;
-  width: 25vw;
-  background: url("/images/cloud_transition_5.png") no-repeat center center;
-  background-size: contain;
-  left: 75%;
-  top: -12%;
-}
-@media (max-width: 768px) {
-  #cloud1 { top: 3%; }
-  #cloud4 { top: 4%; }
-  #cloud5 { top: -5%; }
-}
-
-/* Road Section */
-/* #road {
-  position: absolute;
-  top: -100vh;
-  left: -40vw;
-  width: 200vw;
-  height: 200vh;
-  background: url("/images/road.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform: rotate(20deg) scale(1.2);
-  transform-origin: top left;
-}
-@media (max-width: 768px) {
-  #road {
-    top: -65%;
-    left: 15%;
-    width: 150vw;
-    height: 150vh;
-    transform: rotate(20deg) scale(1);
-  }
-} */
-
-/* Footer Background */
-#footer-background {
-  background: url("/images/footer_background.png") repeat-x;
-  height: 100%;
-  background-size: contain;
-  background-position: bottom;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  animation: moveBackground 30s linear infinite;
-}
-@keyframes moveBackground {
-  0% { background-position: 0 0; }
-  100% { background-position: 100vw 0; }
-}
-
-/* Mini Clouds */
-#mini-cloud-left {
-  position: absolute;
-  width: 40vw;
-  background: url("/images/cloud_transition_5.png") no-repeat center center;
-  background-size: contain;
-  left: 5%;
-}
-#mini-cloud-right {
-  position: absolute;
-  width: 40vw;
-  background: url("/images/cloud_transition_4.png") no-repeat center center;
-  opacity: 0.5;
-  background-size: contain;
-  left: 69%;
-}
-
-/* Sun */
-#sun {
-  position: absolute;
-  width: 45vw;
-  background: url("/images/sun.png") no-repeat center center;
-  background-size: contain;
-  left: -10%;
-}
-
-/* Statistics */
-#stat1, #stat2, #stat3 {
-  position: absolute;
-  background-size: 20%;
-  background-repeat: no-repeat;
-}
-#stat1 { left: 60%; transform: rotate(-6deg); }
-#stat2 { left: 45%; transform: translateX(-50%) rotate(-3deg); }
-#stat3 { left: 77%; transform: translateX(-50%) rotate(5deg); }
-@media (max-width: 768px) { #stat1 { left: 57%; } }
-
-/* Events */
-#event1 { position: absolute; left: 80%; }
-#event2 { position: absolute; left: 5%; }
-#event3 { position: absolute; left: 25%; }
-#event4 { position: absolute; left: 15%; }
-#event5 { position: absolute; left: 75%; }
-@media (max-width: 768px) {
-  #event1 { left: 80%; }
-  #event2 { left: 3%; }
-  #event3 { left: 25%; }
-  #event4 { left: 15%; }
-  #event5 { left: 77%; }
-}
-
-/* Activities */
-#activity1 { position: absolute; left: 65%; }
-#activity2 { position: absolute; left: 40%; }
-#activity3 { position: absolute; left: 10%; }
-#activity4 { position: absolute; left: 45%; }
-#activity5 { position: absolute; left: 65%; }
-#activity6 { position: absolute; left: 20%; }
-@media (max-width: 768px) {
-  #activity1 { position: absolute; left: 65%; }
-  #activity2 { position: absolute; left: 47%; }
-  #activity3 { position: absolute; left: 7%; }
-  #activity4 { position: absolute; left: 45%; }
-  #activity5 { position: absolute; left: 65%; }
-  #activity6 { position: absolute; left: 20%; }
-}
-
-/* Header Section */
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes float-flipped {
-  0% { transform: translateY(0px) scaleX(-1); }
-  50% { transform: translateY(-10px) scaleX(-1); }
-  100% { transform: translateY(0px) scaleX(-1); }
-}
-
-
-/* Add more natural bounce physics with cubic-bezier */
-.animate-tumble {
-  animation:
-    /* tumble 8s linear infinite, */
-    bounce 0.6s cubic-bezier(0.63, 0.09, 0.75, 0.46) infinite alternate;
-}
-
-@keyframes tumble {
-  0% {
-    transform: translateX(-20vw) rotate(0deg);
-  }
-  100% {
-    transform: translateX(120vw) rotate(1800deg);
-  }
-}
-
-@keyframes bounce {
-  0%, 10% {
-    transform: translateY(-40px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-/* Tents Section */
-#tents {
-  position: absolute;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
+/* Main content container */
+.main-content {
+  display: grid;
+  grid-template-rows: auto;
+  min-height: 100vh;
+  position: relative;
   z-index: 1;
 }
 
-/* Infinite Scroll Animation for Image Carousel */
-.infinite-scroll-container {
-  animation: infiniteScroll linear infinite;
+/* Hero Section */
+.hero-section {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
 }
 
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Statistics Section */
+.statistics-section {
+  display: grid;
+  place-items: center;
+  min-height: 50vh;
+  padding: 2rem;
+  position: relative;
+}
+
+.statistics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* About Section */
+.about-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+  /* background: linear-gradient(to bottom, #C5E1E6 0%, #C3E1ED 36%, #C0E2F9 100%); */
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Birds Animation */
+.birds-container {
+  position: absolute;
+  pointer-events: none;
+}
+
+.birds-about {
+  right: 5%;
+  top: 20%;
+}
+
+.birds-schedule {
+  left: 30%;
+  top: 10%;
+}
+
+.bird {
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+}
+
+.birds-about .bird-1 {
+  left: 0;
+  top: 0;
+}
+
+.birds-about .bird-2 {
+  left: -10px;
+  top: 40px;
+  animation-delay: 0.5s;
+}
+
+.birds-about .bird-3 {
+  left: 50px;
+  top: 20px;
+  animation-delay: 1s;
+}
+
+.birds-schedule .bird-1 {
+  left: 50px;
+  top: 15px;
+  animation: float-flipped 3s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.birds-schedule .bird-2 {
+  left: 15px;
+  top: 0;
+  animation: float-flipped 3s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+.birds-schedule .bird-3 {
+  left: 0;
+  top: 40px;
+  animation: float-flipped 3s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+/* Schedule Section */
+.schedule-section {
+  display: grid;
+  min-height: 150vh;
+  padding: 2rem;
+  position: relative;
+  /* background: linear-gradient(to top, #7AA689 0%, #C0E2F9 100%); */
+}
+
+.schedule-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.schedule-sign {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.schedule-activities {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.activity-item {
+  position: relative;
+}
+
+.activity-1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.activity-2 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.activity-3 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.activity-4 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.activity-5 {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.activity-6 {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.tents-decoration {
+  position: absolute;
+  left: -2rem;
+  bottom: 20%;
+  z-index: 10;
+}
+
+.tents-image {
+  width: 200px;
+  height: 200px;
+}
+
+/* FAQ Section */
+.faq-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  min-height: 100vh;
+  padding: 2rem;
+  /* background-color: #7AA689; */
+  gap: 2rem;
+}
+
+.faq-content {
+  display: contents;
+}
+
+.faq-sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-accordion {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+/* Sponsors Section */
+.sponsors-section {
+  display: grid;
+  min-height: 120vh;
+  padding: 2rem;
+  background-color: #7AA689;
+  position: relative;
+}
+
+.sponsors-content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sponsors-sign {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.sponsors-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sponsor-row-0 {
+  gap: 2rem;
+}
+
+.sponsor-row-1 {
+  gap: 1.5rem;
+}
+
+.sponsor-row-2 {
+  gap: 1rem;
+}
+
+.sponsor-row-3,
+.sponsor-row-4,
+.sponsor-row-5 {
+  gap: 0.75rem;
+}
+
+.campfires-decoration {
+  position: absolute;
+  right: -2rem;
+  bottom: 20%;
+  z-index: 5;
+}
+
+.campfires-image {
+  width: 250px;
+  height: 250px;
+}
+
+/* Footer Section */
+.footer-section {
+  display: grid;
+  place-items: center;
+  min-height: 30vh;
+  padding: 2rem;
+  background-color: #7AA689;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Tumbleweed Animation */
+.tumbleweed-container {
+  position: fixed;
+  bottom: 10%;
+  left: -200px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.tumbleweed {
+  width: 100px;
+  height: 100px;
+  animation: tumble 8s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-text {
+    align-items: center;
+  }
+
+  .about-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .schedule-content {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-activities {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-1,
+  .activity-2,
+  .activity-3,
+  .activity-4,
+  .activity-5,
+  .activity-6 {
+    grid-column: 1;
+  }
+
+  .faq-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tents-image,
+  .campfires-image {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 75vh;
+    padding: 1rem;
+  }
+
+  .statistics-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about-section,
+  .schedule-section,
+  .faq-section,
+  .sponsors-section {
+    padding: 1rem;
+  }
+
+  .schedule-section {
+    min-height: 200vh;
+  }
+
+  .sponsors-section {
+    min-height: 150vh;
+  }
+
+  .birds-about {
+    right: 2%;
+    top: 15%;
+  }
+
+  .birds-schedule {
+    left: 20%;
+    top: 5%;
+  }
+
+  .bird {
+    width: 45px;
+    height: 45px;
+  }
+
+  .tumbleweed {
+    width: 75px;
+    height: 75px;
+  }
+
+  .tents-image,
+  .campfires-image {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-buttons {
+    align-items: center;
 .infinite-scroll-container:hover {
   animation-play-state: paused;
 }
@@ -428,11 +644,27 @@ body {
   0% {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(var(--scroll-distance));
+
+  .sponsor-row {
+    gap: 0.5rem;
+  }
+
+  .sponsors-grid {
+    gap: 1rem;
   }
 }
 
+/* Upper Center Circle Positioning with Progressive Blur */
+[data-layer-id="upper-center-circle"] {
+  filter: blur(3px);
+  /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
+}
+
+/* About Center Circle Positioning with Progressive Blur */
+[data-layer-id="about-circle"] {
+  filter: blur(3px);
+  /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
+}
 /* Blinking cursor animation */
 @keyframes blink {
   0%, 50% {

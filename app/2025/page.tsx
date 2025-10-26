@@ -404,7 +404,6 @@ function App() {
               {activities.map((activity, index) => (
                 <div
                   key={`activity${index + 1}`}
-                  className={`activity-item activity-${index + 1} absolute ${activity_offset[`activity${index + 1}`]}`}
                 >
                   <ActivityPreview
                     title={activity.title}
@@ -419,6 +418,7 @@ function App() {
                   />
                 </div>
               ))}
+            </div>
             </div>
           {/* Birds animation for schedule */}
           <div className="birds-container birds-schedule">

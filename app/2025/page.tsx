@@ -122,46 +122,39 @@ const sponsors = [
 
 const activities = [
   {
-    title: "Opening Ceremony",
+    title: "Activity Name",
     startDate: "2025-02-21T19:30:00",
     endDate: "2025-02-21T20:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Introduction to BoilerMake.",
   },
   {
-    title: "Hacking Starts",
+    title: "Activity Name",
     startDate: "2025-02-21T21:00:00",
     endDate: "2025-02-21T21:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Hackers can start coding.",
   },
   {
-    title: "Carnival",
+    title: "Activity Name",
     startDate: "2025-02-22T21:30:00",
     endDate: "2025-02-23T23:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Event filled with fun games and activities.",
   },
   {
-    title: "Hacking Ends",
+    title: "Activity Name",
     startDate: "2025-02-23T09:00:00",
     endDate: "2025-02-23T09:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Hackers must stop coding.",
   },
   {
-    title: "Judging",
+    title: "Activity Name",
     startDate: "2025-02-23T10:00:00",
     endDate: "2025-02-23T14:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "First round of judging (all submitted projects).",
-  },
-  {
-    title: "Closing Ceremony",
-    startDate: "2025-02-23T13:30:00",
-    endDate: "2025-02-23T15:00:00",
-    location: "Frances A. Cordova Recreational Sports Center",
-    description: "Final round of judging and all prize winners announced.",
   },
 ];
 
@@ -316,29 +309,74 @@ function App() {
         <main className="main-content">
         {/* Hero Section */}
         <section id="hero" className="hero-section">
-          <div className="hero-content">
+          <div className="hero-content "style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            textAlign: 'center',
+            width: '100%'
+          }}>
             <div className="hero-text">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-arvo font-bold text-white">
-                BOILERMAKE
-              </h1>
-              <h2 className="text-[100px] md:text-[200px] font-arvo leading-none font-extrabold text-white">
-                XII
-              </h2>
-              <p className="text-xl md:text-3xl font-body font-extrabold leading-none mb-4 text-white">
-                2/21 - 2/23
-              </p>
+              <h2 
+                    className="text-center mb-6"
+                    style={{
+                      fontFamily: 'var(--font-geist-vf)',
+                      fontWeight: 100,
+                      fontSize: 'clamp(18px, 3.5vw, 28px)',
+                      lineHeight: '100%',
+                      letterSpacing: '0.1em',
+                      color: '#FFFFFF',
+                      textAlign: 'center',
+                      width: '100%',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      
+                    }}
+                  >
+                    coming jan 2026
+                  </h2>
+              <h1 
+                    className="text-center mb-12"
+                    style={{
+                      fontFamily: 'var(--font-disket-mono)',
+                      fontWeight: 400,
+                      fontSize: 'clamp(32px, 8vw, 60px)',
+                      lineHeight: '100%',
+                      letterSpacing: '0.1em',
+                      color: '#FFE958',
+                      textShadow: '0px 0px 15px #FFDE00',
+                    }}
+                  > BOILERMAKE XIII </h1>
             </div>
-            <div className="hero-buttons">
-              <ApplyButton
-                text="Organizer Application"
-                link="https://forms.gle/inJw2FP3UwLMtNcZA"
-                size="large"
-              />
-              <ApplyButton
-                text="Devpost"
-                link="https://boilermake-xii.devpost.com/"
-                size="large"
-              />
+           <div className="hero-buttons" style={{ justifyContent:'center'}}>
+              {/* Interest Form Button */}
+              <a
+                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center inline-flex mb-4"
+                href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                style={{
+                  fontFamily: 'var(--font-futura-cyrillic)',
+                  fontWeight: 700,
+                  fontSize: 'clamp(14px, 1.68vh, 14px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.05em',
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '50px',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '0px',
+                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
+                  paddingRight: 'clamp(12px, 3.5vw, 40px)',
+                }}>
+                <span style={{
+                  borderBottom: '2px solid #FFFFFF',
+                  paddingBottom: '2px',
+                  paddingLeft: '8px',
+                  paddingRight: '8px'
+                }}>
+                  INTEREST FORM
+                </span>
+              </a>
             </div>
           </div>
         </section>
@@ -360,14 +398,10 @@ function App() {
         {/* Schedule Section */}
         <section id="schedule" className="schedule-section">
           <div className="schedule-content">
-            <div className="schedule-sign">
-              <ScheduleSign />
-            </div>
             <div className="schedule-activities">
               {activities.map((activity, index) => (
                 <div
                   key={`activity${index + 1}`}
-                  className={`activity-item activity-${index + 1}`}
                 >
                   <ActivityPreview
                     title={activity.title}
@@ -377,31 +411,13 @@ function App() {
                     description={activity.description}
                     isActive={activeEventId === index + 1}
                     onEventClick={() => handleEventClick(index + 1)}
-                    size={
-                      index < 2
-                        ? "small"
-                        : index < 4
-                        ? "medium"
-                        : index < 5
-                        ? "large"
-                        : "xlarge"
-                    }
+                    size="large"
                     popup={index === 2 || index === 5 ? "right" : "left"}
                   />
                 </div>
               ))}
             </div>
-            {/* Tents decoration */}
-            <div className="tents-decoration">
-              <Image
-                src="/images/tents.png"
-                alt="Tents"
-                width={350}
-                height={350}
-                className="tents-image"
-              />
             </div>
-          </div>
           {/* Birds animation for schedule */}
           <div className="birds-container birds-schedule">
             <Image

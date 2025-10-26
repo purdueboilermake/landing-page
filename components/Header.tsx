@@ -32,30 +32,14 @@ export default function Header({}: HeaderProps) {
     }
   };
 
-  return (
+ return (
     <header className="w-full fixed top-0 z-50">
-      <a
-        id="mlh-trust-badge"
-        className="block max-w-[100px] min-w-[60px] fixed left-[75px] md:left-[100px] top-0 w-[10%] z-[10000]"
-        href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
-        target="_blank"
-      >
-        <img
-          src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
-          alt="Major League Hacking 2025 Hackathon Season"
-          style={{ width: "100%" }}
-        />
-      </a>
-
-            {/* <a id="mlh-trust-badge" className="block max-w-[100px] min-w-[60px] fixed left-[75px] md:left-[100px] top-0 w-[10%] z-[10000]" href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" alt="Major League Hacking 2025 Hackathon Season" style={{ width: '100%' }} /></a> */}
-
-      {/* Content */}
-      <div className="relative px-4 py-1">
-        <div className="flex justify-between items-center text-white">
-          {/* Logo */}
+      <div className="relative px-8 lg:px-12 xl:px-16 py-4">
+        <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
+          {/* HERE: Single logo on the left */}
           <a href="/" className="hover:scale-105 transition">
             <Image
-              src={"/images/logo.png"}
+              src={"/images/logo_BMXIII.png"}
               alt="Boilermake Logo"
               width={75}
               height={75}
@@ -63,102 +47,69 @@ export default function Header({}: HeaderProps) {
             />
           </a>
 
-            {/* Content */}
-            <div className="relative px-6">
-                <div className="flex justify-between items-center text-white">
-                    {/* HERE: Logo positioned on left - removed excessive padding */}
-                    <a href="/" className='hover:scale-105 transition' style={{ paddingTop: '5.9vh' }}> 
-                        <Image
-                            src={"/images/logo_BMXIII.png"}
-                            alt="Boilermake Logo"
-                            width={75}
-                            height={75}
-                            className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
-                        />
-                    </a>
-
-                    {/* Spacer */}
-
-                    {/* Desktop Navigation */}
-
-<div className="hidden md:flex flex-1" style={{ paddingLeft: '77.5px', paddingRight: '77.5px' , paddingTop: '6.7vh'}}>
-    {/* 60px */}
-    <nav className="flex items-center justify-between w-full">
-        <button
-            onClick={() => handleNavigation('stat3')}
-            className="hover:text-yellow-300 transition-colors duration-200"
-            style={{
-                fontFamily: 'var(--font-futura-cyrillic)',
+          {/* HERE: Desktop Navigation - centered and spanning */}
+          <nav className="hidden md:flex flex-1 items-center justify-between ml-8 lg:ml-12 xl:ml-16">
+            <button
+              onClick={() => handleNavigation("stat3")}
+              className="hover:text-yellow-300 transition-colors duration-200"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
-                fontSize: 'clamp(18px, 3.5vw, 28px)',
-                lineHeight: '100%',
-                letterSpacing: '0.1em',
-                color: '#FFFFFF',
-                textShadow: '0px 0px 15px #FFDE00',
-            }}
-        >
-            About
-        </button>
-        <button
-            onClick={() => handleNavigation('schedule-section')}
-            className="hover:text-yellow-300 transition-colors duration-200"
-            style={{
-                fontFamily: 'var(--font-futura-cyrillic)',
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 15px #FFDE00",
+              }}
+            >
+              About
+            </button>
+            <button
+              onClick={() => handleNavigation("schedule-section")}
+              className="hover:text-yellow-300 transition-colors duration-200"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
-                fontSize: 'clamp(18px, 3.5vw, 28px)',
-                lineHeight: '100%',
-                letterSpacing: '0.1em',
-                color: '#FFFFFF',
-                textShadow: '0px 0px 15px #FFDE00',
-            }}
-        >
-            Schedule
-        </button>
-        <button
-            onClick={() => handleNavigation('faq-sign')}
-            className="hover:text-yellow-300 transition-colors duration-200"
-            style={{
-                fontFamily: 'var(--font-futura-cyrillic)',
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 15px #FFDE00",
+              }}
+            >
+              Schedule
+            </button>
+            <button
+              onClick={() => handleNavigation("faq-sign")}
+              className="hover:text-yellow-300 transition-colors duration-200"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
-                fontSize: 'clamp(18px, 3.5vw, 28px)',
-                lineHeight: '100%',
-                letterSpacing: '0.1em',
-                color: '#FFFFFF',
-                textShadow: '0px 0px 15px #FFDE00',
-            }}
-        >
-            FAQs
-        </button>
-        <button
-            onClick={() => handleNavigation('sponsors-sign')}
-            className="hover:text-yellow-300 transition-colors duration-200"
-            style={{
-                fontFamily: 'var(--font-futura-cyrillic)',
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 15px #FFDE00",
+              }}
+            >
+              FAQs
+            </button>
+            <button
+              onClick={() => handleNavigation("sponsors-sign")}
+              className="hover:text-yellow-300 transition-colors duration-200"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
-                fontSize: 'clamp(18px, 3.5vw, 28px)',
-                lineHeight: '100%',
-                letterSpacing: '0.1em',
-                color: '#FFFFFF',
-                textShadow: '0px 0px 15px #FFDE00',
-            }}
-        >
-            Sponsors
-        </button>
-    </nav>
-</div>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden p-2"
-                    >
-                        <div className="w-6 h-5 flex flex-col justify-between">
-                            <span className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
-                            <span className={`w-full h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                            <span className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-                        </div>
-                    </button>
-                </div>
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 15px #FFDE00",
+              }}
+            >
+              Sponsors
+            </button>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
@@ -184,6 +135,7 @@ export default function Header({}: HeaderProps) {
             </div>
           </button>
         </div>
+      </div>
 
         {/* Mobile Dropdown Menu */}
         <div
@@ -241,10 +193,9 @@ export default function Header({}: HeaderProps) {
                 link="https://boilermake-apply.web.app"
                 size={"small"}
               />
-            </nav>
+           </nav>
           </div>
         </div>
-      </div>
     </header>
   );
 }

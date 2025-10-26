@@ -6,6 +6,7 @@
  */
 import React, { useState } from 'react';
 import Image from 'next/image';
+import TypedText from './TypedText';
 
 type FAQAccordianProps = {
   questions: { question: string, answer: string }[];
@@ -19,36 +20,51 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
   };
 
   return (
-    <div id="accordion-collapse" className="space-y-1">
-      {questions.map((faq, index) => (
-        <div key={index} className="max-w-full">
-          <h2 className="text-black">
+    <div className="w-full max-w-5xl mx-auto px-8">
+        <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-300 drop-shadow-lg font-arvo mb-12 text-center">
+           FAQ
+       </div>
+
+      {/* Individual question boxes matching the image */}
+      <div className="space-y-6 w-full">
+        {questions.map((faq, index) => (
+          <div key={index} className="w-full">
             <button
               type="button"
-              className={`flex text-[10px] sm:text-lg md:text-lg lg:text-xl items-center justify-between p-2 md:p-3 lg:p-5 font-medium font-subtitle border border-b-0 bg-[#E1E5E7] ${index === 0 ? "rounded-t-xl" : index === questions.length - 1 && openIndex !== index ? "rounded-b-xl" : "" } hover:bg-gray-100 gap-3 w-full`}
+              className={`flex items-center justify-between w-full p-4 md:p-5 lg:p-6 font-medium border-2 border-white bg-neutral-900/90 backdrop-blur-sm text-white hover:bg-neutral-800/90 transition-all duration-300 ease-in-out
+                ${openIndex === index ? 'border-b-0' : ''}
+              `}
               onClick={() => toggleAccordion(index)}
               aria-expanded={openIndex === index}
-              aria-controls={`accordion-collapse-body-${index}`}
             >
-              <span className="text-black">{faq.question}</span>
-              <Image
-                src={"/images/pin.png"}
-                alt="Pin Icon"
-                className={`w-4 md:w-6 lg:w-8 transition-transform duration-200 ${openIndex === index ? 'rotate-90' : ''}`}
-                width={32}
-                height={32}
-              />
+              <div
+                className="text-white text-left text-lg md:text-xl font-bold"
+              >
+                {faq.question}
+              </div>
+              <div className={`text-white text-xl transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}>
+                ▼
+              </div>
             </button>
-          </h2>
-          <div
-            id={`accordion-collapse-body-${index}`}
-            className={`${openIndex === index ? 'block' : 'hidden'} p-2 sm:p-3 md:p-3 lg:p-5 border border-white bg-[#E1E5E7] rounded-b-xl w-full text-[10px] sm:text-lg md:text-lg lg:text-xl text-left`}
-            aria-labelledby={`accordion-collapse-heading-${index}`}
-          >
-            <p className="mb-2 text-black">{faq.answer}</p>
+            
+            {/* Answer content - seamless connection to question header */}
+            <div
+              className={`overflow-hidden transition-all duration-300 ${
+                openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+               <div className="p-4 md:p-5 lg:p-6 border-2 border-white bg-neutral-950/90 text-white text-left">
+                 <TypedText 
+                   className="text-white text-sm md:text-base leading-relaxed text-left"
+                   delay={openIndex === index ? 100 : 0}
+                 >
+                   {faq.answer}
+                 </TypedText>
+               </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

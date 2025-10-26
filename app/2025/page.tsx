@@ -14,6 +14,7 @@ import Image from "next/image";
 import ActivityPreview from "@/components/Event/ActivityPreview";
 import BackgroundManager from "@/components/BackgroundManager";
 import { BackgroundScaleMode } from "@/components/BackgroundLayer";
+import { TypingProvider } from "@/context/TypingContext";
 
 const sponsors = [
   [
@@ -300,18 +301,19 @@ function App() {
   ];
 
   return (
-    <div className="App font-dosis">
-      {/* Background Manager - replaces parallax background system */}
-      <BackgroundManager
-        layers={backgroundLayers}
-        globalFallbackColor="#C5E1E6"
-      />
+    <TypingProvider initialSettings={{ defaultSpeed: 10 }}>
+      <div className="App font-dosis">
+        {/* Background Manager - replaces parallax background system */}
+        <BackgroundManager
+          layers={backgroundLayers}
+          globalFallbackColor="#C5E1E6"
+        />
 
-      {/* Header - updated to work without parallax */}
-      <Header />
+        {/* Header - updated to work without parallax */}
+        <Header />
 
-      {/* Main content container with CSS Grid layout */}
-      <main className="main-content">
+        {/* Main content container with CSS Grid layout */}
+        <main className="main-content">
         {/* Hero Section */}
         <section id="hero" className="hero-section">
           <div className="hero-content">
@@ -429,15 +431,8 @@ function App() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="faq-section">
-          <div className="faq-content">
-            <div className="faq-sign">
-              <FAQSign />
-            </div>
-            <div className="faq-accordion">
-              <FAQAccordian questions={questions} />
-            </div>
-          </div>
+        <section id="faq" className="w-full min-h-screen flex items-center justify-center py-16">
+          <FAQAccordian questions={questions} />
         </section>
 
         {/* Sponsors Section */}
@@ -492,7 +487,8 @@ function App() {
           </footer>
         </section>
       </main>
-    </div>
+      </div>
+    </TypingProvider>
   );
 }
 

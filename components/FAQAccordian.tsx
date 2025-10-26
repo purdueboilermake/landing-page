@@ -31,7 +31,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
           <div key={index} className="w-full">
             <button
               type="button"
-              className={`flex items-center justify-between w-full p-4 md:p-5 lg:p-6 font-medium border-2 border-white bg-neutral-900/90 backdrop-blur-sm text-white hover:bg-neutral-800/90 transition-all duration-300 ease-in-out
+              className={`flex items-center justify-between w-full p-4 md:p-5 lg:p-6 font-medium border-2 border-white bg-gray-900/90 backdrop-blur-sm text-white hover:bg-gray-800/90 transition-all duration-300 ease-in-out
                 ${openIndex === index ? 'border-b-0' : ''}
               `}
               onClick={() => toggleAccordion(index)}
@@ -53,7 +53,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
                 openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-               <div className="p-4 md:p-5 lg:p-6 border-2 border-white bg-neutral-950/90 text-white text-left">
+               <div className="p-4 md:p-5 lg:p-6 border-2 border-white bg-gray-900/90 text-white text-left">
                  <TypedText 
                    className="text-white text-sm md:text-base leading-relaxed text-left"
                    delay={openIndex === index ? 100 : 0}

@@ -353,10 +353,8 @@ function App() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="about-section">
-          <div className="about-content">
-            <AboutSection />
-          </div>
+        <section id="about" className="w-full min-h-screen flex items-center justify-center py-16">
+          <AboutSection />
         </section>
 
         {/* Schedule Section */}

@@ -14,6 +14,7 @@ interface TypedTextProps {
   delay?: number; // initial delay before starting
   skipAnimation?: boolean; // force skip animation
   className?: string;
+  style?: React.CSSProperties;
   as?: keyof JSX.IntrinsicElements; // HTML element type
   showCursor?: boolean; // show blinking cursor
   cursorChar?: string; // cursor character
@@ -26,6 +27,7 @@ export default function TypedText({
   delay,
   skipAnimation,
   className = '',
+  style,
   as: Component = 'span',
   showCursor,
   cursorChar,
@@ -64,7 +66,7 @@ export default function TypedText({
   }, [finalShowCursor, isTyping, finalCursorSpeed]);
 
   return (
-    <Component className={className}>
+    <Component className={className} style={style}>
       {displayText}
       {finalShowCursor && isTyping && showCursorChar && (
         <span className="animate-pulse">{finalCursorChar}</span>

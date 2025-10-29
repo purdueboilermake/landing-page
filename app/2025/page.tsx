@@ -404,7 +404,7 @@ function App() {
       fallbackColor: "#ff0000",
     },
     {
-      id: "about-accent-1",
+      id: "faq-accent-1",
       imageUrl: "/images/faq-accent-1.png",
       position: "absolute" as const,
       zIndex: -30,
@@ -418,7 +418,7 @@ function App() {
       fallbackColor: "transparent",
     },
     {
-      id: "about-accent-1",
+      id: "faq-accent-2",
       imageUrl: "/images/faq-accent-2.png",
       position: "absolute" as const,
       zIndex: -40,

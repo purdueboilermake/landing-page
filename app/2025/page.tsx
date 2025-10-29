@@ -538,7 +538,32 @@ function App() {
           >
             <AboutSection />
           </section>
-          
+
+          {/* Schedule Section */}
+          <section id="schedule" className="schedule-section">
+            <div className="schedule-content">
+              <div className="schedule-activities">
+                {activities.map((activity, index) => (
+                  <div
+                    key={`activity${index + 1}`}
+                  >
+                    <ActivityPreview
+                      title={activity.title}
+                      startDate={activity.startDate}
+                      endDate={activity.endDate}
+                      location={activity.location}
+                      description={activity.description}
+                      isActive={activeEventId === index + 1}
+                      onEventClick={() => handleEventClick(index + 1)}
+                      size="large"
+                      popup={index === 2 || index === 5 ? "right" : "left"}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* FAQ Sign Section */}
           <section
             id="faq"

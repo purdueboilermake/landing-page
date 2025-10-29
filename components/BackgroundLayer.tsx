@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 
 export type BackgroundScaleMode =
   | "cover" // Default - scales to cover entire container, may crop
@@ -16,7 +17,6 @@ export interface BackgroundLayerProps {
   blendMode?: string;
   position?: "fixed" | "absolute";
   scaleMode?: BackgroundScaleMode;
-  backgroundPosition?: string;
   // Positioning props for vertical stacking
   top?: string | number;
   left?: string | number;
@@ -27,6 +27,12 @@ export interface BackgroundLayerProps {
   fallbackColor?: string;
   onLoadError?: (layerId: string) => void;
   onLoadSuccess?: (layerId: string) => void;
+  // Next.js Image specific props
+  priority?: boolean;
+  alt?: string;
+  sizes?: string;
+  // Height behavior control
+  useIntrinsicHeight?: boolean; // If true, uses image's natural aspect ratio; if false, stretches to given height
 }
 
 /**
@@ -41,7 +47,6 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
   blendMode = "normal",
   position = "fixed",
   scaleMode = "cover",
-  backgroundPosition = "center",
   top,
   left,
   right,
@@ -51,34 +56,27 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
   fallbackColor = "transparent",
   onLoadError,
   onLoadSuccess,
+  priority = false,
+  alt = "",
+  sizes = "100vw",
+  useIntrinsicHeight = true,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  useEffect(() => {
-    // Preload the image to handle loading states
-    const img = new Image();
+  // Handle image load success
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    setImageError(false);
+    onLoadSuccess?.(id);
+  };
 
-    img.onload = () => {
-      setImageLoaded(true);
-      setImageError(false);
-      onLoadSuccess?.(id);
-    };
-
-    img.onerror = () => {
-      setImageError(true);
-      setImageLoaded(false);
-      onLoadError?.(id);
-    };
-
-    img.src = imageUrl;
-
-    // Cleanup function
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [imageUrl, id, onLoadError, onLoadSuccess]);
+  // Handle image load error
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(false);
+    onLoadError?.(id);
+  };
 
   const layerStyles: React.CSSProperties = {
     position,
@@ -95,12 +93,32 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
     pointerEvents: "none", // Prevent interference with page interactions
   };
 
-  // Show fallback color if image failed to load or is still loading
-  if (imageError || !imageLoaded) {
+  // Convert scaleMode to Next.js Image objectFit
+  const getObjectFit = (
+    mode: BackgroundScaleMode
+  ): React.CSSProperties["objectFit"] => {
+    switch (mode) {
+      case "cover":
+        return "cover";
+      case "contain":
+        return "contain";
+      case "fill":
+        return "fill";
+      case "scale-down":
+        return "scale-down";
+      case "none":
+        return "none";
+      default:
+        return "cover";
+    }
+  };
+
+  // Show fallback color if image failed to load
+  if (imageError) {
     return (
       <div
         data-layer-id={id}
-        data-layer-status={imageError ? "error" : "loading"}
+        data-layer-status="error"
         style={{
           ...layerStyles,
           backgroundColor: fallbackColor,
@@ -110,20 +128,132 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
     );
   }
 
-  // Show the background image once loaded
+  // Determine rendering strategy based on props
+  const useExplicitDimensions =
+    width && height && typeof width === "number" && typeof height === "number";
+
+  const useResponsiveWidth =
+    width &&
+    (typeof width === "string" || typeof width === "number") &&
+    (!height || useIntrinsicHeight);
+
+  const useStretchToHeight =
+    width &&
+    height &&
+    (typeof width === "string" || typeof width === "number") &&
+    !useIntrinsicHeight;
+
+  const useFillMode =
+    !useExplicitDimensions && !useResponsiveWidth && !useStretchToHeight;
+
+  // Show the background image using Next.js Image
   return (
     <div
       data-layer-id={id}
-      data-layer-status="loaded"
+      data-layer-status={imageLoaded ? "loaded" : "loading"}
       style={{
         ...layerStyles,
-        backgroundImage: `url(${imageUrl})`,
-        backgroundSize: scaleMode,
-        backgroundPosition: backgroundPosition,
-        backgroundRepeat: "no-repeat",
+        // Adjust container styles based on rendering strategy
+        ...(useExplicitDimensions
+          ? {
+              width: "auto",
+              height: "auto",
+              display: "inline-block",
+            }
+          : useResponsiveWidth
+          ? {
+              width: width,
+              height: "auto",
+              display: "block",
+            }
+          : useStretchToHeight
+          ? {
+              width: width,
+              height: height,
+              display: "block",
+            }
+          : {}),
+        // Next.js Image with fill requires position: relative on the parent
+        position:
+          layerStyles.position === "static" ? "relative" : layerStyles.position,
       }}
       aria-hidden="true"
-    />
+    >
+      {useExplicitDimensions ? (
+        <Image
+          src={imageUrl}
+          alt={alt}
+          width={width as number}
+          height={height as number}
+          priority={priority}
+          sizes={sizes}
+          style={{
+            objectFit: getObjectFit(scaleMode),
+          }}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
+      ) : useResponsiveWidth ? (
+        <Image
+          src={imageUrl}
+          alt={alt}
+          width={0}
+          height={0}
+          priority={priority}
+          sizes={sizes}
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: getObjectFit(scaleMode),
+          }}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
+      ) : useStretchToHeight ? (
+        <Image
+          src={imageUrl}
+          alt={alt}
+          width={0}
+          height={0}
+          priority={priority}
+          sizes={sizes}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: getObjectFit(scaleMode),
+          }}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
+      ) : (
+        <Image
+          src={imageUrl}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes={sizes}
+          style={{
+            objectFit: getObjectFit(scaleMode),
+          }}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
+      )}
+      {/* Show fallback color while loading */}
+      {!imageLoaded && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: fallbackColor,
+            zIndex: -1,
+          }}
+        />
+      )}
+    </div>
   );
 };
 

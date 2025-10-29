@@ -12,7 +12,6 @@ export interface BackgroundLayerConfig {
   blendMode?: string;
   position?: "fixed" | "absolute";
   scaleMode?: BackgroundScaleMode;
-  backgroundPosition?: string;
   // Positioning props for vertical stacking
   top?: string | number;
   left?: string | number;
@@ -21,6 +20,12 @@ export interface BackgroundLayerConfig {
   width?: string | number;
   height?: string | number;
   fallbackColor?: string;
+  // Next.js Image specific props
+  priority?: boolean;
+  alt?: string;
+  sizes?: string;
+  // Height behavior control
+  useIntrinsicHeight?: boolean;
 }
 
 export interface BackgroundManagerProps {
@@ -112,7 +117,6 @@ const BackgroundManager: React.FC<BackgroundManagerProps> = ({
         blendMode: layer.blendMode,
         position: layer.position,
         scaleMode: layer.scaleMode,
-        backgroundPosition: layer.backgroundPosition,
         top: layer.top,
         left: layer.left,
         right: layer.right,
@@ -122,6 +126,12 @@ const BackgroundManager: React.FC<BackgroundManagerProps> = ({
         fallbackColor: layer.fallbackColor || globalFallbackColor,
         onLoadError: handleLayerLoadError,
         onLoadSuccess: handleLayerLoadSuccess,
+        // Next.js Image specific props
+        priority: layer.priority,
+        alt: layer.alt || "",
+        sizes: layer.sizes || "100vw",
+        // Height behavior control
+        useIntrinsicHeight: layer.useIntrinsicHeight,
       })
     );
   }, [

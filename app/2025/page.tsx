@@ -231,8 +231,11 @@ function App() {
       opacity: 1,
       top: 0,
       blendMode: "normal",
-      scaleMode: "cover" as BackgroundScaleMode,
-      height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
+      useIntrinsicHeight: false,
+      height: isMobile ? "200vh" : "400vh", // 200vh mobile, 400vh desktop
+      // scaleMode: "cover" as BackgroundScaleMode,
+      // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
+      width: "100%",
       fallbackColor: "#ffffff",
     },
     {
@@ -283,12 +286,149 @@ function App() {
       position: "absolute" as const,
       zIndex: -80, // Under content but above dark background layers
       opacity: 0.8,
-      top: "100vh", // 10% above viewport to cut off top
+      top: "130vh",
       left: "0%", // Center horizontally
       height: "100vh", // Square aspect ratio
       scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
       // backgroundPosition: "center",
       blendMode: "normal", // Explicitly set blend mode to avoid conflicts
+      fallbackColor: "transparent",
+    },
+    {
+      id: "about-accent-1",
+      imageUrl: "/images/about-accent-1.png",
+      position: "absolute" as const,
+      zIndex: -70,
+      opacity: 1,
+      top: "190vh",
+      left: "0vw",
+      width: "80vw",
+      height: "50vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "about-accent-2",
+      imageUrl: "/images/about-accent-2.png",
+      position: "absolute" as const,
+      zIndex: -70,
+      opacity: 1,
+      top: "150vh",
+      left: "0%",
+      width: "100%",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "schedule-gradient",
+      imageUrl: "images/schedule-gradient.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "400vh",
+      blendMode: "normal",
+      // scaleMode: "cover" as BackgroundScaleMode,
+      // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
+      width: "100%",
+      fallbackColor: "#ffffff",
+    },
+    {
+      id: "corrdior-1",
+      imageUrl: "/images/corridor-1.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "440vh",
+      left: "41vw",
+      width: "17vw",
+      height: "80vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "ringed-red-planet",
+      imageUrl: "/images/ringed-red-planet.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "470vh",
+      left: "75vw",
+      width: "25vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "schedule-grid",
+      imageUrl: "/images/schedule-grid.png",
+      position: "absolute" as const,
+      zIndex: -70,
+      opacity: 1,
+      top: "470vh",
+      left: "0%",
+      width: "100vw",
+      height: "80vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "faq-gradient",
+      imageUrl: "/images/faq-gradient.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "700vh",
+      left: "0%",
+      width: "100vw",
+      // height: "80vh",
+      scaleMode: "cover" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "faq-circle",
+      imageUrl: "/images/faq-circle.png",
+      position: "absolute" as const,
+      zIndex: -99, // Under content but above dark background layers
+      opacity: 0.8,
+      top: "830vh",
+      left: "0%", // Center horizontally
+      height: "100vh", // Square aspect ratio
+      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
+      // backgroundPosition: "center",
+      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
+      fallbackColor: "#ff0000",
+    },
+    {
+      id: "about-accent-1",
+      imageUrl: "/images/faq-accent-1.png",
+      position: "absolute" as const,
+      zIndex: -30,
+      opacity: 1,
+      top: "870vh",
+      left: "0vw",
+      width: "100vw",
+      height: "30vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "about-accent-1",
+      imageUrl: "/images/faq-accent-2.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "930vh",
+      left: "0vw",
+      width: "100vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
       fallbackColor: "transparent",
     },
   ];
@@ -306,201 +446,108 @@ function App() {
         <Header />
 
         {/* Main content container with CSS Grid layout */}
-        <main className="main-content">
-        {/* Hero Section */}
-        <section id="hero" className="hero-section">
-          <div className="hero-content "style={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            textAlign: 'center',
-            width: '100%'
-          }}>
-            <div className="hero-text">
-              <h2 
-                    className="text-center mb-6"
+        <main className="w-full main-content">
+          {/* Hero Section */}
+          <section id="hero" className="hero-section">
+            <div
+              className="hero-content "
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              <div className="hero-text">
+                <h2
+                  className="text-center mb-6"
+                  style={{
+                    fontFamily: "var(--font-geist-vf)",
+                    fontWeight: 100,
+                    fontSize: "clamp(18px, 3.5vw, 28px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFFFFF",
+                    textAlign: "center",
+                    width: "100%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                >
+                  coming jan 2026
+                </h2>
+                <h1
+                  className="text-center mb-12"
+                  style={{
+                    fontFamily: "var(--font-disket-mono)",
+                    fontWeight: 400,
+                    fontSize: "clamp(32px, 8vw, 60px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  {" "}
+                  BOILERMAKE XIII{" "}
+                </h1>
+              </div>
+              <div
+                className="hero-buttons"
+                style={{ justifyContent: "center" }}
+              >
+                {/* Interest Form Button */}
+                <a
+                  className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center inline-flex mb-4"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                  style={{
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 700,
+                    fontSize: "clamp(14px, 1.68vh, 14px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.05em",
+                    textAlign: "center",
+                    verticalAlign: "middle",
+                    height: "50px",
+                    border: "2px solid #FFFFFF",
+                    borderRadius: "0px",
+                    paddingLeft: "clamp(12px, 3.5vw, 40px)",
+                    paddingRight: "clamp(12px, 3.5vw, 40px)",
+                  }}
+                >
+                  <span
                     style={{
-                      fontFamily: 'var(--font-geist-vf)',
-                      fontWeight: 100,
-                      fontSize: 'clamp(18px, 3.5vw, 28px)',
-                      lineHeight: '100%',
-                      letterSpacing: '0.1em',
-                      color: '#FFFFFF',
-                      textAlign: 'center',
-                      width: '100%',
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
-                      
+                      borderBottom: "2px solid #FFFFFF",
+                      paddingBottom: "2px",
+                      paddingLeft: "8px",
+                      paddingRight: "8px",
                     }}
                   >
-                    coming jan 2026
-                  </h2>
-              <h1 
-                    className="text-center mb-12"
-                    style={{
-                      fontFamily: 'var(--font-disket-mono)',
-                      fontWeight: 400,
-                      fontSize: 'clamp(32px, 8vw, 60px)',
-                      lineHeight: '100%',
-                      letterSpacing: '0.1em',
-                      color: '#FFE958',
-                      textShadow: '0px 0px 15px #FFDE00',
-                    }}
-                  > BOILERMAKE XIII </h1>
+                    INTEREST FORM
+                  </span>
+                </a>
+              </div>
             </div>
-           <div className="hero-buttons" style={{ justifyContent:'center'}}>
-              {/* Interest Form Button */}
-              <a
-                className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center inline-flex mb-4"
-                href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                style={{
-                  fontFamily: 'var(--font-futura-cyrillic)',
-                  fontWeight: 700,
-                  fontSize: 'clamp(14px, 1.68vh, 14px)',
-                  lineHeight: '100%',
-                  letterSpacing: '0.05em',
-                  textAlign: 'center',
-                  verticalAlign: 'middle',
-                  height: '50px',
-                  border: '2px solid #FFFFFF',
-                  borderRadius: '0px',
-                  paddingLeft: 'clamp(12px, 3.5vw, 40px)',
-                  paddingRight: 'clamp(12px, 3.5vw, 40px)',
-                }}>
-                <span style={{
-                  borderBottom: '2px solid #FFFFFF',
-                  paddingBottom: '2px',
-                  paddingLeft: '8px',
-                  paddingRight: '8px'
-                }}>
-                  INTEREST FORM
-                </span>
-              </a>
-            </div>
-          </div>
-        </section>
+          </section>
+          {/* About Section */}
+          <section
+            id="about"
+            className="w-[80vw] lg:w-[40vw] flex items-center justify-center py-[50vh]"
+          >
+            <AboutSection />
+          </section>
 
-        {/* Statistics Section */}
-        <section id="statistics" className="statistics-section">
-          <div className="statistics-grid">
-            <Statistic statistic="9" variable="Universities Represented" />
-            <Statistic statistic="70" variable="Project Submissions" />
-            <Statistic statistic="$4k" variable="In Prizes" />
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="w-full min-h-screen flex items-center justify-center py-16">
-          <AboutSection />
-        </section>
-
-        {/* Schedule Section */}
-        <section id="schedule" className="schedule-section">
-          <div className="schedule-content">
-            <div className="schedule-activities">
-              {activities.map((activity, index) => (
-                <div
-                  key={`activity${index + 1}`}
-                >
-                  <ActivityPreview
-                    title={activity.title}
-                    startDate={activity.startDate}
-                    endDate={activity.endDate}
-                    location={activity.location}
-                    description={activity.description}
-                    isActive={activeEventId === index + 1}
-                    onEventClick={() => handleEventClick(index + 1)}
-                    size="large"
-                    popup={index === 2 || index === 5 ? "right" : "left"}
-                  />
-                </div>
-              ))}
-            </div>
-            </div>
-          {/* Birds animation for schedule */}
-          <div className="birds-container birds-schedule">
-            <Image
-              src="/images/bird2.png"
-              alt="Bird 2"
-              width={65}
-              height={65}
-              className="bird bird-1"
-            />
-            <Image
-              src="/images/bird1.png"
-              alt="Bird 1"
-              width={65}
-              height={65}
-              className="bird bird-2"
-            />
-            <Image
-              src="/images/bird3.png"
-              alt="Bird 3"
-              width={65}
-              height={65}
-              className="bird bird-3"
-            />
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section id="faq" className="w-full min-h-screen flex items-center justify-center py-16">
-          <FAQAccordian questions={questions} />
-        </section>
-
-        {/* Sponsors Section */}
-        <section id="sponsors" className="sponsors-section">
-          <div className="sponsors-content">
-            <div className="sponsors-sign">
-              <SponsorSign />
-            </div>
-            <div className="sponsors-grid">
-              {sponsors.map((sponsorRow, rowIndex) => (
-                <div
-                  key={rowIndex}
-                  className={`sponsor-row sponsor-row-${rowIndex}`}
-                >
-                  {sponsorRow.map((sponsor, index) => (
-                    <SponsorCard
-                      key={index}
-                      sponsor={sponsor}
-                      size={
-                        rowIndex === 0
-                          ? "xl"
-                          : rowIndex === 1
-                          ? "lg"
-                          : rowIndex === 2
-                          ? "md"
-                          : "sm"
-                      }
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Campfires decoration */}
-          <div className="campfires-decoration">
-            <Image
-              src="/images/campfires.png"
-              alt="Campfires"
-              width={350}
-              height={350}
-              className="campfires-image"
-            />
-          </div>
-        </section>
-
-        {/* Footer Section */}
-        <section id="footer" className="footer-section">
-          <footer className="footer-content">
-            <p className="text-white text-center">
-              © 2025 BoilerMake. All rights reserved.
-            </p>
-          </footer>
-        </section>
-      </main>
+          {/* Footer Section */}
+          {/* <section id="footer" className="footer-section">
+            <footer className="footer-content">
+              <p className="text-white text-center">
+                © 2025 BoilerMake. All rights reserved.
+              </p>
+            </footer>
+          </section> */}
+        </main>
       </div>
     </TypingProvider>
   );

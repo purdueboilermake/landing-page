@@ -7,11 +7,12 @@
   - _Requirements: 6.1, 6.2_
 
 - [x] 2. Create background layer management system
-  - [ ] 2.1 Create BackgroundLayer component
-    - Write TypeScript interfaces for background layer configuration
-    - Implement BackgroundLayer React component with CSS positioning
-    - Add support for multiple background images with z-index stacking
-    - _Requirements: 2.2, 5.1_
+  - [x] 2.1 Create BackgroundLayer component with Next.js Image
+    - Write TypeScript interfaces for background layer configuration with Next.js Image support
+    - Implement BackgroundLayer React component using Next.js Image instead of CSS background-image
+    - Add support for multiple background images with z-index stacking and proper image optimization
+    - Implement proper fallback handling for failed image loads
+    - _Requirements: 2.2, 5.1, 7.1, 7.2, 7.3, 7.4_
 
   - [x] 2.2 Create BackgroundManager component
     - Implement component to manage multiple background layers

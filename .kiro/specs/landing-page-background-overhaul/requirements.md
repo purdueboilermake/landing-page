@@ -65,3 +65,14 @@ The BoilerMake XII landing page currently uses a complex parallax background sys
 1. WHEN the new system is implemented THEN the system SHALL remove all @react-spring/parallax dependencies
 2. WHEN the parallax system is removed THEN the system SHALL use standard CSS and React components for layout and positioning
 3. WHEN the new architecture is complete THEN the system SHALL have a cleaner component structure without complex parallax calculations
+
+### Requirement 7
+
+**User Story:** As a developer, I want the background layers to use Next.js Image components so that we get optimized image loading, better performance, and improved SEO.
+
+#### Acceptance Criteria
+
+1. WHEN background layers are rendered THEN the system SHALL use Next.js Image components instead of CSS background-image properties
+2. WHEN images are loaded THEN the system SHALL benefit from Next.js automatic image optimization and lazy loading
+3. WHEN background images are displayed THEN the system SHALL maintain proper aspect ratios and responsive behavior
+4. WHEN images fail to load THEN the system SHALL display appropriate fallback content or colors

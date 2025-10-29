@@ -36,6 +36,11 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Dosis", sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 /* About Background Styles */
@@ -150,6 +155,9 @@ body {
 /* General App Styles */
 .App {
   text-align: center;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Animation Styles */
@@ -204,6 +212,7 @@ body {
   min-height: 100vh;
   position: relative;
   z-index: 1;
+  justify-items: center;
 }
 
 /* Hero Section */
@@ -636,9 +645,10 @@ body {
 @media (max-width: 640px) {
   .hero-buttons {
     align-items: center;
-.infinite-scroll-container:hover {
-  animation-play-state: paused;
-}
+
+    .infinite-scroll-container:hover {
+      animation-play-state: paused;
+    }
   }
 }
 
@@ -654,6 +664,12 @@ body {
   /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
 }
 
+
+[data-layer-id="faq-circle"] {
+  filter: blur(3px);
+  /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
+}
+
 /* Infinite Scroll Animation for Image Carousel */
 .infinite-scroll-container {
   animation: infiniteScroll linear infinite;
@@ -663,6 +679,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(var(--scroll-distance));
   }
@@ -670,10 +687,30 @@ body {
 
 /* Blinking cursor animation */
 @keyframes blink {
-  0%, 50% {
+
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+
+  51%,
+  100% {
     opacity: 0;
   }
+}
+
+/* Fade-out effects for corridor and grid images */
+[data-layer-id="corrdior-1"] {
+  mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.1) 90%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.1) 90%, rgba(0, 0, 0, 0) 100%);
+}
+
+[data-layer-id="schedule-grid"] {
+  mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.1) 92%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.1) 92%, rgba(0, 0, 0, 0) 100%);
+}
+
+[data-layer-id="faq-gradient"] {
+  mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 10%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 100%);
 }

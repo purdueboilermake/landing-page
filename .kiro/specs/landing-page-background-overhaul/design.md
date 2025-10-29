@@ -7,7 +7,9 @@ The landing page background overhaul will completely rebuild the background syst
 ## Architecture
 
 ### Current System Analysis
+
 The existing background system consists of:
+
 - @react-spring/parallax dependency with complex ParallaxLayer components
 - Multiple background images with different parallax speeds
 - Complex offset calculations and screen size dependencies
@@ -15,7 +17,9 @@ The existing background system consists of:
 - Difficult-to-maintain component structure
 
 ### New Architecture
+
 The new system will:
+
 - Remove all parallax dependencies and components
 - Use standard CSS layering with z-index and positioning
 - Implement a layered background system using CSS background-image properties
@@ -46,45 +50,43 @@ The new system will:
    - **SponsorSection**: Updated sponsor display
    - **FooterSection**: Simplified footer without animated background
 
+### Background Layer Strategy with Next.js Image
+
+Instead of using CSS background-image properties, the new system will use Next.js Image components for better performance and optimization:
+
+```tsx
+// BackgroundLayer component structure
+<div className="background-layer" style={{ position: 'fixed', zIndex: -1 }}>
+  <Image
+    src={imageUrl}
+    alt=""
+    fill
+    style={{ objectFit: 'cover' }}
+    priority={isPriority}
+    sizes="100vw"
+  />
+</div>
+```
+
 ### CSS Layer Strategy
+
 ```css
-.background-layer-1 {
+.background-layer {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -3;
-}
-
-.background-layer-2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -2;
-}
-
-.background-layer-3 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
+  z-index: var(--layer-z-index);
+  opacity: var(--layer-opacity, 1);
+  mix-blend-mode: var(--layer-blend-mode, normal);
 }
 ```
 
 ## Data Models
 
 ### Background Layer Configuration
+
 ```typescript
 interface BackgroundLayer {
   id: string;
@@ -93,6 +95,10 @@ interface BackgroundLayer {
   opacity?: number;
   blendMode?: string;
   position?: 'fixed' | 'absolute';
+  priority?: boolean; // For Next.js Image priority loading
+  alt?: string; // Alt text for accessibility
+  objectFit?: 'cover' | 'contain' | 'fill' | 'scale-down' | 'none';
+  sizes?: string; // Responsive sizes for Next.js Image
 }
 
 interface BackgroundConfig {
@@ -102,6 +108,7 @@ interface BackgroundConfig {
 ```
 
 ### Section Configuration
+
 ```typescript
 interface Section {
   id: string;
@@ -113,6 +120,7 @@ interface Section {
 ```
 
 ### Color System
+
 ```css
 :root {
   --bg-primary: #C5E1E6;
@@ -127,12 +135,14 @@ interface Section {
 ## Error Handling
 
 ### Fallback Strategy
+
 - If background images fail to load, display fallback solid colors
 - Implement progressive image loading for background layers
 - Ensure text remains readable with sufficient contrast ratios
 - Graceful degradation for older browsers that don't support CSS Grid
 
 ### Performance Considerations
+
 - Remove @react-spring/parallax dependency to reduce bundle size
 - Use CSS `will-change` property for optimized rendering
 - Implement lazy loading for background images
@@ -142,6 +152,7 @@ interface Section {
 ## Testing Strategy
 
 ### Visual Testing
+
 1. **Cross-browser compatibility**
    - Test layered backgrounds in Chrome, Firefox, Safari, Edge
    - Verify CSS Grid and Flexbox support
@@ -159,6 +170,7 @@ interface Section {
    - Test background image loading performance
 
 ### Functional Testing
+
 1. **Content readability**
    - Verify text contrast against layered backgrounds
    - Test button and interactive element visibility
@@ -175,6 +187,7 @@ interface Section {
    - Test background image fallbacks
 
 ### Integration Testing
+
 1. **Component interaction**
    - Test new FAQ component functionality
    - Verify event/activity interactions
@@ -187,6 +200,7 @@ interface Section {
    - Test different image formats and sizes
 
 ### Migration Testing
+
 1. **Content preservation**
    - Verify all existing content is properly migrated
    - Test that no functionality is lost in the transition
@@ -195,18 +209,21 @@ interface Section {
 ## Implementation Phases
 
 ### Phase 1: Remove Parallax System
+
 - Remove @react-spring/parallax dependency
 - Replace Parallax and ParallaxLayer components with standard divs
 - Implement basic CSS Grid layout structure
 - Create placeholder background layers
 
 ### Phase 2: Implement Layered Background System
+
 - Create background layer management system
 - Implement CSS-based layered backgrounds
 - Add placeholder images for initial testing
 - Test background layer stacking and positioning
 
 ### Phase 3: Rebuild UI Components
+
 - Create new HeroSection component
 - Rebuild AboutSection with new layout
 - Recreate ScheduleSection without parallax
@@ -214,12 +231,14 @@ interface Section {
 - Implement new FooterSection
 
 ### Phase 4: Content Migration and Styling
+
 - Migrate all existing content to new components
 - Implement responsive design for all screen sizes
 - Add animations and transitions using CSS
 - Test cross-browser compatibility
 
 ### Phase 5: Asset Integration and Optimization
+
 - Implement background asset management system
 - Optimize image loading and performance
 - Add fallback systems for failed image loads

@@ -81,14 +81,14 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
 
     return (
         <div className="relative w-full h-full flex items-start justify-center hover:-translate-y-1 transition">
-            <div className={`${widthMap[size]} ${verticalPadding[size]} ${isExpanded ? 'pb-8 sm:pb-10 md:pb-12 lg:pb-14' : ''} ${size === 'medium' ? 'px-8 sm:px-11 md:px-14 lg:px-15' : 'px-4 sm:px-6 md:px-8 lg:px-10'} border-[4px] bg-[#2A2627BF] border-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out max-w-[100vw] sm:max-w-none`}>
+            <div className={`${widthMap[size]} ${verticalPadding[size]} ${isExpanded ? 'pb-8 sm:pb-10 md:pb-12 lg:pb-14' : ''} ${size === 'medium' ? 'px-8 sm:px-11 md:px-14 lg:px-15' : 'px-4 sm:px-6 md:px-8 lg:px-10'} border-[4px] bg-[#2A2627E6] border-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out max-w-[100vw] sm:max-w-none`}>
                 <div className={`text-white ${timeClass} font-normal`} style={{
-                    fontFamily: 'var(--font-disket-mono)'
+                    fontFamily: 'var(--font-geist-vf)'
                 }}>
                     <span>{time}</span>
                 </div>
                 <p className={`text-[#FFE42D] ${titleClass} font-semibold leading-none ${titleMargin} text-center`} style={{
-                    fontFamily: 'var(--font-futura-cyrillic)',
+                    fontFamily: 'var(--font-disket-mono)',
                 }}>
                     {title.split(' ').length === 2 ? (
                         <>
@@ -99,7 +99,7 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
                 </p>
                 {isExpanded && (
                     <div className={`text-white ${contentClass} font-body mt-2 sm:mt-3 md:mt-4 text-center transition-all duration-300 ease-in-out max-w-full px-2`} style={{
-                        fontFamily: 'var(--font-disket-mono)'
+                        fontFamily: 'var(--font-geist-vf)'
                     }}>
                         <div className="pb-3 min-h-[1.5em]">{typedLocation}</div>
                         {showDescription && (
@@ -111,5 +111,3 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
         </div >
     );
 }
-
-

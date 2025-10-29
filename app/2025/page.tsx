@@ -538,6 +538,16 @@ function App() {
           >
             <AboutSection />
           </section>
+          
+          {/* FAQ Sign Section */}
+          <section
+            id="faq"
+            className="w-full flex items-center justify-center py-[10vh]"
+          >
+            <div className="faq-sign">
+              <FAQAccordian questions={questions} />
+            </div>
+          </section>
 
           {/* Footer Section */}
           {/* <section id="footer" className="footer-section">

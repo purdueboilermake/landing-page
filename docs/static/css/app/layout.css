@@ -1326,8 +1326,8 @@ video {
 .bg-\[\#2A262780\] {
   background-color: #2A262780;
 }
-.bg-\[\#2A2627BF\] {
-  background-color: #2A2627BF;
+.bg-\[\#2A2627E6\] {
+  background-color: #2A2627E6;
 }
 .bg-\[\#E4F0F3\] {
   --tw-bg-opacity: 1;
@@ -1435,6 +1435,10 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+.py-\[10vh\] {
+  padding-top: 10vh;
+  padding-bottom: 10vh;
 }
 .py-\[50vh\] {
   padding-top: 50vh;

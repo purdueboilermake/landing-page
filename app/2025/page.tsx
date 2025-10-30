@@ -238,20 +238,20 @@ function App() {
       width: "100%",
       fallbackColor: "#ffffff",
     },
-    // {
-    //   id: "upper-center-circle",
-    //   imageUrl: "/images/Upper_center_circle.png",
-    //   position: "absolute" as const,
-    //   zIndex: -80, // Under content but above dark background layers
-    //   opacity: 0.8,
-    //   top: "-10vh", // 10% above viewport to cut off top
-    //   left: "0%", // Center horizontally
-    //   height: "100vh", // Square aspect ratio
-    //   scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-    //   backgroundPosition: "center",
-    //   blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-    //   fallbackColor: "transparent",
-    // },
+    {
+      id: "upper-center-circle",
+      imageUrl: "/images/Upper_center_circle.png",
+      position: "absolute" as const,
+      zIndex: -80, // Under content but above dark background layers
+      opacity: 0.8,
+      top: "-10vh", // 10% above viewport to cut off top
+      left: "0%", // Center horizontally
+      height: "100vh", // Square aspect ratio
+      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
+      backgroundPosition: "center",
+      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
+      fallbackColor: "transparent",
+    },
     {
       id: "stars-left",
       imageUrl: "/images/stars-left.png",
@@ -283,10 +283,10 @@ function App() {
     {
       id: "about-circle",
       imageUrl: "/images/about-circle.png",
-      position: "fixed" as const,
+      position: "absolute" as const,
       zIndex: -80, // Under content but above dark background layers
       opacity: 0.8,
-      top: "0vh", // Fixed to viewport top
+      top: "130vh",
       left: "0%", // Center horizontally
       height: "100vh", // Square aspect ratio
       scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
@@ -300,10 +300,10 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "186vh",
+      top: "190vh",
       left: "0vw",
       width: "80vw",
-      height: "30vh",
+      height: "50vh",
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
@@ -314,7 +314,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "149vh",
+      top: "150vh",
       left: "0%",
       width: "100%",
       scaleMode: "fill" as BackgroundScaleMode,
@@ -389,27 +389,27 @@ function App() {
       blendMode: "normal",
       fallbackColor: "transparent",
     },
-    // {
-    //   id: "faq-circle",
-    //   imageUrl: "/images/faq-circle.png",
-    //   position: "absolute" as const,
-    //   zIndex: -99, // Under content but above dark background layers
-    //   opacity: 0.8,
-    //   top: "830vh",
-    //   left: "0%", // Center horizontally
-    //   height: "100vh", // Square aspect ratio
-    //   scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-    //   // backgroundPosition: "center",
-    //   blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-    //   fallbackColor: "#ff0000",
-    // },
+    {
+      id: "faq-circle",
+      imageUrl: "/images/faq-circle.png",
+      position: "absolute" as const,
+      zIndex: -99, // Under content but above dark background layers
+      opacity: 0.8,
+      top: "830vh",
+      left: "0%", // Center horizontally
+      height: "100vh", // Square aspect ratio
+      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
+      // backgroundPosition: "center",
+      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
+      fallbackColor: "#ff0000",
+    },
     {
       id: "faq-accent-1",
       imageUrl: "/images/faq-accent-1.png",
       position: "absolute" as const,
       zIndex: -30,
       opacity: 1,
-      top: "840vh",
+      top: "870vh",
       left: "0vw",
       width: "100vw",
       height: "30vh",
@@ -428,90 +428,6 @@ function App() {
       width: "100vw",
       height: "20vh",
       scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet-1",
-      imageUrl: "/images/planet1.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1756vh",
-      left: "40vw",
-      // width: "100vw",
-      height: "20vw",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet2",
-      imageUrl: "/images/planet2.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1665vh",
-      left: "47vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet3",
-      imageUrl: "/images/planet3.png",
-      position: "absolute" as const,
-      zIndex: -40,
-      opacity: 1,
-      top: "1730vh",
-      left: "-40vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet4",
-      imageUrl: "/images/planet4.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1705vh",
-      left: "1vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "ringed-planet",
-      imageUrl: "/images/ring-planet.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1600vh",
-      left: "-30vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-
-    {
-      id: "orbits",
-      imageUrl: "/images/orbits.png",
-      position: "absolute" as const,
-      zIndex: -40,
-      opacity: 1,
-      top: "1600vh",
-      left: "0vw",
-      width: "100vw",
-      height: "200vh",
-      scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
     },
@@ -628,7 +544,9 @@ function App() {
             <div className="schedule-content">
               <div className="schedule-activities">
                 {activities.map((activity, index) => (
-                  <div key={`activity${index + 1}`}>
+                  <div
+                    key={`activity${index + 1}`}
+                  >
                     <ActivityPreview
                       title={activity.title}
                       startDate={activity.startDate}

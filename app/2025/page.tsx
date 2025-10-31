@@ -264,6 +264,7 @@ function App() {
       zIndex: -100,
       opacity: 1,
       fallbackColor: "#2A2627", // This should show as the background color
+      priority: true, // Always load immediately
     },
     {
       id: "rainbow-blob",
@@ -279,6 +280,7 @@ function App() {
       // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
       width: "100%",
       fallbackColor: "#ffffff",
+      priority: true, // Always load immediately
     },
     // {
     //   id: "upper-center-circle",
@@ -307,6 +309,7 @@ function App() {
       backgroundPosition: "center",
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "stars-right",
@@ -321,6 +324,7 @@ function App() {
       backgroundPosition: "center",
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "about-circle",
@@ -335,6 +339,7 @@ function App() {
       // backgroundPosition: "center",
       blendMode: "normal", // Explicitly set blend mode to avoid conflicts
       fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "about-accent-1",
@@ -375,6 +380,7 @@ function App() {
       // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
       width: "100%",
       fallbackColor: "#ffffff",
+      priority: true, // Always load immediately - major background gradient
     },
     {
       id: "corrdior-1",
@@ -430,6 +436,7 @@ function App() {
       scaleMode: "cover" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true, // Always load immediately - major background gradient
     },
     // {
     //   id: "faq-circle",

@@ -35,6 +35,11 @@ export interface BackgroundManagerProps {
   onLayerLoadSuccess?: (layerId: string) => void;
   onAllLayersLoaded?: () => void;
   className?: string;
+  /**
+   * When true, shows a thin loading bar at the top while background layers load.
+   * Default is false (no loading bar).
+   */
+  showLoadingBar?: boolean;
 }
 
 /**
@@ -48,6 +53,7 @@ const BackgroundManager: React.FC<BackgroundManagerProps> = ({
   onLayerLoadSuccess,
   onAllLayersLoaded,
   className = "",
+  showLoadingBar = false,
 }) => {
   const [loadedLayers, setLoadedLayers] = useState<Set<string>>(new Set());
   const [errorLayers, setErrorLayers] = useState<Set<string>>(new Set());
@@ -176,8 +182,8 @@ const BackgroundManager: React.FC<BackgroundManagerProps> = ({
         <BackgroundLayer key={layerProps.id} {...layerProps} />
       ))}
 
-      {/* Loading indicator (optional, can be styled with CSS) */}
-      {loadingProgress < 100 && (
+      {/* Optional loading indicator at top */}
+      {showLoadingBar && loadingProgress < 100 && (
         <div
           className="background-loading-indicator"
           style={{

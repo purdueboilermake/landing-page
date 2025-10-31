@@ -674,7 +674,7 @@ function App() {
           {/* About Section */}
           <section
             id="about"
-            className="w-[80vw] lg:w-[40vw] flex items-center justify-center py-[50vh]"
+            className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[50vh]"
           >
             <AboutSection />
           </section>

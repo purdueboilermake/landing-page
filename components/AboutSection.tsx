@@ -29,7 +29,7 @@ export default function AboutSection() {
             
             <div className="w-full max-w-4xl border-2 border-white backdrop-blur-sm p-10 md:p-12 lg:p-16 relative" style={{backgroundColor: '#2A2627E6'}}>
                 {/* Planet Image */}
-                <div className="absolute -right-12 top-1/2 transform -translate-y-1/2 z-20">
+                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 z-20">
                     <Image
                         src="/images/aboutplanet.png"
                         alt="Planet"
@@ -39,7 +39,7 @@ export default function AboutSection() {
                         priority
                     />
                 </div>
-                <div className="pr-32">
+                <div className="pr-12">
                     <TypedText 
                         className="text-white text-sm md:text-base leading-relaxed text-left font-futura-cyrillic"
                         delay={200}

@@ -208,7 +208,49 @@ function App() {
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+
+    // Handle scroll animations and limits
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      // Animate about circle from -10vh to center (0vh) when scrolling from 0 to 50vh
+      const aboutCircle = document.querySelector(
+        '[data-layer-id="about-circle"]'
+      ) as HTMLElement;
+      if (aboutCircle) {
+        const scrollRange = viewportHeight * 1.2; // 50vh
+        const startPosition = -10; // -10vh
+        const endPosition = 0; // 0vh (center)
+
+        if (scrollY <= scrollRange) {
+          // Calculate progress (0 to 1) based on scroll position
+          const progress = scrollY / scrollRange;
+          // Interpolate between start and end positions
+          const currentTop =
+            startPosition + (endPosition - startPosition) * progress;
+          aboutCircle.style.top = `${currentTop}vh`;
+        } else {
+          // Keep at final position after 50vh scroll
+          aboutCircle.style.top = `${endPosition}vh`;
+        }
+      }
+
+      // Limit scroll on desktop
+      if (window.innerWidth >= 768) {
+        const maxScrollHeight = window.innerHeight * 16; // 300vh - adjust as needed
+        if (scrollY > maxScrollHeight) {
+          window.scrollTo(0, maxScrollHeight);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Scroll-linked motion for background circles across specific section ranges
@@ -292,6 +334,7 @@ function App() {
       zIndex: -100,
       opacity: 1,
       fallbackColor: "#2A2627", // This should show as the background color
+      priority: true, // Always load immediately
     },
     {
       id: "rainbow-blob",
@@ -307,6 +350,7 @@ function App() {
       // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
       width: "100%",
       fallbackColor: "#ffffff",
+      priority: true,
     },
     {
       id: "stars-left",
@@ -321,6 +365,7 @@ function App() {
       backgroundPosition: "center",
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "stars-right",
@@ -335,6 +380,7 @@ function App() {
       backgroundPosition: "center",
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "about-circle",
@@ -348,6 +394,7 @@ function App() {
       scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "about-accent-1",
@@ -355,10 +402,10 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "190vh",
+      top: "186vh",
       left: "0vw",
       width: "80vw",
-      height: "50vh",
+      height: "30vh",
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
@@ -369,7 +416,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "150vh",
+      top: "149vh",
       left: "0%",
       width: "100%",
       scaleMode: "fill" as BackgroundScaleMode,
@@ -388,6 +435,7 @@ function App() {
       // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
       width: "100%",
       fallbackColor: "#ffffff",
+      priority: true, // Always load immediately - major background gradient
     },
     {
       id: "corrdior-1",
@@ -443,6 +491,7 @@ function App() {
       scaleMode: "cover" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true,
     },
     {
       id: "faq-circle",
@@ -458,12 +507,12 @@ function App() {
       fallbackColor: "#ff0000",
     },
     {
-      id: "about-accent-1",
+      id: "faq-accent-1",
       imageUrl: "/images/faq-accent-1.png",
       position: "absolute" as const,
       zIndex: -30,
       opacity: 1,
-      top: "870vh",
+      top: "840vh",
       left: "0vw",
       width: "100vw",
       height: "30vh",
@@ -472,12 +521,110 @@ function App() {
       fallbackColor: "transparent",
     },
     {
-      id: "about-accent-1",
+      id: "faq-accent-2",
       imageUrl: "/images/faq-accent-2.png",
       position: "absolute" as const,
       zIndex: -40,
       opacity: 1,
       top: "930vh",
+      left: "0vw",
+      width: "100vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet-1",
+      imageUrl: "/images/planet1.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1506vh",
+      left: "40vw",
+      // width: "100vw",
+      height: "20vw",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet2",
+      imageUrl: "/images/planet2.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1415vh",
+      left: "47vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet3",
+      imageUrl: "/images/planet3.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1480vh",
+      left: "-40vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet4",
+      imageUrl: "/images/planet4.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1450vh",
+      left: "1vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "ringed-planet",
+      imageUrl: "/images/ring-planet.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1350vh",
+      left: "-30vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+
+    {
+      id: "orbits",
+      imageUrl: "/images/orbits.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "1350vh",
+      left: "0vw",
+      width: "100vw",
+      height: "200vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "footer-accent",
+      imageUrl: "/images/footer-accent.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "1630vh",
       left: "0vw",
       width: "100vw",
       height: "20vh",
@@ -588,7 +735,7 @@ function App() {
           {/* About Section */}
           <section
             id="about"
-            className="w-[80vw] lg:w-[40vw] flex items-center justify-center py-[50vh]"
+            className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[50vh]"
           >
             <AboutSection />
           </section>
@@ -598,9 +745,7 @@ function App() {
             <div className="schedule-content">
               <div className="schedule-activities">
                 {activities.map((activity, index) => (
-                  <div
-                    key={`activity${index + 1}`}
-                  >
+                  <div key={`activity${index + 1}`}>
                     <ActivityPreview
                       title={activity.title}
                       startDate={activity.startDate}

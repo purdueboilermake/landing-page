@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export type BackgroundScaleMode =
@@ -63,6 +63,93 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(priority || false);
+  const [isClient, setIsClient] = useState(false);
+  const layerRef = useRef<HTMLDivElement>(null);
+
+  // Handle client-side hydration
+  useEffect(() => {
+    setIsClient(true);
+    if (!priority) {
+      // For non-priority images, start loading on client side
+      setShouldLoad(true);
+    }
+  }, [priority]);
+
+  // Enhanced loading logic for background images
+  useEffect(() => {
+    if (!isClient) return; // Wait for client-side hydration
+    
+    if (priority) {
+      // Priority images should always load immediately
+      setShouldLoad(true);
+      return;
+    }
+
+    // For non-priority images, use intersection observer with expanded root margin
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
+            // Once we decide to load, we don't need to observe anymore
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        // Large root margin to start loading before images are actually visible
+        // Using pixels instead of vh units
+        rootMargin: "1000px 0px 1000px 0px",
+        threshold: 0,
+      }
+    );
+
+    if (layerRef.current) {
+      observer.observe(layerRef.current);
+    }
+
+    return () => {
+      if (layerRef.current) {
+        observer.unobserve(layerRef.current);
+      }
+    };
+  }, [priority, isClient]);
+
+  // Force loading on scroll position change for fixed/absolute positioned images
+  useEffect(() => {
+    if (!isClient || priority || shouldLoad) return;
+
+    const handleScrollOrResize = () => {
+      if (!layerRef.current) return;
+
+      // Get viewport and element position
+      const rect = layerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+
+      // Check if element might be visible considering current scroll position
+      // More generous margins for background images
+      const isNearViewport = 
+        rect.top < viewportHeight + 200 && // 200px below viewport
+        rect.bottom > -200; // 200px above viewport
+
+      if (isNearViewport) {
+        setShouldLoad(true);
+      }
+    };
+
+    // Check immediately
+    handleScrollOrResize();
+
+    window.addEventListener('scroll', handleScrollOrResize, { passive: true });
+    window.addEventListener('resize', handleScrollOrResize, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollOrResize);
+      window.removeEventListener('resize', handleScrollOrResize);
+    };
+  }, [priority, shouldLoad, isClient]);
 
   // Handle image load success
   const handleImageLoad = () => {
@@ -149,8 +236,9 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
   // Show the background image using Next.js Image
   return (
     <div
+      ref={layerRef}
       data-layer-id={id}
-      data-layer-status={imageLoaded ? "loaded" : "loading"}
+      data-layer-status={imageLoaded ? "loaded" : shouldLoad ? "loading" : "waiting"}
       style={{
         ...layerStyles,
         // Adjust container styles based on rendering strategy
@@ -179,68 +267,76 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
       }}
       aria-hidden="true"
     >
-      {useExplicitDimensions ? (
-        <Image
-          src={imageUrl}
-          alt={alt}
-          width={width as number}
-          height={height as number}
-          priority={priority}
-          sizes={sizes}
-          style={{
-            objectFit: getObjectFit(scaleMode),
-          }}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-        />
-      ) : useResponsiveWidth ? (
-        <Image
-          src={imageUrl}
-          alt={alt}
-          width={0}
-          height={0}
-          priority={priority}
-          sizes={sizes}
-          style={{
-            width: "100%",
-            height: "auto",
-            objectFit: getObjectFit(scaleMode),
-          }}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-        />
-      ) : useStretchToHeight ? (
-        <Image
-          src={imageUrl}
-          alt={alt}
-          width={0}
-          height={0}
-          priority={priority}
-          sizes={sizes}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: getObjectFit(scaleMode),
-          }}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-        />
-      ) : (
-        <Image
-          src={imageUrl}
-          alt={alt}
-          fill
-          priority={priority}
-          sizes={sizes}
-          style={{
-            objectFit: getObjectFit(scaleMode),
-          }}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-        />
-      )}
-      {/* Show fallback color while loading */}
-      {!imageLoaded && (
+      {shouldLoad && !imageError ? (
+        <>
+          {useExplicitDimensions ? (
+            <Image
+              src={imageUrl}
+              alt={alt}
+              width={width as number}
+              height={height as number}
+              priority={priority}
+              sizes={sizes}
+              loading={priority ? "eager" : "lazy"}
+              style={{
+                objectFit: getObjectFit(scaleMode),
+              }}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+          ) : useResponsiveWidth ? (
+            <Image
+              src={imageUrl}
+              alt={alt}
+              width={0}
+              height={0}
+              priority={priority}
+              sizes={sizes}
+              loading={priority ? "eager" : "lazy"}
+              style={{
+                width: "100%",
+                height: "auto",
+                objectFit: getObjectFit(scaleMode),
+              }}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+          ) : useStretchToHeight ? (
+            <Image
+              src={imageUrl}
+              alt={alt}
+              width={0}
+              height={0}
+              priority={priority}
+              sizes={sizes}
+              loading={priority ? "eager" : "lazy"}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: getObjectFit(scaleMode),
+              }}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+          ) : (
+            <Image
+              src={imageUrl}
+              alt={alt}
+              fill
+              priority={priority}
+              sizes={sizes}
+              loading={priority ? "eager" : "lazy"}
+              style={{
+                objectFit: getObjectFit(scaleMode),
+              }}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+          )}
+        </>
+      ) : null}
+      {/* Show fallback color while loading or if error */}
+      {(!imageLoaded || imageError) && (
         <div
           style={{
             position: "absolute",

@@ -191,6 +191,11 @@ function App() {
   const [activeEventId, setActiveEventId] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  // Dynamic circle positions/opacities (in CSS units)
+  const [aboutCircleTop, setAboutCircleTop] = useState<string>("130vh");
+  const [aboutCircleOpacity, setAboutCircleOpacity] = useState<number>(0.8);
+  const [faqCircleTop, setFaqCircleTop] = useState<string>("830vh");
+  const [faqCircleOpacity, setFaqCircleOpacity] = useState<number>(0.8);
 
   useEffect(() => {
     // Set loaded state after component mounts
@@ -248,6 +253,71 @@ function App() {
     };
   }, []);
 
+  // Scroll-linked motion for background circles across specific section ranges
+  useEffect(() => {
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+    const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+    const update = () => {
+      if (typeof window === "undefined") return;
+      const vh = window.innerHeight;
+      const scrollY = window.scrollY;
+
+      const getTop = (id: string): number | null => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        return el.getBoundingClientRect().top + window.scrollY;
+      };
+
+      const heroTop = getTop("hero");
+      const aboutTop = getTop("about");
+      const scheduleTop = getTop("schedule");
+      const faqTop = getTop("faq");
+      const sponsorsTop = getTop("sponsors");
+
+      // Segment 1: hero -> about: move about-circle
+      if (heroTop != null && aboutTop != null) {
+        const start = heroTop;
+        const end = aboutTop;
+        const span = Math.max(1, end - start);
+        const t = clamp01((scrollY - start) / span);
+        // Interpolate between 0vh (near hero) and 130vh (about center)
+        const topVh = lerp(0, 130, t);
+        setAboutCircleTop(`${topVh}vh`);
+        setAboutCircleOpacity(t > 0.02 ? 0.8 : 0.8); // keep visible through segment
+      }
+
+      // Freeze during schedule (no scroll effect)
+      // If schedule exists, do not modify about circle while within schedule range
+      if (scheduleTop != null) {
+        const endOfAbout = (aboutTop ?? 0) + vh; // heuristic
+        if (scrollY >= endOfAbout && scrollY < scheduleTop + vh) {
+          // do nothing (keeps last about circle state)
+        }
+      }
+
+      // Segment 2: faq -> sponsors: move faq-circle
+      if (faqTop != null && sponsorsTop != null) {
+        const start = faqTop;
+        const end = sponsorsTop;
+        const span = Math.max(1, end - start);
+        const t = clamp01((scrollY - start) / span);
+        // Interpolate between 700vh and 930vh to match existing art placement
+        const topVh = lerp(700, 930, t);
+        setFaqCircleTop(`${topVh}vh`);
+        setFaqCircleOpacity(t >= 0 && t <= 1 ? 0.8 : 0);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   const handleEventClick = (id: number) => {
     if (id === activeEventId) {
       setActiveEventId(0);
@@ -280,22 +350,8 @@ function App() {
       // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
       width: "100%",
       fallbackColor: "#ffffff",
-      priority: true, // Always load immediately
+      priority: true,
     },
-    // {
-    //   id: "upper-center-circle",
-    //   imageUrl: "/images/Upper_center_circle.png",
-    //   position: "absolute" as const,
-    //   zIndex: -80, // Under content but above dark background layers
-    //   opacity: 0.8,
-    //   top: "-10vh", // 10% above viewport to cut off top
-    //   left: "0%", // Center horizontally
-    //   height: "100vh", // Square aspect ratio
-    //   scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-    //   backgroundPosition: "center",
-    //   blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-    //   fallbackColor: "transparent",
-    // },
     {
       id: "stars-left",
       imageUrl: "/images/stars-left.png",
@@ -329,15 +385,14 @@ function App() {
     {
       id: "about-circle",
       imageUrl: "/images/about-circle.png",
-      position: "fixed" as const,
-      zIndex: -80, // Under content but above dark background layers
-      opacity: 0.8,
-      top: "-10vh", // Start position - will be animated by scroll
-      left: "0%", // Center horizontally
-      height: "100vh", // Square aspect ratio
-      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-      // backgroundPosition: "center",
-      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
+      position: "absolute" as const,
+      zIndex: -80,
+      opacity: aboutCircleOpacity,
+      top: aboutCircleTop,
+      left: "0%",
+      height: "100vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
       fallbackColor: "transparent",
       priority: true, // Always load immediately
     },
@@ -436,22 +491,21 @@ function App() {
       scaleMode: "cover" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
-      priority: true, // Always load immediately - major background gradient
+      priority: true,
     },
-    // {
-    //   id: "faq-circle",
-    //   imageUrl: "/images/faq-circle.png",
-    //   position: "absolute" as const,
-    //   zIndex: -99, // Under content but above dark background layers
-    //   opacity: 0.8,
-    //   top: "830vh",
-    //   left: "0%", // Center horizontally
-    //   height: "100vh", // Square aspect ratio
-    //   scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-    //   // backgroundPosition: "center",
-    //   blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-    //   fallbackColor: "#ff0000",
-    // },
+    {
+      id: "faq-circle",
+      imageUrl: "/images/faq-circle.png",
+      position: "absolute" as const,
+      zIndex: -99,
+      opacity: faqCircleOpacity,
+      top: faqCircleTop,
+      left: "0%",
+      height: "100vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "#ff0000",
+    },
     {
       id: "faq-accent-1",
       imageUrl: "/images/faq-accent-1.png",

@@ -203,7 +203,49 @@ function App() {
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+
+    // Handle scroll animations and limits
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      // Animate about circle from -10vh to center (0vh) when scrolling from 0 to 50vh
+      const aboutCircle = document.querySelector(
+        '[data-layer-id="about-circle"]'
+      ) as HTMLElement;
+      if (aboutCircle) {
+        const scrollRange = viewportHeight * 1.2; // 50vh
+        const startPosition = -10; // -10vh
+        const endPosition = 0; // 0vh (center)
+
+        if (scrollY <= scrollRange) {
+          // Calculate progress (0 to 1) based on scroll position
+          const progress = scrollY / scrollRange;
+          // Interpolate between start and end positions
+          const currentTop =
+            startPosition + (endPosition - startPosition) * progress;
+          aboutCircle.style.top = `${currentTop}vh`;
+        } else {
+          // Keep at final position after 50vh scroll
+          aboutCircle.style.top = `${endPosition}vh`;
+        }
+      }
+
+      // Limit scroll on desktop
+      if (window.innerWidth >= 768) {
+        const maxScrollHeight = window.innerHeight * 16; // 300vh - adjust as needed
+        if (scrollY > maxScrollHeight) {
+          window.scrollTo(0, maxScrollHeight);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleEventClick = (id: number) => {
@@ -238,20 +280,20 @@ function App() {
       width: "100%",
       fallbackColor: "#ffffff",
     },
-    {
-      id: "upper-center-circle",
-      imageUrl: "/images/Upper_center_circle.png",
-      position: "absolute" as const,
-      zIndex: -80, // Under content but above dark background layers
-      opacity: 0.8,
-      top: "-10vh", // 10% above viewport to cut off top
-      left: "0%", // Center horizontally
-      height: "100vh", // Square aspect ratio
-      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-      backgroundPosition: "center",
-      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-      fallbackColor: "transparent",
-    },
+    // {
+    //   id: "upper-center-circle",
+    //   imageUrl: "/images/Upper_center_circle.png",
+    //   position: "absolute" as const,
+    //   zIndex: -80, // Under content but above dark background layers
+    //   opacity: 0.8,
+    //   top: "-10vh", // 10% above viewport to cut off top
+    //   left: "0%", // Center horizontally
+    //   height: "100vh", // Square aspect ratio
+    //   scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
+    //   backgroundPosition: "center",
+    //   blendMode: "normal", // Explicitly set blend mode to avoid conflicts
+    //   fallbackColor: "transparent",
+    // },
     {
       id: "stars-left",
       imageUrl: "/images/stars-left.png",
@@ -283,10 +325,10 @@ function App() {
     {
       id: "about-circle",
       imageUrl: "/images/about-circle.png",
-      position: "absolute" as const,
+      position: "fixed" as const,
       zIndex: -80, // Under content but above dark background layers
       opacity: 0.8,
-      top: "130vh",
+      top: "-10vh", // Start position - will be animated by scroll
       left: "0%", // Center horizontally
       height: "100vh", // Square aspect ratio
       scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
@@ -300,10 +342,10 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "190vh",
+      top: "186vh",
       left: "0vw",
       width: "80vw",
-      height: "50vh",
+      height: "30vh",
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
@@ -314,7 +356,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "150vh",
+      top: "149vh",
       left: "0%",
       width: "100%",
       scaleMode: "fill" as BackgroundScaleMode,
@@ -389,27 +431,27 @@ function App() {
       blendMode: "normal",
       fallbackColor: "transparent",
     },
-    {
-      id: "faq-circle",
-      imageUrl: "/images/faq-circle.png",
-      position: "absolute" as const,
-      zIndex: -99, // Under content but above dark background layers
-      opacity: 0.8,
-      top: "830vh",
-      left: "0%", // Center horizontally
-      height: "100vh", // Square aspect ratio
-      scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
-      // backgroundPosition: "center",
-      blendMode: "normal", // Explicitly set blend mode to avoid conflicts
-      fallbackColor: "#ff0000",
-    },
+    // {
+    //   id: "faq-circle",
+    //   imageUrl: "/images/faq-circle.png",
+    //   position: "absolute" as const,
+    //   zIndex: -99, // Under content but above dark background layers
+    //   opacity: 0.8,
+    //   top: "830vh",
+    //   left: "0%", // Center horizontally
+    //   height: "100vh", // Square aspect ratio
+    //   scaleMode: "contain" as BackgroundScaleMode, // Preserve aspect ratio
+    //   // backgroundPosition: "center",
+    //   blendMode: "normal", // Explicitly set blend mode to avoid conflicts
+    //   fallbackColor: "#ff0000",
+    // },
     {
       id: "faq-accent-1",
       imageUrl: "/images/faq-accent-1.png",
       position: "absolute" as const,
       zIndex: -30,
       opacity: 1,
-      top: "870vh",
+      top: "840vh",
       left: "0vw",
       width: "100vw",
       height: "30vh",
@@ -424,6 +466,104 @@ function App() {
       zIndex: -40,
       opacity: 1,
       top: "930vh",
+      left: "0vw",
+      width: "100vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet-1",
+      imageUrl: "/images/planet1.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1506vh",
+      left: "40vw",
+      // width: "100vw",
+      height: "20vw",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet2",
+      imageUrl: "/images/planet2.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1415vh",
+      left: "47vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet3",
+      imageUrl: "/images/planet3.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1480vh",
+      left: "-40vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet4",
+      imageUrl: "/images/planet4.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1450vh",
+      left: "1vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "ringed-planet",
+      imageUrl: "/images/ring-planet.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1350vh",
+      left: "-30vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+
+    {
+      id: "orbits",
+      imageUrl: "/images/orbits.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "1350vh",
+      left: "0vw",
+      width: "100vw",
+      height: "200vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "footer-accent",
+      imageUrl: "/images/footer-accent.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "1630vh",
       left: "0vw",
       width: "100vw",
       height: "20vh",
@@ -544,9 +684,7 @@ function App() {
             <div className="schedule-content">
               <div className="schedule-activities">
                 {activities.map((activity, index) => (
-                  <div
-                    key={`activity${index + 1}`}
-                  >
+                  <div key={`activity${index + 1}`}>
                     <ActivityPreview
                       title={activity.title}
                       startDate={activity.startDate}

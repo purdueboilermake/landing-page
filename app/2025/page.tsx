@@ -634,6 +634,14 @@ function App() {
     },
   ];
 
+  const activity_offset: { [key: string]: string } = {
+    'activity1': "top-[3vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]",
+    'activity2': "bottom-[37vh] -right-[25%] sm:-right-[45%] md:-right-[55%] lg:-right-[52%]",
+    'activity3': "bottom-[70vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]",
+    'activity4': "top-[40vh] -right-[25%] sm:-right-[45%] md:-right-[55%] lg:-right-[52%]",
+    'activity5': "bottom-[5vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]"
+  };
+
   return (
     <TypingProvider initialSettings={{ defaultSpeed: 10 }}>
       <div className="App font-dosis">
@@ -741,11 +749,32 @@ function App() {
           </section>
 
           {/* Schedule Section */}
-          <section id="schedule" className="schedule-section">
-            <div className="schedule-content">
-              <div className="schedule-activities">
+          <div className="text-center mt-[170vh]">
+            <div
+              style={{
+                fontFamily: 'var(--font-disket-mono)',
+                fontWeight: 400,
+                fontSize: 'clamp(32px, 8vw, 60px)',
+                lineHeight: '100%',
+                letterSpacing: '0.1em',
+                color: '#FFE958',
+                textShadow: '0px 0px 15px #FFDE00',
+              }}
+            >
+              Schedule<span style={{ animation: 'blink 1s infinite' }}>_</span>
+            </div>
+          </div>
+          <section
+            id="schedule"
+            className="w-full pt-8 flex items-center justify-center"
+          >
+            <div className="w-[80vw] mt-[32vh] lg:w-[60vw] max-w-4xl mx-auto px-8">
+              <div className="schedule-activities w-full h-[170vh] relative">
                 {activities.map((activity, index) => (
-                  <div key={`activity${index + 1}`}>
+                  <div
+                    key={`activity${index + 1}`}
+                    className={`absolute w-full ${activity_offset[`activity${index + 1}`]}`}
+                  >
                     <ActivityPreview
                       title={activity.title}
                       startDate={activity.startDate}
@@ -755,7 +784,7 @@ function App() {
                       isActive={activeEventId === index + 1}
                       onEventClick={() => handleEventClick(index + 1)}
                       size="large"
-                      popup={index === 2 || index === 5 ? "right" : "left"}
+                      popup="left"
                     />
                   </div>
                 ))}
@@ -766,7 +795,7 @@ function App() {
           {/* FAQ Sign Section */}
           <section
             id="faq"
-            className="w-full flex items-center justify-center py-[10vh]"
+            className="w-full flex items-center justify-center py-[10vh] mt-[190vh]"
           >
             <div className="faq-sign">
               <FAQAccordian questions={questions} />

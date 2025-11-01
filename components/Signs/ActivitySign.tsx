@@ -39,23 +39,24 @@ function useTypewriter(text: string, delay: number, startTyping: boolean) {
 }
 
 const widthMap = {
-    'small': 'w-52 sm:w-56 md:w-64 lg:w-72',
-    'medium': 'w-56 sm:w-64 md:w-72 lg:w-80',
-    'large': 'w-52 sm:w-56 md:w-64 lg:w-72',
-    'xlarge': 'w-56 sm:w-64 md:w-72 lg:w-80'
+    // Width relative to the container (which is already responsive)
+    'small': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]',
+    'medium': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]',
+    'large': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]',
+    'xlarge': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]'
 }
 
 const verticalPadding = {
     'small': 'py-2 sm:py-2 md:py-3 lg:py-3',
     'medium': 'py-3 sm:py-3 md:py-4 lg:py-4',
-    'large': 'py-3 sm:py-4 md:py-5 lg:py-5',
+    'large': 'py-4 sm:py-5 md:py-6 lg:py-10',
     'xlarge': 'py-4 sm:py-5 md:py-6 lg:py-6'
 }
 
-const timeClass = 'text-xs sm:text-sm md:text-sm lg:text-base tracking-widest';
-const titleClass = 'text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold';
+const timeClass = 'text-lg sm:text-xl md:text-2xl lg:text-[28px] tracking-widest font-bold';
+const titleClass = 'text-xl sm:text-2xl md:text-3xl lg:text-[36px] font-semibold';
 const contentClass = 'text-xs sm:text-sm md:text-sm lg:text-base';
-const titleMargin = 'mt-1';
+const titleMargin = 'mt-5';
 
 export default function ActivitySign({ title, startDate, size, location, isExpanded, description }: ActivitySignProps) {
     const date = new Date(startDate);
@@ -80,34 +81,34 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
     }, [typedLocation, location]);
 
     return (
-        <div className="relative w-full h-full flex items-start justify-center hover:-translate-y-1 transition">
-            <div className={`${widthMap[size]} ${verticalPadding[size]} ${isExpanded ? 'pb-8 sm:pb-10 md:pb-12 lg:pb-14' : ''} ${size === 'medium' ? 'px-8 sm:px-11 md:px-14 lg:px-15' : 'px-4 sm:px-6 md:px-8 lg:px-10'} border-[4px] bg-[#2A2627E6] border-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out max-w-[100vw] sm:max-w-none`}>
-                <div className={`text-white ${timeClass} font-normal`} style={{
+        <div className={`${widthMap[size]} ${verticalPadding[size]} border-[4px] bg-[#2A2627E6] border-white flex flex-col items-center hover:-translate-y-1 ${size === 'medium' ? 'px-8 sm:px-11 md:px-14 lg:px-15' : 'px-4 sm:px-6 md:px-8 lg:px-10'}`}>
+            <div className={`text-white ${timeClass} font-normal`} style={{
+                fontFamily: 'var(--font-geist-vf)'
+            }}>
+                <span>{time}</span>
+            </div>
+            <p className={`text-[#FFE42D] ${titleClass} font-semibold leading-none ${titleMargin} text-center`} style={{
+                fontFamily: 'var(--font-disket-mono)',
+            }}>
+                {title.split(' ').length === 2 ? (
+                    <>
+                        {title.split(' ')[0]}<br />
+                        {title.split(' ')[1]}
+                    </>
+                ) : title}
+            </p>
+
+            {/* Inline expanded content (no overlay, no fixed/focus) */}
+            {isExpanded && (
+                <div className={`text-white ${contentClass} font-body mt-2 sm:mt-3 md:mt-4 text-center transition-all duration-300 ease-in-out max-w-full px-2`} style={{
                     fontFamily: 'var(--font-geist-vf)'
                 }}>
-                    <span>{time}</span>
+                    <div className="pb-3 min-h-[1.5em]">{typedLocation}</div>
+                    {showDescription && (
+                        <div className="pt-3 min-h-[3em]">{typedDescription}</div>
+                    )}
                 </div>
-                <p className={`text-[#FFE42D] ${titleClass} font-semibold leading-none ${titleMargin} text-center`} style={{
-                    fontFamily: 'var(--font-disket-mono)',
-                }}>
-                    {title.split(' ').length === 2 ? (
-                        <>
-                            {title.split(' ')[0]}<br />
-                            {title.split(' ')[1]}
-                        </>
-                    ) : title}
-                </p>
-                {isExpanded && (
-                    <div className={`text-white ${contentClass} font-body mt-2 sm:mt-3 md:mt-4 text-center transition-all duration-300 ease-in-out max-w-full px-2`} style={{
-                        fontFamily: 'var(--font-geist-vf)'
-                    }}>
-                        <div className="pb-3 min-h-[1.5em]">{typedLocation}</div>
-                        {showDescription && (
-                            <div className="pt-3 min-h-[3em]">{typedDescription}</div>
-                        )}
-                    </div>
-                )}
-            </div>
-        </div >
+            )}
+        </div>
     );
 }

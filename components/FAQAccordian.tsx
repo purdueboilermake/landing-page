@@ -21,7 +21,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
 
   return (
     <div className="w-full max-w-5xl mx-auto px-8">
-        <div className="mb-12 text-center">
+        {/* <div className="mb-12 text-center">
            <div
              style={{
                fontFamily: 'var(--font-disket-mono)',
@@ -35,7 +35,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
            >
              FAQ<span style={{ animation: 'blink 1s infinite' }}>_</span>
            </div>
-       </div>
+       </div> */}
 
       {/* Individual question boxes matching the image */}
       <div className="space-y-6 w-full">

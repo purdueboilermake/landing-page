@@ -198,123 +198,101 @@ function App() {
   const [faqCircleOpacity, setFaqCircleOpacity] = useState<number>(0.8);
 
   useEffect(() => {
-    // Set loaded state after component mounts
     setIsLoaded(true);
 
-    // Check if mobile on initial load
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
+      setIsMobile(window.innerWidth < 768);
     };
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    // Handle scroll animations and limits
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
-
-      // Animate about circle from -10vh to center (0vh) when scrolling from 0 to 50vh
-      const aboutCircle = document.querySelector(
-        '[data-layer-id="about-circle"]'
-      ) as HTMLElement;
-      if (aboutCircle) {
-        const scrollRange = viewportHeight * 1.2; // 50vh
-        const startPosition = -10; // -10vh
-        const endPosition = 0; // 0vh (center)
-
-        if (scrollY <= scrollRange) {
-          // Calculate progress (0 to 1) based on scroll position
-          const progress = scrollY / scrollRange;
-          // Interpolate between start and end positions
-          const currentTop =
-            startPosition + (endPosition - startPosition) * progress;
-          aboutCircle.style.top = `${currentTop}vh`;
-        } else {
-          // Keep at final position after 50vh scroll
-          aboutCircle.style.top = `${endPosition}vh`;
-        }
-      }
-
-      // Limit scroll on desktop
-      if (window.innerWidth >= 768) {
-        const maxScrollHeight = window.innerHeight * 16; // 300vh - adjust as needed
-        if (scrollY > maxScrollHeight) {
-          window.scrollTo(0, maxScrollHeight);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("resize", checkMobile);
-      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Scroll-linked motion for background circles across specific section ranges
   useEffect(() => {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
-    const update = () => {
+    const handleScroll = () => {
       if (typeof window === "undefined") return;
-      const vh = window.innerHeight;
+
       const scrollY = window.scrollY;
+      const vhPx = window.innerHeight;
+      const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
-      const getTop = (id: string): number | null => {
-        const el = document.getElementById(id);
-        if (!el) return null;
-        return el.getBoundingClientRect().top + window.scrollY;
-      };
+      //
+      // ==== CIRCLE 1: hero → about ====
+      //
+      const c1StartScrollVh = 0;
+      const c1EndScrollVh = 250;
+      const c1Span = c1EndScrollVh - c1StartScrollVh;
+      const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
+      const c1TopVh = lerp(0, 250, c1t);
+      setAboutCircleTop(`${c1TopVh}vh`);
+      setAboutCircleOpacity(0.8);
 
-      const heroTop = getTop("hero");
-      const aboutTop = getTop("about");
-      const scheduleTop = getTop("schedule");
-      const faqTop = getTop("faq");
-      const sponsorsTop = getTop("sponsors");
+      //
+      // ==== CIRCLE 2: FAQ → “next page” ====
+      //
+      // scroll range (when to start / stop moving)
+      const c2StartScrollVh = 910;   // start moving once page has scrolled ~910vh
+      const c2EndScrollVh = 1150;     // finish moving by 1150vh
+      const c2Span = c2EndScrollVh - c2StartScrollVh;
 
-      // Segment 1: hero -> about: move about-circle
-      if (heroTop != null && aboutTop != null) {
-        const start = heroTop;
-        const end = aboutTop;
-        const span = Math.max(1, end - start);
-        const t = clamp01((scrollY - start) / span);
-        // Interpolate between 0vh (near hero) and 130vh (about center)
-        const topVh = lerp(0, 130, t);
-        setAboutCircleTop(`${topVh}vh`);
-        setAboutCircleOpacity(t > 0.02 ? 0.8 : 0.8); // keep visible through segment
-      }
+      // position range (where to put the circle)
+      const c2StartTopVh = 910;      // start
+      const c2EndTopVh = 1150;        // final rest position
 
-      // Freeze during schedule (no scroll effect)
-      // If schedule exists, do not modify about circle while within schedule range
-      if (scheduleTop != null) {
-        const endOfAbout = (aboutTop ?? 0) + vh; // heuristic
-        if (scrollY >= endOfAbout && scrollY < scheduleTop + vh) {
-          // do nothing (keeps last about circle state)
-        }
-      }
+      const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
+      const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
 
-      // Segment 2: faq -> sponsors: move faq-circle
-      if (faqTop != null && sponsorsTop != null) {
-        const start = faqTop;
-        const end = sponsorsTop;
-        const span = Math.max(1, end - start);
-        const t = clamp01((scrollY - start) / span);
-        // Interpolate between 700vh and 930vh to match existing art placement
-        const topVh = lerp(700, 930, t);
-        setFaqCircleTop(`${topVh}vh`);
-        setFaqCircleOpacity(t >= 0 && t <= 1 ? 0.8 : 0);
-      }
+      setFaqCircleTop(`${c2TopVh}vh`);
+      setFaqCircleOpacity(0.8);
     };
 
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    // run once
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Run after hydration + next paint
+    const nudge = () => {
+      // Dispatch synthetic scroll/resize to observers
+      window.dispatchEvent(new Event("resize"));
+      window.dispatchEvent(new Event("scroll"));
+      // Tiny scroll jiggle to guarantee intersection recalculation
+      const x = window.scrollX, y = window.scrollY;
+      window.scrollTo(x, y + 1);
+      window.scrollTo(x, y);
+    };
+
+    // Initial nudge
+    const t1 = setTimeout(nudge, 0);
+    // Nudge again after images/styles settle
+    const t2 = setTimeout(nudge, 250);
+
+    // Also nudge when page becomes visible (reloads from bfcache, etc.)
+    const onVis = () => {
+      if (document.visibilityState === "visible") {
+        nudge();
+      }
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      document.removeEventListener("visibilitychange", onVis);
     };
   }, []);
 
@@ -345,7 +323,7 @@ function App() {
       top: 0,
       blendMode: "normal",
       useIntrinsicHeight: false,
-      height: isMobile ? "200vh" : "400vh", // 200vh mobile, 400vh desktop
+      height: "400vh", // 200vh mobile, 400vh desktop
       // scaleMode: "cover" as BackgroundScaleMode,
       // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
       width: "100%",
@@ -402,7 +380,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "186vh",
+      top: "302vh",
       left: "0vw",
       width: "80vw",
       height: "30vh",
@@ -416,7 +394,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "149vh",
+      top: "270vh",
       left: "0%",
       width: "100%",
       scaleMode: "fill" as BackgroundScaleMode,
@@ -430,12 +408,12 @@ function App() {
       zIndex: -50,
       opacity: 1,
       top: "400vh",
-      blendMode: "normal",
-      // scaleMode: "cover" as BackgroundScaleMode,
-      // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
       width: "100%",
+      height: "100vh",
+      blendMode: "normal",
       fallbackColor: "#ffffff",
-      priority: true, // Always load immediately - major background gradient
+      priority: true,
+      useIntrinsicHeight: false,
     },
     {
       id: "corrdior-1",
@@ -472,9 +450,10 @@ function App() {
       opacity: 1,
       top: "470vh",
       left: "0%",
-      width: "100vw",
-      height: "80vh",
-      scaleMode: "contain" as BackgroundScaleMode,
+      width: "100%",
+      height: "260vh",
+      useIntrinsicHeight: false,
+      scaleMode: "cover" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
     },
@@ -487,8 +466,9 @@ function App() {
       top: "700vh",
       left: "0%",
       width: "100vw",
-      // height: "80vh",
-      scaleMode: "cover" as BackgroundScaleMode,
+      height: "1200vh",
+      useIntrinsicHeight: false,
+      scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
       priority: true,
@@ -638,7 +618,7 @@ function App() {
     'activity1': "top-[3vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]",
     'activity2': "bottom-[37vh] -right-[25%] sm:-right-[45%] md:-right-[55%] lg:-right-[52%]",
     'activity3': "bottom-[70vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]",
-    'activity4': "top-[40vh] -right-[25%] sm:-right-[45%] md:-right-[55%] lg:-right-[52%]",
+    'activity4': "bottom-[105vh] -right-[25%] sm:-right-[45%] md:-right-[55%] lg:-right-[52%]",
     'activity5': "bottom-[5vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]"
   };
 
@@ -743,33 +723,33 @@ function App() {
           {/* About Section */}
           <section
             id="about"
-            className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[50vh]"
+            className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[270vh] absolute"
           >
             <AboutSection />
           </section>
 
           {/* Schedule Section */}
-          <div className="text-center mt-[170vh]">
-            <div
-              style={{
-                fontFamily: 'var(--font-disket-mono)',
-                fontWeight: 400,
-                fontSize: 'clamp(32px, 8vw, 60px)',
-                lineHeight: '100%',
-                letterSpacing: '0.1em',
-                color: '#FFE958',
-                textShadow: '0px 0px 15px #FFDE00',
-              }}
-            >
-              Schedule<span style={{ animation: 'blink 1s infinite' }}>_</span>
-            </div>
-          </div>
           <section
             id="schedule"
-            className="w-full pt-8 flex items-center justify-center"
+            className="w-full flex items-center justify-center py-[410vh]"
           >
-            <div className="w-[80vw] mt-[32vh] lg:w-[60vw] max-w-4xl mx-auto px-8">
-              <div className="schedule-activities w-full h-[170vh] relative">
+            <div className="w-[60vw] max-w-4xl mx-auto px-8 relative">
+              <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-disket-mono)',
+                      fontWeight: 400,
+                      fontSize: 'clamp(32px, 8vw, 60px)',
+                      lineHeight: '100%',
+                      letterSpacing: '0.1em',
+                      color: '#FFE958',
+                      textShadow: '0px 0px 15px #FFDE00',
+                    }}
+                  >
+                    Schedule<span style={{ animation: 'blink 1s infinite' }}>_</span>
+                  </div>
+              </div>
+                <div className="schedule-activities w-full h-[170vh] relative mt-40">
                 {activities.map((activity, index) => (
                   <div
                     key={`activity${index + 1}`}
@@ -792,12 +772,27 @@ function App() {
             </div>
           </section>
 
-          {/* FAQ Sign Section */}
-          <section
-            id="faq"
-            className="w-full flex items-center justify-center py-[10vh] mt-[190vh]"
-          >
-            <div className="faq-sign">
+          {/* FAQ Section */}
+          <section id="faq" className="w-full flex items-center justify-center relative py-32">
+            {/* Absolute header like the others */}
+            <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+              <div
+                style={{
+                  fontFamily: 'var(--font-disket-mono)',
+                  fontWeight: 400,
+                  fontSize: 'clamp(32px, 8vw, 60px)',
+                  lineHeight: '100%',
+                  letterSpacing: '0.1em',
+                  color: '#FFE958',
+                  textShadow: '0px 0px 15px #FFDE00',
+                }}
+              >
+                FAQ<span style={{ animation: 'blink 1s infinite' }}>_</span>
+              </div>
+            </div>
+
+            {/* Actual accordion content */}
+            <div className="faq-sign w-full flex justify-center mt-24">
               <FAQAccordian questions={questions} />
             </div>
           </section>

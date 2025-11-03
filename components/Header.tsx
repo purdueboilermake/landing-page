@@ -2,7 +2,6 @@
  * Header.tsx
  * Will be used to display the logo and the navigation bar
  * Updated for new CSS Grid layout system (no parallax)
- * Enhanced mobile menu with better styling
  * @AshokSaravanan222
  * 09-15-2024
  */

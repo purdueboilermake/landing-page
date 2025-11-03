@@ -435,7 +435,12 @@ function App() {
 
   return (
     <TypingProvider initialSettings={{ defaultSpeed: 10 }}>
-      <div className="App font-dosis">
+      <>
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          rel="stylesheet"
+        />
+        <div className="App font-dosis">
         {/* Background Manager - replaces parallax background system */}
         <BackgroundManager
           layers={backgroundLayers}
@@ -477,7 +482,7 @@ function App() {
                   }}
                 >
                   coming jan 2026
-                </h2>
+                <span className="text-white" style={{ animation: 'blink 1s step-end infinite' }}>_</span></h2>
                 <h1
                   className="text-center mb-12"
                   style={{
@@ -574,16 +579,102 @@ function App() {
             </div>
           </section>
 
-          {/* Footer Section */}
-          {/* <section id="footer" className="footer-section">
-            <footer className="footer-content">
-              <p className="text-white text-center">
-                © 2025 BoilerMake. All rights reserved.
+          {/* Contact/Message Section */}
+          <section id="contact" className="relative min-h-screen flex flex-col items-center justify-center py-20 px-8">
+            {/* Main Content Container - All content centered vertically */}
+            <div className="flex flex-col items-center justify-center gap-12 max-w-4xl flex-1">
+              {/* Message text */}
+              <h1
+                className="text-center"
+                style={{
+                  fontFamily: "var(--font-geist-vf)",
+                  fontWeight: 300,
+                  fontSize: "clamp(40px, 8vw, 80px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0.05em",
+                  color: "#FFFFFF",
+                    textShadow: "0px 0px 15px #FFDE00"
+                }}
+              >
+                [message]
+              </h1>
+
+              {/* Button */}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-white/10"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  fontSize: "clamp(14px, 2vw, 18px)",
+                  letterSpacing: "0.15em",
+                }}
+              >
+                <span
+                  style={{
+                    borderBottom: "2px solid #FFFFFF",
+                    paddingBottom: "4px",
+                  }}
+                >
+                  APPLY/CONTACT/...
+                </span>
+              </a>
+
+              {/* Social Media Icons */}
+              <div className="flex flex-row gap-6 mt-8">
+                
+                <a
+                  href="https://www.instagram.com/boilermake/?hl=en"
+                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                  aria-label="Instagram"
+                  onMouseEnter={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "0px 0px 15px #FFE958";
+                  }}
+                  onMouseLeave={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "none";
+                  }}
+                >
+                  <i className="fab fa-instagram" style={{ fontSize: "1.75em" }} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/boilermake/"
+                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                  aria-label="LinkedIn"
+                  onMouseEnter={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "0px 0px 15px #FFE958";
+                  }}
+                  onMouseLeave={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "none";
+                  }}
+                >
+                  <i className="fab fa-linkedin" style={{ fontSize: "1.75em" }} />
+                </a>
+                
+              </div>
+
+              {/* Made with love text */}
+              <p
+                className="text-center text-white mt-8"
+                style={{
+                  fontFamily: "var(--font-geist-vf)",
+                  fontWeight: 300,
+                  fontSize: "clamp(14px, 1.5vw, 18px)",
+                  letterSpacing: "0.05em",
+                  color: "#FFFFFF",
+                    textShadow: "0px 0px 15px #FFDE00"
+                }}
+              >
+                Made with 💛 by the BoilerMake XIII team
               </p>
-            </footer>
-          </section> */}
+            </div>
+          </section>
         </main>
       </div>
+      </>
     </TypingProvider>
   );
 }

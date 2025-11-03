@@ -2,6 +2,7 @@
  * Header.tsx
  * Will be used to display the logo and the navigation bar
  * Updated for new CSS Grid layout system (no parallax)
+ * Enhanced mobile menu with better styling
  * @AshokSaravanan222
  * 09-15-2024
  */
@@ -114,7 +115,8 @@ export default function Header({}: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2"
+            className="md:hidden p-2 relative z-50"
+            aria-label="Toggle menu"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
               <span
@@ -139,60 +141,116 @@ export default function Header({}: HeaderProps) {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`md:hidden absolute top-full left-0 right-0 transition-all duration-300 ${
-            isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          className={`md:hidden absolute top-full left-0 right-0 transition-all duration-500 ease-out ${
+            isMenuOpen 
+              ? "opacity-100 visible translate-y-0" 
+              : "opacity-0 invisible -translate-y-4"
           }`}
         >
-          <div className="bg-black/50 backdrop-blur-sm">
-            <nav className="flex flex-col items-center py-4 space-y-4">
+          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg border-t border-yellow-500/20 shadow-2xl">
+            <nav className="flex flex-col items-center py-6 space-y-4">
               <button
                 onClick={() => {
                   handleNavigation("about");
                   setIsMenuOpen(false);
                 }}
-                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
               >
                 About
               </button>
-              <a
-                href="/about-us"
-                onClick={() => setIsMenuOpen(false)}
-                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
-              >
-                Team
-              </a>
+              
               <button
                 onClick={() => {
-                  handleNavigation("schedule");
+                  handleNavigation("schedule-section");
                   setIsMenuOpen(false);
                 }}
-                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
               >
                 Schedule
               </button>
+              
               <button
                 onClick={() => {
-                  handleNavigation("faq");
+                  handleNavigation("faq-sign");
                   setIsMenuOpen(false);
                 }}
-                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
               >
-                FAQ
+                FAQs
               </button>
+              
               <button
                 onClick={() => {
-                  handleNavigation("sponsors");
+                  handleNavigation("sponsors-sign");
                   setIsMenuOpen(false);
                 }}
-                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
               >
                 Sponsors
               </button>
-              <ApplyButton
-                text="Apply Now!"
-                link="https://boilermake-apply.web.app"
-                size={"small"}
-              />
+              
+              <div className="pt-4 pb-2">
+                <a
+                  href="https://boilermake-apply.web.app"
+                  className="inline-block px-8 py-3 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-white/10"
+                  style={{
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 500,
+                    letterSpacing: "0.1em",
+                  }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Apply Now!
+                </a>
+              </div>
            </nav>
           </div>
         </div>

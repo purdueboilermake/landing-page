@@ -15,7 +15,7 @@ export default function Home() {
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>BoilerMake XIII</title>
-      <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+      <link rel="icon" href="assets/bmxiii_favicon.ico" type="image/x-icon" />
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         rel="stylesheet"

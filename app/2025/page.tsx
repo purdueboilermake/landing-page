@@ -375,6 +375,21 @@ function App() {
       priority: true, // Always load immediately
     },
     {
+      id: "stars-about",
+      imageUrl: "/images/stars-about.png",
+      position: "absolute" as const,
+      zIndex: -81,
+      opacity: 0.8, // Increase visibility
+      top: "255vh", // Start at the top of the viewport
+      left: "25%",
+      height: "30vh", // Covers the viewport while scrolling
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true,
+    },
+    {
       id: "about-accent-1",
       imageUrl: "/images/about-accent-1.png",
       position: "absolute" as const,
@@ -414,6 +429,21 @@ function App() {
       fallbackColor: "#ffffff",
       priority: true,
       useIntrinsicHeight: false,
+    },
+    {
+      id: "stars-schedule",
+      imageUrl: "/images/stars-schedule.png",
+      position: "absolute" as const,
+      zIndex: -51,
+      opacity: 0.8,
+      top: "400vh", // A bit higher than stars-left (80vh)
+      left: "-30%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "corrdior-1",
@@ -474,6 +504,21 @@ function App() {
       priority: true,
     },
     {
+      id: "stars-faq",
+      imageUrl: "/images/stars-faq.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "895vh", // A bit higher than stars-left (80vh)
+      left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
       id: "faq-circle",
       imageUrl: "/images/faq-circle.png",
       position: "absolute" as const,
@@ -485,6 +530,21 @@ function App() {
       scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "#ff0000",
+    },
+    {
+      id: "stars-faq2",
+      imageUrl: "/images/stars-faq2.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "960vh", // A bit higher than stars-left (80vh)
+      left: "35%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "faq-accent-1",
@@ -611,6 +671,36 @@ function App() {
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
+    },
+    {
+      id: "stars-sponsors",
+      imageUrl: "/images/stars-sponsors.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "1025vh", // A bit higher than stars-left (80vh)
+      left: "33%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "stars-message",
+      imageUrl: "/images/stars-faq.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "1625vh", // A bit higher than stars-left (80vh)
+      left: "-35%",
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
   ];
 

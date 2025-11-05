@@ -13,23 +13,21 @@ type FAQAccordianProps = {
 };
 
 export default function FAQAccordian({ questions }: FAQAccordianProps) {
-  const [openIndices, setOpenIndices] = useState<number[]>([]);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [hasOpenedBefore, setHasOpenedBefore] = useState<Set<number>>(new Set());
 
   const toggleAccordion = (index: number) => {
-    setOpenIndices(prev => {
-      if (prev.includes(index)) {
-        // If already open, close it by filtering it out
-        return prev.filter(i => i !== index);
-      } else {
-        // If closed, open it by adding to the array
-        // Mark as opened for the first time
-        if (!hasOpenedBefore.has(index)) {
-          setHasOpenedBefore(prevSet => new Set(prevSet).add(index));
-        }
-        return [...prev, index];
+    if (openIndex === index) {
+      // If already open, close it
+      setOpenIndex(null);
+    } else {
+      // If closed, open it (this will automatically close any previously open item)
+      // Mark as opened for the first time
+      if (!hasOpenedBefore.has(index)) {
+        setHasOpenedBefore(prevSet => new Set(prevSet).add(index));
       }
-    });
+      setOpenIndex(index);
+    }
   };
 
   return (
@@ -57,11 +55,11 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
             <button
               type="button"
               className={`flex items-center justify-between w-full p-4 md:p-5 lg:p-6 font-medium border-2 border-white backdrop-blur-sm text-white hover:bg-gray-800/90 transition-all duration-300 ease-in-out z-10
-                ${openIndices.includes(index) ? 'border-b-0' : ''}
+                ${openIndex === index ? 'border-b-0' : ''}
               `}
               style={{backgroundColor: '#2A2627E6'}}
               onClick={() => toggleAccordion(index)}
-              aria-expanded={openIndices.includes(index)}
+              aria-expanded={openIndex === index}
             >
               <div
                 className="text-white text-left text-lg md:text-xl font-bold break-words overflow-wrap-anywhere"
@@ -69,7 +67,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
               >
                 {faq.question}
               </div>
-              <div className={`text-white text-xl transition-transform duration-300 flex-shrink-0 ml-2 ${openIndices.includes(index) ? 'rotate-180' : ''}`}>
+              <div className={`text-white text-xl transition-transform duration-300 flex-shrink-0 ml-2 ${openIndex === index ? 'rotate-180' : ''}`}>
                 ▼
               </div>
             </button>
@@ -77,7 +75,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
             {/* Answer content - seamless connection to question header */}
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                openIndices.includes(index) ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+                openIndex === index ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
               }`}
               style={{
                 willChange: 'max-height, opacity'
@@ -89,7 +87,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
                    className="text-white text-sm md:text-base leading-relaxed text-left font-futura-cyrillic"
                    delay={200}
                    instanceKey={`faq-answer-${index}`}
-                   shouldStart={openIndices.includes(index)}
+                   shouldStart={openIndex === index}
                  >
                    {faq.answer}
                  </TypedText>

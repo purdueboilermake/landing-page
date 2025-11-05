@@ -702,7 +702,7 @@ html {
 }
 
 /* Fade-out effects for corridor and grid images */
-[data-layer-id="corrdior-1"] {
+[data-layer-id="corridor-1"] {
   mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.1) 90%, rgba(0, 0, 0, 0) 100%);
   -webkit-mask: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.1) 90%, rgba(0, 0, 0, 0) 100%);
 }

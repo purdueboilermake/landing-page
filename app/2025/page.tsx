@@ -191,6 +191,7 @@ function App() {
   const [activeEventId, setActiveEventId] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isUltraWide, setIsUltraWide] = useState(false);
   // Dynamic circle positions/opacities (in CSS units)
   const [aboutCircleTop, setAboutCircleTop] = useState<string>("130vh");
   const [aboutCircleOpacity, setAboutCircleOpacity] = useState<number>(0.8);
@@ -204,7 +205,12 @@ function App() {
       setIsMobile(window.innerWidth < 768);
     };
 
+    const checkUltraWide = () => {
+      setIsUltraWide(window.innerWidth > 1920);
+    };
+
     checkMobile();
+    checkUltraWide();
     window.addEventListener("resize", checkMobile);
 
     return () => {
@@ -238,13 +244,13 @@ function App() {
       // ==== CIRCLE 2: FAQ → “next page” ====
       //
       // scroll range (when to start / stop moving)
-      const c2StartScrollVh = 910;   // start moving once page has scrolled ~910vh
-      const c2EndScrollVh = 1150;     // finish moving by 1150vh
+      const c2StartScrollVh = 910; // start moving once page has scrolled ~910vh
+      const c2EndScrollVh = 1150; // finish moving by 1150vh
       const c2Span = c2EndScrollVh - c2StartScrollVh;
 
       // position range (where to put the circle)
-      const c2StartTopVh = 910;      // start
-      const c2EndTopVh = 1150;        // final rest position
+      const c2StartTopVh = 910; // start
+      const c2EndTopVh = 1150; // final rest position
 
       const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
       const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
@@ -271,7 +277,8 @@ function App() {
       window.dispatchEvent(new Event("resize"));
       window.dispatchEvent(new Event("scroll"));
       // Tiny scroll jiggle to guarantee intersection recalculation
-      const x = window.scrollX, y = window.scrollY;
+      const x = window.scrollX,
+        y = window.scrollY;
       window.scrollTo(x, y + 1);
       window.scrollTo(x, y);
     };
@@ -375,27 +382,14 @@ function App() {
       priority: true, // Always load immediately
     },
     {
-      id: "about-accent-1",
-      imageUrl: "/images/about-accent-1.png",
+      id: "about-accent",
+      imageUrl: "/images/about-accent.svg",
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
-      top: "302vh",
-      left: "0vw",
-      width: "80vw",
-      height: "30vh",
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "about-accent-2",
-      imageUrl: "/images/about-accent-2.png",
-      position: "absolute" as const,
-      zIndex: -70,
-      opacity: 1,
-      top: "270vh",
+      top: "250vh",
       left: "0%",
+      height: "30vh",
       width: "100%",
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
@@ -416,7 +410,7 @@ function App() {
       useIntrinsicHeight: false,
     },
     {
-      id: "corrdior-1",
+      id: "corridor-1",
       imageUrl: "/images/corridor-1.png",
       position: "absolute" as const,
       zIndex: -50,
@@ -424,10 +418,11 @@ function App() {
       top: "440vh",
       left: "41vw",
       width: "17vw",
-      height: "80vh",
-      scaleMode: "contain" as BackgroundScaleMode,
+      height: "210vh",
+      scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
+      useIntrinsicHeight: false,
     },
     {
       id: "ringed-red-planet",
@@ -612,6 +607,20 @@ function App() {
       blendMode: "normal",
       fallbackColor: "transparent",
     },
+    {
+      id: "white-star",
+      imageUrl: "/images/white-star.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "500vh",
+      left: "20vw",
+      width: "20vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
   ];
 
   return (
@@ -725,16 +734,17 @@ function App() {
               <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
                 <div
                   style={{
-                    fontFamily: 'var(--font-disket-mono)',
+                    fontFamily: "var(--font-disket-mono)",
                     fontWeight: 400,
-                    fontSize: 'clamp(32px, 8vw, 60px)',
-                    lineHeight: '100%',
-                    letterSpacing: '0.1em',
-                    color: '#FFE958',
-                    textShadow: '0px 0px 15px #FFDE00',
+                    fontSize: "clamp(32px, 8vw, 60px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
                   }}
                 >
-                  Schedule<span style={{ animation: 'blink 1s infinite' }}>_</span>
+                  Schedule
+                  <span style={{ animation: "blink 1s infinite" }}>_</span>
                 </div>
               </div>
 
@@ -747,13 +757,10 @@ function App() {
                       key={`activity${index + 1}`}
                       className={`
               absolute
-              ${isLeft
-                          ? 'left-0 lg:-left-[5%]'
-                          : 'right-0 lg:-right-[5%]'
-                        }
+              ${isLeft ? "left-0 lg:-left-[5%]" : "right-0 lg:-right-[5%]"}
             `}
                       style={{
-                        top: `${index * 33}vh`
+                        top: `${index * 33}vh`,
                       }}
                     >
                       <ActivityPreview
@@ -766,7 +773,7 @@ function App() {
                         onEventClick={() => handleEventClick(index + 1)}
                         size="large"
                         popup="left"
-                        align={isLeft ? 'left' : 'right'}
+                        align={isLeft ? "left" : "right"}
                         activityId={index + 1}
                       />
                     </div>
@@ -777,21 +784,24 @@ function App() {
           </section>
 
           {/* FAQ Section */}
-          <section id="faq" className="w-full flex items-start justify-center relative py-32 overflow-x-hidden">
+          <section
+            id="faq"
+            className="w-full flex items-start justify-center relative py-32 overflow-x-hidden"
+          >
             {/* Absolute header like the others */}
             <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
               <div
                 style={{
-                  fontFamily: 'var(--font-disket-mono)',
+                  fontFamily: "var(--font-disket-mono)",
                   fontWeight: 400,
-                  fontSize: 'clamp(32px, 8vw, 60px)',
-                  lineHeight: '100%',
-                  letterSpacing: '0.1em',
-                  color: '#FFE958',
-                  textShadow: '0px 0px 15px #FFDE00',
+                  fontSize: "clamp(32px, 8vw, 60px)",
+                  lineHeight: "100%",
+                  letterSpacing: "0.1em",
+                  color: "#FFE958",
+                  textShadow: "0px 0px 15px #FFDE00",
                 }}
               >
-                FAQ<span style={{ animation: 'blink 1s infinite' }}>_</span>
+                FAQ<span style={{ animation: "blink 1s infinite" }}>_</span>
               </div>
             </div>
 

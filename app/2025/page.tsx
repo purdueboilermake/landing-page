@@ -483,6 +483,20 @@ function App() {
       fallbackColor: "transparent",
     },
     {
+      id: "white-star",
+      imageUrl: "/images/white-star.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "500vh",
+      left: "20vw",
+      width: "20vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
       id: "faq-gradient",
       imageUrl: "/images/faq-gradient.png",
       position: "absolute" as const,
@@ -570,6 +584,21 @@ function App() {
       fallbackColor: "transparent",
     },
     {
+      id: "stars-sponsors",
+      imageUrl: "/images/stars-sponsors.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8, // Increase visibility
+      top: "1040vh", // Start at the top of the viewport
+      left: "35%",
+      height: "40vh", // Covers the viewport while scrolling
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true,
+    },
+    {
       id: "planet-1",
       imageUrl: "/images/planet1.png",
       position: "absolute" as const,
@@ -638,7 +667,6 @@ function App() {
       blendMode: "normal",
       fallbackColor: "transparent",
     },
-
     {
       id: "orbits",
       imageUrl: "/images/orbits.png",
@@ -652,6 +680,21 @@ function App() {
       scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
+    },
+    {
+      id: "stars-message",
+      imageUrl: "/images/stars-faq.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "1600vh", // A bit higher than stars-left (80vh)
+      left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "footer-accent",

@@ -41,7 +41,7 @@ export default function Header({}: HeaderProps) {
           <a href="/" className="hover:scale-105 transition">
           {/* accordingly modify href here */}
             <Image
-              src={"/images/logo_BMXIII.png"}
+              src={"/images/bmxiii-logo.png"}
               alt="Boilermake Logo"
               width={75}
               height={75}

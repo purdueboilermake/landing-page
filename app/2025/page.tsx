@@ -206,7 +206,7 @@ function App() {
     };
 
     const checkUltraWide = () => {
-      setIsUltraWide(window.innerWidth > 1920);
+      setIsUltraWide(window.innerWidth > 2559);
     };
 
     checkMobile();
@@ -383,7 +383,7 @@ function App() {
     },
     {
       id: "about-accent",
-      imageUrl: "/images/about-accent.svg",
+      imageUrl: isUltraWide ? "/this/is/fake" : "/images/about-accent.svg",
       position: "absolute" as const,
       zIndex: -70,
       opacity: 1,
@@ -631,107 +631,171 @@ function App() {
           rel="stylesheet"
         />
         <div className="App font-dosis">
-        {/* Background Manager - replaces parallax background system */}
-        <BackgroundManager
-          layers={backgroundLayers}
-          globalFallbackColor="#C5E1E6"
-        />
+          {/* Background Manager - replaces parallax background system */}
+          <BackgroundManager
+            layers={backgroundLayers}
+            globalFallbackColor="#C5E1E6"
+          />
 
-        {/* Header - updated to work without parallax */}
-        <Header />
+          {/* Header - updated to work without parallax */}
+          <Header />
 
-        {/* Main content container with CSS Grid layout */}
-        <main className="w-full main-content">
-          {/* Hero Section */}
-          <section id="hero" className="hero-section">
-            <div
-              className="hero-content "
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                width: "100%",
-              }}
-            >
-              <div className="hero-text">
-                <h2
-                  className="text-center mb-6"
-                  style={{
-                    fontFamily: "var(--font-geist-vf)",
-                    fontWeight: 100,
-                    fontSize: "clamp(18px, 3.5vw, 28px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    color: "#FFFFFF",
-                    textAlign: "center",
-                    width: "100%",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                  }}
-                >
-                  coming jan 2026
-                <span className="text-white" style={{ animation: 'blink 1s step-end infinite' }}>_</span></h2>
-                <h1
-                  className="text-center mb-12"
-                  style={{
-                    fontFamily: "var(--font-disket-mono)",
-                    fontWeight: 400,
-                    fontSize: "clamp(32px, 8vw, 60px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    color: "#FFE958",
-                    textShadow: "0px 0px 15px #FFDE00",
-                  }}
-                >
-                  {" "}
-                  BOILERMAKE XIII{" "}
-                </h1>
-              </div>
+          {/* Main content container with CSS Grid layout */}
+          <main className="w-full main-content">
+            {/* Hero Section */}
+            <section id="hero" className="hero-section">
               <div
-                className="hero-buttons"
-                style={{ justifyContent: "center" }}
-              >
-                {/* Interest Form Button */}
-                <a
-                // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                href = "https://boilermake-apply.web.app"
-                className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                className="hero-content "
                 style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
-                  fontWeight: 500,
-                  fontSize: "clamp(14px, 2vw, 18px)",
-                  letterSpacing: "0.15em",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  width: "100%",
                 }}
               >
-                <span
-                  style={{
-                    borderBottom: "2px solid #FFFFFF",
-                    paddingBottom: "4px",
-                  }}
+                <div className="hero-text">
+                  <h2
+                    className="text-center mb-6"
+                    style={{
+                      fontFamily: "var(--font-geist-vf)",
+                      fontWeight: 100,
+                      fontSize: "clamp(18px, 3.5vw, 28px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      color: "#FFFFFF",
+                      textAlign: "center",
+                      width: "100%",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                    }}
+                  >
+                    coming jan 2026
+                    <span
+                      className="text-white"
+                      style={{ animation: "blink 1s step-end infinite" }}
+                    >
+                      _
+                    </span>
+                  </h2>
+                  <h1
+                    className="text-center mb-12"
+                    style={{
+                      fontFamily: "var(--font-disket-mono)",
+                      fontWeight: 400,
+                      fontSize: "clamp(32px, 8vw, 60px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      color: "#FFE958",
+                      textShadow: "0px 0px 15px #FFDE00",
+                    }}
+                  >
+                    {" "}
+                    BOILERMAKE XIII{" "}
+                  </h1>
+                </div>
+                <div
+                  className="hero-buttons"
+                  style={{ justifyContent: "center" }}
                 >
-                  APPLY NOW!
-                </span>
-              </a>
+                  {/* Interest Form Button */}
+                  <a
+                    // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    href="https://boilermake-apply.web.app"
+                    className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                    style={{
+                      fontFamily: "var(--font-futura-cyrillic)",
+                      fontWeight: 500,
+                      fontSize: "clamp(14px, 2vw, 18px)",
+                      letterSpacing: "0.15em",
+                    }}
+                  >
+                    <span
+                      style={{
+                        borderBottom: "2px solid #FFFFFF",
+                        paddingBottom: "4px",
+                      }}
+                    >
+                      APPLY NOW!
+                    </span>
+                  </a>
+                </div>
               </div>
-            </div>
-          </section>
-          {/* About Section */}
-          <section
-            id="about"
-            className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[270vh] absolute"
-          >
-            <AboutSection />
-          </section>
+            </section>
+            {/* About Section */}
+            <section
+              id="about"
+              className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[270vh] absolute"
+            >
+              <AboutSection />
+            </section>
 
-          {/* Schedule Section */}
-          <section
-            id="schedule"
-            className="w-full flex items-center justify-center py-[410vh]"
-          >
-            <div className="w-full max-w-7xl mx-auto px-4 relative">
-              <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+            {/* Schedule Section */}
+            <section
+              id="schedule"
+              className="w-full flex items-center justify-center py-[410vh]"
+            >
+              <div className="w-full max-w-7xl mx-auto px-4 relative">
+                <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+                  <div
+                    style={{
+                      fontFamily: "var(--font-disket-mono)",
+                      fontWeight: 400,
+                      fontSize: "clamp(32px, 8vw, 60px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      color: "#FFE958",
+                      textShadow: "0px 0px 15px #FFDE00",
+                    }}
+                  >
+                    Schedule
+                    <span style={{ animation: "blink 1s infinite" }}>_</span>
+                  </div>
+                </div>
+
+                <div className="schedule-activities w-full h-[170vh] relative mt-[90vh]">
+                  {activities.map((activity, index) => {
+                    const isLeft = index % 2 === 0;
+
+                    return (
+                      <div
+                        key={`activity${index + 1}`}
+                        className={`
+              absolute
+              ${isLeft ? "left-0 lg:-left-[5%]" : "right-0 lg:-right-[5%]"}
+            `}
+                        style={{
+                          top: `${index * 33}vh`,
+                        }}
+                      >
+                        <ActivityPreview
+                          title={activity.title}
+                          startDate={activity.startDate}
+                          endDate={activity.endDate}
+                          location={activity.location}
+                          description={activity.description}
+                          isActive={activeEventId === index + 1}
+                          onEventClick={() => handleEventClick(index + 1)}
+                          size="large"
+                          popup="left"
+                          align={isLeft ? "left" : "right"}
+                          activityId={index + 1}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section
+              id="faq"
+              className="w-full flex items-start justify-center relative py-32 overflow-x-hidden"
+            >
+              {/* Absolute header like the others */}
+              <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
                 <div
                   style={{
                     fontFamily: "var(--font-disket-mono)",
@@ -743,170 +807,119 @@ function App() {
                     textShadow: "0px 0px 15px #FFDE00",
                   }}
                 >
-                  Schedule
-                  <span style={{ animation: "blink 1s infinite" }}>_</span>
+                  FAQ<span style={{ animation: "blink 1s infinite" }}>_</span>
                 </div>
               </div>
 
-              <div className="schedule-activities w-full h-[170vh] relative mt-[90vh]">
-                {activities.map((activity, index) => {
-                  const isLeft = index % 2 === 0;
-
-                  return (
-                    <div
-                      key={`activity${index + 1}`}
-                      className={`
-              absolute
-              ${isLeft ? "left-0 lg:-left-[5%]" : "right-0 lg:-right-[5%]"}
-            `}
-                      style={{
-                        top: `${index * 33}vh`,
-                      }}
-                    >
-                      <ActivityPreview
-                        title={activity.title}
-                        startDate={activity.startDate}
-                        endDate={activity.endDate}
-                        location={activity.location}
-                        description={activity.description}
-                        isActive={activeEventId === index + 1}
-                        onEventClick={() => handleEventClick(index + 1)}
-                        size="large"
-                        popup="left"
-                        align={isLeft ? "left" : "right"}
-                        activityId={index + 1}
-                      />
-                    </div>
-                  );
-                })}
+              {/* Actual accordion content */}
+              <div className="faq-sign w-full flex justify-center pt-32 pb-8 overflow-x-hidden">
+                <FAQAccordian questions={questions} />
               </div>
-            </div>
-          </section>
+            </section>
 
-          {/* FAQ Section */}
-          <section
-            id="faq"
-            className="w-full flex items-start justify-center relative py-32 overflow-x-hidden"
-          >
-            {/* Absolute header like the others */}
-            <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
-              <div
-                style={{
-                  fontFamily: "var(--font-disket-mono)",
-                  fontWeight: 400,
-                  fontSize: "clamp(32px, 8vw, 60px)",
-                  lineHeight: "100%",
-                  letterSpacing: "0.1em",
-                  color: "#FFE958",
-                  textShadow: "0px 0px 15px #FFDE00",
-                }}
-              >
-                FAQ<span style={{ animation: "blink 1s infinite" }}>_</span>
-              </div>
-            </div>
-
-            {/* Actual accordion content */}
-            <div className="faq-sign w-full flex justify-center pt-32 pb-8 overflow-x-hidden">
-              <FAQAccordian questions={questions} />
-            </div>
-          </section>
-
-          {/* Contact/Message Section */}
-          <section id="contact" className="relative min-h-screen flex flex-col items-center justify-center py-20 px-8">
-            {/* Main Content Container - All content centered vertically */}
-            <div className="flex flex-col items-center justify-center gap-12 max-w-4xl flex-1">
-              {/* Message text */}
-              <h1
-                className="text-center"
-                style={{
-                  fontFamily: "var(--font-geist-vf)",
-                  fontWeight: 300,
-                  fontSize: "clamp(40px, 8vw, 80px)",
-                  lineHeight: "100%",
-                  letterSpacing: "0.05em",
-                  color: "#FFFFFF",
-                    textShadow: "0px 0px 15px #FFDE00"
-                }}
-              >
-                [message]
-              </h1>
-
-              {/* Button */}
-              <a
-                // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                href = "https://boilermake-apply.web.app"
-                className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
-                style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
-                  fontWeight: 500,
-                  fontSize: "clamp(14px, 2vw, 18px)",
-                  letterSpacing: "0.15em",
-                }}
-              >
-                <span
+            {/* Contact/Message Section */}
+            <section
+              id="contact"
+              className="relative min-h-screen flex flex-col items-center justify-center py-20 px-8"
+            >
+              {/* Main Content Container - All content centered vertically */}
+              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl flex-1">
+                {/* Message text */}
+                <h1
+                  className="text-center"
                   style={{
-                    borderBottom: "2px solid #FFFFFF",
-                    paddingBottom: "4px",
+                    fontFamily: "var(--font-geist-vf)",
+                    fontWeight: 300,
+                    fontSize: "clamp(40px, 8vw, 80px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.05em",
+                    color: "#FFFFFF",
+                    textShadow: "0px 0px 15px #FFDE00",
                   }}
                 >
-                  APPLY/CONTACT/...
-                </span>
-              </a>
+                  [message]
+                </h1>
 
-              {/* Social Media Icons */}
-              <div className="flex flex-row gap-6 mt-8">
-                
+                {/* Button */}
                 <a
-                  href="https://www.instagram.com/boilermake/?hl=en"
-                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-                  aria-label="Instagram"
-                  onMouseEnter={(e) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "0px 0px 15px #FFE958";
-                  }}
-                  onMouseLeave={(e) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "none";
+                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                  href="https://boilermake-apply.web.app"
+                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                  style={{
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 2vw, 18px)",
+                    letterSpacing: "0.15em",
                   }}
                 >
-                  <i className="fab fa-instagram" style={{ fontSize: "1.75em" }} />
+                  <span
+                    style={{
+                      borderBottom: "2px solid #FFFFFF",
+                      paddingBottom: "4px",
+                    }}
+                  >
+                    APPLY/CONTACT/...
+                  </span>
                 </a>
-                <a
-                  href="https://www.linkedin.com/company/boilermake/"
-                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-                  aria-label="LinkedIn"
-                  onMouseEnter={(e) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "0px 0px 15px #FFE958";
-                  }}
-                  onMouseLeave={(e) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "none";
+
+                {/* Social Media Icons */}
+                <div className="flex flex-row gap-6 mt-8">
+                  <a
+                    href="https://www.instagram.com/boilermake/?hl=en"
+                    className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                    aria-label="Instagram"
+                    onMouseEnter={(e) => {
+                      const target = e.currentTarget as HTMLElement;
+                      target.style.textShadow = "0px 0px 15px #FFE958";
+                    }}
+                    onMouseLeave={(e) => {
+                      const target = e.currentTarget as HTMLElement;
+                      target.style.textShadow = "none";
+                    }}
+                  >
+                    <i
+                      className="fab fa-instagram"
+                      style={{ fontSize: "1.75em" }}
+                    />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/boilermake/"
+                    className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                    aria-label="LinkedIn"
+                    onMouseEnter={(e) => {
+                      const target = e.currentTarget as HTMLElement;
+                      target.style.textShadow = "0px 0px 15px #FFE958";
+                    }}
+                    onMouseLeave={(e) => {
+                      const target = e.currentTarget as HTMLElement;
+                      target.style.textShadow = "none";
+                    }}
+                  >
+                    <i
+                      className="fab fa-linkedin"
+                      style={{ fontSize: "1.75em" }}
+                    />
+                  </a>
+                </div>
+
+                {/* Made with love text */}
+                <p
+                  className="text-center text-white mt-8"
+                  style={{
+                    fontFamily: "var(--font-geist-vf)",
+                    fontWeight: 300,
+                    fontSize: "clamp(14px, 1.5vw, 18px)",
+                    letterSpacing: "0.05em",
+                    color: "#FFFFFF",
+                    textShadow: "0px 0px 15px #FFDE00",
                   }}
                 >
-                  <i className="fab fa-linkedin" style={{ fontSize: "1.75em" }} />
-                </a>
-                
+                  Made with 💛 by the BoilerMake XIII team
+                </p>
               </div>
-
-              {/* Made with love text */}
-              <p
-                className="text-center text-white mt-8"
-                style={{
-                  fontFamily: "var(--font-geist-vf)",
-                  fontWeight: 300,
-                  fontSize: "clamp(14px, 1.5vw, 18px)",
-                  letterSpacing: "0.05em",
-                  color: "#FFFFFF",
-                    textShadow: "0px 0px 15px #FFDE00"
-                }}
-              >
-                Made with 💛 by the BoilerMake XIII team
-              </p>
-            </div>
-          </section>
-        </main>
-      </div>
+            </section>
+          </main>
+        </div>
       </>
     </TypingProvider>
   );

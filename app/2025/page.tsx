@@ -614,14 +614,6 @@ function App() {
     },
   ];
 
-  const activity_offset: { [key: string]: string } = {
-    'activity1': "top-[3vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]",
-    'activity2': "bottom-[37vh] -right-[25%] sm:-right-[45%] md:-right-[55%] lg:-right-[52%]",
-    'activity3': "bottom-[70vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]",
-    'activity4': "bottom-[105vh] -right-[25%] sm:-right-[45%] md:-right-[55%] lg:-right-[52%]",
-    'activity5': "bottom-[5vh] -left-[25%] sm:-left-[45%] md:-left-[55%] lg:-left-[52%]"
-  };
-
   return (
     <TypingProvider initialSettings={{ defaultSpeed: 10 }}>
       <div className="App font-dosis">
@@ -733,41 +725,56 @@ function App() {
             id="schedule"
             className="w-full flex items-center justify-center py-[410vh]"
           >
-            <div className="w-[60vw] max-w-4xl mx-auto px-8 relative">
+            <div className="w-full max-w-7xl mx-auto px-4 relative">
               <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-disket-mono)',
-                      fontWeight: 400,
-                      fontSize: 'clamp(32px, 8vw, 60px)',
-                      lineHeight: '100%',
-                      letterSpacing: '0.1em',
-                      color: '#FFE958',
-                      textShadow: '0px 0px 15px #FFDE00',
-                    }}
-                  >
-                    Schedule<span style={{ animation: 'blink 1s infinite' }}>_</span>
-                  </div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-disket-mono)',
+                    fontWeight: 400,
+                    fontSize: 'clamp(32px, 8vw, 60px)',
+                    lineHeight: '100%',
+                    letterSpacing: '0.1em',
+                    color: '#FFE958',
+                    textShadow: '0px 0px 15px #FFDE00',
+                  }}
+                >
+                  Schedule<span style={{ animation: 'blink 1s infinite' }}>_</span>
+                </div>
               </div>
-                <div className="schedule-activities w-full h-[170vh] relative mt-40">
-                {activities.map((activity, index) => (
-                  <div
-                    key={`activity${index + 1}`}
-                    className={`absolute w-full ${activity_offset[`activity${index + 1}`]}`}
-                  >
-                    <ActivityPreview
-                      title={activity.title}
-                      startDate={activity.startDate}
-                      endDate={activity.endDate}
-                      location={activity.location}
-                      description={activity.description}
-                      isActive={activeEventId === index + 1}
-                      onEventClick={() => handleEventClick(index + 1)}
-                      size="large"
-                      popup="left"
-                    />
-                  </div>
-                ))}
+
+              <div className="schedule-activities w-full h-[170vh] relative mt-[90vh]">
+                {activities.map((activity, index) => {
+                  const isLeft = index % 2 === 0;
+
+                  return (
+                    <div
+                      key={`activity${index + 1}`}
+                      className={`
+              absolute
+              ${isLeft
+                          ? 'left-0 lg:-left-[5%]'
+                          : 'right-0 lg:-right-[5%]'
+                        }
+            `}
+                      style={{
+                        top: `${index * 33}vh`
+                      }}
+                    >
+                      <ActivityPreview
+                        title={activity.title}
+                        startDate={activity.startDate}
+                        endDate={activity.endDate}
+                        location={activity.location}
+                        description={activity.description}
+                        isActive={activeEventId === index + 1}
+                        onEventClick={() => handleEventClick(index + 1)}
+                        size="large"
+                        popup="left"
+                        align={isLeft ? 'left' : 'right'}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>

@@ -804,26 +804,13 @@ function App() {
                   style={{ justifyContent: "center" }}
                 >
                   {/* Interest Form Button */}
-                  <a
-                    // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                    href="https://boilermake-apply.web.app"
-                    className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
-                    style={{
-                      fontFamily: "var(--font-futura-cyrillic)",
-                      fontWeight: 500,
-                      fontSize: "clamp(14px, 2vw, 18px)",
-                      letterSpacing: "0.15em",
-                    }}
-                  >
-                    <span
-                      style={{
-                        borderBottom: "2px solid #FFFFFF",
-                        paddingBottom: "4px",
-                      }}
-                    >
-                      APPLY NOW!
-                    </span>
-                  </a>
+                  <ApplyButton 
+                    text="APPLY NOW!" 
+                    link="https://boilermake-apply.web.app" 
+                    size="large" 
+                    variant="hero"
+                    className="mr-0" 
+                  />
                 </div>
               </div>
             </section>

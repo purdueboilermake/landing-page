@@ -17,6 +17,7 @@ type ActivityPreviewProps = {
   size: 'small' | 'medium' | 'large' | 'xlarge';
   popup: 'left' | 'right';
   align?: 'left' | 'right' | 'center';
+  activityId?: number;
 };
 
 const ActivityPreview: React.FC<ActivityPreviewProps> = ({
@@ -29,7 +30,8 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
   onEventClick,
   size,
   popup,
-  align = 'center'
+  align = 'center',
+  activityId
 }) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -71,6 +73,7 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
           location={location}
           isExpanded={isExpanded}
           description={description}
+          activityId={activityId}
         />
       </div>
     </div>

@@ -14,6 +14,7 @@ type FAQAccordianProps = {
 
 export default function FAQAccordian({ questions }: FAQAccordianProps) {
   const [openIndices, setOpenIndices] = useState<number[]>([]);
+  const [hasOpenedBefore, setHasOpenedBefore] = useState<Set<number>>(new Set());
 
   const toggleAccordion = (index: number) => {
     setOpenIndices(prev => {
@@ -22,6 +23,10 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
         return prev.filter(i => i !== index);
       } else {
         // If closed, open it by adding to the array
+        // Mark as opened for the first time
+        if (!hasOpenedBefore.has(index)) {
+          setHasOpenedBefore(prevSet => new Set(prevSet).add(index));
+        }
         return [...prev, index];
       }
     });
@@ -79,9 +84,12 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
               }}
             >
                <div className="p-4 md:p-5 lg:p-6 border-2 border-white text-white text-left overflow-hidden overflow-wrap-anywhere" style={{backgroundColor: '#2A2627E6', wordBreak: 'break-word'}}>
+                 {/* TypedText uses defaultSpeed from TypingContext - no speed prop override */}
                  <TypedText 
                    className="text-white text-sm md:text-base leading-relaxed text-left font-futura-cyrillic"
-                   delay={openIndices.includes(index) ? 100 : 0}
+                   delay={200}
+                   instanceKey={`faq-answer-${index}`}
+                   shouldStart={openIndices.includes(index)}
                  >
                    {faq.answer}
                  </TypedText>

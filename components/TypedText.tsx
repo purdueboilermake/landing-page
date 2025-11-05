@@ -10,7 +10,6 @@ import { useTypingContext } from '@/context/TypingContext';
 
 interface TypedTextProps {
   children: string;
-  speed?: number; // milliseconds per character
   delay?: number; // initial delay before starting
   skipAnimation?: boolean; // force skip animation
   className?: string;
@@ -19,11 +18,12 @@ interface TypedTextProps {
   showCursor?: boolean; // show blinking cursor
   cursorChar?: string; // cursor character
   cursorSpeed?: number; // cursor blink speed
+  instanceKey?: string; // unique key to track if this instance has been typed before
+  shouldStart?: boolean; // whether typing should start (for intersection observer)
 }
 
 export default function TypedText({
   children,
-  speed,
   delay,
   skipAnimation,
   className = '',
@@ -31,12 +31,14 @@ export default function TypedText({
   as: Component = 'span',
   showCursor,
   cursorChar,
-  cursorSpeed
+  cursorSpeed,
+  instanceKey,
+  shouldStart = true
 }: TypedTextProps) {
   const { settings } = useTypingContext();
 
-  // Use context settings as defaults, with props taking precedence
-  const finalSpeed = speed ?? settings.defaultSpeed;
+  // Always use context defaultSpeed - no prop override allowed for consistency
+  const finalSpeed = settings.defaultSpeed;
   const finalDelay = delay ?? settings.defaultDelay;
   const finalSkipAnimation = skipAnimation ?? settings.globalSkipAnimation;
   const finalShowCursor = showCursor ?? settings.enableCursor;
@@ -46,7 +48,9 @@ export default function TypedText({
   const { displayText, isTyping, isComplete } = useTypewriter(children, {
     speed: finalSpeed,
     delay: finalDelay,
-    skipAnimation: finalSkipAnimation
+    skipAnimation: finalSkipAnimation,
+    instanceKey,
+    shouldStart
   });
 
   const [showCursorChar, setShowCursorChar] = React.useState(finalShowCursor);

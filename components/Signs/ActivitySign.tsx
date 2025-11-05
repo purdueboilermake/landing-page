@@ -3,6 +3,7 @@
 * Component used to show an activity, with time and description
 */
 import { useState, useEffect } from "react";
+import TypedText from "../TypedText";
 
 type ActivitySignProps = {
     title: string;
@@ -11,31 +12,7 @@ type ActivitySignProps = {
     location?: string;
     isExpanded?: boolean;
     description?: string;
-}
-
-// change this to implement Tristan's typewriter later
-function useTypewriter(text: string, delay: number, startTyping: boolean) {
-    const [currentText, setCurrentText] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    useEffect(() => {
-        if (!startTyping) {
-            setCurrentText('');
-            setCurrentIndex(0);
-            return;
-        }
-
-        if (currentIndex < text.length) {
-            const timeout = setTimeout(() => {
-                setCurrentText(prev => prev + text[currentIndex]);
-                setCurrentIndex(prev => prev + 1);
-            }, delay);
-
-            return () => clearTimeout(timeout);
-        }
-    }, [text, delay, currentIndex, startTyping]);
-
-    return currentText;
+    activityId?: number; // unique identifier for tracking first open
 }
 
 const widthMap = {
@@ -57,27 +34,31 @@ const titleClass = 'text-xl sm:text-2xl md:text-3xl lg:text-[36px] font-semibold
 const contentClass = 'text-xs sm:text-sm md:text-sm lg:text-base';
 const titleMargin = 'mt-5';
 
-export default function ActivitySign({ title, startDate, size, location, isExpanded, description }: ActivitySignProps) {
+export default function ActivitySign({ title, startDate, size, location, isExpanded, description, activityId }: ActivitySignProps) {
     const date = new Date(startDate);
     const time = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
     const [showDescription, setShowDescription] = useState(false);
+    const [hasOpenedBefore, setHasOpenedBefore] = useState(false);
 
     useEffect(() => {
         if (!isExpanded) {
             setShowDescription(false);
             return;
         }
-    }, [isExpanded]);
-
-    const typedLocation = useTypewriter(location || '', 30, isExpanded || false);
-    const typedDescription = useTypewriter(description || '', 30, showDescription);
-
-    useEffect(() => {
-        if (location && typedLocation.length === location.length) {
-            const timeout = setTimeout(() => setShowDescription(true), 300);
+        
+        // If already opened before, show description immediately
+        if (hasOpenedBefore && location) {
+            setShowDescription(true);
+            return;
+        }
+        
+        // First time opening: mark as opened and wait for location to finish typing
+        if (isExpanded && location && !hasOpenedBefore) {
+            setHasOpenedBefore(true);
+            const timeout = setTimeout(() => setShowDescription(true), 500);
             return () => clearTimeout(timeout);
         }
-    }, [typedLocation, location]);
+    }, [isExpanded, location, hasOpenedBefore]);
 
     return (
         <div className={`${widthMap[size]} ${verticalPadding[size]} border-[4px] bg-[#2A2627E6] border-white flex flex-col items-center hover:-translate-y-1 ${size === 'medium' ? 'px-8 sm:px-11 md:px-14 lg:px-15' : 'px-4 sm:px-6 md:px-8 lg:px-10'}`}>
@@ -96,15 +77,32 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
                     </>
                 ) : title}
             </p>
-
             {/* Inline expanded content (no overlay, no fixed/focus) */}
             {isExpanded && (
                 <div className={`text-white ${contentClass} font-body mt-2 sm:mt-3 md:mt-4 text-center transition-all duration-300 ease-in-out max-w-full px-2`} style={{
                     fontFamily: 'var(--font-geist-vf)'
                 }}>
-                    <div className="pb-3 min-h-[1.5em]">{typedLocation}</div>
-                    {showDescription && (
-                        <div className="pt-3 min-h-[3em]">{typedDescription}</div>
+                    {location && (
+                        <div className="pb-3 min-h-[1.5em]">
+                            <TypedText 
+                                instanceKey={`activity-location-${activityId}`}
+                                shouldStart={isExpanded}
+                                delay={0}
+                            >
+                                {location}
+                            </TypedText>
+                        </div>
+                    )}
+                    {showDescription && description && (
+                        <div className="pt-3 min-h-[3em]">
+                            <TypedText 
+                                instanceKey={`activity-description-${activityId}`}
+                                shouldStart={showDescription}
+                                delay={0}
+                            >
+                                {description}
+                            </TypedText>
+                        </div>
                     )}
                 </div>
             )}

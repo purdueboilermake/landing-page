@@ -24,7 +24,7 @@ interface TypingContextType {
 }
 
 const defaultSettings: TypingSettings = {
-  defaultSpeed: 50,
+  defaultSpeed: 8, // Faster typing animation - 8ms per character
   defaultDelay: 0,
   globalSkipAnimation: false,
   enableCursor: false,

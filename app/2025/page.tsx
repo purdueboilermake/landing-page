@@ -615,7 +615,7 @@ function App() {
   ];
 
   return (
-    <TypingProvider initialSettings={{ defaultSpeed: 10 }}>
+    <TypingProvider>
       <div className="App font-dosis">
         {/* Background Manager - replaces parallax background system */}
         <BackgroundManager
@@ -771,6 +771,7 @@ function App() {
                         size="large"
                         popup="left"
                         align={isLeft ? 'left' : 'right'}
+                        activityId={index + 1}
                       />
                     </div>
                   );

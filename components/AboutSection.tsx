@@ -5,12 +5,40 @@
  * 09-15-2024
  */
 
+import React, { useState, useEffect, useRef } from 'react';
 import TypedText, { TypedHeading } from './TypedText';
 import Image from 'next/image';
 
 export default function AboutSection() {
+    const [isInView, setIsInView] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !isInView) {
+                    setIsInView(true);
+                }
+            },
+            {
+                threshold: 0.1, // Trigger when 10% of the section is visible
+                rootMargin: '0px'
+            }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, [isInView]);
+
     return (
-        <div className="w-full max-w-4xl mx-auto px-8 flex flex-col items-center">
+        <div ref={sectionRef} className="w-full max-w-4xl mx-auto px-8 flex flex-col items-center">
             <div className="mb-12 text-center">
                 <div
                     style={{
@@ -40,9 +68,12 @@ export default function AboutSection() {
                     />
                 </div>
                 <div className="pr-12">
+                    {/* TypedText uses defaultSpeed from TypingContext - no speed prop override */}
                     <TypedText 
                         className="text-white text-sm md:text-base leading-relaxed text-left font-futura-cyrillic"
                         delay={200}
+                        instanceKey="about-section-text"
+                        shouldStart={isInView}
                     >
                         BoilerMake is Purdue University's premier hackathon, bringing together over 500 students from numerous universities and majors to compete in 36 hours of hacking for $4000+ in prizes. Designed for hackers of all levels, BoilerMake provides unique and valuable experiences regardless of skill level -- you can participate in fun activities, win cool prizes, get free swag and food, and most importantly, have a whole lot of fun! It's also a great opportunity to network with large companies in industry and develop new skills. BoilerMake XII will take place February 21-23, 2025. BoilerMake is also an MLH partner meaning we adhere to their Code of Conduct.
                     </TypedText>

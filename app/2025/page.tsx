@@ -505,34 +505,25 @@ function App() {
               >
                 {/* Interest Form Button */}
                 <a
-                  className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center inline-flex mb-4"
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                href = "https://boilermake-apply.web.app"
+                className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  fontSize: "clamp(14px, 2vw, 18px)",
+                  letterSpacing: "0.15em",
+                }}
+              >
+                <span
                   style={{
-                    fontFamily: "var(--font-futura-cyrillic)",
-                    fontWeight: 700,
-                    fontSize: "clamp(14px, 1.68vh, 14px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.05em",
-                    textAlign: "center",
-                    verticalAlign: "middle",
-                    height: "50px",
-                    border: "2px solid #FFFFFF",
-                    borderRadius: "0px",
-                    paddingLeft: "clamp(12px, 3.5vw, 40px)",
-                    paddingRight: "clamp(12px, 3.5vw, 40px)",
+                    borderBottom: "2px solid #FFFFFF",
+                    paddingBottom: "4px",
                   }}
                 >
-                  <span
-                    style={{
-                      borderBottom: "2px solid #FFFFFF",
-                      paddingBottom: "2px",
-                      paddingLeft: "8px",
-                      paddingRight: "8px",
-                    }}
-                  >
-                    INTEREST FORM
-                  </span>
-                </a>
+                  APPLY NOW!
+                </span>
+              </a>
               </div>
             </div>
           </section>
@@ -601,8 +592,9 @@ function App() {
 
               {/* Button */}
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-white/10"
+                // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                href = "https://boilermake-apply.web.app"
+                className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
                 style={{
                   fontFamily: "var(--font-futura-cyrillic)",
                   fontWeight: 500,

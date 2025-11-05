@@ -17,7 +17,8 @@ export default function Header({}: HeaderProps) {
 
   const handleNavigation = (sectionId: string) => {
     // Check if we're on the main page
-    if (window.location.pathname === "/") {
+    if ( window.location.pathname === "/2025") {
+      //window.location.pathname === "/" instead
       // If we are, just scroll to the section
       const element = document.getElementById(sectionId);
       if (element) {
@@ -36,8 +37,9 @@ export default function Header({}: HeaderProps) {
     <header className="w-full fixed top-0 z-50">
       <div className="relative px-8 lg:px-12 xl:px-16 py-4">
         <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
-          {/* HERE: Single logo on the left */}
+          {/* Single logo on the left */}
           <a href="/" className="hover:scale-105 transition">
+          {/* accordingly modify href here */}
             <Image
               src={"/images/logo_BMXIII.png"}
               alt="Boilermake Logo"
@@ -47,10 +49,10 @@ export default function Header({}: HeaderProps) {
             />
           </a>
 
-          {/* HERE: Desktop Navigation - centered and spanning */}
+          {/* Desktop Navigation - centered and spanning */}
           <nav className="hidden md:flex flex-1 items-center justify-between ml-8 lg:ml-12 xl:ml-16">
             <button
-              onClick={() => handleNavigation("stat3")}
+              onClick={() => handleNavigation("about")}
               className="hover:text-yellow-300 transition-colors duration-200"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
@@ -65,7 +67,7 @@ export default function Header({}: HeaderProps) {
               About
             </button>
             <button
-              onClick={() => handleNavigation("schedule-section")}
+              onClick={() => handleNavigation("schedule")}
               className="hover:text-yellow-300 transition-colors duration-200"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
@@ -80,7 +82,7 @@ export default function Header({}: HeaderProps) {
               Schedule
             </button>
             <button
-              onClick={() => handleNavigation("faq-sign")}
+              onClick={() => handleNavigation("faq")}
               className="hover:text-yellow-300 transition-colors duration-200"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
@@ -172,7 +174,7 @@ export default function Header({}: HeaderProps) {
               
               <button
                 onClick={() => {
-                  handleNavigation("schedule-section");
+                  handleNavigation("schedule");
                   setIsMenuOpen(false);
                 }}
                 className="transition-all duration-300 text-white text-lg"
@@ -194,7 +196,7 @@ export default function Header({}: HeaderProps) {
               
               <button
                 onClick={() => {
-                  handleNavigation("faq-sign");
+                  handleNavigation("faq");
                   setIsMenuOpen(false);
                 }}
                 className="transition-all duration-300 text-white text-lg"

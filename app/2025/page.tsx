@@ -780,9 +780,9 @@ function App() {
           </section>
 
           {/* FAQ Section */}
-          <section id="faq" className="w-full flex items-center justify-center relative py-32">
+          <section id="faq" className="w-full flex items-start justify-center relative py-32 overflow-x-hidden">
             {/* Absolute header like the others */}
-            <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+            <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
               <div
                 style={{
                   fontFamily: 'var(--font-disket-mono)',
@@ -799,7 +799,7 @@ function App() {
             </div>
 
             {/* Actual accordion content */}
-            <div className="faq-sign w-full flex justify-center mt-24">
+            <div className="faq-sign w-full flex justify-center pt-32 pb-8 overflow-x-hidden">
               <FAQAccordian questions={questions} />
             </div>
           </section>

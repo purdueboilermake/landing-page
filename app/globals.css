@@ -71,12 +71,14 @@ html {
 /* FAQ Section */
 #faq {
   /* background-color: #7AA689; */
-  height: 101vh;
+  min-height: 101vh;
+  overflow-y: visible;
 }
 
 @media (max-width: 768px) {
   #faq {
-    height: 76vh;
+    min-height: 76vh;
+    overflow-y: visible;
   }
 }
 

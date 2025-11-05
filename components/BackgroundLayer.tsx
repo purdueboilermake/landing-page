@@ -120,23 +120,34 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
   useEffect(() => {
     if (!isClient || priority || shouldLoad) return;
 
+    let ticking = false;
+
     const handleScrollOrResize = () => {
-      if (!layerRef.current) return;
+      if (!layerRef.current || ticking) return;
+      
+      ticking = true;
+      requestAnimationFrame(() => {
+        if (!layerRef.current) {
+          ticking = false;
+          return;
+        }
 
-      // Get viewport and element position
-      const rect = layerRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const scrollY = window.scrollY;
+        // Get viewport and element position
+        const rect = layerRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
 
-      // Check if element might be visible considering current scroll position
-      // More generous margins for background images
-      const isNearViewport = 
-        rect.top < viewportHeight + 200 && // 200px below viewport
-        rect.bottom > -200; // 200px above viewport
+        // Check if element might be visible considering current scroll position
+        // More generous margins for background images
+        const isNearViewport = 
+          rect.top < viewportHeight + 200 && // 200px below viewport
+          rect.bottom > -200; // 200px above viewport
 
-      if (isNearViewport) {
-        setShouldLoad(true);
-      }
+        if (isNearViewport) {
+          setShouldLoad(true);
+        }
+        
+        ticking = false;
+      });
     };
 
     // Check immediately
@@ -176,7 +187,9 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
     zIndex,
     opacity,
     mixBlendMode: blendMode as any,
-    transition: "opacity 0.3s ease-in-out",
+    willChange: "transform, opacity", // Optimize for GPU acceleration
+    backfaceVisibility: "hidden", // Prevent flickering on large screens
+    transform: "translateZ(0)", // Force GPU acceleration
     pointerEvents: "none", // Prevent interference with page interactions
   };
 

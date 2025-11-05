@@ -222,41 +222,48 @@ function App() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
+    let ticking = false;
+
     const handleScroll = () => {
-      if (typeof window === "undefined") return;
+      if (typeof window === "undefined" || ticking) return;
+      
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const vhPx = window.innerHeight;
+        const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
-      const scrollY = window.scrollY;
-      const vhPx = window.innerHeight;
-      const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
+        //
+        // ==== CIRCLE 1: hero → about ====
+        //
+        const c1StartScrollVh = 0;
+        const c1EndScrollVh = 250;
+        const c1Span = c1EndScrollVh - c1StartScrollVh;
+        const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
+        const c1TopVh = lerp(0, 250, c1t);
+        setAboutCircleTop(`${c1TopVh}vh`);
+        setAboutCircleOpacity(0.8);
 
-      //
-      // ==== CIRCLE 1: hero → about ====
-      //
-      const c1StartScrollVh = 0;
-      const c1EndScrollVh = 250;
-      const c1Span = c1EndScrollVh - c1StartScrollVh;
-      const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
-      const c1TopVh = lerp(0, 250, c1t);
-      setAboutCircleTop(`${c1TopVh}vh`);
-      setAboutCircleOpacity(0.8);
+        //
+        // ==== CIRCLE 2: FAQ → "next page" ====
+        //
+        // scroll range (when to start / stop moving)
+        const c2StartScrollVh = 910; // start moving once page has scrolled ~910vh
+        const c2EndScrollVh = 1150; // finish moving by 1150vh
+        const c2Span = c2EndScrollVh - c2StartScrollVh;
 
-      //
-      // ==== CIRCLE 2: FAQ → “next page” ====
-      //
-      // scroll range (when to start / stop moving)
-      const c2StartScrollVh = 910; // start moving once page has scrolled ~910vh
-      const c2EndScrollVh = 1150; // finish moving by 1150vh
-      const c2Span = c2EndScrollVh - c2StartScrollVh;
+        // position range (where to put the circle)
+        const c2StartTopVh = 910; // start
+        const c2EndTopVh = 1150; // final rest position
 
-      // position range (where to put the circle)
-      const c2StartTopVh = 910; // start
-      const c2EndTopVh = 1150; // final rest position
+        const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
+        const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
 
-      const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-      const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
-
-      setFaqCircleTop(`${c2TopVh}vh`);
-      setFaqCircleOpacity(0.8);
+        setFaqCircleTop(`${c2TopVh}vh`);
+        setFaqCircleOpacity(0.8);
+        
+        ticking = false;
+      });
     };
 
     // run once

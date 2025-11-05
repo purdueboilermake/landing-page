@@ -39,18 +39,17 @@ function useTypewriter(text: string, delay: number, startTyping: boolean) {
 }
 
 const widthMap = {
-    // Width relative to the container (which is already responsive)
-    'small': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]',
-    'medium': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]',
-    'large': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]',
-    'xlarge': 'w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%]'
+    'small': 'w-[70%] sm:w-[65%] md:w-[450px]',
+    'medium': 'w-[75%] sm:w-[70%] md:w-[500px]',
+    'large': 'w-[80%] sm:w-[75%] md:w-[550px]',
+    'xlarge': 'w-[85%] sm:w-[80%] md:w-[600px]'
 }
 
 const verticalPadding = {
-    'small': 'py-2 sm:py-2 md:py-3 lg:py-3',
-    'medium': 'py-3 sm:py-3 md:py-4 lg:py-4',
-    'large': 'py-4 sm:py-5 md:py-6 lg:py-10',
-    'xlarge': 'py-4 sm:py-5 md:py-6 lg:py-6'
+    'small': 'py-2 md:py-3',
+    'medium': 'py-3 md:py-4',
+    'large': 'py-3 sm:py-4 md:py-6 lg:py-10',
+    'xlarge': 'py-4 md:py-6'
 }
 
 const timeClass = 'text-lg sm:text-xl md:text-2xl lg:text-[28px] tracking-widest font-bold';

@@ -694,6 +694,7 @@ function App() {
                     {" "}
                     BOILERMAKE XIII{" "}
                   </h1>
+                  <link rel="icon" href="assets/bmxiii_favicon.ico" type="image/x-icon" />
                 </div>
                 <div
                   className="hero-buttons"

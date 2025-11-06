@@ -821,13 +821,14 @@ function App() {
             >
               <AboutSection />
             </section>
-{/* Schedule Section */}
+
+            {/* Schedule Section */}
             <section
               id="schedule"
               className="w-full flex items-center justify-center py-[330vh]"
             >
-              <div className="w-full max-w-7xl mx-auto px-4 absolute">
-                <div className="text-center absolute left-1/2 mt-[70vh] -translate-x-1/2 z-10 pointer-events-none">
+              <div className="w-full max-w-7xl mx-auto px-4">
+                <div className="text-center absolute left-1/2 mt-[110vh] md:mt-[60vh] -translate-x-1/2 z-10 pointer-events-none">
                   <div
                     style={{
                       fontFamily: "var(--font-disket-mono)",
@@ -844,17 +845,20 @@ function App() {
                   </div>
                 </div>
 
-                <div className="schedule-activities w-full relative mt-[130vh] min-[769px]:mt-[91vh]">
+                <div className="schedule-activities w-full relative mt-[160vh] md:mt-[110vh]">
                   {activities.map((activity, index) => {
                     const isLeft = index % 2 === 0;
-
                     return (
                       <div
                         key={`activity${index + 1}`}
                         className={`
-              absolute
-              ${isLeft ? "left-0 lg:left-[3%] min-[1021px]:left-[1%] min-[1023px]:left-[-2%]" : "right-[1%] lg:right-[3%] min-[1021px]:right-[1%]"}
-            `}
+                          absolute
+                          transition-transform duration-500
+                            ${isLeft
+                            ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
+                            : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
+                          }
+                        `}
                         style={{
                           top: `${index * 33}vh`,
                         }}

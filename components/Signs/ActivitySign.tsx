@@ -18,7 +18,7 @@ type ActivitySignProps = {
 const widthMap = {
     'small': 'w-[70%] sm:w-[65%] md:w-[450px]',
     'medium': 'w-[75%] sm:w-[70%] md:w-[500px]',
-    'large': 'w-[80%] sm:w-[75%] md:w-[550px]',
+    'large': 'w-[35vw] sm:w-[36vw] md:w-[36vw] min-[1021px]:w-[38vw]',
     'xlarge': 'w-[85%] sm:w-[80%] md:w-[600px]'
 }
 
@@ -45,13 +45,13 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
             setShowDescription(false);
             return;
         }
-        
+
         // If already opened before, show description immediately
         if (hasOpenedBefore && location) {
             setShowDescription(true);
             return;
         }
-        
+
         // First time opening: mark as opened and wait for location to finish typing
         if (isExpanded && location && !hasOpenedBefore) {
             setHasOpenedBefore(true);
@@ -84,7 +84,7 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
                 }}>
                     {location && (
                         <div className="pb-3 min-h-[1.5em]">
-                            <TypedText 
+                            <TypedText
                                 instanceKey={`activity-location-${activityId}`}
                                 shouldStart={isExpanded}
                                 delay={0}
@@ -95,7 +95,7 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
                     )}
                     {showDescription && description && (
                         <div className="pt-3 min-h-[3em]">
-                            <TypedText 
+                            <TypedText
                                 instanceKey={`activity-description-${activityId}`}
                                 shouldStart={showDescription}
                                 delay={0}

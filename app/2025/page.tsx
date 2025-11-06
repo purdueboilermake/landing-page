@@ -551,7 +551,7 @@ function App() {
       height: "150vh",
       scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
-      fallbackColor: "#ff0000",
+      fallbackColor: "transparent",
     },
     {
       id: "stars-faq2",

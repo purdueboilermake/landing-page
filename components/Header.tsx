@@ -1,186 +1,307 @@
 /**
  * Header.tsx
  * Will be used to display the logo and the navigation bar
+ * Updated for new CSS Grid layout system (no parallax)
  * @AshokSaravanan222
  * 09-15-2024
  */
 
-import React, { useState } from 'react';
-import ApplyButton from './ApplyButton';
-import Image from 'next/image';
-import { IParallax } from '@react-spring/parallax';
-import { LAYER_OFFSETS, ScreenSize } from '@/utils/parallaxOffset';
+import React, { useState } from "react";
+import ApplyButton from "./ApplyButton";
+import Image from "next/image";
 
-type HeaderProps = {
-    screenSize: ScreenSize;
-    parallaxRef?: React.RefObject<IParallax>;
-};
+type HeaderProps = {};
 
-export default function Header({ screenSize, parallaxRef }: HeaderProps) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Header({}: HeaderProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const handleNavigation = (section: string) => {
-        const offset = LAYER_OFFSETS[section][screenSize]
-        // Check if we're on the main page
-        if (window.location.pathname === '/') {
-            // If we are, just scroll
-            if (parallaxRef?.current) {
-                parallaxRef.current.scrollTo(offset);
-            }
-        } else {
-            // If we're not, navigate to main page with hash parameter
-            window.location.href = `/?scroll=${offset}`;
-        }
+  const handleNavigation = (sectionId: string) => {
+    // Section scroll positions (in vh units converted to pixels)
+    const sectionPositions: { [key: string]: number } = {
+      about: 250, // About section is at 270vh
+      schedule: 400, // Schedule section is at 400vh
+      faq: 840, // FAQ section is at 840vh
+      "sponsors-sign": 0, // Placeholder for sponsors (not implemented)
     };
 
-    return (
-        <header className="w-full fixed top-0 z-50">
+    // Check if we're on the 2025 page
+    if (window.location.pathname === "/2025") {
+      // Calculate the scroll position in pixels
+      const vh = window.innerHeight;
+      const targetScrollVh = sectionPositions[sectionId] || 0;
+      const targetScrollPx = targetScrollVh * vh / 100;
 
-            <a id="mlh-trust-badge" className="block max-w-[100px] min-w-[60px] fixed left-[75px] md:left-[100px] top-0 w-[10%] z-[10000]" href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" alt="Major League Hacking 2025 Hackathon Season" style={{ width: '100%' }} /></a>
+      // Smooth scroll to the calculated position
+      window.scrollTo({
+        top: targetScrollPx,
+        behavior: "smooth",
+      });
+    } else {
+      // If we're not on the 2025 page, navigate there with hash
+      window.location.href = `/2025#${sectionId}`;
+    }
+  };
 
-            {/* Background with blur */}
-            <div className={`absolute inset-0 transition-colors ${
-                isMenuOpen
-                ? 'bg-black/50 backdrop-blur-sm'
-                : 'bg-gradient-to-b from-black/50 to-transparent'
-            }`} />
+ return (
+    <header 
+      className={`w-full fixed top-0 z-50 transition-all duration-[200ms] ${isMenuOpen ? 'bg-black/95' : ''}`}
+      style={!isMenuOpen ? {
+        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%)'
+      } : undefined}
+    >
+      <div className="relative px-8 lg:px-12 xl:px-16 py-4">
+        <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
+          {/* Single logo on the left */}
+          <a href="/" className="hover:scale-105 transition">
+          {/* accordingly modify href here */}
+            <Image
+              src={"/images/bmxiii-logo.png"}
+              alt="Boilermake Logo"
+              width={75}
+              height={75}
+              className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
+            />
+          </a>
 
-            {/* Content */}
-            <div className="relative px-4 py-1">
-                <div className="flex justify-between items-center text-white">
-                    {/* Logo */}
-                    <a href="/" className='hover:scale-105 transition'>
-                        <Image
-                            src={"/images/logo.png"}
-                            alt="Boilermake Logo"
-                            width={75}
-                            height={75}
-                            className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
-                        />
-                    </a>
+          {/* Desktop Navigation - centered and spanning */}
+          <nav className="hidden md:flex flex-1 items-center justify-between ml-8 lg:ml-12 xl:ml-16">
+            <button
+              onClick={() => handleNavigation("about")}
+              className="transition-all duration-300"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              About
+            </button>
+            <button
+              onClick={() => handleNavigation("schedule")}
+              className="transition-all duration-300"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              Schedule
+            </button>
+            <button
+              onClick={() => handleNavigation("faq")}
+              className="transition-all duration-300"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              FAQs
+            </button>
+            <button
+              onClick={() => handleNavigation("sponsors-sign")}
+              className="transition-all duration-300"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              Sponsors
+            </button>
+          </nav>
 
-                    {/* Spacer */}
-                    <div className="flex-grow"></div>
-
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center">
-                        <nav className="flex items-center space-x-2 sm:space-x-4 md:space-x-12 px-4 md:px-12">
-                            <ul className="flex items-center space-x-4 sm:space-x-8 md:space-x-12">
-                                <li>
-                                    <button
-                                        onClick={() => handleNavigation('stat3')}
-                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
-                                    >
-                                        About
-                                    </button>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/about-us"
-                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] truncate"
-                                    >
-                                        Team
-                                    </a>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={() => handleNavigation('schedule-section')}
-                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
-                                    >
-                                        Schedule
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={() => handleNavigation('faq-sign')}
-                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
-                                    >
-                                        FAQ
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={() => handleNavigation('sponsors-sign')}
-                                        className="hover:text-orange-300 transition-all duration-300 font-subtitle text-xs md:text-xl font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]"
-                                    >
-                                        Sponsors
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div className="hidden md:block lg:hidden">
-                            <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"small"} />
-                        </div>
-                        <div className="hidden lg:block">
-                            <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"medium"} />
-                        </div>
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden p-2"
-                    >
-                        <div className="w-6 h-5 flex flex-col justify-between">
-                            <span className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
-                            <span className={`w-full h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                            <span className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-                        </div>
-                    </button>
-                </div>
-
-                {/* Mobile Dropdown Menu */}
-                <div className={`md:hidden absolute top-full left-0 right-0 transition-all duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-                    <div className="bg-black/50 backdrop-blur-sm">
-                        <nav className="flex flex-col items-center py-4 space-y-4">
-                            <button
-                                onClick={() => {
-                                    handleNavigation('stat3');
-                                    setIsMenuOpen(false);
-                                }}
-                                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
-                            >
-                                About
-                            </button>
-                            <a
-                                href="/about-us"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
-                            >
-                                About Us
-                            </a>
-                            <button
-                                onClick={() => {
-                                    handleNavigation('schedule-section');
-                                    setIsMenuOpen(false);
-                                }}
-                                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
-                            >
-                                Schedule
-                            </button>
-                            <button
-                                onClick={() => {
-                                    handleNavigation('faq-sign');
-                                    setIsMenuOpen(false);
-                                }}
-                                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
-                            >
-                                FAQ
-                            </button>
-                            <button
-                                onClick={() => {
-                                    handleNavigation('sponsors-sign');
-                                    setIsMenuOpen(false);
-                                }}
-                                className="hover:text-amber-600 transition-all duration-300 font-subtitle text-white text-lg"
-                            >
-                                Sponsors
-                            </button>
-                            <ApplyButton text='Apply Now!' link='https://boilermake-apply.web.app' size={"small"} />
-                        </nav>
-                    </div>
-                </div>
+          {/* Mobile Menu Button - top right */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 relative z-[60] flex-shrink-0"
+            aria-label="Toggle menu"
+            style={{ minWidth: '44px', minHeight: '44px' }}
+          >
+            <div className="w-6 h-5 flex flex-col justify-between">
+              <span
+                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${
+                  isMenuOpen ? "rotate-45 translate-y-2.5" : ""
+                }`}
+              ></span>
+              <span
+                className={`w-full h-0.5 bg-white transition-all duration-300 ${
+                  isMenuOpen ? "opacity-0" : ""
+                }`}
+              ></span>
+              <span
+                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${
+                  isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                }`}
+              ></span>
             </div>
-        </header>
-    );
+          </button>
+        </div>
+      </div>
+
+        {/* Mobile Dropdown Menu */}
+        <div
+          className={`md:hidden absolute top-full left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${
+            isMenuOpen 
+              ? "opacity-100 visible translate-y-0" 
+              : "opacity-0 invisible -translate-y-4 pointer-events-none"
+          }`}
+          style={{ marginTop: "-1px" }}
+        >
+          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl">
+            <nav className="flex flex-col items-center py-6 space-y-4">
+              <button
+                onClick={() => {
+                  handleNavigation("about");
+                  setIsMenuOpen(false);
+                }}
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
+              >
+                About
+              </button>
+              
+              <button
+                onClick={() => {
+                  handleNavigation("schedule");
+                  setIsMenuOpen(false);
+                }}
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
+              >
+                Schedule
+              </button>
+              
+              <button
+                onClick={() => {
+                  handleNavigation("faq");
+                  setIsMenuOpen(false);
+                }}
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
+              >
+                FAQs
+              </button>
+              
+              <button
+                onClick={() => {
+                  handleNavigation("sponsors-sign");
+                  setIsMenuOpen(false);
+                }}
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
+              >
+                Sponsors
+              </button>
+              
+              <a
+                href="https://boilermake-apply.web.app"
+                target="_blank"
+                rel="noreferrer"
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Apply Now!
+              </a>
+           </nav>
+          </div>
+        </div>
+    </header>
+  );
 }

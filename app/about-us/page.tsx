@@ -1,10 +1,10 @@
 "use client";
 
-import Header from '@/components/Header';
-import Image from 'next/image';
-import { useState, useMemo, useEffect } from 'react';
-import TeamCarousel from '@/components/TeamCarousel';
-import { ScreenSize } from '@/utils/parallaxOffset';
+import Header from "@/components/Header";
+import Image from "next/image";
+import { useState, useMemo, useEffect } from "react";
+import TeamCarousel from "@/components/TeamCarousel";
+import { ScreenSize } from "@/utils/types";
 
 interface TeamMember {
   image: string;
@@ -25,23 +25,23 @@ const getRandomCloud = () => {
 
 export default function TeamsPage() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
-  const [screenSize, setScreenSize] = useState<ScreenSize>('lg');
+  const [screenSize, setScreenSize] = useState<ScreenSize>("lg");
 
   const teams: Team[] = [
     {
       id: 0,
       name: "Director",
       imgSrc: "/assets/pics/sanjhee.png",
-      description: "Sanjhee leads the BoilerMake XII Organizers and coordinates progress between all teams and groups to make BoilerMake happen!",
-      members: [
-        { image: "/assets/team/leads/sanjhee.png" },
-      ]
+      description:
+        "Sanjhee leads the BoilerMake XII Organizers and coordinates progress between all teams and groups to make BoilerMake happen!",
+      members: [{ image: "/assets/team/leads/sanjhee.png" }],
     },
     {
       id: 1,
       name: "Team Leads",
       imgSrc: "/assets/pics/leads.png",
-      description: "Our dedicated team leads bring years of experience in hackathon organization and event management. They coordinate between different departments, establish strategic goals, and ensure smooth operation of the entire event while fostering an environment of innovation and collaboration.",
+      description:
+        "Our dedicated team leads bring years of experience in hackathon organization and event management. They coordinate between different departments, establish strategic goals, and ensure smooth operation of the entire event while fostering an environment of innovation and collaboration.",
       members: [
         { image: "/assets/team/leads/daniel.png" },
         { image: "/assets/team/leads/varun.png" },
@@ -50,28 +50,28 @@ export default function TeamsPage() {
         { image: "/assets/team/leads/nithin.png" },
         { image: "/assets/team/leads/sanjhee.png" },
         { image: "/assets/team/leads/sahiti.png" },
-
-
-      ]
+      ],
     },
     {
       id: 2,
       name: "Development Team",
       imgSrc: "/assets/pics/dev.png",
-      description: "Creating and maintaining the BoilerMake website, application portal, and brand new mobile app, the Development team handles all of BoilerMake's technical needs.",
+      description:
+        "Creating and maintaining the BoilerMake website, application portal, and brand new mobile app, the Development team handles all of BoilerMake's technical needs.",
       members: [
         { image: "/assets/team/dev/varun.png" },
         { image: "/assets/team/dev/arushi.png" },
         { image: "/assets/team/dev/aryamaan.png" },
         { image: "/assets/team/dev/ashok.png" },
         { image: "/assets/team/dev/dylan.png" },
-      ]
+      ],
     },
     {
       id: 3,
       name: "Design Team",
       imgSrc: "/assets/pics/design.png",
-      description: "Creating BoilerMake branding, swag, website design, and more, the Design team makes BoilerMake look impeccable.",
+      description:
+        "Creating BoilerMake branding, swag, website design, and more, the Design team makes BoilerMake look impeccable.",
       members: [
         { image: "/assets/team/design/leon.png" },
         { image: "/assets/team/design/anika.png" },
@@ -79,13 +79,14 @@ export default function TeamsPage() {
         { image: "/assets/team/design/amy.png" },
         { image: "/assets/team/design/cailey.png" },
         { image: "/assets/team/design/rosie.png" },
-      ]
+      ],
     },
     {
       id: 4,
       name: "User Experience Team",
       imgSrc: "/assets/pics/ux.png",
-      description: "From layout to schedule to prizes, the UX team handles all event planning, organzation, and coordination for BoilerMake.",
+      description:
+        "From layout to schedule to prizes, the UX team handles all event planning, organzation, and coordination for BoilerMake.",
       members: [
         { image: "/assets/team/ux/caleb.png" },
         { image: "/assets/team/ux/sahiti.png" },
@@ -96,74 +97,82 @@ export default function TeamsPage() {
         { image: "/assets/team/ux/nihar.png" },
         { image: "/assets/team/ux/aryan.png" },
         { image: "/assets/team/ux/vivek.png" },
-
-      ]
+      ],
     },
     {
       id: 5,
       name: "Sponsorship Team",
       imgSrc: "/assets/pics/spons.png",
-      description: "The Sponsorship Team maintains and develops connections with past, current, and future corporate partners and sponsors for BoilerMake.",
+      description:
+        "The Sponsorship Team maintains and develops connections with past, current, and future corporate partners and sponsors for BoilerMake.",
       members: [
-        {  image: "/assets/team/spons/daniel.png" },
-        {  image: "/assets/team/spons/sarthak.png" },
+        { image: "/assets/team/spons/daniel.png" },
+        { image: "/assets/team/spons/sarthak.png" },
         { image: "/assets/team/spons/rygel.png" },
         { image: "/assets/team/spons/pratheek.png" },
         { image: "/assets/team/spons/shrinivas.png" },
         { image: "/assets/team/spons/puja.png" },
         { image: "/assets/team/spons/sam.png" },
-      ]
+      ],
     },
     {
       id: 6,
       name: "Outreach",
       imgSrc: "/assets/pics/outreach.png",
-      description: "The Outreach team runs all BoilerMake social media and maintains connections across Purdue's campus and other universities.",
+      description:
+        "The Outreach team runs all BoilerMake social media and maintains connections across Purdue's campus and other universities.",
       members: [
-        {  image: "/assets/team/outreach/nithin.png" },
-        {  image: "/assets/team/outreach/anokhi.png" },
-        {  image: "/assets/team/outreach/mouli.png" },
-        {  image: "/assets/team/outreach/srihita.png" },
-        {  image: "/assets/team/outreach/sonal.png" },
-        {  image: "/assets/team/outreach/santosh.png" },
-
-
-      ]
+        { image: "/assets/team/outreach/nithin.png" },
+        { image: "/assets/team/outreach/anokhi.png" },
+        { image: "/assets/team/outreach/mouli.png" },
+        { image: "/assets/team/outreach/srihita.png" },
+        { image: "/assets/team/outreach/sonal.png" },
+        { image: "/assets/team/outreach/santosh.png" },
+      ],
     },
   ];
 
-  const teamClouds: { [key: number]: { left: string; right: string } } = useMemo(() => {
-    return teams.reduce((acc, team) => ({
-      ...acc,
-      [team.id]: {
-        left: getRandomCloud(),
-        right: getRandomCloud(),
-      }
-    }), {});
-  }, []);
+  const teamClouds: { [key: number]: { left: string; right: string } } =
+    useMemo(() => {
+      return teams.reduce(
+        (acc, team) => ({
+          ...acc,
+          [team.id]: {
+            left: getRandomCloud(),
+            right: getRandomCloud(),
+          },
+        }),
+        {}
+      );
+    }, []);
 
   useEffect(() => {
     const updateScreenSize = () => {
       const width = window.innerWidth;
-      if (width < 640) setScreenSize('sm');
-      else if (width < 768) setScreenSize('md');
-      else if (width < 1024) setScreenSize('lg');
-      else if (width < 1280) setScreenSize('xl');
-      else setScreenSize('2xl');
+      if (width < 640) setScreenSize("sm");
+      else if (width < 768) setScreenSize("md");
+      else if (width < 1024) setScreenSize("lg");
+      else if (width < 1280) setScreenSize("xl");
+      else setScreenSize("2xl");
     };
 
     updateScreenSize();
-    window.addEventListener('resize', updateScreenSize);
-    return () => window.removeEventListener('resize', updateScreenSize);
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
   }, []);
 
   return (
     <div className="bg-blue-200 flex flex-col items-center h-full py-12 md:py-24 px-4 md:px-24 lg:px-32">
-      <Header screenSize={screenSize} />
-      <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-dosis text-center mt-16 md:mt-8">About Us</h1>
+      <Header />
+      <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-dosis text-center mt-16 md:mt-8">
+        About Us
+      </h1>
       <div className="grid grid-flow-row justify-center items-center gap-12 md:gap-20 w-full">
         {teams.map((team) => (
-          <div key={team.id} className="flex flex-col md:flex-row items-center w-full gap-6 md:gap-12">
+          <div
+            key={team.id}
+            className="flex flex-col md:flex-row items-center w-full gap-6 md:gap-12"
+          >
             <div
               className="relative flex items-center justify-center w-60 md:w-80 h-60 md:h-80 lg:w-96 lg:h-96"
               onClick={() => setSelectedTeam(team)}

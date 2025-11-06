@@ -1,236 +1,306 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
-import Header from '@/components/Header';
-import HeroText from '@/components/HeroText';
-import AboutSection from '@/components/AboutSection';
-import ScheduleSign from '@/components/Signs/ScheduleSign';
-import Statistic from '@/components/Statistic';
-import FAQSign from '@/components/Signs/FAQSign';
-import SponsorSign from '@/components/Signs/SponsorSign';
-import SponsorCard from '@/components/SponsorCard';
-import FAQAccordian from '@/components/FAQAccordian';
-import ApplyButton from '@/components/ApplyButton';
-import Image from 'next/image';
-import { useResize } from '@react-spring/web';
-import ActivityPreview from '@/components/Event/ActivityPreview';
-import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffset';
+"use client";
+import React, { useEffect, useState } from "react";
+import Header from "@/components/Header";
+import HeroText from "@/components/HeroText";
+import AboutSection from "@/components/AboutSection";
+import ScheduleSign from "@/components/Signs/ScheduleSign";
+import Statistic from "@/components/Statistic";
+import FAQSign from "@/components/Signs/FAQSign";
+import SponsorSign from "@/components/Signs/SponsorSign";
+import SponsorCard from "@/components/SponsorCard";
+import FAQAccordian from "@/components/FAQAccordian";
+import ApplyButton from "@/components/ApplyButton";
+import Image from "next/image";
+import ActivityPreview from "@/components/Event/ActivityPreview";
+import BackgroundManager from "@/components/BackgroundManager";
+import { BackgroundScaleMode } from "@/components/BackgroundLayer";
+import { TypingProvider } from "@/context/TypingContext";
 
 const sponsors = [
-  [ // XL logos
+  [
+    // XL logos
     {
-      name: 'CAT',
+      name: "CAT",
       logo: "/assets/sponsors/cat.png",
-      url: 'https://www.caterpillar.com/'
+      url: "https://www.caterpillar.com/",
     },
     {
-      name: 'SFAB',
+      name: "SFAB",
       logo: "/assets/sponsors/SFAB.png",
-      url: 'https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html'
-    }
+      url: "https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html",
+    },
   ],
-  [ // LG logos
+  [
+    // LG logos
   ],
-  [ // MD logos
+  [
+    // MD logos
     {
-      name: 'Purdue CS',
+      name: "Purdue CS",
       logo: "/assets/sponsors/PurdueCS.svg",
-      url: 'https://www.cs.purdue.edu/'
+      url: "https://www.cs.purdue.edu/",
     },
     {
-      name: 'D.E. Shaw',
+      name: "D.E. Shaw",
       logo: "/assets/sponsors/deshaw.png",
-      url: 'https://www.deshaw.com/'
+      url: "https://www.deshaw.com/",
     },
     {
-      name: 'RCAC',
+      name: "RCAC",
       logo: "/assets/sponsors/RCAC_Logo.png",
-      url: 'https://www.rcac.purdue.edu/'
+      url: "https://www.rcac.purdue.edu/",
     },
   ],
-  [ // SM logos
+  [
+    // SM logos
     {
-      name: 'CoE',
+      name: "CoE",
       logo: "/assets/sponsors/coe.svg",
-      url: 'https://engineering.purdue.edu/Engr'
+      url: "https://engineering.purdue.edu/Engr",
     },
     {
-      name: 'Roboflow',
+      name: "Roboflow",
       logo: "/assets/sponsors/roboflow.png",
-      url: 'https://roboflow.com/'
+      url: "https://roboflow.com/",
     },
     {
-      name: 'Runpod',
+      name: "Runpod",
       logo: "/assets/sponsors/runpod_color.png",
-      url: 'https://www.runpod.io/'
+      url: "https://www.runpod.io/",
     },
     {
-      name: 'Purdue Innovates',
+      name: "Purdue Innovates",
       logo: "/assets/sponsors/purdue_innovates.png",
-      url: 'https://purdueinnovates.org/'
-    }
+      url: "https://purdueinnovates.org/",
+    },
   ],
   [
     {
-      name: 'Klaviyo',
+      name: "Klaviyo",
       logo: "/assets/sponsors/klaviyo.png",
-      url: 'https://www.klaviyo.com/'
+      url: "https://www.klaviyo.com/",
     },
     {
-      name: 'Blip',
+      name: "Blip",
       logo: "/assets/sponsors/blip.png",
-      url: 'https://www.blippayments.com/'
+      url: "https://www.blippayments.com/",
     },
     {
-      name: 'Sync',
+      name: "Sync",
       logo: "/assets/sponsors/sync.png",
-      url: 'https://sync.so/'
-    }, 
-    {
-      name: 'Modal',
-      logo: "/assets/sponsors/modal.svg",
-      url: 'https://modal.com/'
+      url: "https://sync.so/",
     },
-
+    {
+      name: "Modal",
+      logo: "/assets/sponsors/modal.svg",
+      url: "https://modal.com/",
+    },
   ],
   [
     {
-      name: 'Taco Bell',
+      name: "Taco Bell",
       logo: "/assets/sponsors/TacoBell.svg",
-      url: 'https://www.tacobell.com/'
+      url: "https://www.tacobell.com/",
     },
     {
-      name: 'Cartesia',
+      name: "Cartesia",
       logo: "/assets/sponsors/cartesia.svg",
-      url: 'https://www.cartesia.ai/'
+      url: "https://www.cartesia.ai/",
     },
     {
-      name: 'Warp',
+      name: "Warp",
       logo: "/assets/sponsors/warp.png",
-      url: 'https://www.warp.dev/'
+      url: "https://www.warp.dev/",
     },
     {
-      name: 'Wolfram',
+      name: "Wolfram",
       logo: "/assets/sponsors/wolfram.png",
-      url: 'https://www.wolfram.com/'
+      url: "https://www.wolfram.com/",
     },
-  ]
+  ],
 ];
 
 const activities = [
   {
-    title: 'Opening Ceremony',
+    title: "Activity Name",
     startDate: "2025-02-21T19:30:00",
     endDate: "2025-02-21T20:00:00",
-    location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Introduction to BoilerMake.'
+    location: "Frances A. Cordova Recreational Sports Center",
+    description: "Introduction to BoilerMake.",
   },
   {
-    title: 'Hacking Starts',
+    title: "Activity Name",
     startDate: "2025-02-21T21:00:00",
     endDate: "2025-02-21T21:00:00",
-    location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Hackers can start coding.'
+    location: "Frances A. Cordova Recreational Sports Center",
+    description: "Hackers can start coding.",
   },
   {
-    title: 'Carnival',
+    title: "Activity Name",
     startDate: "2025-02-22T21:30:00",
     endDate: "2025-02-23T23:00:00",
-    location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Event filled with fun games and activities.'
+    location: "Frances A. Cordova Recreational Sports Center",
+    description: "Event filled with fun games and activities.",
   },
   {
-    title: 'Hacking Ends',
+    title: "Activity Name",
     startDate: "2025-02-23T09:00:00",
     endDate: "2025-02-23T09:00:00",
-    location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Hackers must stop coding.'
+    location: "Frances A. Cordova Recreational Sports Center",
+    description: "Hackers must stop coding.",
   },
   {
-    title: 'Judging',
+    title: "Activity Name",
     startDate: "2025-02-23T10:00:00",
     endDate: "2025-02-23T14:00:00",
-    location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'First round of judging (all submitted projects).'
+    location: "Frances A. Cordova Recreational Sports Center",
+    description: "First round of judging (all submitted projects).",
   },
-  {
-    title: 'Closing Ceremony',
-    startDate: "2025-02-23T13:30:00",
-    endDate: "2025-02-23T15:00:00",
-    location: 'Frances A. Cordova Recreational Sports Center',
-    description: 'Final round of judging and all prize winners announced.'
-  }
-]
+];
 
 const questions = [
   {
-    question: 'What is a Hackathon?',
-    answer: "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activities as well to keep the fun going, and provide a platform to network with companies in the tech sector and other like-minded individuals from numerous backgrounds."
+    question: "What is a Hackathon?",
+    answer:
+      "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activities as well to keep the fun going, and provide a platform to network with companies in the tech sector and other like-minded individuals from numerous backgrounds.",
   },
   {
-    question: 'Who can attend and how much experience do I need to participate?',
-    answer: 'Any undergraduate university student age 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.'
+    question:
+      "Who can attend and how much experience do I need to participate?",
+    answer:
+      "Any undergraduate university student age 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.",
   },
   {
-    question: 'How does the application process work?',
-    answer: 'Once applications open, try to submit as soon as possible, make sure to write thoughtful responses in the application, and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.'
+    question: "How does the application process work?",
+    answer:
+      "Once applications open, try to submit as soon as possible, make sure to write thoughtful responses in the application, and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.",
   },
   {
-    question: 'What projects can I make at BoilerMake?',
-    answer: 'You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies used and various applications for projects, and even see hardware-based projects — the possibilities are endless!'
+    question: "What projects can I make at BoilerMake?",
+    answer:
+      "You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies used and various applications for projects, and even see hardware-based projects — the possibilities are endless!",
   },
   {
-    question: 'Does BoilerMake offer travel reimbursements?',
-    answer: 'Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking to those who need it. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.'
-  }
+    question: "Does BoilerMake offer travel reimbursements?",
+    answer:
+      "Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking to those who need it. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.",
+  },
 ];
 
 function App() {
-  const [screenSize, setScreenSize] = useState<ScreenSize>('lg');
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const parallaxRef = React.useRef<IParallax>(null);
   const [activeEventId, setActiveEventId] = useState<number>(0);
-  const { width, height } = useResize({
-    container: containerRef
-  });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isUltraWide, setIsUltraWide] = useState(false);
+  const [aboutCircleTop, setAboutCircleTop] = useState<string>("-20vh");
+  const [aboutCircleOpacity, setAboutCircleOpacity] = useState<number>(0.8);
+  const [faqCircleTop, setFaqCircleTop] = useState<string>("830vh");
+  const [faqCircleOpacity, setFaqCircleOpacity] = useState<number>(0.8);
 
   useEffect(() => {
-    const updateScreenSize = () => {
-      const width = window.innerWidth;
-      if (width < 640) setScreenSize('sm');
-      else if (width < 768) setScreenSize('md');
-      else if (width < 1024) setScreenSize('lg');
-      else if (width < 1280) setScreenSize('xl');
-      else setScreenSize('2xl');
+    setIsLoaded(true);
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
     };
 
-    updateScreenSize();
-    window.addEventListener('resize', updateScreenSize);
-    return () => window.removeEventListener('resize', updateScreenSize);
+    const checkUltraWide = () => {
+      setIsUltraWide(window.innerWidth > 2559);
+    };
+
+    checkMobile();
+    checkUltraWide();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   useEffect(() => {
-    // Set loaded state after component mounts
-    setIsLoaded(true);
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+    const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
-    // Check for scroll parameter in URL
-    const params = new URLSearchParams(window.location.search);
-    const scrollOffset = params.get('scroll');
+    const handleScroll = () => {
+      if (typeof window === "undefined") return;
 
-    if (scrollOffset && parallaxRef.current && isLoaded) {
-      // Small delay to ensure parallax is fully initialized
-      setTimeout(() => {
-        // Remove the parameter from URL without refreshing the page
-        window.history.replaceState({}, '', '/');
-        // Scroll to the specified offset
-        parallaxRef.current?.scrollTo(parseFloat(scrollOffset));
-      }, 100);
-    }
-  }, [isLoaded]); // Add isLoaded to dependency array
+      const scrollY = window.scrollY;
+      const vhPx = window.innerHeight;
+      const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
-  // Helper function to get offset for a layer
-  const getOffset = (layerId: string) => LAYER_OFFSETS[layerId][screenSize];
+      //
+      // ==== CIRCLE 1: hero → about ====
+      //
+      const c1StartScrollVh = 0;
+      const c1EndScrollVh = 250;
+      const c1Span = c1EndScrollVh - c1StartScrollVh;
+      const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
+      const c1TopVh = lerp(-20, 230, c1t);
+      setAboutCircleTop(`${c1TopVh}vh`);
+      setAboutCircleOpacity(0.8);
+
+      //
+      // ==== CIRCLE 2: FAQ → “next page” ====
+      //
+      // scroll range (when to start / stop moving)
+      const c2StartScrollVh = 840; // start moving once page has scrolled ~910vh
+      const c2EndScrollVh = 1500; // finish moving by 1150vh
+      const c2Span = c2EndScrollVh - c2StartScrollVh;
+
+      // position range (where to put the circle)
+      const c2StartTopVh = 820; // start
+      const c2EndTopVh = 1480; // final rest position
+
+      const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
+      const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
+
+      setFaqCircleTop(`${c2TopVh}vh`);
+      setFaqCircleOpacity(0.8);
+    };
+
+    // run once
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Run after hydration + next paint
+    const nudge = () => {
+      // Dispatch synthetic scroll/resize to observers
+      window.dispatchEvent(new Event("resize"));
+      window.dispatchEvent(new Event("scroll"));
+      // Tiny scroll jiggle to guarantee intersection recalculation
+      const x = window.scrollX,
+        y = window.scrollY;
+      window.scrollTo(x, y + 1);
+      window.scrollTo(x, y);
+    };
+
+    // Initial nudge
+    const t1 = setTimeout(nudge, 0);
+    // Nudge again after images/styles settle
+    const t2 = setTimeout(nudge, 250);
+
+    // Also nudge when page becomes visible (reloads from bfcache, etc.)
+    const onVis = () => {
+      if (document.visibilityState === "visible") {
+        nudge();
+      }
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      document.removeEventListener("visibilitychange", onVis);
+    };
+  }, []);
 
   const handleEventClick = (id: number) => {
     if (id === activeEventId) {
@@ -240,463 +310,722 @@ function App() {
     }
   };
 
-  const activity_vertical_offset: { [key: string]: string } = {
-    'activity1': "top-[5%] sm:top-[7%] md:top-[13%] lg:top-[11%] xl:top-[10%]",
-    'activity2': "top-[7%] sm:top-[9%] md:top-[14%] lg:top-[10%] xl:top-[12%]",
-    'activity3': "top-[15%] sm:top-[17%] md:top-[25%] lg:top-[35%] xl:top-[35%]",
-    'activity4': "top-[20%] sm:top-[19%] md:top-[32%] lg:top-[40%] xl:top-[45%]", // change this one
-    'activity5': "top-[42%] sm:top-[42%] md:top-[65%] lg:top-[80%] xl:top-[70%]", // change this one
-    'activity6': "top-[50%] sm:top-[50%] md:top-[80%] lg:top-[85%] xl:top-[95%]",
-  }
+  // Background layer configuration with responsive heights
+  const backgroundLayers = [
+    {
+      id: "solid-bg-color",
+      imageUrl: "/this/is/a/fake/image.png", // This will fail to load, showing fallback
+      zIndex: -100,
+      opacity: 1,
+      fallbackColor: "#2A2627", // This should show as the background color
+      priority: true, // Always load immediately
+    },
+    {
+      id: "rainbow-blob",
+      imageUrl: "images/homepage_gradient_upper.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: 0,
+      blendMode: "normal",
+      useIntrinsicHeight: false,
+      height: "400vh", // 200vh mobile, 400vh desktop
+      // scaleMode: "cover" as BackgroundScaleMode,
+      // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
+      width: "100%",
+      fallbackColor: "#ffffff",
+      priority: true,
+    },
+    {
+      id: "stars-left",
+      imageUrl: "/images/stars-left.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 0.8,
+      top: "80vh",
+      left: "-35%",
+      height: "30vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "stars-right",
+      imageUrl: "/images/stars-right.png",
+      position: "absolute" as const,
+      zIndex: -99,
+      opacity: 0.8,
+      top: "60vh", // A bit higher than stars-left (80vh)
+      left: "35%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "30vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "about-circle",
+      imageUrl: "/images/about-circle.png",
+      position: "absolute" as const,
+      zIndex: -80,
+      opacity: aboutCircleOpacity,
+      top: aboutCircleTop,
+      left: "0%",
+      height: "150vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "stars-about",
+      imageUrl: "/images/stars-about.png",
+      position: "absolute" as const,
+      zIndex: -81,
+      opacity: 0.8, // Increase visibility
+      top: "255vh", // Start at the top of the viewport
+      left: "25%",
+      height: "30vh", // Covers the viewport while scrolling
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true,
+    },
+    {
+      id: "about-accent",
+      imageUrl: isUltraWide ? "/this/is/fake" : "/images/about-accent.svg",
+      position: "absolute" as const,
+      zIndex: -70,
+      opacity: 1,
+      top: "250vh",
+      left: "0%",
+      height: "30vh",
+      width: "100%",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "schedule-gradient",
+      imageUrl: "images/schedule-gradient.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "400vh",
+      width: "100%",
+      height: "100vh",
+      blendMode: "normal",
+      fallbackColor: "#ffffff",
+      priority: true,
+      useIntrinsicHeight: false,
+    },
+    {
+      id: "stars-schedule",
+      imageUrl: "/images/stars-schedule.png",
+      position: "absolute" as const,
+      zIndex: -51,
+      opacity: 0.8,
+      top: "400vh", // A bit higher than stars-left (80vh)
+      left: "-30%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "corridor-1",
+      imageUrl: "/images/corridor-1.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "440vh",
+      left: "41vw",
+      width: "17vw",
+      height: "210vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      useIntrinsicHeight: false,
+    },
+    {
+      id: "ringed-red-planet",
+      imageUrl: "/images/ringed-red-planet.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "470vh",
+      left: "75vw",
+      width: "25vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "schedule-grid",
+      imageUrl: "/images/schedule-grid.png",
+      position: "absolute" as const,
+      zIndex: -70,
+      opacity: 1,
+      top: "470vh",
+      left: "0%",
+      width: "100%",
+      height: "260vh",
+      useIntrinsicHeight: false,
+      scaleMode: "cover" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "white-star",
+      imageUrl: "/images/white-star.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "525vh",
+      left: "20vw",
+      width: "20vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "blue-red-planet",
+      imageUrl: "/images/blue-red-planet.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "600vh",
+      left: "60vw",
+      width: "20vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "faq-gradient",
+      imageUrl: "/images/faq-gradient.png",
+      position: "absolute" as const,
+      zIndex: -50,
+      opacity: 1,
+      top: "700vh",
+      left: "0%",
+      width: "100vw",
+      height: "1200vh",
+      useIntrinsicHeight: false,
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true,
+    },
+    {
+      id: "stars-faq",
+      imageUrl: "/images/stars-faq.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "895vh", // A bit higher than stars-left (80vh)
+      left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "faq-circle",
+      imageUrl: "/images/faq-circle.png",
+      position: "absolute" as const,
+      zIndex: -99,
+      opacity: faqCircleOpacity,
+      top: faqCircleTop,
+      left: "0%",
+      height: "150vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "#ff0000",
+    },
+    {
+      id: "stars-faq2",
+      imageUrl: "/images/stars-faq2.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "960vh", // A bit higher than stars-left (80vh)
+      left: "35%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "faq-accent-1",
+      imageUrl: "/images/faq-accent-1.png",
+      position: "absolute" as const,
+      zIndex: -30,
+      opacity: 1,
+      top: "840vh",
+      left: "0vw",
+      width: "100vw",
+      height: "30vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "faq-accent-2",
+      imageUrl: "/images/faq-accent-2.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "930vh",
+      left: "0vw",
+      width: "100vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "stars-sponsors",
+      imageUrl: "/images/stars-sponsors.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8, // Increase visibility
+      top: "1040vh", // Start at the top of the viewport
+      left: "35%",
+      height: "40vh", // Covers the viewport while scrolling
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true,
+    },
+    {
+      id: "planet-1",
+      imageUrl: "/images/planet1.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1506vh",
+      left: "40vw",
+      // width: "100vw",
+      height: "20vw",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet2",
+      imageUrl: "/images/planet2.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1415vh",
+      left: "47vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet3",
+      imageUrl: "/images/planet3.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1480vh",
+      left: "-40vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "planet4",
+      imageUrl: "/images/planet4.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1450vh",
+      left: "1vw",
+      // width: "100vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "ringed-planet",
+      imageUrl: "/images/ring-planet.png",
+      position: "absolute" as const,
+      zIndex: -39,
+      opacity: 1,
+      top: "1350vh",
+      left: "-30vw",
+      height: "20vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "orbits",
+      imageUrl: "/images/orbits.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "1350vh",
+      left: "0vw",
+      width: "100vw",
+      height: "200vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+    {
+      id: "stars-message",
+      imageUrl: "/images/stars-faq.png",
+      position: "absolute" as const,
+      zIndex: 0,
+      opacity: 0.8,
+      top: "1600vh", // A bit higher than stars-left (80vh)
+      left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
+      height: "40vh",
+      scaleMode: "contain" as BackgroundScaleMode,
+      backgroundPosition: "center",
+      blendMode: "normal",
+      fallbackColor: "transparent",
+      priority: true, // Always load immediately
+    },
+    {
+      id: "footer-accent",
+      imageUrl: "/images/footer-accent.png",
+      position: "absolute" as const,
+      zIndex: -40,
+      opacity: 1,
+      top: "1630vh",
+      left: "0vw",
+      width: "100vw",
+      height: "20vh",
+      scaleMode: "fill" as BackgroundScaleMode,
+      blendMode: "normal",
+      fallbackColor: "transparent",
+    },
+  ];
 
   return (
-    <div className='App font-dosis' ref={containerRef}>
-      <Header parallaxRef={parallaxRef} screenSize={screenSize} />
-      <Parallax ref={parallaxRef} pages={PAGES_BY_SCREEN[screenSize]} style={{ top: '0', left: '0' }} className="animation" key={screenSize}>
+    <TypingProvider>
+      <>
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          rel="stylesheet"
+        />
+        <div className="App font-dosis">
+          {/* Background Manager - replaces parallax background system */}
+          <BackgroundManager
+            layers={backgroundLayers}
+            globalFallbackColor="#C5E1E6"
+          />
 
-        <ParallaxLayer offset={getOffset('about-background')} speed={0}>
-          <div id="about-background"></div>
-        </ParallaxLayer>
+          {/* Header - updated to work without parallax */}
+          <Header />
 
-        <ParallaxLayer offset={getOffset('hero')} speed={0.25}>
-          <div className="animation_layer parallax" id="hero"></div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('cliff')} speed={0.25}>
-          <div id='cliff'>
-            <Image
-              src="/images/cliffside.png"
-              alt="Cliff"
-              height={0}
-              width={0}
-              sizes='100vh'
-              className='w-full h-full object-cover'
-            />
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('hero-text')} speed={0.25}>
-          <div className="animation_layer parallax">
-            <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
-              <div className="text-right">
-                <div className="container mx-auto text-white">
-                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-arvo font-bold">
-                    BOILERMAKE
-                  </h1>
-                  <h2 className="text-[100px] md:text-[200px] font-arvo leading-none font-extrabold">
-                    XII
-                  </h2>
-                  <p className="text-xl md:text-3xl font-body font-extrabold leading-none mb-4">
-                    2/21 - 2/23
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('apply')} speed={0.25} style={{ zIndex: 10 }}>
-          <div className="flex justify-end items-center p-4 sm:p-4 md:p-8 lg:p-16 xl:p-16">
-            <div className="text-right">
-              <div className="container mx-auto">
-                <div className='sm:pt-[12rem] md:pt-[12rem] lg:pt-[22rem] xl:pt-[22rem]'>
-                  <ApplyButton text="Organizer Application" link='https://forms.gle/inJw2FP3UwLMtNcZA' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
-
-                  <ApplyButton text="Devpost" link='https://boilermake-xii.devpost.com/' size={screenSize === 'sm' ? 'medium' : screenSize === 'md' ? 'medium' : screenSize === 'lg' ? 'large' : screenSize === 'xl' ? 'large' : 'large'} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('sun')} speed={0.35}>
-          <div className="animation_layer parallax" id="sun"></div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('cloud2')} speed={0.3}>
-          <div className="animation_layer parallax" id="cloud2"></div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('cloud4')} speed={0.25}>
-          <div className="animation_layer parallax" id="cloud4"></div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('cloud5')} speed={0.1}>
-          <div className="animation_layer parallax" id="cloud5"></div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('cloud3')} speed={0.4}>
-          <div className="animation_layer parallax" id="cloud3"></div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('cloud1')} speed={0.3}>
-          <div className="animation_layer parallax" id="cloud1"></div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('mini-cloud-left')} speed={0.3}>
-          <div className='lg:mt-[175px] xl:mt-[-60px]'>
-            <div className="animation_layer parallax" id="mini-cloud-left"></div>
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('mini-cloud-right')} speed={0.3}>
-          <div className="animation_layer parallax" id="mini-cloud-right"></div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('stat1')} speed={0.1}>
-          <div id='stat1' className='pt-16 sm:pt-0'>
-            <Statistic statistic='9' variable='Universities Represented' />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('stat2')} speed={0.1}>
-          <div id='stat2' className='pt-8 sm:pt-0'>
-            <Statistic statistic='70' variable='Project Submissions' />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('stat3')} speed={0.1}>
-          <div id='stat3'>
-            <Statistic statistic='$4k' variable='In Prizes' />
-          </div>
-        </ParallaxLayer>
-
-        {/* Tumbleweed */}
-        <ParallaxLayer offset={getOffset('tumbleweed')} speed={0} style={{ zIndex: 15, pointerEvents: 'none' }}>
-          <div className="absolute animate-tumble">
-            <Image
-              src="/images/tumbleweed.png"
-              alt="Tumbleweed"
-              width={200}
-              height={200}
-              className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] md:w-[175px] md:h-[175px] lg:w-[200px] lg:h-[200px] animate-[tumble_8s_linear_infinite]"
-              priority
-            />
-          </div>
-        </ParallaxLayer>
-
-        {/* Background layer for FAQ */}
-        <ParallaxLayer offset={getOffset('faq-background')} speed={0}>
-          <div id="faq" className="h-full w-full grid grid-cols-3 gap-8 p-12">
-            {/* Empty space matching sign width */}
-            <div className="col-span-1"></div>
-            {/* Empty space for accordion */}
-            <div className="col-span-2"></div>
-          </div>
-        </ParallaxLayer>
-
-        {/* Floating accordion layer */}
-        <ParallaxLayer offset={getOffset('faq-sign')} speed={0} style={{ zIndex: 10 }}>
-          <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
-            {/* First Column: FAQSign (1/3 of the screen) */}
-            <div className="col-span-1 flex justify-center items-center h-[500px]">
-              <FAQSign />
-            </div>
-            {/* Empty space for accordion */}
-            <div className="col-span-2"></div>
-          </div>
-        </ParallaxLayer>
-
-        {/* Floating accordion layer */}
-        <ParallaxLayer offset={getOffset('faq-accordion')} speed={0} style={{ zIndex: 50 }}>
-          <div className="h-full w-full grid grid-cols-3 gap-8 p-12">
-            {/* Empty space matching sign width */}
-            <div className="col-span-1"></div>
-            {/* Accordion floating above */}
-            <div className="col-span-2 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36">
-              <FAQAccordian questions={questions} />
-            </div>
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('schedule-background')} speed={0}>
-          <div id="schedule" className='h-full w-full'>
-          </div>
-        </ParallaxLayer>
-
-        {/* Add tents layer */}
-        {/* <ParallaxLayer offset={getOffset('tents')} speed={0} style={{ zIndex: 20, pointerEvents: 'none' }}>
-          <div className="absolute left-6 sm:left-8 lg:left-16">
-            <Image
-              src="/images/tents.png"
-              alt="Tents"
-              width={50}
-              height={50}
-              className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
-              priority
-            />
-          </div>
-        </ParallaxLayer> */}
-
-        <ParallaxLayer offset={getOffset('windyroad')} speed={0}>
-          <div className="relative h-[600px] md:h-[800px] lg:h-[1000px] xl:h-[1200px] w-full">
-            <Image
-              src="/images/windyroad.png"
-              alt="Road"
-              fill
-            />
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer offset={getOffset('schedule-section')} speed={0} style={{ zIndex: 10 }}>
-          {/* Schedule Sign */}
-          <div id="schedule-sign" className='h-full w-full'>
-            <div className='w-1/3 h-1/3'>
-              <ScheduleSign />
-            </div>
-          </div>
-
-          {/* Tents */}
-          <div className="absolute left-6 top-[30%] sm:left-8 lg:left-16 sm:top-[35%] md:top-[45%] lg:top-[60%] z-10">
-            <Image
-              src="/images/tents.png"
-              alt="Tents"
-              width={50}
-              height={50}
-              className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
-              priority
-            />
-          </div>
-
-          {/* Activities */}
-          {activities.map((activity, index) => (
-            <div
-              key={`activity${index + 1}`}
-              id={`activity${index + 1}`}
-              className={`absolute ${activity_vertical_offset[`activity${index + 1}`]}`}
-            >
-              <ActivityPreview
-                title={activity.title}
-                startDate={activity.startDate}
-                endDate={activity.endDate}
-                location={activity.location}
-                description={activity.description}
-                isActive={activeEventId === index + 1}
-                onEventClick={() => handleEventClick(index + 1)}
-                size={index < 2 ? 'small' : index < 4 ? 'medium' : index < 5 ? 'large' : 'xlarge'}
-                popup={(index === 2 || index === 5) ? 'right' : 'left'}
-              />
-            </div>
-          ))}
-        </ParallaxLayer>
-
-        {/* Birds near About section */}
-        <ParallaxLayer offset={getOffset('birds-about')} speed={0}>
-          <div className="absolute w-full left-[80%] top-[5%] sm:top-[0] md:top-[10%]">
-            <Image
-              src="/images/bird1.png"
-              alt="Bird 1"
-              width={65}
-              height={65}
-              className="absolute w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
-              style={{ left: '0', top: '0' }}
-            />
-            <Image
-              src="/images/bird2.png"
-              alt="Bird 2"
-              width={65}
-              height={65}
-              className="absolute  w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
-              style={{ left: '-10px', top: '40px', animationDelay: '0.5s' }}
-            />
-            <Image
-              src="/images/bird3.png"
-              alt="Bird 3"
-              width={65}
-              height={65}
-              className="absolute w-[65px] h-[65px] animate-[float_3s_ease-in-out_infinite]"
-              style={{ left: '50px', top: '20px', animationDelay: '1s' }}
-            />
-          </div>
-        </ParallaxLayer>
-
-        {/* Birds near Schedule section */}
-        <ParallaxLayer offset={getOffset('birds-schedule')} speed={0}>
-          <div className="absolute w-full left-[27%] top-[-7%] sm:top-[-4%] md:top-[10%]">
-            <Image
-              src="/images/bird2.png"
-              alt="Bird 2"
-              width={65}
-              height={65}
-              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
-              style={{ left: '50px', top: '15px', animationDelay: '0.8s' }}
-            />
-            <Image
-              src="/images/bird1.png"
-              alt="Bird 1"
-              width={65}
-              height={65}
-              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
-              style={{ left: '15px', top: '0', animationDelay: '0.3s' }}
-            />
-            <Image
-              src="/images/bird3.png"
-              alt="Bird 3"
-              width={45}
-              height={45}
-              className="absolute w-[65px] h-[65px] animate-[float-flipped_3s_ease-in-out_infinite]"
-              style={{ left: '0', top: '40px', animationDelay: '1.2s' }}
-            />
-          </div>
-        </ParallaxLayer>
-
-        {/* <ParallaxLayer offset={getOffset('road')} speed={0}>
-          <div className="absolute top-[-63vh] md:top-[-40vh] left-1/2 -translate-x-1/2 w-[170vw] md:w-[250vw] h-[175vh] md:h-[250vh]">
-            <Image
-              src="/images/road.png"
-              alt="Road"
-              fill
-              className={`object-contain ${screenSize === 'sm' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'md' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'lg' ? 'scale-[1] sm:scale-[0.8]' : screenSize === 'xl' ? 'scale-[1] sm:scale-[0.8]' : 'scale-[1]'} rotate-[20deg]`}
-            />
-          </div>
-        </ParallaxLayer> */}
-
-        <ParallaxLayer offset={getOffset('about-text')} speed={0}>
-          <div id="about" className="h-full w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-12">
-            <div className="col-span-1 h-1/3 flex justify-center items-center">
-              <AboutSection />
-            </div>
-          </div>
-        </ParallaxLayer>
-
-        {/* <ParallaxLayer offset={getOffset('event1')} speed={0}>
-          <div id="event1">
-            <EventPreview
-              title='opening ceremony'
-              date={new Date().toISOString()}
-              location='Frances A. Cordova Recreational Sports Center'
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-              cardType={1}
-              popupType={1}
-              isActive={activeEventId === 1}
-              onEventClick={() => handleEventClick(1)}
-            />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('event2')} speed={0}>
-          <div id="event2">
-            <EventPreview
-              title='activity name'
-              date={new Date().toISOString()}
-              location='Frances A. Cordova Recreational Sports Center'
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-              cardType={2}
-              popupType={2}
-              isActive={activeEventId === 2}
-              onEventClick={() => handleEventClick(2)}
-            />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('event3')} speed={0}>
-          <div id="event3">
-            <EventPreview
-              title='activity name'
-              date={new Date().toISOString()}
-              location='Frances A. Cordova Recreational Sports Center'
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-              cardType={3}
-              popupType={2}
-              isActive={activeEventId === 3}
-              onEventClick={() => handleEventClick(3)}
-            />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('event4')} speed={0}>
-          <div id="event4">
-            <EventPreview
-              title='activity name'
-              date={new Date().toISOString()}
-              location='Frances A. Cordova Recreational Sports Center'
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-              cardType={2}
-              popupType={2}
-              isActive={activeEventId === 4}
-              onEventClick={() => handleEventClick(4)}
-            />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={getOffset('event5')} speed={0}>
-          <div id="event5">
-            <EventPreview
-              title='activity name'
-              date={new Date().toISOString()}
-              location='Frances A. Cordova Recreational Sports Center'
-              description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-              cardType={2}
-              popupType={1}
-              isActive={activeEventId === 5}
-              onEventClick={() => handleEventClick(5)}
-            />
-          </div>
-        </ParallaxLayer> */}
-
-        {/* Campfires layer */}
-        <ParallaxLayer offset={getOffset('campfires')} speed={0} style={{ zIndex: 5, pointerEvents: 'none' }}>
-          <div className="absolute -right-6 sm:-right-6 lg:-right-12">
-            <Image
-              src="/images/campfires.png"
-              alt="Tents"
-              width={50}
-              height={50}
-              className="w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[275px] md:h-[275px] lg:w-[350px] lg:h-[350px]"
-              priority
-            />
-          </div>
-        </ParallaxLayer>
-
-        {/* Background layer for Sponsors */}
-        <ParallaxLayer offset={getOffset('sponsors-background')} speed={0}>
-          <div id="sponsors" className='h-full w-full'>
-          </div>
-        </ParallaxLayer>
-
-        {/* Sponsors Sign Layer */}
-        <ParallaxLayer offset={getOffset('sponsors-sign')} speed={0} style={{ zIndex: 0 }}>
-          <div className='h-full w-full'>
-            <div className={`w-1/3 h-1/3`}>
-              <SponsorSign />
-            </div>
-          </div>
-        </ParallaxLayer>
-
-        {/* Sponsors Content Layer */}
-        <ParallaxLayer offset={getOffset('sponsors-content')} speed={0} style={{ zIndex: 10 }}>
-          <div className='h-full w-full'>
-            <div className={`w-1/3 h-1/3`}></div>
-
-            <div className="px-8 sm:px-10 md:px-12 lg:px-16 xl:px-20 max-w-[1600px] mx-auto">
-              <div className="flex flex-col gap-1 md:gap-2 lg:gap-4">
-                { /* <h3 className='text-4xl font-bold'>Coming Soon!</h3> */ }
-                {sponsors.map((sponsorRow, rowIndex) => (
-                  <div
-                    key={rowIndex}
-                    className={`flex justify-center items-center ${
-                      rowIndex === 0 ? 'gap-8 md:gap-16 lg:gap-20' :
-                      rowIndex === 1 ? 'gap-6 md:gap-14 lg:gap-16' :
-                      rowIndex === 2 ? 'gap-4 md:gap-12 lg:gap-14' :
-                      'gap-3 md:gap-8 lg:gap-12'}`}
+          {/* Main content container with CSS Grid layout */}
+          <main className="w-full main-content" style={{ height: "1900vh", overflow: "hidden" }}>
+            {/* Hero Section */}
+            <section id="hero" className="hero-section">
+              <div
+                className="hero-content "
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  width: "100%",
+                }}
+              >
+                <div className="hero-text">
+                  <h2
+                    className="text-center mb-6"
+                    style={{
+                      fontFamily: "var(--font-futura-cyrillic)",
+                      fontWeight: 100,
+                      fontSize: "clamp(18px, 3.5vw, 28px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      color: "#FFFFFF",
+                      textAlign: "center",
+                      width: "100%",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                    }}
                   >
-                    {sponsorRow.map((sponsor, index) => (
-                      <SponsorCard
-                        key={index}
-                        sponsor={sponsor}
-                        size={rowIndex === 0 ? "xl" : rowIndex === 1 ? "lg" : rowIndex === 2 ? "md" : "sm"}
-                      />
-                    ))}
+                    coming jan 2026
+                    <span
+                      className="text-white"
+                      style={{ animation: "blink 1s step-end infinite" }}
+                    >
+                      _
+                    </span>
+                  </h2>
+                  <h1
+                    className="text-center mb-12"
+                    style={{
+                      fontFamily: "var(--font-disket-mono)",
+                      fontWeight: 400,
+                      fontSize: "clamp(32px, 8vw, 80px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      color: "#FFE958",
+                      textShadow: "0px 0px 15px #FFDE00",
+                    }}
+                  >
+                    {" "}
+                    BOILERMAKE XIII{" "}
+                  </h1>
+                  <link rel="icon" href="assets/bmxiii_favicon.ico" type="image/x-icon" />
+                </div>
+                <div
+                  className="hero-buttons"
+                  style={{ justifyContent: "center" }}
+                >
+                  {/* Interest Form Button */}
+                  <ApplyButton 
+                    text="APPLY NOW!" 
+                    link="https://boilermake-apply.web.app" 
+                    size="large" 
+                    variant="hero"
+                    className="mr-0" 
+                  />
+                </div>
+              </div>
+            </section>
+            {/* About Section */}
+            <section
+              id="about"
+              className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[270vh] absolute"
+            >
+              <AboutSection />
+            </section>
+
+            {/* Schedule Section */}
+            <section
+              id="schedule"
+              className="w-full flex items-center justify-center absolute"
+              style={{ top: "410vh", paddingTop: "8rem" }}
+            >
+              <div className="w-full max-w-7xl mx-auto px-4">
+                <div className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none" style={{ top: "8rem" }}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-disket-mono)",
+                      fontWeight: 400,
+                      fontSize: "clamp(32px, 8vw, 60px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      color: "#FFE958",
+                      textShadow: "0px 0px 15px #FFDE00",
+                    }}
+                  >
+                    Schedule
+                    <span style={{ animation: "blink 1s infinite" }}>_</span>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </ParallaxLayer>
+                </div>
 
-        <ParallaxLayer offset={getOffset('footer')} speed={0}>
-          <div id="footer" className="flex flex-col justify-end h-full w-full">
-            <div className="animation_layer parallax" id="footer-background"></div>
-            <footer id='textblock-footer' className="relative z-10">
-              <div className='text-white'>
-                Created With 💛 By&nbsp;
-                <a href="/home">Boilermake</a>
+                <div className="schedule-activities w-full relative mt-12 md:mt-32" style={{ marginTop: "12rem" }}>
+                  {activities.map((activity, index) => {
+                    const isLeft = index % 2 === 0;
+                    return (
+                      <div
+                        key={`activity${index + 1}`}
+                        className={`
+                          absolute
+                          transition-transform duration-500
+                            ${isLeft
+                            ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
+                            : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
+                          }
+                        `}
+                        style={{
+                          top: `${index * 33}vh`,
+                        }}
+                      >
+                        <ActivityPreview
+                          title={activity.title}
+                          startDate={activity.startDate}
+                          endDate={activity.endDate}
+                          location={activity.location}
+                          description={activity.description}
+                          isActive={activeEventId === index + 1}
+                          onEventClick={() => handleEventClick(index + 1)}
+                          size="large"
+                          popup="left"
+                          align={isLeft ? "left" : "right"}
+                          activityId={index + 1}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </footer>
-          </div>
-        </ParallaxLayer>
+            </section>
 
-      </Parallax>
-    </div>
+            {/* FAQ Section */}
+            <section
+              id="faq"
+              className="w-full flex items-start justify-center absolute overflow-x-hidden"
+              style={{ top: "840vh", paddingTop: "8rem", paddingBottom: "8rem" }}
+            >
+              {/* Absolute header like the others */}
+              <div className="text-center absolute left-1/2 -translate-x-1/2 z-[100] pointer-events-none" style={{ top: "8rem" }}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-disket-mono)",
+                    fontWeight: 400,
+                    fontSize: "clamp(32px, 8vw, 60px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  FAQ<span style={{ animation: "blink 1s infinite" }}>_</span>
+                </div>
+              </div>
+
+              {/* Actual accordion content */}
+              <div className="faq-sign w-full flex justify-center pb-8 overflow-x-hidden" style={{ marginTop: "12rem" }}>
+                <FAQAccordian questions={questions} />
+              </div>
+            </section>
+
+            {/* Contact/Message Section */}
+            <section
+              id="contact"
+              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
+              style={{ top: "1540vh" }}
+            >
+              {/* Main Content Container - All content centered vertically */}
+              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
+                {/* Message text */}
+                <h1
+                  className="text-center"
+                  style={{
+                    fontFamily: "var(--font-disket-mono)",
+                    fontWeight: 400,
+                    fontSize: "clamp(32px, 8vw, 60px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  Escape Reality<span style={{ animation: "blink 1s infinite" }}>_</span>
+                </h1>
+
+                {/* Button */}
+                <a
+                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                  href="https://boilermake-apply.web.app"
+                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                  style={{
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 2vw, 18px)",
+                    letterSpacing: "0.15em",
+                  }}
+                >
+                  <span
+                    style={{
+                      borderBottom: "2px solid #FFFFFF",
+                      paddingBottom: "4px",
+                    }}
+                  >
+                    APPLY NOW!
+                  </span>
+                </a>
+              </div>
+            </section>
+
+            {/* Footer Section */}
+            <section
+              id="footer"
+              className="absolute flex flex-col items-center justify-center w-full gap-8"
+              style={{ top: "1880vh" }}
+            >
+              {/* Social Media Icons */}
+              <div className="flex flex-row gap-6">
+                <a
+                  href="https://www.instagram.com/boilermake/?hl=en"
+                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                  aria-label="Instagram"
+                  onMouseEnter={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "0px 0px 15px #FFE958";
+                  }}
+                  onMouseLeave={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "none";
+                  }}
+                >
+                  <i
+                    className="fab fa-instagram"
+                    style={{ fontSize: "1.75em" }}
+                  />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/boilermake/"
+                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                  aria-label="LinkedIn"
+                  onMouseEnter={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "0px 0px 15px #FFE958";
+                  }}
+                  onMouseLeave={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "none";
+                  }}
+                >
+                  <i
+                    className="fab fa-linkedin"
+                    style={{ fontSize: "1.75em" }}
+                  />
+                </a>
+              </div>
+
+              {/* Made with love text */}
+              <p
+                className="text-center text-white"
+                style={{
+                  fontFamily: "var(--font-geist-vf)",
+                  fontWeight: 300,
+                  fontSize: "clamp(14px, 1.5vw, 18px)",
+                  letterSpacing: "0.05em",
+                  color: "#FFFFFF",
+                  textShadow: "0px 0px 15px #FFDE00",
+                }}
+              >
+                Made with 💛 by the BoilerMake XIII team
+              </p>
+            </section>
+          </main>
+        </div>
+      </>
+    </TypingProvider>
   );
 }
 

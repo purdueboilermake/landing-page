@@ -5,9 +5,9 @@ import './globals.css';
 
 
 export const metadata: Metadata = {
-  title: "BoilerMake XII",
-  description: "Purdue University's flagship hackathon, BoilerMake, is back in February 2025. Adventure Awaits.",
-};
+  title: "BoilerMake XIII",
+  description: "Purdue University's flagship hackathon, BoilerMake, is back in January 2026. Escape Reality.",
+}
   
 const dosis = Dosis({
   subsets: ['latin'],

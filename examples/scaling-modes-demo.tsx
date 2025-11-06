@@ -45,7 +45,6 @@ export default function ScalingModesDemo() {
                 imageUrl="/images/demo-image.jpg" // Replace with actual demo image
                 zIndex={-1}
                 scaleMode={mode}
-                backgroundPosition="center"
                 fallbackColor="#f3f4f6"
                 position="absolute"
               />

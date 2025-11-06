@@ -71,13 +71,13 @@ html {
 /* FAQ Section */
 #faq {
   /* background-color: #7AA689; */
-  min-height: 101vh;
+  /* min-height: 101vh; */ /* Removed - now using absolute positioning */
   overflow-y: visible;
 }
 
 @media (max-width: 768px) {
   #faq {
-    min-height: 76vh;
+    /* min-height: 76vh; */ /* Removed - now using absolute positioning */
     overflow-y: visible;
   }
 }
@@ -94,19 +94,6 @@ html {
   }
 }
 
-/* Footer Section */
-#footer {
-  background-color: #7AA689;
-  position: relative;
-  overflow: hidden;
-  margin-top: auto;
-}
-
-@media (max-width: 768px) {
-  #footer {
-    height: 50vh;
-  }
-}
 
 /* Text Block Containers */
 #textblock-container {

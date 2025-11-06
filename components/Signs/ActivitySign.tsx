@@ -63,7 +63,7 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
     return (
         <div className={`${widthMap[size]} ${verticalPadding[size]} border-[4px] bg-[#2A2627E6] border-white flex flex-col items-center hover:-translate-y-1 ${size === 'medium' ? 'px-8 sm:px-11 md:px-14 lg:px-15' : 'px-4 sm:px-6 md:px-8 lg:px-10'}`}>
             <div className={`text-white ${timeClass} font-normal`} style={{
-                fontFamily: 'var(--font-geist-vf)'
+                fontFamily: 'var(--font-futura-cyrillic)'
             }}>
                 <span>{time}</span>
             </div>
@@ -80,7 +80,7 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
             {/* Inline expanded content (no overlay, no fixed/focus) */}
             {isExpanded && (
                 <div className={`text-white ${contentClass} font-body mt-2 sm:mt-3 md:mt-4 text-center transition-all duration-300 ease-in-out max-w-full px-2`} style={{
-                    fontFamily: 'var(--font-geist-vf)'
+                    fontFamily: 'var(--font-futura-cyrillic)'
                 }}>
                     {location && (
                         <div className="pb-3 min-h-[1.5em]">
@@ -88,6 +88,9 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
                                 instanceKey={`activity-location-${activityId}`}
                                 shouldStart={isExpanded}
                                 delay={0}
+                                style={{
+                                    fontFamily: 'var(--font-futura-cyrillic)'
+                                }}
                             >
                                 {location}
                             </TypedText>
@@ -99,6 +102,9 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
                                 instanceKey={`activity-description-${activityId}`}
                                 shouldStart={showDescription}
                                 delay={0}
+                                style={{
+                                    fontFamily: 'var(--font-futura-cyrillic)'
+                                }}
                             >
                                 {description}
                             </TypedText>

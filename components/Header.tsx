@@ -16,25 +16,39 @@ export default function Header({}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNavigation = (sectionId: string) => {
-    // Check if we're on the main page
-    if ( window.location.pathname === "/2025") {
-      //window.location.pathname === "/" instead
-      // If we are, just scroll to the section
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+    // Section scroll positions (in vh units converted to pixels)
+    const sectionPositions: { [key: string]: number } = {
+      about: 250, // About section is at 270vh
+      schedule: 400, // Schedule section is at 400vh
+      faq: 840, // FAQ section is at 840vh
+      "sponsors-sign": 0, // Placeholder for sponsors (not implemented)
+    };
+
+    // Check if we're on the 2025 page
+    if (window.location.pathname === "/2025") {
+      // Calculate the scroll position in pixels
+      const vh = window.innerHeight;
+      const targetScrollVh = sectionPositions[sectionId] || 0;
+      const targetScrollPx = targetScrollVh * vh / 100;
+
+      // Smooth scroll to the calculated position
+      window.scrollTo({
+        top: targetScrollPx,
+        behavior: "smooth",
+      });
     } else {
-      // If we're not, navigate to main page with hash
-      window.location.href = `/#${sectionId}`;
+      // If we're not on the 2025 page, navigate there with hash
+      window.location.href = `/2025#${sectionId}`;
     }
   };
 
  return (
-    <header className="w-full fixed top-0 z-50">
+    <header 
+      className={`w-full fixed top-0 z-50 transition-all duration-[200ms] ${isMenuOpen ? 'bg-black/95' : ''}`}
+      style={!isMenuOpen ? {
+        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%)'
+      } : undefined}
+    >
       <div className="relative px-8 lg:px-12 xl:px-16 py-4">
         <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
           {/* Single logo on the left */}
@@ -53,7 +67,7 @@ export default function Header({}: HeaderProps) {
           <nav className="hidden md:flex flex-1 items-center justify-between ml-8 lg:ml-12 xl:ml-16">
             <button
               onClick={() => handleNavigation("about")}
-              className="hover:text-yellow-300 transition-colors duration-200"
+              className="transition-all duration-300"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -61,14 +75,20 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 15px #FFDE00",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
               }}
             >
               About
             </button>
             <button
               onClick={() => handleNavigation("schedule")}
-              className="hover:text-yellow-300 transition-colors duration-200"
+              className="transition-all duration-300"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -76,14 +96,20 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 15px #FFDE00",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
               }}
             >
               Schedule
             </button>
             <button
               onClick={() => handleNavigation("faq")}
-              className="hover:text-yellow-300 transition-colors duration-200"
+              className="transition-all duration-300"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -91,14 +117,20 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 15px #FFDE00",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
               }}
             >
               FAQs
             </button>
             <button
               onClick={() => handleNavigation("sponsors-sign")}
-              className="hover:text-yellow-300 transition-colors duration-200"
+              className="transition-all duration-300"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -106,7 +138,13 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 15px #FFDE00",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
               }}
             >
               Sponsors
@@ -143,13 +181,14 @@ export default function Header({}: HeaderProps) {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`md:hidden absolute top-full left-0 right-0 z-[55] transition-all duration-500 ease-out ${
+          className={`md:hidden absolute top-full left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${
             isMenuOpen 
               ? "opacity-100 visible translate-y-0" 
               : "opacity-0 invisible -translate-y-4 pointer-events-none"
           }`}
+          style={{ marginTop: "-1px" }}
         >
-          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg border-t border-yellow-500/20 shadow-2xl">
+          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl">
             <nav className="flex flex-col items-center py-6 space-y-4">
               <button
                 onClick={() => {

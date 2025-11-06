@@ -192,8 +192,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isUltraWide, setIsUltraWide] = useState(false);
-  // Dynamic circle positions/opacities (in CSS units)
-  const [aboutCircleTop, setAboutCircleTop] = useState<string>("130vh");
+  const [aboutCircleTop, setAboutCircleTop] = useState<string>("-20vh");
   const [aboutCircleOpacity, setAboutCircleOpacity] = useState<number>(0.8);
   const [faqCircleTop, setFaqCircleTop] = useState<string>("830vh");
   const [faqCircleOpacity, setFaqCircleOpacity] = useState<number>(0.8);
@@ -236,7 +235,7 @@ function App() {
       const c1EndScrollVh = 250;
       const c1Span = c1EndScrollVh - c1StartScrollVh;
       const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
-      const c1TopVh = lerp(0, 250, c1t);
+      const c1TopVh = lerp(-20, 230, c1t);
       setAboutCircleTop(`${c1TopVh}vh`);
       setAboutCircleOpacity(0.8);
 
@@ -244,13 +243,13 @@ function App() {
       // ==== CIRCLE 2: FAQ → “next page” ====
       //
       // scroll range (when to start / stop moving)
-      const c2StartScrollVh = 910; // start moving once page has scrolled ~910vh
-      const c2EndScrollVh = 1150; // finish moving by 1150vh
+      const c2StartScrollVh = 840; // start moving once page has scrolled ~910vh
+      const c2EndScrollVh = 1500; // finish moving by 1150vh
       const c2Span = c2EndScrollVh - c2StartScrollVh;
 
       // position range (where to put the circle)
-      const c2StartTopVh = 910; // start
-      const c2EndTopVh = 1150; // final rest position
+      const c2StartTopVh = 820; // start
+      const c2EndTopVh = 1480; // final rest position
 
       const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
       const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
@@ -375,7 +374,7 @@ function App() {
       opacity: aboutCircleOpacity,
       top: aboutCircleTop,
       left: "0%",
-      height: "100vh",
+      height: "150vh",
       scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
@@ -488,7 +487,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -40,
       opacity: 1,
-      top: "500vh",
+      top: "525vh",
       left: "20vw",
       width: "20vw",
       height: "20vh",
@@ -502,7 +501,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -40,
       opacity: 1,
-      top: "525vh",
+      top: "600vh",
       left: "60vw",
       width: "20vw",
       height: "20vh",
@@ -549,7 +548,7 @@ function App() {
       opacity: faqCircleOpacity,
       top: faqCircleTop,
       left: "0%",
-      height: "100vh",
+      height: "150vh",
       scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "#ff0000",
@@ -744,7 +743,7 @@ function App() {
           <Header />
 
           {/* Main content container with CSS Grid layout */}
-          <main className="w-full main-content">
+          <main className="w-full main-content" style={{ height: "1900vh", overflow: "hidden" }}>
             {/* Hero Section */}
             <section id="hero" className="hero-section">
               <div
@@ -762,7 +761,7 @@ function App() {
                   <h2
                     className="text-center mb-6"
                     style={{
-                      fontFamily: "var(--font-geist-vf)",
+                      fontFamily: "var(--font-futura-cyrillic)",
                       fontWeight: 100,
                       fontSize: "clamp(18px, 3.5vw, 28px)",
                       lineHeight: "100%",
@@ -772,6 +771,7 @@ function App() {
                       width: "100%",
                       marginLeft: "auto",
                       marginRight: "auto",
+                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
                     }}
                   >
                     coming jan 2026
@@ -787,7 +787,7 @@ function App() {
                     style={{
                       fontFamily: "var(--font-disket-mono)",
                       fontWeight: 400,
-                      fontSize: "clamp(32px, 8vw, 60px)",
+                      fontSize: "clamp(32px, 8vw, 80px)",
                       lineHeight: "100%",
                       letterSpacing: "0.1em",
                       color: "#FFE958",
@@ -825,10 +825,11 @@ function App() {
             {/* Schedule Section */}
             <section
               id="schedule"
-              className="w-full flex items-center justify-center py-[330vh]"
+              className="w-full flex items-center justify-center absolute"
+              style={{ top: "410vh", paddingTop: "8rem" }}
             >
               <div className="w-full max-w-7xl mx-auto px-4">
-                <div className="text-center absolute left-1/2 mt-[110vh] md:mt-[60vh] -translate-x-1/2 z-10 pointer-events-none">
+                <div className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none" style={{ top: "8rem" }}>
                   <div
                     style={{
                       fontFamily: "var(--font-disket-mono)",
@@ -845,7 +846,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="schedule-activities w-full relative mt-[160vh] md:mt-[110vh]">
+                <div className="schedule-activities w-full relative mt-12 md:mt-32" style={{ marginTop: "12rem" }}>
                   {activities.map((activity, index) => {
                     const isLeft = index % 2 === 0;
                     return (
@@ -886,10 +887,11 @@ function App() {
             {/* FAQ Section */}
             <section
               id="faq"
-              className="w-full flex items-start justify-center relative py-32 overflow-x-hidden"
+              className="w-full flex items-start justify-center absolute overflow-x-hidden"
+              style={{ top: "840vh", paddingTop: "8rem", paddingBottom: "8rem" }}
             >
               {/* Absolute header like the others */}
-              <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
+              <div className="text-center absolute left-1/2 -translate-x-1/2 z-[100] pointer-events-none" style={{ top: "8rem" }}>
                 <div
                   style={{
                     fontFamily: "var(--font-disket-mono)",
@@ -906,7 +908,7 @@ function App() {
               </div>
 
               {/* Actual accordion content */}
-              <div className="faq-sign w-full flex justify-center pt-32 pb-8 overflow-x-hidden">
+              <div className="faq-sign w-full flex justify-center pb-8 overflow-x-hidden" style={{ marginTop: "12rem" }}>
                 <FAQAccordian questions={questions} />
               </div>
             </section>
@@ -914,24 +916,25 @@ function App() {
             {/* Contact/Message Section */}
             <section
               id="contact"
-              className="relative min-h-screen flex flex-col items-center justify-center py-20 px-8"
+              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
+              style={{ top: "1540vh" }}
             >
               {/* Main Content Container - All content centered vertically */}
-              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl flex-1">
+              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
                 {/* Message text */}
                 <h1
                   className="text-center"
                   style={{
-                    fontFamily: "var(--font-geist-vf)",
-                    fontWeight: 300,
-                    fontSize: "clamp(40px, 8vw, 80px)",
+                    fontFamily: "var(--font-disket-mono)",
+                    fontWeight: 400,
+                    fontSize: "clamp(32px, 8vw, 60px)",
                     lineHeight: "100%",
-                    letterSpacing: "0.05em",
-                    color: "#FFFFFF",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
                     textShadow: "0px 0px 15px #FFDE00",
                   }}
                 >
-                  [message]
+                  Escape Reality<span style={{ animation: "blink 1s infinite" }}>_</span>
                 </h1>
 
                 {/* Button */}
@@ -952,65 +955,72 @@ function App() {
                       paddingBottom: "4px",
                     }}
                   >
-                    APPLY/CONTACT/...
+                    APPLY NOW!
                   </span>
                 </a>
+              </div>
+            </section>
 
-                {/* Social Media Icons */}
-                <div className="flex flex-row gap-6 mt-8">
-                  <a
-                    href="https://www.instagram.com/boilermake/?hl=en"
-                    className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-                    aria-label="Instagram"
-                    onMouseEnter={(e) => {
-                      const target = e.currentTarget as HTMLElement;
-                      target.style.textShadow = "0px 0px 15px #FFE958";
-                    }}
-                    onMouseLeave={(e) => {
-                      const target = e.currentTarget as HTMLElement;
-                      target.style.textShadow = "none";
-                    }}
-                  >
-                    <i
-                      className="fab fa-instagram"
-                      style={{ fontSize: "1.75em" }}
-                    />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/boilermake/"
-                    className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-                    aria-label="LinkedIn"
-                    onMouseEnter={(e) => {
-                      const target = e.currentTarget as HTMLElement;
-                      target.style.textShadow = "0px 0px 15px #FFE958";
-                    }}
-                    onMouseLeave={(e) => {
-                      const target = e.currentTarget as HTMLElement;
-                      target.style.textShadow = "none";
-                    }}
-                  >
-                    <i
-                      className="fab fa-linkedin"
-                      style={{ fontSize: "1.75em" }}
-                    />
-                  </a>
-                </div>
-
-                {/* Made with love text */}
-                <p
-                  className="text-center text-white mt-8"
-                  style={{
-                    fontFamily: "var(--font-geist-vf)",
-                    fontWeight: 300,
-                    fontSize: "clamp(14px, 1.5vw, 18px)",
-                    letterSpacing: "0.05em",
-                    color: "#FFFFFF",
-                    textShadow: "0px 0px 15px #FFDE00",
+            {/* Footer Section */}
+            <section
+              id="footer"
+              className="absolute flex flex-col items-center justify-center w-full gap-8"
+              style={{ top: "1880vh" }}
+            >
+              {/* Social Media Icons */}
+              <div className="flex flex-row gap-6">
+                <a
+                  href="https://www.instagram.com/boilermake/?hl=en"
+                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                  aria-label="Instagram"
+                  onMouseEnter={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "0px 0px 15px #FFE958";
+                  }}
+                  onMouseLeave={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "none";
                   }}
                 >
-                  Made with 💛 by the BoilerMake XIII team
-                </p>
+                  <i
+                    className="fab fa-instagram"
+                    style={{ fontSize: "1.75em" }}
+                  />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/boilermake/"
+                  className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
+                  aria-label="LinkedIn"
+                  onMouseEnter={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "0px 0px 15px #FFE958";
+                  }}
+                  onMouseLeave={(e) => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.textShadow = "none";
+                  }}
+                >
+                  <i
+                    className="fab fa-linkedin"
+                    style={{ fontSize: "1.75em" }}
+                  />
+                </a>
               </div>
+
+              {/* Made with love text */}
+              <p
+                className="text-center text-white"
+                style={{
+                  fontFamily: "var(--font-geist-vf)",
+                  fontWeight: 300,
+                  fontSize: "clamp(14px, 1.5vw, 18px)",
+                  letterSpacing: "0.05em",
+                  color: "#FFFFFF",
+                  textShadow: "0px 0px 15px #FFDE00",
+                }}
+              >
+                Made with 💛 by the BoilerMake XIII team
+              </p>
             </section>
           </main>
         </div>

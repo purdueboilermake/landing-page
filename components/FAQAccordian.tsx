@@ -62,8 +62,12 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
               aria-expanded={openIndex === index}
             >
               <div
-                className="text-white text-left text-lg md:text-xl font-bold break-words overflow-wrap-anywhere"
-                style={{ wordBreak: 'break-word' }}
+                className="text-white text-left text-lg md:text-xl break-words overflow-wrap-anywhere"
+                style={{ 
+                  wordBreak: 'break-word',
+                  fontFamily: 'var(--font-futura-cyrillic)',
+                  fontWeight: 'bold'
+                }}
               >
                 {faq.question}
               </div>
@@ -84,7 +88,10 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
                <div className="p-4 md:p-5 lg:p-6 border-2 border-white text-white text-left overflow-hidden overflow-wrap-anywhere" style={{backgroundColor: '#2A2627E6', wordBreak: 'break-word'}}>
                  {/* TypedText uses defaultSpeed from TypingContext - no speed prop override */}
                  <TypedText 
-                   className="text-white text-sm md:text-base leading-relaxed text-left font-futura-cyrillic"
+                   className="text-white text-sm md:text-base leading-relaxed text-left"
+                   style={{
+                     fontFamily: 'var(--font-futura-cyrillic)'
+                   }}
                    delay={200}
                    instanceKey={`faq-answer-${index}`}
                    shouldStart={openIndex === index}

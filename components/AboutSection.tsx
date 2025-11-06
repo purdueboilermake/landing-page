@@ -70,7 +70,10 @@ export default function AboutSection() {
                 <div className="pr-12">
                     {/* TypedText uses defaultSpeed from TypingContext - no speed prop override */}
                     <TypedText 
-                        className="text-white text-sm md:text-base leading-relaxed text-left font-futura-cyrillic"
+                        className="text-white text-sm md:text-base leading-relaxed text-left"
+                        style={{
+                            fontFamily: 'var(--font-futura-cyrillic)'
+                        }}
                         delay={200}
                         instanceKey="about-section-text"
                         shouldStart={isInView}
@@ -78,7 +81,14 @@ export default function AboutSection() {
                         BoilerMake is Purdue University's premier hackathon, bringing together over 500 students from numerous universities and majors to compete in 36 hours of hacking for $4000+ in prizes. Designed for hackers of all levels, BoilerMake provides unique and valuable experiences regardless of skill level -- you can participate in fun activities, win cool prizes, get free swag and food, and most importantly, have a whole lot of fun! It's also a great opportunity to network with large companies in industry and develop new skills. BoilerMake XII will take place February 21-23, 2025. BoilerMake is also an MLH partner meaning we adhere to their Code of Conduct.
                     </TypedText>
                     <div className="mt-4">
-                        <a href="https://hackp.ac/coc" target="_blank" className="text-yellow-300 hover:text-yellow-200 underline transition-colors duration-200">
+                        <a 
+                            href="https://hackp.ac/coc" 
+                            target="_blank" 
+                            className="text-yellow-300 hover:text-yellow-200 underline transition-colors duration-200"
+                            style={{
+                                fontFamily: 'var(--font-futura-cyrillic)'
+                            }}
+                        >
                             Code of Conduct
                         </a>
                     </div>

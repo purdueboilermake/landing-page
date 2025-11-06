@@ -821,14 +821,13 @@ function App() {
             >
               <AboutSection />
             </section>
-
-            {/* Schedule Section */}
+{/* Schedule Section */}
             <section
               id="schedule"
-              className="w-full flex items-center justify-center py-[410vh]"
+              className="w-full flex items-center justify-center py-[330vh]"
             >
-              <div className="w-full max-w-7xl mx-auto px-4 relative">
-                <div className="text-center absolute top-16 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+              <div className="w-full max-w-7xl mx-auto px-4 absolute">
+                <div className="text-center absolute left-1/2 mt-[70vh] -translate-x-1/2 z-10 pointer-events-none">
                   <div
                     style={{
                       fontFamily: "var(--font-disket-mono)",
@@ -845,7 +844,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="schedule-activities w-full h-[170vh] relative mt-[90vh]">
+                <div className="schedule-activities w-full relative mt-[130vh] min-[769px]:mt-[91vh]">
                   {activities.map((activity, index) => {
                     const isLeft = index % 2 === 0;
 
@@ -854,7 +853,7 @@ function App() {
                         key={`activity${index + 1}`}
                         className={`
               absolute
-              ${isLeft ? "left-0 lg:-left-[5%]" : "right-0 lg:-right-[5%]"}
+              ${isLeft ? "left-0 lg:left-[3%] min-[1021px]:left-[1%] min-[1023px]:left-[-2%]" : "right-[1%] lg:right-[3%] min-[1021px]:right-[1%]"}
             `}
                         style={{
                           top: `${index * 33}vh`,

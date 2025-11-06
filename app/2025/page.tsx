@@ -531,7 +531,7 @@ function App() {
       position: "absolute" as const,
       zIndex: 0,
       opacity: 0.8,
-      top: "895vh", // A bit higher than stars-left (80vh)
+      top: "830vh", // A bit higher than stars-left (80vh)
       left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
       height: "40vh",
       scaleMode: "contain" as BackgroundScaleMode,
@@ -569,30 +569,16 @@ function App() {
       priority: true, // Always load immediately
     },
     {
-      id: "faq-accent-1",
-      imageUrl: "/images/faq-accent-1.png",
+      id: "faq-accent",
+      imageUrl: "/images/faq_paths.svg",
       position: "absolute" as const,
       zIndex: -30,
       opacity: 1,
       top: "840vh",
       left: "0vw",
       width: "100vw",
-      height: "30vh",
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "faq-accent-2",
-      imageUrl: "/images/faq-accent-2.png",
-      position: "absolute" as const,
-      zIndex: -40,
-      opacity: 1,
-      top: "930vh",
-      left: "0vw",
-      width: "100vw",
       height: "20vh",
-      scaleMode: "fill" as BackgroundScaleMode,
+      scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
     },
@@ -611,78 +597,78 @@ function App() {
       fallbackColor: "transparent",
       priority: true,
     },
-    {
-      id: "planet-1",
-      imageUrl: "/images/planet1.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1506vh",
-      left: "40vw",
-      // width: "100vw",
-      height: "20vw",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet2",
-      imageUrl: "/images/planet2.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1415vh",
-      left: "47vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet3",
-      imageUrl: "/images/planet3.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1480vh",
-      left: "-40vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet4",
-      imageUrl: "/images/planet4.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1450vh",
-      left: "1vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "ringed-planet",
-      imageUrl: "/images/ring-planet.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1350vh",
-      left: "-30vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
+    // {
+    //   id: "planet-1",
+    //   imageUrl: "/images/planet1.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1506vh",
+    //   left: "40vw",
+    //   // width: "100vw",
+    //   height: "20vw",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "planet2",
+    //   imageUrl: "/images/planet2.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1415vh",
+    //   left: "47vw",
+    //   // width: "100vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "planet3",
+    //   imageUrl: "/images/planet3.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1480vh",
+    //   left: "-40vw",
+    //   // width: "100vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "planet4",
+    //   imageUrl: "/images/planet4.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1450vh",
+    //   left: "1vw",
+    //   // width: "100vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "ringed-planet",
+    //   imageUrl: "/images/ring-planet.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1350vh",
+    //   left: "-30vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
     {
       id: "orbits",
-      imageUrl: "/images/orbits.png",
+      imageUrl: "/images/solar_sys.svg",
       position: "absolute" as const,
       zIndex: -40,
       opacity: 1,
@@ -711,14 +697,15 @@ function App() {
     },
     {
       id: "footer-accent",
-      imageUrl: "/images/footer-accent.png",
+      imageUrl: "/images/footer-accent-high-res.png",
       position: "absolute" as const,
-      zIndex: -40,
+      zIndex: -80,
       opacity: 1,
       top: "1630vh",
-      left: "0vw",
-      width: "100vw",
-      height: "20vh",
+      left: "-40vw",
+      width: "150vw",
+      height: "120vh",
+      useIntrinsicHeight: false,
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
@@ -743,7 +730,10 @@ function App() {
           <Header />
 
           {/* Main content container with CSS Grid layout */}
-          <main className="w-full main-content" style={{ height: "1900vh", overflow: "hidden" }}>
+          <main
+            className="w-full main-content"
+            style={{ height: "1900vh", overflow: "hidden" }}
+          >
             {/* Hero Section */}
             <section id="hero" className="hero-section">
               <div
@@ -797,19 +787,23 @@ function App() {
                     {" "}
                     BOILERMAKE XIII{" "}
                   </h1>
-                  <link rel="icon" href="assets/bmxiii_favicon.ico" type="image/x-icon" />
+                  <link
+                    rel="icon"
+                    href="assets/bmxiii_favicon.ico"
+                    type="image/x-icon"
+                  />
                 </div>
                 <div
                   className="hero-buttons"
                   style={{ justifyContent: "center" }}
                 >
                   {/* Interest Form Button */}
-                  <ApplyButton 
-                    text="APPLY NOW!" 
-                    link="https://boilermake-apply.web.app" 
-                    size="large" 
+                  <ApplyButton
+                    text="APPLY NOW!"
+                    link="https://boilermake-apply.web.app"
+                    size="large"
                     variant="hero"
-                    className="mr-0" 
+                    className="mr-0"
                   />
                 </div>
               </div>
@@ -829,7 +823,10 @@ function App() {
               style={{ top: "410vh", paddingTop: "8rem" }}
             >
               <div className="w-full max-w-7xl mx-auto px-4">
-                <div className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none" style={{ top: "8rem" }}>
+                <div
+                  className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+                  style={{ top: "8rem" }}
+                >
                   <div
                     style={{
                       fontFamily: "var(--font-disket-mono)",
@@ -846,7 +843,10 @@ function App() {
                   </div>
                 </div>
 
-                <div className="schedule-activities w-full relative mt-12 md:mt-32" style={{ marginTop: "12rem" }}>
+                <div
+                  className="schedule-activities w-full relative mt-12 md:mt-32"
+                  style={{ marginTop: "12rem" }}
+                >
                   {activities.map((activity, index) => {
                     const isLeft = index % 2 === 0;
                     return (
@@ -855,10 +855,11 @@ function App() {
                         className={`
                           absolute
                           transition-transform duration-500
-                            ${isLeft
-                            ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
-                            : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
-                          }
+                            ${
+                              isLeft
+                                ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
+                                : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
+                            }
                         `}
                         style={{
                           top: `${index * 33}vh`,
@@ -888,10 +889,17 @@ function App() {
             <section
               id="faq"
               className="w-full flex items-start justify-center absolute overflow-x-hidden"
-              style={{ top: "840vh", paddingTop: "8rem", paddingBottom: "8rem" }}
+              style={{
+                top: "840vh",
+                paddingTop: "8rem",
+                paddingBottom: "8rem",
+              }}
             >
               {/* Absolute header like the others */}
-              <div className="text-center absolute left-1/2 -translate-x-1/2 z-[100] pointer-events-none" style={{ top: "8rem" }}>
+              <div
+                className="text-center absolute left-1/2 -translate-x-1/2 z-[100] pointer-events-none"
+                style={{ top: "8rem" }}
+              >
                 <div
                   style={{
                     fontFamily: "var(--font-disket-mono)",
@@ -908,7 +916,10 @@ function App() {
               </div>
 
               {/* Actual accordion content */}
-              <div className="faq-sign w-full flex justify-center pb-8 overflow-x-hidden" style={{ marginTop: "12rem" }}>
+              <div
+                className="faq-sign w-full flex justify-center pb-8 overflow-x-hidden"
+                style={{ marginTop: "12rem" }}
+              >
                 <FAQAccordian questions={questions} />
               </div>
             </section>
@@ -934,7 +945,8 @@ function App() {
                     textShadow: "0px 0px 15px #FFDE00",
                   }}
                 >
-                  Escape Reality<span style={{ animation: "blink 1s infinite" }}>_</span>
+                  Escape Reality
+                  <span style={{ animation: "blink 1s infinite" }}>_</span>
                 </h1>
 
                 {/* Button */}

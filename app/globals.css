@@ -71,13 +71,13 @@ html {
 /* FAQ Section */
 #faq {
   /* background-color: #7AA689; */
-  /* min-height: 101vh; */ /* Removed - now using absolute positioning */
+  min-height: 101vh;
   overflow-y: visible;
 }
 
 @media (max-width: 768px) {
   #faq {
-    /* min-height: 76vh; */ /* Removed - now using absolute positioning */
+    min-height: 76vh;
     overflow-y: visible;
   }
 }
@@ -94,6 +94,19 @@ html {
   }
 }
 
+/* Footer Section */
+#footer {
+  background-color: #7AA689;
+  position: relative;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  #footer {
+    height: 50vh;
+  }
+}
 
 /* Text Block Containers */
 #textblock-container {
@@ -145,8 +158,10 @@ html {
 .App {
   text-align: center;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
 }
 
 /* Animation Styles */
@@ -202,6 +217,10 @@ html {
   position: relative;
   z-index: 1;
   justify-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Hero Section */

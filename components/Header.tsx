@@ -50,24 +50,25 @@ export default function Header({}: HeaderProps) {
       } : undefined}
     >
       <div className="relative px-8 lg:px-12 xl:px-16 py-4">
-        <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
-          {/* Single logo on the left */}
-          <a href="/" className="hover:scale-105 transition">
+        {/* Logo positioned in top-left corner */}
+        <a href="/" className="absolute top-0 left-0 hover:scale-105 transition z-10 p-2 md:p-3 lg:p-4">
           {/* accordingly modify href here */}
-            <Image
-              src={"/images/bmxiii-logo.png"}
-              alt="Boilermake Logo"
-              width={75}
-              height={75}
-              className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
-            />
-          </a>
+          <Image
+            src={"/images/bmxiii-logo.png"}
+            alt="Boilermake Logo"
+            width={75}
+            height={75}
+            className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
+          />
+        </a>
+        
+        <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
 
           {/* Desktop Navigation - centered and spanning */}
-          <nav className="hidden md:flex flex-1 items-center justify-between ml-8 lg:ml-12 xl:ml-16">
+          <nav className="hidden md:flex flex-1 items-center justify-between ml-8 lg:ml-12 xl:ml-16 pt-6" style={{ gap: 'clamp(1rem, 1.5vw, 2rem)' }}>
             <button
               onClick={() => handleNavigation("about")}
-              className="transition-all duration-300"
+              className="transition-all duration-300 whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -88,7 +89,7 @@ export default function Header({}: HeaderProps) {
             </button>
             <button
               onClick={() => handleNavigation("schedule")}
-              className="transition-all duration-300"
+              className="transition-all duration-300 whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -109,7 +110,7 @@ export default function Header({}: HeaderProps) {
             </button>
             <button
               onClick={() => handleNavigation("faq")}
-              className="transition-all duration-300"
+              className="transition-all duration-300 whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -130,7 +131,7 @@ export default function Header({}: HeaderProps) {
             </button>
             <button
               onClick={() => handleNavigation("sponsors-sign")}
-              className="transition-all duration-300"
+              className="transition-all duration-300 whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
                 fontWeight: 500,
@@ -154,9 +155,9 @@ export default function Header({}: HeaderProps) {
           {/* Mobile Menu Button - top right */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 relative z-[60] flex-shrink-0"
+            className="md:hidden p-2 absolute top-0 right-0 z-[60] flex-shrink-0"
             aria-label="Toggle menu"
-            style={{ minWidth: '44px', minHeight: '44px' }}
+            style={{ minWidth: '44px', minHeight: '44px', padding: '0.75rem 1rem' }}
           >
             <div className="w-6 h-5 flex flex-col justify-between">
               <span

@@ -6,7 +6,7 @@
  * 09-15-2024
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ApplyButton from "./ApplyButton";
 import Image from "next/image";
 
@@ -14,6 +14,18 @@ type HeaderProps = {};
 
 export default function Header({}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close menu when screen widens to desktop size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMenuOpen]);
 
   const handleNavigation = (sectionId: string) => {
     // Section scroll positions (in vh units converted to pixels)
@@ -44,7 +56,7 @@ export default function Header({}: HeaderProps) {
 
  return (
     <header 
-      className={`w-full fixed top-0 z-50 transition-all duration-[200ms] ${isMenuOpen ? 'bg-black/95' : ''}`}
+      className={`w-full fixed top-0 z-50 transition-all duration-[200ms] ${isMenuOpen ? 'bg-black/95 md:bg-transparent' : ''}`}
       style={!isMenuOpen ? {
         background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%)'
       } : undefined}
@@ -65,7 +77,7 @@ export default function Header({}: HeaderProps) {
         <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
 
           {/* Desktop Navigation - centered and spanning */}
-          <nav className="hidden md:flex flex-1 items-center justify-between ml-8 lg:ml-12 xl:ml-16 pt-6" style={{ gap: 'clamp(1rem, 1.5vw, 2rem)' }}>
+          <nav className="hidden md:flex flex-1 items-center justify-between ml-20 lg:ml-24 xl:ml-28 pt-6" style={{ gap: 'clamp(1rem, 1.5vw, 2rem)' }}>
             <button
               onClick={() => handleNavigation("about")}
               className="transition-all duration-300 whitespace-nowrap"
@@ -182,14 +194,17 @@ export default function Header({}: HeaderProps) {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`md:hidden absolute top-full left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${
+          className={`md:hidden absolute top-0 left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${
             isMenuOpen 
-              ? "opacity-100 visible translate-y-0" 
-              : "opacity-0 invisible -translate-y-4 pointer-events-none"
+              ? "opacity-100 visible" 
+              : "opacity-0 invisible pointer-events-none"
           }`}
-          style={{ marginTop: "-1px" }}
+          style={{ 
+            maxHeight: '80vh',
+            overflowY: 'auto'
+          }}
         >
-          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl">
+          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl pt-8 pb-8">
             <nav className="flex flex-col items-center py-6 space-y-4">
               <button
                 onClick={() => {

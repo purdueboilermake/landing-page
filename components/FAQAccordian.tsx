@@ -6,7 +6,6 @@
  */
 import React, { useState } from 'react';
 import Image from 'next/image';
-import TypedText from './TypedText';
 
 type FAQAccordianProps = {
   questions: { question: string, answer: string }[];
@@ -86,18 +85,14 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
               }}
             >
                <div className="p-4 md:p-5 lg:p-6 border-2 border-white text-white text-left overflow-hidden overflow-wrap-anywhere" style={{backgroundColor: '#2A2627E6', wordBreak: 'break-word'}}>
-                 {/* TypedText uses defaultSpeed from TypingContext - no speed prop override */}
-                 <TypedText 
+                 <div 
                    className="text-white text-sm md:text-base leading-relaxed text-left"
                    style={{
                      fontFamily: 'var(--font-futura-cyrillic)'
                    }}
-                   delay={200}
-                   instanceKey={`faq-answer-${index}`}
-                   shouldStart={openIndex === index}
                  >
                    {faq.answer}
-                 </TypedText>
+                 </div>
                </div>
             </div>
           </div>

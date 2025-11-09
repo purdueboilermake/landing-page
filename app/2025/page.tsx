@@ -835,7 +835,8 @@ function App() {
             {/* About Section */}
             <section
               id="about"
-              className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[270vh] absolute"
+              className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
+              style={{ top: "270vh" }}
             >
               <AboutSection />
             </section>

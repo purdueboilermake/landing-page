@@ -251,7 +251,7 @@ function App() {
           const c1Span = c1EndScrollVh - c1StartScrollVh;
           const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
           const c1TopVh = lerp(-20, 230, c1t);
-          
+
           // Use transform instead of changing top position (GPU accelerated)
           const translateY = c1TopVh - (-20); // offset from initial position
           aboutCircle.style.transform = `translateY(${translateY}vh)`;
@@ -806,7 +806,7 @@ function App() {
                 </div>
                 <div
                   className="hero-buttons"
-                  style={{ 
+                  style={{
                     display: "flex",
                     flexDirection: "row",
                     gap: "1.5rem",
@@ -824,7 +824,7 @@ function App() {
                   />
                   <ApplyButton
                     text="INTEREST FORM"
-    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                     size="large"
                     variant="hero"
                     className="mr-0"
@@ -835,7 +835,8 @@ function App() {
             {/* About Section */}
             <section
               id="about"
-              className="w-[80vw] lg:w-[60vw] flex items-center justify-center py-[270vh] absolute"
+              className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
+              style={{ top: "270vh" }}
             >
               <AboutSection />
             </section>
@@ -879,11 +880,10 @@ function App() {
                         className={`
                           absolute
                           transition-transform duration-500
-                            ${
-                              isLeft
-                                ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
-                                : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
-                            }
+                            ${isLeft
+                            ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
+                            : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
+                          }
                         `}
                         style={{
                           top: `${index * 33}vh`,
@@ -948,10 +948,10 @@ function App() {
               </div>
             </section>
 
-{/* Sponsors Section */}
+            {/* Sponsors Section */}
             <section
               id="sponsors"
-              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
+              className="absolute flex flex-col items-center justify-center px-8 py-20 w-full"
               style={{ top: "1050vh" }}
             >
               {/* Main Content Container - All content centered vertically */}
@@ -973,32 +973,32 @@ function App() {
                   <span style={{ animation: "blink 1s infinite" }}>_</span>
                 </h1>
 
-                  <h2
-                    className="text-center mb-6"
-                    style={{
-                      
-                      fontWeight: 400,
-                      fontSize: "clamp(18px, 3.5vw, 28px)",
-                      lineHeight: "100%",
-                      letterSpacing: "0.1em",
-                      textAlign: "center",
-                      width: "100%",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                      fontFamily: "var(--font-disket-mono)",
-                      color: "#FFE958",
-                      textShadow: "0px 0px 15px #FFDE00",
-                    }}
+                <h2
+                  className="text-center mb-6"
+                  style={{
+
+                    fontWeight: 400,
+                    fontSize: "clamp(18px, 3.5vw, 28px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    textAlign: "center",
+                    width: "100%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                    fontFamily: "var(--font-disket-mono)",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  [coming soon]
+                  <span
+                    className="text-white"
+                  // style={{ animation: "blink 1s step-end infinite" }}
                   >
-                    [coming soon]
-                    <span
-                      className="text-white"
-                      // style={{ animation: "blink 1s step-end infinite" }}
-                    >
-                      {/* _ */}
-                    </span>
-                  </h2>
+                    {/* _ */}
+                  </span>
+                </h2>
                 {/* Button */}
                 <a
                   // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"

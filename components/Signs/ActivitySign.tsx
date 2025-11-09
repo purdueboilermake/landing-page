@@ -35,12 +35,14 @@ const titleClass = 'text-xl sm:text-2xl md:text-3xl lg:text-[36px] font-semibold
 const contentClass = 'text-xs sm:text-sm md:text-sm lg:text-base';
 const titleMargin = 'mt-5';
 
-export default function ActivitySign({ title, startDate, size, location, isExpanded, description, activityId }: ActivitySignProps) {
-    const date = new Date(startDate);
-    const startTime = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
-    const startingDay = date.toLocaleDateString([], { weekday: 'short' });
-    const endingDay = date.toLocaleDateString([], { weekday: 'short' });
-    const endingTime = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+export default function ActivitySign({ title, startDate, endDate, size, location, isExpanded, description, activityId }: ActivitySignProps) {
+    const startDateObj = new Date(startDate);
+    const endDateObj = endDate ? new Date(endDate) : startDateObj;
+    
+    const startTime = startDateObj.toLocaleString([], { hour: 'numeric', minute: '2-digit' });
+    const startingDay = startDateObj.toLocaleDateString([], { weekday: 'short' });
+    const endingDay = endDateObj.toLocaleDateString([], { weekday: 'short' });
+    const endingTime = endDateObj.toLocaleString([], { hour: 'numeric', minute: '2-digit' });
     const [showDescription, setShowDescription] = useState(false);
     const [hasOpenedBefore, setHasOpenedBefore] = useState(false);
 
@@ -69,7 +71,10 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
             <div className={`text-white ${timeClass} font-normal`} style={{
                 fontFamily: 'var(--font-futura-cyrillic)'
             }}>
-                <span>{startingDay} {startTime} - {endingDay} {endingTime}</span>
+                <span>
+                    {startingDay} {startTime}
+                    {endDate && ` - ${endingTime}`}
+                </span>
             </div>
             <p className={`text-[#FFE42D] ${titleClass} font-semibold leading-none ${titleMargin} text-center`} style={{
                 fontFamily: 'var(--font-disket-mono)',

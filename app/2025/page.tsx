@@ -130,29 +130,28 @@ const activities = [
   },
   {
     title: "Arcade",
-    startDate: "2026-02-22T21:00:00",
-    endDate: "2026-02-22T23:00:00",
+    startDate: "2026-01-24T21:00:00",
+    endDate: "2026-01-24T23:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Hackers can take a break and enjoy some arcade games, eat some snacks, socialize, and win prizes!",
   },
   {
     title: "Hacking Ends",
-    startDate: "2026-01-23T09:00:00",
-    endDate: "2026-01-23T09:00:00",
+    startDate: "2026-01-25T09:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "Hackers finish up their projects and submit online for judging before the deadline. They have time to prepare presentations and demos for the judges.",
   },
   {
     title: "Judging",
-    startDate: "2026-01-23T10:00:00",
-    endDate: "2026-01-23T10:00:00",
+    startDate: "2026-01-25T10:00:00",
+    endDate: "2026-01-25T11:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "A first round of judging where hackers are judged based on their submitted projects by our panel of judges.",
   },
   {
     title: "Shark Tank",
-    startDate: "2026-01-23T13:30:00",
-    endDate: "2026-01-23T15:30:00",
+    startDate: "2026-01-25T13:30:00",
+    endDate: "2026-01-25T15:30:00",
     location: "Frances A. Cordova Recreational Sports Center",
     description: "The finalists present their projects to a panel of judges in a Shark Tank-style format for final evaluation. Awards and prizes are given out to the winners.",
   },
@@ -893,7 +892,7 @@ function App() {
                         <ActivityPreview
                           title={activity.title}
                           startDate={activity.startDate}
-                          endDate={activity.endDate}
+                          endDate={activity.endDate || ""}
                           location={activity.location}
                           description={activity.description}
                           isActive={activeEventId === index + 1}

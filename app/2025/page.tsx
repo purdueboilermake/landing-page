@@ -445,8 +445,8 @@ function App() {
       zIndex: -50,
       opacity: 1,
       top: "440vh",
-      left: "41vw",
-      width: "17vw",
+      left: "calc(50% - 125px)",
+      width: "250px",
       height: "210vh",
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
@@ -977,7 +977,7 @@ function App() {
             <section
               id="footer"
               className="absolute flex flex-col items-center justify-center w-full gap-8"
-              style={{ top: "1880vh" }}
+              style={{ top: "1880vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
             >
               {/* Social Media Icons */}
               <div className="flex flex-row gap-6">

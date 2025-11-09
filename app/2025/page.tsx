@@ -233,7 +233,7 @@ function App() {
 
       // Use requestAnimationFrame to batch DOM updates
       rafId = requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
+        const scrollY = Math.max(0, window.scrollY); // Clamp to prevent negative values
         const vhPx = window.innerHeight;
         const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
@@ -260,19 +260,14 @@ function App() {
         // ==== CIRCLE 2: FAQ → "next page" ====
         //
         if (faqCircle) {
-          // scroll range (when to start / stop moving)
+          // Match the about circle pattern exactly
           const c2StartScrollVh = 830;
           const c2EndScrollVh = 1490;
           const c2Span = c2EndScrollVh - c2StartScrollVh;
-
-          // position range (where to put the circle)
-          const c2StartTopVh = 830;
-          const c2EndTopVh = 1490;
-
           const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-          const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
-
-          // Use transform instead of changing top position (GPU accelerated)
+          const c2TopVh = lerp(830, 1490, c2t);
+          
+          // Use exact same transform calculation pattern as about circle
           const translateY = c2TopVh - 830; // offset from initial position
           faqCircle.style.transform = `translateY(${translateY}vh)`;
         }

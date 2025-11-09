@@ -348,19 +348,17 @@ function App() {
       priority: true, // Always load immediately
     },
     {
-      id: "rainbow-blob",
-      imageUrl: "images/homepage_gradient_upper.png",
+      id: "background-comb",
+      imageUrl: "/images/bg-comb.svg",
       position: "absolute" as const,
       zIndex: -50,
       opacity: 1,
       top: 0,
       blendMode: "normal",
       useIntrinsicHeight: false,
-      height: "400vh", // 200vh mobile, 400vh desktop
-      // scaleMode: "cover" as BackgroundScaleMode,
-      // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
+      height: "500vh",
       width: "100%",
-      fallbackColor: "#ffffff",
+      fallbackColor: "transparent",
       priority: true,
     },
     {
@@ -435,20 +433,6 @@ function App() {
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
-    },
-    {
-      id: "schedule-gradient",
-      imageUrl: "images/schedule-gradient.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 1,
-      top: "400vh",
-      width: "100%",
-      height: "100vh",
-      blendMode: "normal",
-      fallbackColor: "#ffffff",
-      priority: true,
-      useIntrinsicHeight: false,
     },
     {
       id: "stars-schedule",

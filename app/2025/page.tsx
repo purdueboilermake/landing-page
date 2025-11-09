@@ -192,10 +192,11 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isUltraWide, setIsUltraWide] = useState(false);
-  const [aboutCircleTop, setAboutCircleTop] = useState<string>("-20vh");
-  const [aboutCircleOpacity, setAboutCircleOpacity] = useState<number>(0.8);
-  const [faqCircleTop, setFaqCircleTop] = useState<string>("830vh");
-  const [faqCircleOpacity, setFaqCircleOpacity] = useState<number>(0.8);
+  // Initial positions for SSR/first render only
+  const [aboutCircleTop] = useState<string>("-20vh");
+  const [aboutCircleOpacity] = useState<number>(0.8);
+  const [faqCircleTop] = useState<string>("830vh");
+  const [faqCircleOpacity] = useState<number>(0.8);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -221,41 +222,64 @@ function App() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
+    let rafId: number | null = null;
+
     const handleScroll = () => {
       if (typeof window === "undefined") return;
 
-      const scrollY = window.scrollY;
-      const vhPx = window.innerHeight;
-      const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
+      // Cancel any pending animation frame
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
 
-      //
-      // ==== CIRCLE 1: hero → about ====
-      //
-      const c1StartScrollVh = 0;
-      const c1EndScrollVh = 250;
-      const c1Span = c1EndScrollVh - c1StartScrollVh;
-      const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
-      const c1TopVh = lerp(-20, 230, c1t);
-      setAboutCircleTop(`${c1TopVh}vh`);
-      setAboutCircleOpacity(0.8);
+      // Use requestAnimationFrame to batch DOM updates
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const vhPx = window.innerHeight;
+        const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
-      //
-      // ==== CIRCLE 2: FAQ → “next page” ====
-      //
-      // scroll range (when to start / stop moving)
-      const c2StartScrollVh = 840; // start moving once page has scrolled ~910vh
-      const c2EndScrollVh = 1500; // finish moving by 1150vh
-      const c2Span = c2EndScrollVh - c2StartScrollVh;
+        // Get the circle elements directly
+        const aboutCircle = document.querySelector('[data-layer-id="about-circle"]') as HTMLElement;
+        const faqCircle = document.querySelector('[data-layer-id="faq-circle"]') as HTMLElement;
 
-      // position range (where to put the circle)
-      const c2StartTopVh = 820; // start
-      const c2EndTopVh = 1480; // final rest position
+        //
+        // ==== CIRCLE 1: hero → about ====
+        //
+        if (aboutCircle) {
+          const c1StartScrollVh = 0;
+          const c1EndScrollVh = 250;
+          const c1Span = c1EndScrollVh - c1StartScrollVh;
+          const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
+          const c1TopVh = lerp(-20, 230, c1t);
+          
+          // Use transform instead of changing top position (GPU accelerated)
+          const translateY = c1TopVh - (-20); // offset from initial position
+          aboutCircle.style.transform = `translateY(${translateY}vh)`;
+        }
 
-      const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-      const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
+        //
+        // ==== CIRCLE 2: FAQ → "next page" ====
+        //
+        if (faqCircle) {
+          // scroll range (when to start / stop moving)
+          const c2StartScrollVh = 850;
+          const c2EndScrollVh = 1510;
+          const c2Span = c2EndScrollVh - c2StartScrollVh;
 
-      setFaqCircleTop(`${c2TopVh}vh`);
-      setFaqCircleOpacity(0.8);
+          // position range (where to put the circle)
+          const c2StartTopVh = 830;
+          const c2EndTopVh = 1490;
+
+          const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
+          const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
+
+          // Use transform instead of changing top position (GPU accelerated)
+          const translateY = c2TopVh - 830; // offset from initial position
+          faqCircle.style.transform = `translateY(${translateY}vh)`;
+        }
+
+        rafId = null;
+      });
     };
 
     // run once
@@ -264,6 +288,9 @@ function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
     return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };

@@ -260,15 +260,13 @@ function App() {
         // ==== CIRCLE 2: FAQ → "next page" ====
         //
         if (faqCircle) {
-          // Match the about circle pattern exactly
-          const c2StartScrollVh = 830;
-          const c2EndScrollVh = 1490;
+          const c2StartScrollVh = 850;
+          const c2EndScrollVh = 1500;
           const c2Span = c2EndScrollVh - c2StartScrollVh;
           const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-          const c2TopVh = lerp(830, 1490, c2t);
+          const c2TopVh = lerp(810, 1460, c2t);
           
-          // Use exact same transform calculation pattern as about circle
-          const translateY = c2TopVh - 830; // offset from initial position
+          const translateY = c2TopVh - 810; // offset from initial position
           faqCircle.style.transform = `translateY(${translateY}vh)`;
         }
 

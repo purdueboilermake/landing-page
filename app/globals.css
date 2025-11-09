@@ -94,20 +94,6 @@ html {
   }
 }
 
-/* Footer Section */
-#footer {
-  background-color: #7AA689;
-  position: relative;
-  overflow: hidden;
-  margin-top: auto;
-}
-
-@media (max-width: 768px) {
-  #footer {
-    height: 50vh;
-  }
-}
-
 /* Text Block Containers */
 #textblock-container {
   width: 50%;
@@ -670,12 +656,16 @@ html {
 [data-layer-id="about-circle"] {
   filter: blur(3px);
   /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
+  will-change: transform;
+  transform: translateY(0);
 }
 
 
 [data-layer-id="faq-circle"] {
   filter: blur(3px);
   /* Adjust blur amount as needed (0px = no blur, 10px = heavy blur) */
+  will-change: transform;
+  transform: translateY(0);
 }
 
 /* Infinite Scroll Animation for Image Carousel */

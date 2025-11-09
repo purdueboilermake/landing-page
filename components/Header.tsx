@@ -33,7 +33,7 @@ export default function Header({}: HeaderProps) {
       about: 250, // About section is at 270vh
       schedule: 400, // Schedule section is at 400vh
       faq: 840, // FAQ section is at 840vh
-      sponsors: 1070, // sponsors section is at 1050vh
+      sponsors: 1080, // sponsors section is at 1050vh
     };
 
     // Check if we're on the 2025 page

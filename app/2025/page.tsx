@@ -832,21 +832,19 @@ function App() {
                   }}
                 >
                   <ApplyButton
-                    text="INTEREST FORM"
-    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                    size="large"
-                    variant="hero"
-                    className="mr-0"
-                  />
-                  {/* Interest Form Button */}
-                  <ApplyButton
                     text="APPLY NOW!"
                     link="https://boilermake-apply.web.app"
                     size="large"
                     variant="hero"
                     className="mr-0"
                   />
-                  
+                  <ApplyButton
+                    text="INTEREST FORM"
+    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    size="large"
+                    variant="hero"
+                    className="mr-0"
+                  />
                 </div>
               </div>
             </section>

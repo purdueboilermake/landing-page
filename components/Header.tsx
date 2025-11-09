@@ -28,28 +28,16 @@ export default function Header({}: HeaderProps) {
   }, [isMenuOpen]);
 
   const handleNavigation = (sectionId: string) => {
-    // Section scroll positions (in vh units converted to pixels)
-    const sectionPositions: { [key: string]: number } = {
-      about: 250, // About section is at 270vh
-      schedule: 400, // Schedule section is at 400vh
-      faq: 840, // FAQ section is at 840vh
-      sponsors: 1070, // sponsors section is at 1050vh
-    };
-
-    // Check if we're on the 2025 page
     if (window.location.pathname === "/2025") {
-      // Calculate the scroll position in pixels
-      const vh = window.innerHeight;
-      const targetScrollVh = sectionPositions[sectionId] || 0;
-      const targetScrollPx = targetScrollVh * vh / 100;
-
-      // Smooth scroll to the calculated position
-      window.scrollTo({
-        top: targetScrollPx,
-        behavior: "smooth",
-      });
+      const element = document.getElementById(sectionId);
+      if (element) {
+        if (sectionId == "about" || sectionId == "sponsors") {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     } else {
-      // If we're not on the 2025 page, navigate there with hash
       window.location.href = `/2025#${sectionId}`;
     }
   };

@@ -8,6 +8,7 @@ import TypedText from "../TypedText";
 type ActivitySignProps = {
     title: string;
     startDate: string;
+    endDate?: string;
     size: 'small' | 'medium' | 'large' | 'xlarge';
     location?: string;
     isExpanded?: boolean;
@@ -36,7 +37,10 @@ const titleMargin = 'mt-5';
 
 export default function ActivitySign({ title, startDate, size, location, isExpanded, description, activityId }: ActivitySignProps) {
     const date = new Date(startDate);
-    const time = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+    const startTime = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+    const startingDay = date.toLocaleDateString([], { weekday: 'short' });
+    const endingDay = date.toLocaleDateString([], { weekday: 'short' });
+    const endingTime = date.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
     const [showDescription, setShowDescription] = useState(false);
     const [hasOpenedBefore, setHasOpenedBefore] = useState(false);
 
@@ -65,7 +69,7 @@ export default function ActivitySign({ title, startDate, size, location, isExpan
             <div className={`text-white ${timeClass} font-normal`} style={{
                 fontFamily: 'var(--font-futura-cyrillic)'
             }}>
-                <span>{time}</span>
+                <span>{startingDay} {startTime} - {endingDay} {endingTime}</span>
             </div>
             <p className={`text-[#FFE42D] ${titleClass} font-semibold leading-none ${titleMargin} text-center`} style={{
                 fontFamily: 'var(--font-disket-mono)',

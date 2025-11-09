@@ -12,7 +12,7 @@ import Image from "next/image";
 
 type HeaderProps = {};
 
-export default function Header({}: HeaderProps) {
+export default function Header({ }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Close menu when screen widens to desktop size
@@ -28,34 +28,22 @@ export default function Header({}: HeaderProps) {
   }, [isMenuOpen]);
 
   const handleNavigation = (sectionId: string) => {
-    // Section scroll positions (in vh units converted to pixels)
-    const sectionPositions: { [key: string]: number } = {
-      about: 250, // About section is at 270vh
-      schedule: 400, // Schedule section is at 400vh
-      faq: 840, // FAQ section is at 840vh
-      sponsors: 1070, // sponsors section is at 1050vh
-    };
-
-    // Check if we're on the 2025 page
     if (window.location.pathname === "/2025") {
-      // Calculate the scroll position in pixels
-      const vh = window.innerHeight;
-      const targetScrollVh = sectionPositions[sectionId] || 0;
-      const targetScrollPx = targetScrollVh * vh / 100;
-
-      // Smooth scroll to the calculated position
-      window.scrollTo({
-        top: targetScrollPx,
-        behavior: "smooth",
-      });
+      const element = document.getElementById(sectionId);
+      if (element) {
+        if (sectionId == "about" || sectionId == "sponsors") {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     } else {
-      // If we're not on the 2025 page, navigate there with hash
       window.location.href = `/2025#${sectionId}`;
     }
   };
 
- return (
-    <header 
+  return (
+    <header
       className={`w-full fixed top-0 z-50 transition-all duration-[200ms] ${isMenuOpen ? 'bg-black/95 md:bg-transparent' : ''}`}
       style={!isMenuOpen ? {
         background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%)'
@@ -73,7 +61,7 @@ export default function Header({}: HeaderProps) {
             className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
           />
         </a>
-        
+
         <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
 
           {/* Desktop Navigation - centered and spanning */}
@@ -173,151 +161,147 @@ export default function Header({}: HeaderProps) {
           >
             <div className="w-6 h-5 flex flex-col justify-between">
               <span
-                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${
-                  isMenuOpen ? "rotate-45 translate-y-2.5" : ""
-                }`}
+                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2.5" : ""
+                  }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-white transition-all duration-300 ${
-                  isMenuOpen ? "opacity-0" : ""
-                }`}
+                className={`w-full h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""
+                  }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${
-                  isMenuOpen ? "-rotate-45 -translate-y-2" : ""
-                }`}
+                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                  }`}
               ></span>
             </div>
           </button>
         </div>
       </div>
 
-        {/* Mobile Dropdown Menu */}
-        <div
-          className={`md:hidden absolute top-0 left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${
-            isMenuOpen 
-              ? "opacity-100 visible" 
-              : "opacity-0 invisible pointer-events-none"
+      {/* Mobile Dropdown Menu */}
+      <div
+        className={`md:hidden absolute top-0 left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${isMenuOpen
+          ? "opacity-100 visible"
+          : "opacity-0 invisible pointer-events-none"
           }`}
-          style={{ 
-            maxHeight: '80vh',
-            overflowY: 'auto'
-          }}
-        >
-          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl pt-8 pb-8">
-            <nav className="flex flex-col items-center py-6 space-y-4">
-              <button
-                onClick={() => {
-                  handleNavigation("about");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
-              >
-                About
-              </button>
-              
-              <button
-                onClick={() => {
-                  handleNavigation("schedule");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
-              >
-                Schedule
-              </button>
-              
-              <button
-                onClick={() => {
-                  handleNavigation("faq");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
-              >
-                FAQs
-              </button>
-              
-              <button
-                onClick={() => {
-                  handleNavigation("sponsors");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
-              >
-                Sponsors
-              </button>
-              
-              <a
-                href="https://boilermake-apply.web.app"
-                target="_blank"
-                rel="noreferrer"
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Apply Now!
-              </a>
-           </nav>
-          </div>
+        style={{
+          maxHeight: '80vh',
+          overflowY: 'auto'
+        }}
+      >
+        <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl pt-8 pb-8">
+          <nav className="flex flex-col items-center py-6 space-y-4">
+            <button
+              onClick={() => {
+                handleNavigation("about");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              About
+            </button>
+
+            <button
+              onClick={() => {
+                handleNavigation("schedule");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              Schedule
+            </button>
+
+            <button
+              onClick={() => {
+                handleNavigation("faq");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              FAQs
+            </button>
+
+            <button
+              onClick={() => {
+                handleNavigation("sponsors");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+            >
+              Sponsors
+            </button>
+
+            <a
+              href="https://boilermake-apply.web.app"
+              target="_blank"
+              rel="noreferrer"
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-futura-cyrillic)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+              }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Apply Now!
+            </a>
+          </nav>
         </div>
+      </div>
     </header>
   );
 }

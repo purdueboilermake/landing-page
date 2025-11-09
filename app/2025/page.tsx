@@ -261,8 +261,8 @@ function App() {
         //
         if (faqCircle) {
           // scroll range (when to start / stop moving)
-          const c2StartScrollVh = 850;
-          const c2EndScrollVh = 1510;
+          const c2StartScrollVh = 830;
+          const c2EndScrollVh = 1490;
           const c2Span = c2EndScrollVh - c2StartScrollVh;
 
           // position range (where to put the circle)
@@ -562,6 +562,7 @@ function App() {
       scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
+      priority: true, // Always load immediately
     },
     {
       id: "stars-faq2",

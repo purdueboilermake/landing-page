@@ -38,7 +38,7 @@ export default function AboutSection() {
     }, [isInView]);
 
     return (
-        <div ref={sectionRef} className="w-full max-w-4xl mx-auto px-8 flex flex-col items-center">
+        <div ref={sectionRef} className="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 md:pr-24 flex flex-col items-center" style={{ minWidth: '350px', overflowX: 'auto' }}>
             <div className="mb-12 text-center">
                 <div
                     style={{
@@ -55,9 +55,9 @@ export default function AboutSection() {
                 </div>
             </div>
             
-            <div className="w-full max-w-4xl border-2 border-white backdrop-blur-sm p-10 md:p-12 lg:p-16 relative" style={{backgroundColor: '#2A2627E6'}}>
+            <div className="w-full max-w-4xl border-2 border-white backdrop-blur-sm p-4 sm:p-6 md:p-10 lg:p-12 xl:p-16 relative overflow-y-auto overflow-x-auto" style={{backgroundColor: '#2A2627E6', maxHeight: '70vh', minHeight: '200px'}}>
                 {/* Planet Image */}
-                <div className="absolute -right-16 top-1/2 transform -translate-y-1/2 z-20">
+                <div className="hidden md:block absolute right-[-70px] top-[60%] transform -translate-y-1/2 z-20">
                     <Image
                         src="/images/aboutplanet.png"
                         alt="Planet"
@@ -67,12 +67,14 @@ export default function AboutSection() {
                         priority
                     />
                 </div>
-                <div className="pr-12">
+                <div className="pr-0 md:pr-12" style={{ minWidth: '300px', paddingLeft: '0', paddingRight: '0' }}>
                     {/* TypedText uses defaultSpeed from TypingContext - no speed prop override */}
                     <TypedText 
-                        className="text-white text-sm md:text-base leading-relaxed text-left"
+                        className="text-white text-sm md:text-base leading-relaxed text-left break-words overflow-wrap-anywhere"
                         style={{
-                            fontFamily: 'var(--font-futura-cyrillic)'
+                            fontFamily: 'var(--font-futura-cyrillic)',
+                            wordBreak: 'break-word',
+                            overflowWrap: 'anywhere'
                         }}
                         delay={200}
                         instanceKey="about-section-text"
@@ -84,9 +86,10 @@ export default function AboutSection() {
                         <a 
                             href="https://hackp.ac/coc" 
                             target="_blank" 
-                            className="text-yellow-300 hover:text-yellow-200 underline transition-colors duration-200"
+                            className="text-yellow-300 hover:text-yellow-200 underline transition-colors duration-200 break-words"
                             style={{
-                                fontFamily: 'var(--font-futura-cyrillic)'
+                                fontFamily: 'var(--font-futura-cyrillic)',
+                                wordBreak: 'break-word'
                             }}
                         >
                             Code of Conduct

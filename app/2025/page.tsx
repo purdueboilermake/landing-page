@@ -791,7 +791,7 @@ function App() {
                       filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
                     }}
                   >
-                    coming jan 2026
+                    23 - 25 January 2026
                     <span
                       className="text-white"
                       style={{ animation: "blink 1s step-end infinite" }}
@@ -816,14 +816,28 @@ function App() {
                   </h1>
                   <link
                     rel="icon"
-                    href="assets/bmxiii_favicon.ico"
+                    href="assets/favicon.ico"
                     type="image/x-icon"
                   />
                 </div>
                 <div
                   className="hero-buttons"
-                  style={{ justifyContent: "center" }}
+                  style={{ 
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "1.5rem",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: "wrap"
+                  }}
                 >
+                  <ApplyButton
+                    text="INTEREST FORM"
+    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    size="large"
+                    variant="hero"
+                    className="mr-0"
+                  />
                   {/* Interest Form Button */}
                   <ApplyButton
                     text="APPLY NOW!"
@@ -832,6 +846,7 @@ function App() {
                     variant="hero"
                     className="mr-0"
                   />
+                  
                 </div>
               </div>
             </section>
@@ -948,6 +963,81 @@ function App() {
                 style={{ marginTop: "12rem" }}
               >
                 <FAQAccordian questions={questions} />
+              </div>
+            </section>
+
+{/* Sponsors Section */}
+            <section
+              id="sponsors"
+              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
+              style={{ top: "1050vh" }}
+            >
+              {/* Main Content Container - All content centered vertically */}
+              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
+                {/* Message text */}
+                <h1
+                  className="text-center"
+                  style={{
+                    fontFamily: "var(--font-disket-mono)",
+                    fontWeight: 400,
+                    fontSize: "clamp(32px, 8vw, 60px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  SPONSORS
+                  <span style={{ animation: "blink 1s infinite" }}>_</span>
+                </h1>
+
+                  <h2
+                    className="text-center mb-6"
+                    style={{
+                      
+                      fontWeight: 400,
+                      fontSize: "clamp(18px, 3.5vw, 28px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      textAlign: "center",
+                      width: "100%",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                      fontFamily: "var(--font-disket-mono)",
+                      color: "#FFE958",
+                      textShadow: "0px 0px 15px #FFDE00",
+                    }}
+                  >
+                    [coming soon]
+                    <span
+                      className="text-white"
+                      // style={{ animation: "blink 1s step-end infinite" }}
+                    >
+                      {/* _ */}
+                    </span>
+                  </h2>
+                {/* Button */}
+                <a
+                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                  href="/past"
+                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                  style={{
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 2vw, 18px)",
+                    letterSpacing: "0.15em",
+                  }}
+                >
+                  <span
+                    style={{
+                      borderBottom: "2px solid #FFFFFF",
+                      paddingBottom: "4px",
+                    }}
+                  >
+                    IN THE PAST
+                  </span>
+                </a>
               </div>
             </section>
 

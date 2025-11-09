@@ -264,13 +264,14 @@ function App() {
           const c2EndScrollVh = 1500;
           const c2Span = c2EndScrollVh - c2StartScrollVh;
           const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-          const c2TopVh = lerp(810, 1460, c2t);
-          
-          const translateY = c2TopVh - 810; // offset from initial position
+
+          // Use the actual configured starting top (e.g., "830vh") as the baseline
+          const baseFaqTopVh = parseFloat(faqCircleTop); // "830vh" -> 830
+          const c2TopVh = lerp(baseFaqTopVh, 1460, c2t);
+
+          const translateY = c2TopVh - baseFaqTopVh; // offset from the real baseline
           faqCircle.style.transform = `translateY(${translateY}vh)`;
         }
-
-        rafId = null;
       });
     };
 

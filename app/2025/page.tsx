@@ -122,39 +122,39 @@ const sponsors = [
 
 const activities = [
   {
-    title: "Activity Name",
-    startDate: "2025-02-21T19:30:00",
-    endDate: "2025-02-21T20:00:00",
+    title: "Opening Ceremony",
+    startDate: "2026-01-23T19:00:00",
+    endDate: "2026-01-23T21:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
-    description: "Introduction to BoilerMake.",
+    description: "Introduction to BoilerMake, event logistics, and ice breaker activities!",
   },
   {
-    title: "Activity Name",
-    startDate: "2025-02-21T21:00:00",
-    endDate: "2025-02-21T21:00:00",
+    title: "Arcade",
+    startDate: "2026-02-22T21:00:00",
+    endDate: "2026-02-22T23:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
-    description: "Hackers can start coding.",
+    description: "Hackers can take a break and enjoy some arcade games, eat some snacks, socialize, and win prizes!",
   },
   {
-    title: "Activity Name",
-    startDate: "2025-02-22T21:30:00",
-    endDate: "2025-02-23T23:00:00",
+    title: "Hacking Ends",
+    startDate: "2026-01-23T09:00:00",
+    endDate: "2026-01-23T09:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
-    description: "Event filled with fun games and activities.",
+    description: "Hackers finish up their projects and submit online for judging before the deadline. They have time to prepare presentations and demos for the judges.",
   },
   {
-    title: "Activity Name",
-    startDate: "2025-02-23T09:00:00",
-    endDate: "2025-02-23T09:00:00",
+    title: "Judging",
+    startDate: "2026-01-23T10:00:00",
+    endDate: "2026-01-23T10:00:00",
     location: "Frances A. Cordova Recreational Sports Center",
-    description: "Hackers must stop coding.",
+    description: "A first round of judging where hackers are judged based on their submitted projects by our panel of judges.",
   },
   {
-    title: "Activity Name",
-    startDate: "2025-02-23T10:00:00",
-    endDate: "2025-02-23T14:00:00",
+    title: "Shark Tank",
+    startDate: "2026-01-23T13:30:00",
+    endDate: "2026-01-23T15:30:00",
     location: "Frances A. Cordova Recreational Sports Center",
-    description: "First round of judging (all submitted projects).",
+    description: "The finalists present their projects to a panel of judges in a Shark Tank-style format for final evaluation. Awards and prizes are given out to the winners.",
   },
 ];
 
@@ -192,10 +192,11 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isUltraWide, setIsUltraWide] = useState(false);
-  const [aboutCircleTop, setAboutCircleTop] = useState<string>("-20vh");
-  const [aboutCircleOpacity, setAboutCircleOpacity] = useState<number>(0.8);
-  const [faqCircleTop, setFaqCircleTop] = useState<string>("830vh");
-  const [faqCircleOpacity, setFaqCircleOpacity] = useState<number>(0.8);
+  // Initial positions for SSR/first render only
+  const [aboutCircleTop] = useState<string>("-20vh");
+  const [aboutCircleOpacity] = useState<number>(0.8);
+  const [faqCircleTop] = useState<string>("830vh");
+  const [faqCircleOpacity] = useState<number>(0.8);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -221,41 +222,64 @@ function App() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
+    let rafId: number | null = null;
+
     const handleScroll = () => {
       if (typeof window === "undefined") return;
 
-      const scrollY = window.scrollY;
-      const vhPx = window.innerHeight;
-      const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
+      // Cancel any pending animation frame
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
 
-      //
-      // ==== CIRCLE 1: hero → about ====
-      //
-      const c1StartScrollVh = 0;
-      const c1EndScrollVh = 250;
-      const c1Span = c1EndScrollVh - c1StartScrollVh;
-      const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
-      const c1TopVh = lerp(-20, 230, c1t);
-      setAboutCircleTop(`${c1TopVh}vh`);
-      setAboutCircleOpacity(0.8);
+      // Use requestAnimationFrame to batch DOM updates
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const vhPx = window.innerHeight;
+        const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
-      //
-      // ==== CIRCLE 2: FAQ → “next page” ====
-      //
-      // scroll range (when to start / stop moving)
-      const c2StartScrollVh = 840; // start moving once page has scrolled ~910vh
-      const c2EndScrollVh = 1500; // finish moving by 1150vh
-      const c2Span = c2EndScrollVh - c2StartScrollVh;
+        // Get the circle elements directly
+        const aboutCircle = document.querySelector('[data-layer-id="about-circle"]') as HTMLElement;
+        const faqCircle = document.querySelector('[data-layer-id="faq-circle"]') as HTMLElement;
 
-      // position range (where to put the circle)
-      const c2StartTopVh = 820; // start
-      const c2EndTopVh = 1480; // final rest position
+        //
+        // ==== CIRCLE 1: hero → about ====
+        //
+        if (aboutCircle) {
+          const c1StartScrollVh = 0;
+          const c1EndScrollVh = 250;
+          const c1Span = c1EndScrollVh - c1StartScrollVh;
+          const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
+          const c1TopVh = lerp(-20, 230, c1t);
+          
+          // Use transform instead of changing top position (GPU accelerated)
+          const translateY = c1TopVh - (-20); // offset from initial position
+          aboutCircle.style.transform = `translateY(${translateY}vh)`;
+        }
 
-      const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-      const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
+        //
+        // ==== CIRCLE 2: FAQ → "next page" ====
+        //
+        if (faqCircle) {
+          // scroll range (when to start / stop moving)
+          const c2StartScrollVh = 850;
+          const c2EndScrollVh = 1510;
+          const c2Span = c2EndScrollVh - c2StartScrollVh;
 
-      setFaqCircleTop(`${c2TopVh}vh`);
-      setFaqCircleOpacity(0.8);
+          // position range (where to put the circle)
+          const c2StartTopVh = 830;
+          const c2EndTopVh = 1490;
+
+          const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
+          const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
+
+          // Use transform instead of changing top position (GPU accelerated)
+          const translateY = c2TopVh - 830; // offset from initial position
+          faqCircle.style.transform = `translateY(${translateY}vh)`;
+        }
+
+        rafId = null;
+      });
     };
 
     // run once
@@ -264,6 +288,9 @@ function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
     return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
@@ -321,19 +348,17 @@ function App() {
       priority: true, // Always load immediately
     },
     {
-      id: "rainbow-blob",
-      imageUrl: "images/homepage_gradient_upper.png",
+      id: "background-comb",
+      imageUrl: "/images/bg-comb.svg",
       position: "absolute" as const,
       zIndex: -50,
       opacity: 1,
       top: 0,
       blendMode: "normal",
       useIntrinsicHeight: false,
-      height: "400vh", // 200vh mobile, 400vh desktop
-      // scaleMode: "cover" as BackgroundScaleMode,
-      // height: isMobile ? "200vh" : "300vh", // 200vh mobile, 400vh desktop
+      height: "500vh",
       width: "100%",
-      fallbackColor: "#ffffff",
+      fallbackColor: "transparent",
       priority: true,
     },
     {
@@ -410,20 +435,6 @@ function App() {
       fallbackColor: "transparent",
     },
     {
-      id: "schedule-gradient",
-      imageUrl: "images/schedule-gradient.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 1,
-      top: "400vh",
-      width: "100%",
-      height: "100vh",
-      blendMode: "normal",
-      fallbackColor: "#ffffff",
-      priority: true,
-      useIntrinsicHeight: false,
-    },
-    {
       id: "stars-schedule",
       imageUrl: "/images/stars-schedule.png",
       position: "absolute" as const,
@@ -445,8 +456,8 @@ function App() {
       zIndex: -50,
       opacity: 1,
       top: "440vh",
-      left: "41vw",
-      width: "17vw",
+      left: "calc(50% - 125px)",
+      width: "250px",
       height: "210vh",
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
@@ -531,7 +542,7 @@ function App() {
       position: "absolute" as const,
       zIndex: 0,
       opacity: 0.8,
-      top: "895vh", // A bit higher than stars-left (80vh)
+      top: "830vh", // A bit higher than stars-left (80vh)
       left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
       height: "40vh",
       scaleMode: "contain" as BackgroundScaleMode,
@@ -569,30 +580,16 @@ function App() {
       priority: true, // Always load immediately
     },
     {
-      id: "faq-accent-1",
-      imageUrl: "/images/faq-accent-1.png",
+      id: "faq-accent",
+      imageUrl: "/images/faq_paths.svg",
       position: "absolute" as const,
       zIndex: -30,
       opacity: 1,
       top: "840vh",
       left: "0vw",
       width: "100vw",
-      height: "30vh",
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "faq-accent-2",
-      imageUrl: "/images/faq-accent-2.png",
-      position: "absolute" as const,
-      zIndex: -40,
-      opacity: 1,
-      top: "930vh",
-      left: "0vw",
-      width: "100vw",
       height: "20vh",
-      scaleMode: "fill" as BackgroundScaleMode,
+      scaleMode: "contain" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
     },
@@ -611,78 +608,78 @@ function App() {
       fallbackColor: "transparent",
       priority: true,
     },
-    {
-      id: "planet-1",
-      imageUrl: "/images/planet1.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1506vh",
-      left: "40vw",
-      // width: "100vw",
-      height: "20vw",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet2",
-      imageUrl: "/images/planet2.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1415vh",
-      left: "47vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet3",
-      imageUrl: "/images/planet3.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1480vh",
-      left: "-40vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "planet4",
-      imageUrl: "/images/planet4.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1450vh",
-      left: "1vw",
-      // width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "ringed-planet",
-      imageUrl: "/images/ring-planet.png",
-      position: "absolute" as const,
-      zIndex: -39,
-      opacity: 1,
-      top: "1350vh",
-      left: "-30vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
+    // {
+    //   id: "planet-1",
+    //   imageUrl: "/images/planet1.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1506vh",
+    //   left: "40vw",
+    //   // width: "100vw",
+    //   height: "20vw",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "planet2",
+    //   imageUrl: "/images/planet2.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1415vh",
+    //   left: "47vw",
+    //   // width: "100vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "planet3",
+    //   imageUrl: "/images/planet3.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1480vh",
+    //   left: "-40vw",
+    //   // width: "100vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "planet4",
+    //   imageUrl: "/images/planet4.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1450vh",
+    //   left: "1vw",
+    //   // width: "100vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
+    // {
+    //   id: "ringed-planet",
+    //   imageUrl: "/images/ring-planet.png",
+    //   position: "absolute" as const,
+    //   zIndex: -39,
+    //   opacity: 1,
+    //   top: "1350vh",
+    //   left: "-30vw",
+    //   height: "20vh",
+    //   scaleMode: "contain" as BackgroundScaleMode,
+    //   blendMode: "normal",
+    //   fallbackColor: "transparent",
+    // },
     {
       id: "orbits",
-      imageUrl: "/images/orbits.png",
+      imageUrl: "/images/solar_sys.svg",
       position: "absolute" as const,
       zIndex: -40,
       opacity: 1,
@@ -711,14 +708,15 @@ function App() {
     },
     {
       id: "footer-accent",
-      imageUrl: "/images/footer-accent.png",
+      imageUrl: "/images/footer-accent-high-res.png",
       position: "absolute" as const,
-      zIndex: -40,
+      zIndex: -80,
       opacity: 1,
       top: "1630vh",
-      left: "0vw",
-      width: "100vw",
-      height: "20vh",
+      left: "-40vw",
+      width: "150vw",
+      height: "120vh",
+      useIntrinsicHeight: false,
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
       fallbackColor: "transparent",
@@ -743,7 +741,10 @@ function App() {
           <Header />
 
           {/* Main content container with CSS Grid layout */}
-          <main className="w-full main-content" style={{ height: "1900vh", overflow: "hidden" }}>
+          <main
+            className="w-full main-content"
+            style={{ height: "1900vh", overflow: "hidden" }}
+          >
             {/* Hero Section */}
             <section id="hero" className="hero-section">
               <div
@@ -774,7 +775,7 @@ function App() {
                       filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
                     }}
                   >
-                    coming jan 2026
+                    23 - 25 January 2026
                     <span
                       className="text-white"
                       style={{ animation: "blink 1s step-end infinite" }}
@@ -797,19 +798,36 @@ function App() {
                     {" "}
                     BOILERMAKE XIII{" "}
                   </h1>
-                  <link rel="icon" href="assets/bmxiii_favicon.ico" type="image/x-icon" />
+                  <link
+                    rel="icon"
+                    href="assets/favicon.ico"
+                    type="image/x-icon"
+                  />
                 </div>
                 <div
                   className="hero-buttons"
-                  style={{ justifyContent: "center" }}
+                  style={{ 
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "1.5rem",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: "wrap"
+                  }}
                 >
-                  {/* Interest Form Button */}
-                  <ApplyButton 
-                    text="APPLY NOW!" 
-                    link="https://boilermake-apply.web.app" 
-                    size="large" 
+                  <ApplyButton
+                    text="APPLY NOW!"
+                    link="https://boilermake-apply.web.app"
+                    size="large"
                     variant="hero"
-                    className="mr-0" 
+                    className="mr-0"
+                  />
+                  <ApplyButton
+                    text="INTEREST FORM"
+    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    size="large"
+                    variant="hero"
+                    className="mr-0"
                   />
                 </div>
               </div>
@@ -829,7 +847,10 @@ function App() {
               style={{ top: "410vh", paddingTop: "8rem" }}
             >
               <div className="w-full max-w-7xl mx-auto px-4">
-                <div className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none" style={{ top: "8rem" }}>
+                <div
+                  className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+                  style={{ top: "8rem" }}
+                >
                   <div
                     style={{
                       fontFamily: "var(--font-disket-mono)",
@@ -846,7 +867,10 @@ function App() {
                   </div>
                 </div>
 
-                <div className="schedule-activities w-full relative mt-12 md:mt-32" style={{ marginTop: "12rem" }}>
+                <div
+                  className="schedule-activities w-full relative mt-12 md:mt-32"
+                  style={{ marginTop: "12rem" }}
+                >
                   {activities.map((activity, index) => {
                     const isLeft = index % 2 === 0;
                     return (
@@ -855,10 +879,11 @@ function App() {
                         className={`
                           absolute
                           transition-transform duration-500
-                            ${isLeft
-                            ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
-                            : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
-                          }
+                            ${
+                              isLeft
+                                ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
+                                : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
+                            }
                         `}
                         style={{
                           top: `${index * 33}vh`,
@@ -888,10 +913,17 @@ function App() {
             <section
               id="faq"
               className="w-full flex items-start justify-center absolute overflow-x-hidden"
-              style={{ top: "840vh", paddingTop: "8rem", paddingBottom: "8rem" }}
+              style={{
+                top: "840vh",
+                paddingTop: "8rem",
+                paddingBottom: "8rem",
+              }}
             >
               {/* Absolute header like the others */}
-              <div className="text-center absolute left-1/2 -translate-x-1/2 z-[100] pointer-events-none" style={{ top: "8rem" }}>
+              <div
+                className="text-center absolute left-1/2 -translate-x-1/2 z-[100] pointer-events-none"
+                style={{ top: "8rem" }}
+              >
                 <div
                   style={{
                     fontFamily: "var(--font-disket-mono)",
@@ -908,8 +940,86 @@ function App() {
               </div>
 
               {/* Actual accordion content */}
-              <div className="faq-sign w-full flex justify-center pb-8 overflow-x-hidden" style={{ marginTop: "12rem" }}>
+              <div
+                className="faq-sign w-full flex justify-center pb-8 overflow-x-hidden"
+                style={{ marginTop: "12rem" }}
+              >
                 <FAQAccordian questions={questions} />
+              </div>
+            </section>
+
+{/* Sponsors Section */}
+            <section
+              id="sponsors"
+              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
+              style={{ top: "1050vh" }}
+            >
+              {/* Main Content Container - All content centered vertically */}
+              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
+                {/* Message text */}
+                <h1
+                  className="text-center"
+                  style={{
+                    fontFamily: "var(--font-disket-mono)",
+                    fontWeight: 400,
+                    fontSize: "clamp(32px, 8vw, 60px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  SPONSORS
+                  <span style={{ animation: "blink 1s infinite" }}>_</span>
+                </h1>
+
+                  <h2
+                    className="text-center mb-6"
+                    style={{
+                      
+                      fontWeight: 400,
+                      fontSize: "clamp(18px, 3.5vw, 28px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      textAlign: "center",
+                      width: "100%",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                      fontFamily: "var(--font-disket-mono)",
+                      color: "#FFE958",
+                      textShadow: "0px 0px 15px #FFDE00",
+                    }}
+                  >
+                    [coming soon]
+                    <span
+                      className="text-white"
+                      // style={{ animation: "blink 1s step-end infinite" }}
+                    >
+                      {/* _ */}
+                    </span>
+                  </h2>
+                {/* Button */}
+                <a
+                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                  href="/past"
+                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                  style={{
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 2vw, 18px)",
+                    letterSpacing: "0.15em",
+                  }}
+                >
+                  <span
+                    style={{
+                      borderBottom: "2px solid #FFFFFF",
+                      paddingBottom: "4px",
+                    }}
+                  >
+                    IN THE PAST
+                  </span>
+                </a>
               </div>
             </section>
 
@@ -934,7 +1044,8 @@ function App() {
                     textShadow: "0px 0px 15px #FFDE00",
                   }}
                 >
-                  Escape Reality<span style={{ animation: "blink 1s infinite" }}>_</span>
+                  Escape Reality
+                  <span style={{ animation: "blink 1s infinite" }}>_</span>
                 </h1>
 
                 {/* Button */}
@@ -965,7 +1076,7 @@ function App() {
             <section
               id="footer"
               className="absolute flex flex-col items-center justify-center w-full gap-8"
-              style={{ top: "1880vh" }}
+              style={{ top: "1880vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
             >
               {/* Social Media Icons */}
               <div className="flex flex-row gap-6">

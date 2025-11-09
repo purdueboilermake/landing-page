@@ -192,10 +192,11 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isUltraWide, setIsUltraWide] = useState(false);
-  const [aboutCircleTop, setAboutCircleTop] = useState<string>("-20vh");
-  const [aboutCircleOpacity, setAboutCircleOpacity] = useState<number>(0.8);
-  const [faqCircleTop, setFaqCircleTop] = useState<string>("830vh");
-  const [faqCircleOpacity, setFaqCircleOpacity] = useState<number>(0.8);
+  // Initial positions for SSR/first render only
+  const [aboutCircleTop] = useState<string>("-20vh");
+  const [aboutCircleOpacity] = useState<number>(0.8);
+  const [faqCircleTop] = useState<string>("830vh");
+  const [faqCircleOpacity] = useState<number>(0.8);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -221,41 +222,64 @@ function App() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
+    let rafId: number | null = null;
+
     const handleScroll = () => {
       if (typeof window === "undefined") return;
 
-      const scrollY = window.scrollY;
-      const vhPx = window.innerHeight;
-      const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
+      // Cancel any pending animation frame
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
 
-      //
-      // ==== CIRCLE 1: hero → about ====
-      //
-      const c1StartScrollVh = 0;
-      const c1EndScrollVh = 250;
-      const c1Span = c1EndScrollVh - c1StartScrollVh;
-      const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
-      const c1TopVh = lerp(-20, 230, c1t);
-      setAboutCircleTop(`${c1TopVh}vh`);
-      setAboutCircleOpacity(0.8);
+      // Use requestAnimationFrame to batch DOM updates
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const vhPx = window.innerHeight;
+        const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
-      //
-      // ==== CIRCLE 2: FAQ → “next page” ====
-      //
-      // scroll range (when to start / stop moving)
-      const c2StartScrollVh = 840; // start moving once page has scrolled ~910vh
-      const c2EndScrollVh = 1500; // finish moving by 1150vh
-      const c2Span = c2EndScrollVh - c2StartScrollVh;
+        // Get the circle elements directly
+        const aboutCircle = document.querySelector('[data-layer-id="about-circle"]') as HTMLElement;
+        const faqCircle = document.querySelector('[data-layer-id="faq-circle"]') as HTMLElement;
 
-      // position range (where to put the circle)
-      const c2StartTopVh = 820; // start
-      const c2EndTopVh = 1480; // final rest position
+        //
+        // ==== CIRCLE 1: hero → about ====
+        //
+        if (aboutCircle) {
+          const c1StartScrollVh = 0;
+          const c1EndScrollVh = 250;
+          const c1Span = c1EndScrollVh - c1StartScrollVh;
+          const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
+          const c1TopVh = lerp(-20, 230, c1t);
+          
+          // Use transform instead of changing top position (GPU accelerated)
+          const translateY = c1TopVh - (-20); // offset from initial position
+          aboutCircle.style.transform = `translateY(${translateY}vh)`;
+        }
 
-      const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-      const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
+        //
+        // ==== CIRCLE 2: FAQ → "next page" ====
+        //
+        if (faqCircle) {
+          // scroll range (when to start / stop moving)
+          const c2StartScrollVh = 850;
+          const c2EndScrollVh = 1510;
+          const c2Span = c2EndScrollVh - c2StartScrollVh;
 
-      setFaqCircleTop(`${c2TopVh}vh`);
-      setFaqCircleOpacity(0.8);
+          // position range (where to put the circle)
+          const c2StartTopVh = 830;
+          const c2EndTopVh = 1490;
+
+          const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
+          const c2TopVh = lerp(c2StartTopVh, c2EndTopVh, c2t);
+
+          // Use transform instead of changing top position (GPU accelerated)
+          const translateY = c2TopVh - 830; // offset from initial position
+          faqCircle.style.transform = `translateY(${translateY}vh)`;
+        }
+
+        rafId = null;
+      });
     };
 
     // run once
@@ -264,6 +288,9 @@ function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
     return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
@@ -764,7 +791,7 @@ function App() {
                       filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
                     }}
                   >
-                    coming jan 2026
+                    23 - 25 January 2026
                     <span
                       className="text-white"
                       style={{ animation: "blink 1s step-end infinite" }}
@@ -789,14 +816,28 @@ function App() {
                   </h1>
                   <link
                     rel="icon"
-                    href="assets/bmxiii_favicon.ico"
+                    href="assets/favicon.ico"
                     type="image/x-icon"
                   />
                 </div>
                 <div
                   className="hero-buttons"
-                  style={{ justifyContent: "center" }}
+                  style={{ 
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "1.5rem",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: "wrap"
+                  }}
                 >
+                  <ApplyButton
+                    text="INTEREST FORM"
+    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    size="large"
+                    variant="hero"
+                    className="mr-0"
+                  />
                   {/* Interest Form Button */}
                   <ApplyButton
                     text="APPLY NOW!"
@@ -805,6 +846,7 @@ function App() {
                     variant="hero"
                     className="mr-0"
                   />
+                  
                 </div>
               </div>
             </section>
@@ -921,6 +963,81 @@ function App() {
                 style={{ marginTop: "12rem" }}
               >
                 <FAQAccordian questions={questions} />
+              </div>
+            </section>
+
+{/* Sponsors Section */}
+            <section
+              id="sponsors"
+              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
+              style={{ top: "1050vh" }}
+            >
+              {/* Main Content Container - All content centered vertically */}
+              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
+                {/* Message text */}
+                <h1
+                  className="text-center"
+                  style={{
+                    fontFamily: "var(--font-disket-mono)",
+                    fontWeight: 400,
+                    fontSize: "clamp(32px, 8vw, 60px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  SPONSORS
+                  <span style={{ animation: "blink 1s infinite" }}>_</span>
+                </h1>
+
+                  <h2
+                    className="text-center mb-6"
+                    style={{
+                      
+                      fontWeight: 400,
+                      fontSize: "clamp(18px, 3.5vw, 28px)",
+                      lineHeight: "100%",
+                      letterSpacing: "0.1em",
+                      textAlign: "center",
+                      width: "100%",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                      fontFamily: "var(--font-disket-mono)",
+                      color: "#FFE958",
+                      textShadow: "0px 0px 15px #FFDE00",
+                    }}
+                  >
+                    [coming soon]
+                    <span
+                      className="text-white"
+                      // style={{ animation: "blink 1s step-end infinite" }}
+                    >
+                      {/* _ */}
+                    </span>
+                  </h2>
+                {/* Button */}
+                <a
+                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                  href="/past"
+                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+                  style={{
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 500,
+                    fontSize: "clamp(14px, 2vw, 18px)",
+                    letterSpacing: "0.15em",
+                  }}
+                >
+                  <span
+                    style={{
+                      borderBottom: "2px solid #FFFFFF",
+                      paddingBottom: "4px",
+                    }}
+                  >
+                    IN THE PAST
+                  </span>
+                </a>
               </div>
             </section>
 

@@ -33,7 +33,7 @@ export default function Header({}: HeaderProps) {
       about: 250, // About section is at 270vh
       schedule: 400, // Schedule section is at 400vh
       faq: 840, // FAQ section is at 840vh
-      "sponsors-sign": 0, // Placeholder for sponsors (not implemented)
+      sponsors: 1070, // sponsors section is at 1050vh
     };
 
     // Check if we're on the 2025 page
@@ -66,7 +66,7 @@ export default function Header({}: HeaderProps) {
         <a href="/" className="absolute top-0 left-0 hover:scale-105 transition z-10 p-2 md:p-3 lg:p-4">
           {/* accordingly modify href here */}
           <Image
-            src={"/images/bmxiii-logo.png"}
+            src={"/images/logo_BMXIII.png"}
             alt="Boilermake Logo"
             width={75}
             height={75}
@@ -88,13 +88,13 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
               }}
             >
               About
@@ -109,13 +109,13 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
               }}
             >
               Schedule
@@ -130,19 +130,19 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
               }}
             >
               FAQs
             </button>
             <button
-              onClick={() => handleNavigation("sponsors-sign")}
+              onClick={() => handleNavigation("sponsors")}
               className="transition-all duration-300 whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-futura-cyrillic)",
@@ -151,13 +151,13 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
+                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
               }}
             >
               Sponsors
@@ -274,7 +274,7 @@ export default function Header({}: HeaderProps) {
               
               <button
                 onClick={() => {
-                  handleNavigation("sponsors-sign");
+                  handleNavigation("sponsors");
                   setIsMenuOpen(false);
                 }}
                 className="transition-all duration-300 text-white text-lg"

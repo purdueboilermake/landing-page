@@ -69,6 +69,7 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
         <ActivitySign
           title={title}
           startDate={startDate}
+          endDate={endDate}
           size={currentSize}
           location={location}
           isExpanded={isExpanded}

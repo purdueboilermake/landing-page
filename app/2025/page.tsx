@@ -247,21 +247,28 @@ function App() {
         });
       }
 
-      // FAQ: from 810vh to 1460vh → delta 650vh
+      // FAQ: from 830vh to 1480vh → delta 650vh
       if (faqCircle) {
-        gsap.set(faqCircle, { y: 0, willChange: "transform" });
-        gsap.to(faqCircle, {
-          y: () => window.innerHeight * (1460 - 810) / 100,
-          ease: "none",
-          scrollTrigger: {
-            trigger: document.body,
-            start: () => window.innerHeight * 8.5,          // 850vh
-            end:   () => window.innerHeight * 15.0,         // 1500vh
-            scrub: true,
-            fastScrollEnd: true,
-            invalidateOnRefresh: true
+        ScrollTrigger.normalizeScroll(true);
+        const baseVh = parseFloat(faqCircleTop) || 830;
+        const startVh = 850, endVh = 1500, endTopVh = 1480;
+        gsap.set(faqCircle, { willChange: "transform" });
+        gsap.fromTo(faqCircle, 
+          { y: 0 }, 
+          {
+            y: () => window.innerHeight * (endTopVh - baseVh) / 100,
+            ease: "none",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: document.body,
+              start: () => window.innerHeight * (startVh / 100),
+              end: () => window.innerHeight * (endVh / 100),
+              scrub: true,
+              fastScrollEnd: true,
+              invalidateOnRefresh: true
+            }
           }
-        });
+        );
       }
 
       // Make sure ScrollTrigger measures correctly after content/fonts load

@@ -247,28 +247,48 @@ function App() {
         });
       }
 
-      // FAQ: from 830vh to 1480vh → delta 650vh
+      // FAQ: anchor to computed baseline and scrub a fixed span (mobile-safe)
       if (faqCircle) {
-        ScrollTrigger.normalizeScroll(true);
-        const baseVh = parseFloat(faqCircleTop) || 830;
-        const startVh = 850, endVh = 1500, endTopVh = 1480;
-        gsap.set(faqCircle, { willChange: "transform" });
-        gsap.fromTo(faqCircle, 
-          { y: 0 }, 
-          {
-            y: () => window.innerHeight * (endTopVh - baseVh) / 100,
-            ease: "none",
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: document.body,
-              start: () => window.innerHeight * (startVh / 100),
-              end: () => window.innerHeight * (endVh / 100),
-              scrub: true,
-              fastScrollEnd: true,
-              invalidateOnRefresh: true
-            }
+        // If the element ever had a transform from a previous render, reset it
+        gsap.set(faqCircle, { y: 0, willChange: "transform", force3D: true });
+
+        // Helper to compute everything in px from the live layout
+        const compute = () => {
+          const vhPx = window.innerHeight / 100;
+
+          // Baseline: the element's actual CSS top at this moment (in px)
+          const baseTopPx = parseFloat(getComputedStyle(faqCircle).top);
+
+          // Your intended path: 830vh → 1480vh  (span = 650vh)
+          // If you want the motion to *start* at 850vh like before, add +20vh offset.
+          const startOffsetVh = 20;                 // change to 0 if you want motion to start exactly at 830vh
+          const moveSpanVh   = 650;                 // 1480 - 830
+
+          const startPx = baseTopPx + startOffsetVh * vhPx;
+          const spanPx  = moveSpanVh * vhPx;
+
+          return { startPx, spanPx };
+        };
+
+        // Build tween with dynamic start/end that recompute on refresh/resize/URL-bar changes
+        gsap.to(faqCircle, {
+          y: () => compute().spanPx,               // move exactly spanPx down
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.body,                // use the page scroll as the driver
+            start: () => compute().startPx,        // begin scrubbing when scrollY reaches the element's baseline (+offset)
+            end: () => compute().startPx + compute().spanPx,
+            scrub: true,
+            fastScrollEnd: true,
+            invalidateOnRefresh: true,             // recompute when mobile chrome/safari changes viewport
+            // Below line smooths iOS address-bar / rubber-band quirks
+            onRefresh: self => self.scroll(self.scroll()), 
+            markers: false
           }
-        );
+        });
+
+        // Normalize iOS up-scroll behavior
+        ScrollTrigger.normalizeScroll(true);
       }
 
       // Make sure ScrollTrigger measures correctly after content/fonts load

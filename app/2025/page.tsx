@@ -247,47 +247,60 @@ function App() {
         });
       }
 
-      // FAQ: anchor to computed baseline and scrub a fixed span (mobile-safe)
+      // FAQ: stop when circle's center aligns with "Escape Reality" heading center
       if (faqCircle) {
-        // If the element ever had a transform from a previous render, reset it
         gsap.set(faqCircle, { y: 0, willChange: "transform", force3D: true });
 
-        // Helper to compute everything in px from the live layout
+        const faqSection = document.getElementById("faq");
+        const contact    = document.getElementById("contact");
+        // try to grab the heading inside #contact; fallback to the section itself
+        const heading    = (contact?.querySelector("h1") as HTMLElement) || contact!;
+
+        const pageY = (el: HTMLElement) => el.getBoundingClientRect().top + window.scrollY;
+
+        // small knobs:
+        const startOffsetPx = 0;    // begin moving exactly when #faq hits viewport top; raise if you want a later start
+        const nudgePx       = 0;    // positive = stop a bit higher than exact center; negative = a bit lower
+
         const compute = () => {
-          const vhPx = window.innerHeight / 100;
+          const baseTopPx    = parseFloat(getComputedStyle(faqCircle).top); // circle's CSS baseline (no transform)
+          const circleRect   = faqCircle.getBoundingClientRect();
+          const circleHalf   = circleRect.height / 2;
 
-          // Baseline: the element's actual CSS top at this moment (in px)
-          const baseTopPx = parseFloat(getComputedStyle(faqCircle).top);
+          const startPx = faqSection ? pageY(faqSection) + startOffsetPx : window.scrollY;
 
-          // Your intended path: 830vh → 1480vh  (span = 650vh)
-          // If you want the motion to *start* at 850vh like before, add +20vh offset.
-          const startOffsetVh = 20;                 // change to 0 if you want motion to start exactly at 830vh
-          const moveSpanVh   = 650;                 // 1480 - 830
+          const headingRect      = heading.getBoundingClientRect();
+          const headingCenterPx  = pageY(heading) + headingRect.height / 2;
 
-          const startPx = baseTopPx + startOffsetVh * vhPx;
-          const spanPx  = moveSpanVh * vhPx;
+          // distance we need to translate so circle center == heading center (+ nudge)
+          const desiredY = Math.max(
+            0,
+            headingCenterPx - (baseTopPx + circleHalf) - nudgePx
+          );
 
-          return { startPx, spanPx };
+          // scroll span == movement distance so scrub maps 1:1
+          const endPx = startPx + desiredY;
+
+          return { startPx, endPx, desiredY };
         };
 
-        // Build tween with dynamic start/end that recompute on refresh/resize/URL-bar changes
-        gsap.to(faqCircle, {
-          y: () => compute().spanPx,               // move exactly spanPx down
+        // Build tween with dynamic, refresh-aware endpoints
+        const tween = gsap.to(faqCircle, {
+          y: () => compute().desiredY,
           ease: "none",
           scrollTrigger: {
-            trigger: document.body,                // use the page scroll as the driver
-            start: () => compute().startPx,        // begin scrubbing when scrollY reaches the element's baseline (+offset)
-            end: () => compute().startPx + compute().spanPx,
+            trigger: document.body,
+            start: () => compute().startPx,
+            end:   () => compute().endPx,
             scrub: true,
             fastScrollEnd: true,
-            invalidateOnRefresh: true,             // recompute when mobile chrome/safari changes viewport
-            // Below line smooths iOS address-bar / rubber-band quirks
-            onRefresh: self => self.scroll(self.scroll()), 
+            invalidateOnRefresh: true,
+            onRefresh: self => self.scroll(self.scroll()),
             markers: false
           }
         });
 
-        // Normalize iOS up-scroll behavior
+        // Helps with iOS up-scroll/address bar quirks
         ScrollTrigger.normalizeScroll(true);
       }
 

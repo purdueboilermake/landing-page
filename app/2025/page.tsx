@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import HeroText from "@/components/HeroText";
 import AboutSection from "@/components/AboutSection";
@@ -196,6 +196,9 @@ function App() {
   const [aboutCircleOpacity] = useState<number>(0.8);
   const [faqCircleTop] = useState<string>("830vh");
   const [faqCircleOpacity] = useState<number>(0.8);
+  
+  // Freeze viewport height to avoid mobile URL bar jitter
+  const baseVhPxRef = useRef<number>(0);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -221,6 +224,9 @@ function App() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
     const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
+    // Freeze the viewport height for scroll math to avoid mobile URL bar jitter
+    baseVhPxRef.current = window.innerHeight;
+
     let rafId: number | null = null;
 
     const handleScroll = () => {
@@ -233,8 +239,8 @@ function App() {
 
       // Use requestAnimationFrame to batch DOM updates
       rafId = requestAnimationFrame(() => {
-        const scrollY = Math.max(0, window.scrollY); // Clamp to prevent negative values
-        const vhPx = window.innerHeight;
+        const scrollY = Math.max(0, window.scrollY);
+        const vhPx = baseVhPxRef.current || window.innerHeight; // frozen height
         const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
 
         // Get the circle elements directly
@@ -251,9 +257,9 @@ function App() {
           const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
           const c1TopVh = lerp(-20, 230, c1t);
           
-          // Use transform instead of changing top position (GPU accelerated)
-          const translateY = c1TopVh - (-20); // offset from initial position
-          aboutCircle.style.transform = `translateY(${translateY}vh)`;
+          // translate in PX to avoid mobile vh jitter
+          const translateYPx = (c1TopVh - (-20)) * (vhPx / 100);
+          aboutCircle.style.transform = `translateY(${translateYPx}px)`;
         }
 
         //
@@ -264,29 +270,39 @@ function App() {
           const c2EndScrollVh = 1500;
           const c2Span = c2EndScrollVh - c2StartScrollVh;
           const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-          const c2TopVh = lerp(810, 1460, c2t);
-          
-          const translateY = c2TopVh - 810; // offset from initial position
-          faqCircle.style.transform = `translateY(${translateY}vh)`;
+
+          // Use the actual configured starting top (e.g., "830vh") as baseline
+          const baseFaqTopVh = parseFloat(faqCircleTop); // "830vh" -> 830
+          const c2TopVh = lerp(baseFaqTopVh, 1480, c2t);
+
+          // translate in PX (no vh in transform)
+          const translateYPx = (c2TopVh - baseFaqTopVh) * (vhPx / 100);
+          faqCircle.style.transform = `translateY(${translateYPx}px)`;
         }
 
         rafId = null;
       });
     };
 
+    const onResize = () => {
+      // Only update when the viewport actually changes size (rotation, split view, etc.)
+      baseVhPxRef.current = window.innerHeight;
+      handleScroll(); // re-sync positions
+    };
+
     // run once
     handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
+    window.addEventListener("resize", onResize);
     return () => {
       if (rafId !== null) {
         cancelAnimationFrame(rafId);
       }
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [faqCircleTop]);
 
   useEffect(() => {
     // Run after hydration + next paint

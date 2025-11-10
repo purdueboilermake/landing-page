@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "gsap": "^3.13.0",
     "next": "^15.1.2",
     "react": "^18",
     "react-curved-text": "^3.0.1",

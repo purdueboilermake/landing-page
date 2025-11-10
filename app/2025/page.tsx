@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/Header";
 import HeroText from "@/components/HeroText";
 import AboutSection from "@/components/AboutSection";
@@ -218,73 +220,56 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-    const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+    if (typeof window === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
 
-    let rafId: number | null = null;
+    // Scope to this component so cleanup is airtight
+    const ctx = gsap.context(() => {
+      const aboutCircle = document.querySelector('[data-layer-id="about-circle"]') as HTMLElement | null;
+      const faqCircle   = document.querySelector('[data-layer-id="faq-circle"]')   as HTMLElement | null;
 
-    const handleScroll = () => {
-      if (typeof window === "undefined") return;
-
-      // Cancel any pending animation frame
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
+      // Smooth, monotonic scrubs; GSAP re-computes on address bar changes via refresh
+      // ABOUT: from -20vh to 230vh  → delta 250vh
+      if (aboutCircle) {
+        gsap.set(aboutCircle, { y: 0, willChange: "transform" });
+        gsap.to(aboutCircle, {
+          // convert the same vh delta to px each refresh
+          y: () => window.innerHeight * (230 - (-20)) / 100,
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.body,
+            start: 0,                                        // 0vh
+            end: () => window.innerHeight * 2.5,            // 250vh
+            scrub: true,
+            fastScrollEnd: true,
+            invalidateOnRefresh: true
+          }
+        });
       }
 
-      // Use requestAnimationFrame to batch DOM updates
-      rafId = requestAnimationFrame(() => {
-        const scrollY = Math.max(0, window.scrollY); // Clamp to prevent negative values
-        const vhPx = window.innerHeight;
-        const scrollVh = (scrollY / vhPx) * 100; // scroll in vh units
+      // FAQ: from 810vh to 1460vh → delta 650vh
+      if (faqCircle) {
+        gsap.set(faqCircle, { y: 0, willChange: "transform" });
+        gsap.to(faqCircle, {
+          y: () => window.innerHeight * (1460 - 810) / 100,
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.body,
+            start: () => window.innerHeight * 8.5,          // 850vh
+            end:   () => window.innerHeight * 15.0,         // 1500vh
+            scrub: true,
+            fastScrollEnd: true,
+            invalidateOnRefresh: true
+          }
+        });
+      }
 
-        // Get the circle elements directly
-        const aboutCircle = document.querySelector('[data-layer-id="about-circle"]') as HTMLElement;
-        const faqCircle = document.querySelector('[data-layer-id="faq-circle"]') as HTMLElement;
+      // Make sure ScrollTrigger measures correctly after content/fonts load
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
 
-        //
-        // ==== CIRCLE 1: hero → about ====
-        //
-        if (aboutCircle) {
-          const c1StartScrollVh = 0;
-          const c1EndScrollVh = 250;
-          const c1Span = c1EndScrollVh - c1StartScrollVh;
-          const c1t = clamp01((scrollVh - c1StartScrollVh) / c1Span);
-          const c1TopVh = lerp(-20, 230, c1t);
-          
-          // Use transform instead of changing top position (GPU accelerated)
-          const translateY = c1TopVh - (-20); // offset from initial position
-          aboutCircle.style.transform = `translateY(${translateY}vh)`;
-        }
-
-        //
-        // ==== CIRCLE 2: FAQ → "next page" ====
-        //
-        if (faqCircle) {
-          const c2StartScrollVh = 850;
-          const c2EndScrollVh = 1500;
-          const c2Span = c2EndScrollVh - c2StartScrollVh;
-          const c2t = clamp01((scrollVh - c2StartScrollVh) / c2Span);
-          const c2TopVh = lerp(810, 1460, c2t);
-          
-          const translateY = c2TopVh - 810; // offset from initial position
-          faqCircle.style.transform = `translateY(${translateY}vh)`;
-        }
-
-        rafId = null;
-      });
-    };
-
-    // run once
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
     return () => {
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-      }
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      ctx.revert(); // kills tweens and ScrollTriggers created in this effect
     };
   }, []);
 

@@ -194,7 +194,7 @@ function App() {
   // Initial positions for SSR/first render only
   const [aboutCircleTop] = useState<string>("-20vh");
   const [aboutCircleOpacity] = useState<number>(0.8);
-  const [faqCircleTop] = useState<string>("830vh");
+  const [faqCircleTop] = useState<string>("830svh");
   const [faqCircleOpacity] = useState<number>(0.8);
   
   // Freeze viewport height to avoid mobile URL bar jitter
@@ -534,10 +534,10 @@ function App() {
       position: "absolute" as const,
       zIndex: -50,
       opacity: 1,
-      top: "700vh",
+      top: "700svh",
       left: "0%",
       width: "100vw",
-      height: "1200vh",
+      height: "1200svh",
       useIntrinsicHeight: false,
       scaleMode: "fill" as BackgroundScaleMode,
       blendMode: "normal",
@@ -550,7 +550,7 @@ function App() {
       position: "absolute" as const,
       zIndex: 0,
       opacity: 0.8,
-      top: "830vh", // A bit higher than stars-left (80vh)
+      top: "830svh", // A bit higher than stars-left (80vh)
       left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
       height: "40vh",
       scaleMode: "contain" as BackgroundScaleMode,
@@ -579,7 +579,7 @@ function App() {
       position: "absolute" as const,
       zIndex: 0,
       opacity: 0.8,
-      top: "960vh", // A bit higher than stars-left (80vh)
+      top: "960svh", // A bit higher than stars-left (80vh)
       left: "35%", // Positioned on the right side (100% + 35% overhang = 135%)
       height: "40vh",
       scaleMode: "contain" as BackgroundScaleMode,
@@ -594,7 +594,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -30,
       opacity: 1,
-      top: "840vh",
+      top: "840svh",
       left: "0vw",
       width: "100vw",
       height: "20vh",
@@ -608,7 +608,7 @@ function App() {
       position: "absolute" as const,
       zIndex: 0,
       opacity: 0.8, // Increase visibility
-      top: "1040vh", // Start at the top of the viewport
+      top: "1040svh", // Start at the top of the viewport
       left: "35%",
       height: "40vh", // Covers the viewport while scrolling
       scaleMode: "contain" as BackgroundScaleMode,
@@ -692,7 +692,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -40,
       opacity: 1,
-      top: "1350vh",
+      top: "1350svh",
       left: "0vw",
       width: "100vw",
       height: "200vh",
@@ -706,7 +706,7 @@ function App() {
       position: "absolute" as const,
       zIndex: 0,
       opacity: 0.8,
-      top: "1600vh", // A bit higher than stars-left (80vh)
+      top: "1600svh", // A bit higher than stars-left (80vh)
       left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
       height: "40vh",
       scaleMode: "contain" as BackgroundScaleMode,
@@ -721,7 +721,7 @@ function App() {
       position: "absolute" as const,
       zIndex: -80,
       opacity: 1,
-      top: "1630vh",
+      top: "1630svh",
       left: "-40vw",
       width: "150vw",
       height: "120vh",
@@ -924,7 +924,7 @@ function App() {
               id="faq"
               className="w-full flex items-start justify-center absolute overflow-x-hidden"
               style={{
-                top: "840vh",
+                top: "840svh",
                 paddingTop: "8rem",
                 paddingBottom: "8rem",
               }}
@@ -962,7 +962,7 @@ function App() {
             <section
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1050vh" }}
+              style={{ top: "1050svh" }}
             >
               {/* Main Content Container - All content centered vertically */}
               <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
@@ -1037,7 +1037,7 @@ function App() {
             <section
               id="contact"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1540vh" }}
+              style={{ top: "1540svh" }}
             >
               {/* Main Content Container - All content centered vertically */}
               <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
@@ -1086,7 +1086,7 @@ function App() {
             <section
               id="footer"
               className="absolute flex flex-col items-center justify-center w-full gap-8"
-              style={{ top: "1880vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
+              style={{ top: "1880svh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
             >
               {/* Social Media Icons */}
               <div className="flex flex-row gap-6">

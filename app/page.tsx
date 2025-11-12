@@ -373,7 +373,7 @@ function App() {
       top: 0,
       blendMode: "normal",
       useIntrinsicHeight: false,
-      height: "500vh",
+      height: "300vh",
       width: "100%",
       fallbackColor: "transparent",
       priority: true,

@@ -178,6 +178,9 @@ const BackgroundLayer: React.FC<BackgroundLayerProps> = ({
     mixBlendMode: blendMode as any,
     transition: "opacity 0.3s ease-in-out",
     pointerEvents: "none", // Prevent interference with page interactions
+    // Ensure backgrounds extend to the very top on all devices
+    margin: 0,
+    padding: 0,
   };
 
   // Convert scaleMode to Next.js Image objectFit

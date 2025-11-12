@@ -37,10 +37,38 @@ body {
   background: var(--background);
   font-family: "Dosis", sans-serif;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   overflow-x: hidden;
+  /* Fix for iPad viewport height issues */
+  height: 100%;
+  height: -webkit-fill-available;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fix for iPad dynamic viewport height */
+@supports (-webkit-touch-callout: none) {
+  html {
+    height: -webkit-fill-available;
+  }
+  
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  /* Ensure base background covers full viewport on iPad  */
+  .background-fallback,
+  [data-layer-id="solid-bg-color"] {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
 }
 
 /* About Background Styles */

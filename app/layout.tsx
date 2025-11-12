@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { Dosis, Averia_Libre, Arvo } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css';
@@ -7,6 +7,13 @@ import './globals.css';
 export const metadata: Metadata = {
   title: "BoilerMake XIII",
   description: "Purdue University's flagship hackathon, BoilerMake, is back in January 2026. Escape Reality.",
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover', // Helps with iPad notch/status bar areas
 }
   
 const dosis = Dosis({

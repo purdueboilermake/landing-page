@@ -361,6 +361,11 @@ function App() {
       imageUrl: "/this/is/a/fake/image.png", // This will fail to load, showing fallback
       zIndex: -100,
       opacity: 1,
+      position: "fixed" as const,
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100vh",
       fallbackColor: "#2A2627", // This should show as the background color
       priority: true, // Always load immediately
     },
@@ -371,6 +376,7 @@ function App() {
       zIndex: -50,
       opacity: 1,
       top: 0,
+      left: 0,
       blendMode: "normal",
       useIntrinsicHeight: false,
       height: "500vh",

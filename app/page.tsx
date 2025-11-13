@@ -193,11 +193,29 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isUltraWide, setIsUltraWide] = useState(false);
+  const [combHeight, setCombHeight] = useState<string>("500vh");
   // Initial positions for SSR/first render only
   const [aboutCircleTop] = useState<string>("-20vh");
   const [aboutCircleOpacity] = useState<number>(0.8);
   const [faqCircleTop] = useState<string>("830vh");
   const [faqCircleOpacity] = useState<number>(0.8);
+
+  useEffect(() => {
+    const updateCombHeight = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setCombHeight("300vh");      // Mobile view
+      } else if (width < 1024) {
+        setCombHeight("400vh");     // Ipad
+      } else {
+        setCombHeight("500vh");     // Desktop
+      }
+    };
+    
+    updateCombHeight();
+    window.addEventListener('resize', updateCombHeight);
+    return () => window.removeEventListener('resize', updateCombHeight);
+  }, []);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -373,7 +391,7 @@ function App() {
       top: 0,
       blendMode: "normal",
       useIntrinsicHeight: false,
-      height: "300vh",
+      height: combHeight,
       width: "100%",
       fallbackColor: "transparent",
       priority: true,

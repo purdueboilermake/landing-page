@@ -842,7 +842,14 @@ function App() {
                   />
                   <ApplyButton
                     text="INTEREST FORM"
-    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                    size="large"
+                    variant="hero"
+                    className="mr-0"
+                  />
+                  <ApplyButton
+                    text="MENTOR FORM"
+                    link="https://docs.google.com/forms/d/e/1FAIpQLScmpc_zMGpQGUZy5vFkCTbkh-3oG5WMKx1eDES1ziDDSOqA4w/viewform"
                     size="large"
                     variant="hero"
                     className="mr-0"

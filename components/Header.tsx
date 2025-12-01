@@ -28,7 +28,7 @@ export default function Header({}: HeaderProps) {
   }, [isMenuOpen]);
 
   const handleNavigation = (sectionId: string) => {
-    if (window.location.pathname === "/2025") {
+    if (window.location.pathname === "/") {
       const element = document.getElementById(sectionId);
       if (element) {
         if (sectionId == "about" || sectionId == "sponsors") {
@@ -38,7 +38,7 @@ export default function Header({}: HeaderProps) {
         }
       }
     } else {
-      window.location.href = `/2025#${sectionId}`;
+      window.location.href = `/#${sectionId}`;
     }
   };
 

@@ -194,7 +194,7 @@ export default function Home() {
               </a>
               <a 
                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center" 
-                href="https://docs.google.com/forms/d/e/1FAIpQLScmpc_zMGpQGUZy5vFkCTbkh-3oG5WMKx1eDES1ziDDSOqA4w/viewform?fbclid=IwY2xjawNP1a9leHRuA2FlbQIxMQABHj7g1iNATy2UCWCaVhKaWZOvWNXsQKN0AitmKPQf9ooawqWT7DzS62f-BHDz_aem_PIYSrJMHHUEkErPd19lyuw"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSftgeNHXItUDe9s7sSmbDRY5NQWIuFAzT2Vx3EcRNuhOrk5yw/viewform"
                 style={{
                   fontFamily: 'var(--font-futura-cyrillic)',
                   fontWeight: 700,
@@ -210,7 +210,7 @@ export default function Home() {
                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
                 }}
               >
-                Mentor Application Form
+                Organizer Application
               </a>
               <a
                 href="/past"

@@ -27,8 +27,11 @@ export default function Header({}: HeaderProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMenuOpen]);
 
+  const currentPath = typeof window !== "undefined" ? window.location.pathname : "/";
+  const basePath = currentPath === "/2026" ? "/2026" : "/";
+
   const handleNavigation = (sectionId: string) => {
-    if (window.location.pathname === "/") {
+    if (currentPath === basePath) {
       const element = document.getElementById(sectionId);
       if (element) {
         if (sectionId == "about" || sectionId == "sponsors") {
@@ -38,7 +41,7 @@ export default function Header({}: HeaderProps) {
         }
       }
     } else {
-      window.location.href = `/#${sectionId}`;
+      window.location.href = `${basePath}#${sectionId}`;
     }
   };
 
@@ -51,7 +54,7 @@ export default function Header({}: HeaderProps) {
     >
       <div className="relative px-8 lg:px-12 xl:px-16 py-4">
         {/* Logo positioned in top-left corner */}
-        <a href="/" className="absolute top-0 left-0 hover:scale-105 transition z-10 p-2 md:p-3 lg:p-4">
+        <a href={basePath} className="absolute top-0 left-0 hover:scale-105 transition z-10 p-2 md:p-3 lg:p-4">
           {/* accordingly modify href here */}
           <Image
             src={"/images/logo_BMXIII.png"}

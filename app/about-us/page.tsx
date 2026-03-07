@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "@/components/Header";
+import Header2025 from "@/components/Header2025";
 import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
 import TeamCarousel from "@/components/TeamCarousel";
@@ -163,7 +163,7 @@ export default function TeamsPage() {
 
   return (
     <div className="bg-blue-200 flex flex-col items-center h-full py-12 md:py-24 px-4 md:px-24 lg:px-32">
-      <Header />
+      <Header2025 screenSize={screenSize} />
       <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-dosis text-center mt-16 md:mt-8">
         About Us
       </h1>

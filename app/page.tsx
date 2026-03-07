@@ -172,7 +172,7 @@ export default function Home() {
               BOILERMAKE XIV
             </h1>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a
+              {/* <a
                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
                 href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                 style={{
@@ -191,7 +191,7 @@ export default function Home() {
                 }}
               >
                 Early Interest Form
-              </a>
+              </a> */}
               <a 
                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center" 
                 href="https://docs.google.com/forms/d/e/1FAIpQLSftgeNHXItUDe9s7sSmbDRY5NQWIuFAzT2Vx3EcRNuhOrk5yw/viewform"

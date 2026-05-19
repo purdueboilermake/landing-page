@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BoilerMake landing page
 
-## Getting Started
+Next.js 15 site for [BoilerMake](https://boilermake.org), Purdue's
+flagship hackathon.
 
-First, run the development server:
+## Per-year routes
+
+Each iteration of the hackathon gets its own route under `app/`:
+
+| Route | Source | Live |
+| --- | --- | --- |
+| `/` | `app/page.tsx` | https://boilermake.org — current year's landing |
+| `/2026` | `app/2026/` | https://boilermake.org/2026 |
+| `/2025` | `app/2025/` | https://boilermake.org/2025 |
+| `/past` | `app/past/` | https://boilermake.org/past — archive of older years |
+
+Site-wide routes (header/footer, about, etc.) live alongside:
+`app/about-us/`, `app/home/`, `app/privacy/`.
+
+## Adding a new year
+
+When the next hackathon kicks off, copy the most recent year's
+directory and rename it:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp -r app/2026 app/2027
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Edit `app/2027/page.tsx` (and `styles.css` if present) for the new
+branding. When you're ready to flip it, update `app/page.tsx` to render
+the new year's landing, and link the previous year from `app/past/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Existing year directories shouldn't need code changes year-over-year —
+keep historical pages intact so the URLs stay live.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Local development
 
-## Learn More
+```bash
+npm install
+npm run dev    # http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+See [`BACKGROUND_SYSTEM_GUIDE.md`](./BACKGROUND_SYSTEM_GUIDE.md) and
+[`docs/`](./docs) for in-depth notes on specific subsystems (animations,
+shared components, etc.).

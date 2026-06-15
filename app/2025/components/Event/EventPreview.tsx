@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import EventPopup from './EventPopup';
+import EventPopup from '@/app/2025/components/Event/EventPopup';
 
 // Sub-component for rendering the green circle
 type GreenCircleProps = {

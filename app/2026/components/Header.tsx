@@ -7,7 +7,7 @@
  */
 
 import React, { useState, useEffect } from "react";
-import ApplyButton from "./ApplyButton";
+import ApplyButton from "../../2026/components/ApplyButton";
 import Image from "next/image";
 
 type HeaderProps = {};

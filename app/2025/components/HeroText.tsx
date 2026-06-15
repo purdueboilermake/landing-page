@@ -5,7 +5,7 @@
  * 09-15-2024
  */
 import React from 'react';
-import ApplyButton from './ApplyButton';
+import ApplyButton from'@/app/2026/components/ApplyButton';
 
 type HeroTextProps = {
     showButton?: boolean;

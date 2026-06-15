@@ -9,8 +9,8 @@
  */
 
 import React from "react";
-import BackgroundManager from "@/components/BackgroundManager";
-import BackgroundLayer from "@/components/BackgroundLayer";
+import BackgroundManager from "@/app/2026/components/BackgroundManager";
+import BackgroundLayer from "@/app/2026/components/BackgroundLayer";
 
 export default function VerticalStackingDemo() {
   // Example: Multiple background images stacked vertically

@@ -2,19 +2,19 @@
 import './styles.css';
 import React, { useEffect, useState } from 'react';
 import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
-import Header2025 from '@/components/Header2025';
-import HeroText from '@/components/HeroText';
-import AboutSection from '@/components/AboutSection2025';
-import ScheduleSign from '@/components/Signs/ScheduleSign2025';
-import Statistic from '@/components/Statistic';
-import FAQSign from '@/components/Signs/FAQSign';
-import SponsorSign from '@/components/Signs/SponsorSign';
-import SponsorCard from '@/components/SponsorCard2025';
-import FAQAccordian from '@/components/FAQAccordian2025';
-import ApplyButton from '@/components/ApplyButton2025';
+import Header2025 from '@/app/2025/components/Header2025';
+import HeroText from '@/app/2025/components/HeroText';
+import AboutSection from '@/app/2025/components/AboutSection2025';
+import ScheduleSign from '@/app/2025/components/Signs/ScheduleSign2025';
+import Statistic from '@/app/2025/components/Statistic';
+import FAQSign from '@/app/2025/components/Signs/FAQSign';
+import SponsorSign from '@/app/2025/components/Signs/SponsorSign';
+import SponsorCard from '@/app/2025/components/SponsorCard2025';
+import FAQAccordian from '@/app/2025/components/FAQAccordian2025';
+import ApplyButton from '@/app/2025/components/ApplyButton2025';
 import Image from 'next/image';
 import { useResize } from '@react-spring/web';
-import ActivityPreview from '@/components/Event/ActivityPreview2025';
+import ActivityPreview from '@/app/2025/components/Event/ActivityPreview2025';
 import { LAYER_OFFSETS, PAGES_BY_SCREEN, ScreenSize } from '@/utils/parallaxOffset';
 
 const sponsors = [

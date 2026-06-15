@@ -11,7 +11,7 @@
 import React from "react";
 import BackgroundLayer, {
   BackgroundScaleMode,
-} from "@/components/BackgroundLayer";
+} from "@/app/2026/components/BackgroundLayer";
 
 const scaleModes: { mode: BackgroundScaleMode; description: string }[] = [
   { mode: "cover", description: "Scales to cover entire container, may crop" },

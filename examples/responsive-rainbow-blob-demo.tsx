@@ -6,8 +6,8 @@
  */
 
 import React, { useState, useEffect } from "react";
-import BackgroundManager from "@/components/BackgroundManager";
-import { BackgroundScaleMode } from "@/components/BackgroundLayer";
+import BackgroundManager from "@/app/2026/components/BackgroundManager";
+import { BackgroundScaleMode } from "@/app/2026/components/BackgroundLayer";
 
 export default function ResponsiveRainbowBlobDemo() {
   const [isMobile, setIsMobile] = useState(false);

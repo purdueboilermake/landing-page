@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import ApplyButton from './ApplyButton';
+import ApplyButton from '@/app/2025/components/ApplyButton2025';
 import Image from 'next/image';
 import { IParallax } from '@react-spring/parallax';
 import { LAYER_OFFSETS, ScreenSize } from '@/utils/parallaxOffset';

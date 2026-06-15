@@ -12,7 +12,7 @@
  */
 
 import React from "react";
-import BackgroundManager from "@/components/BackgroundManager";
+import BackgroundManager from "@/app/2026/components/BackgroundManager";
 
 export default function LongPageBackgrounds() {
   // Calculate section heights

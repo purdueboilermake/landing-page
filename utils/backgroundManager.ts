@@ -1,5 +1,5 @@
 // Background layer management utilities for the new layered background system
-import { BackgroundLayerConfig } from '@/components/BackgroundManager';
+import { BackgroundLayerConfig } from '@/app/components/BackgroundManager';
 
 export interface BackgroundLayer extends BackgroundLayerConfig {
   fallbackColor?: string;

@@ -6,8 +6,8 @@
  */
 
 import React, { useState, useEffect } from "react";
-import BackgroundManager from "@/components/BackgroundManager";
-import BackgroundLayer from "@/components/BackgroundLayer";
+import BackgroundManager from "@/app/components/BackgroundManager";
+import BackgroundLayer from "@/app/components/BackgroundLayer";
 
 export default function ResponsiveHeightsDemo() {
   const [isMobile, setIsMobile] = useState(false);

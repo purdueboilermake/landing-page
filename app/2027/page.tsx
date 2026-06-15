@@ -2,18 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Header from "@/app/2026/components/Header";
-import HeroText from "@/app/2025/components/HeroText";
-import AboutSection from "@/app/2026/components/AboutSection";
-import ScheduleSign from "@/app/2025/components/Signs/ScheduleSign";
-import Statistic from "@/app/2025/components/Statistic";
-import FAQSign from "@/app/2025/components/Signs/FAQSign";
-import SponsorSign from "@/app/2025/components/Signs/SponsorSign";
-import SponsorCard from "@/app/2026/components/SponsorCard";
-import FAQAccordian from "@/app/2026/components/FAQAccordian";
-import ApplyButton from "@/app/2026/components/ApplyButton";
-import Image from "next/image";
-import ActivityPreview from "@/app/2026/components/Event/ActivityPreview";
+import Header from "@/app/2027/components/HeaderBM14";
+import AboutSection from "@/app/2027/components/AboutSectionBM14";
+import FAQAccordian from "@/app/2027/components/FAQAccordianBM14";
+import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
+import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 import BackgroundManager from "@/app/components/BackgroundManager";
 import { BackgroundScaleMode } from "@/app/components/BackgroundLayer";
 import { TypingProvider } from "@/context/TypingContext";
@@ -627,75 +620,6 @@ function App() {
       fallbackColor: "transparent",
       priority: true,
     },
-    // {
-    //   id: "planet-1",
-    //   imageUrl: "/images/planet1.png",
-    //   position: "absolute" as const,
-    //   zIndex: -39,
-    //   opacity: 1,
-    //   top: "1506vh",
-    //   left: "40vw",
-    //   // width: "100vw",
-    //   height: "20vw",
-    //   scaleMode: "contain" as BackgroundScaleMode,
-    //   blendMode: "normal",
-    //   fallbackColor: "transparent",
-    // },
-    // {
-    //   id: "planet2",
-    //   imageUrl: "/images/planet2.png",
-    //   position: "absolute" as const,
-    //   zIndex: -39,
-    //   opacity: 1,
-    //   top: "1415vh",
-    //   left: "47vw",
-    //   // width: "100vw",
-    //   height: "20vh",
-    //   scaleMode: "contain" as BackgroundScaleMode,
-    //   blendMode: "normal",
-    //   fallbackColor: "transparent",
-    // },
-    // {
-    //   id: "planet3",
-    //   imageUrl: "/images/planet3.png",
-    //   position: "absolute" as const,
-    //   zIndex: -39,
-    //   opacity: 1,
-    //   top: "1480vh",
-    //   left: "-40vw",
-    //   // width: "100vw",
-    //   height: "20vh",
-    //   scaleMode: "contain" as BackgroundScaleMode,
-    //   blendMode: "normal",
-    //   fallbackColor: "transparent",
-    // },
-    // {
-    //   id: "planet4",
-    //   imageUrl: "/images/planet4.png",
-    //   position: "absolute" as const,
-    //   zIndex: -39,
-    //   opacity: 1,
-    //   top: "1450vh",
-    //   left: "1vw",
-    //   // width: "100vw",
-    //   height: "20vh",
-    //   scaleMode: "contain" as BackgroundScaleMode,
-    //   blendMode: "normal",
-    //   fallbackColor: "transparent",
-    // },
-    // {
-    //   id: "ringed-planet",
-    //   imageUrl: "/images/ring-planet.png",
-    //   position: "absolute" as const,
-    //   zIndex: -39,
-    //   opacity: 1,
-    //   top: "1350vh",
-    //   left: "-30vw",
-    //   height: "20vh",
-    //   scaleMode: "contain" as BackgroundScaleMode,
-    //   blendMode: "normal",
-    //   fallbackColor: "transparent",
-    // },
     {
       id: "orbits",
       imageUrl: "/images/solar_sys.svg",
@@ -815,7 +739,7 @@ function App() {
                     }}
                   >
                     {" "}
-                    BOILERMAKE XIII{" "}
+                    BOILERMAKE XIV{" "}
                   </h1>
                   <link
                     rel="icon"
@@ -1157,7 +1081,7 @@ function App() {
                   textShadow: "0px 0px 15px #FFDE00",
                 }}
               >
-                Made with 💛 by the BoilerMake XIII team
+                Made with 💛 by the BoilerMake XIV team
               </p>
             </section>
           </main>

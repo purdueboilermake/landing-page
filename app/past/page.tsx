@@ -6,7 +6,7 @@
  */
 
 import Image from 'next/image'
-import ImageCarousel from '@/components/ImageCarousel'
+import ImageCarousel from '@/app/past/ImageCarousel'
 
 export default function PastPage() {
     return (

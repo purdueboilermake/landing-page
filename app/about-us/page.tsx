@@ -1,9 +1,9 @@
 "use client";
 
-import Header2025 from "@/components/Header2025";
+import Header2025 from "@/app/2025/components/Header2025";
 import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
-import TeamCarousel from "@/components/TeamCarousel";
+import TeamCarousel from "@/app/past/TeamCarousel";
 import { ScreenSize } from "@/utils/types";
 
 interface TeamMember {

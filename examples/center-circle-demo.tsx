@@ -7,8 +7,8 @@
  */
 
 import React from "react";
-import BackgroundManager from "@/components/BackgroundManager";
-import { BackgroundScaleMode } from "@/components/BackgroundLayer";
+import BackgroundManager from "@/app/components/BackgroundManager";
+import { BackgroundScaleMode } from "@/app/components/BackgroundLayer";
 
 export default function CenterCircleDemo() {
   const backgroundLayers = [

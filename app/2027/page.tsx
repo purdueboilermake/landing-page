@@ -7,8 +7,8 @@ import AboutSection from "@/app/2027/components/AboutSectionBM14";
 import FAQAccordian from "@/app/2027/components/FAQAccordianBM14";
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
-import BackgroundManager from "@/app/2027/components/BackgroundManagerBM14";
-import { BackgroundScaleMode } from "@/app/2027/components/BackgroundLayerBM14";
+import BackgroundManager from "@/app/components/BackgroundManager";
+import { BackgroundScaleMode } from "@/app/components/BackgroundLayer";
 import { TypingProvider } from "@/context/TypingContext";
 
 const sponsors = [

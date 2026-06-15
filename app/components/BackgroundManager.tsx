@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo } from "react";
 import BackgroundLayer, {
   BackgroundLayerProps,
   BackgroundScaleMode,
-} from "./BackgroundLayerBM14";
+} from "@/app/components/BackgroundLayer";
 
 export interface BackgroundLayerConfig {
   id: string;

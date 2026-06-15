@@ -14,8 +14,8 @@ import FAQAccordian from "@/app/2026/components/FAQAccordian";
 import ApplyButton from "@/app/2026/components/ApplyButton";
 import Image from "next/image";
 import ActivityPreview from "@/app/2026/components/Event/ActivityPreview";
-import BackgroundManager from "@/app/2026/components/BackgroundManager";
-import { BackgroundScaleMode } from "@/app/2026/components/BackgroundLayer";
+import BackgroundManager from "@/app/components/BackgroundManager";
+import { BackgroundScaleMode } from "@/app/components/BackgroundLayer";
 import { TypingProvider } from "@/context/TypingContext";
 
 const sponsors = [

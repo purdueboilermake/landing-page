@@ -4,7 +4,7 @@
 */
 
 import { useState } from "react";
-import ActivitySign from "../../2026/components/Signs/ActivitySign";
+import ActivitySign from "@/app/2027/components/ActivitySignBM14";
 
 type ActivityPreviewProps = {
   title: string;

@@ -705,7 +705,7 @@ function App() {
                   <h2
                     className="text-center mb-6"
                     style={{
-                      fontFamily: "var(--font-futura-cyrillic)",
+                      fontFamily: "var(--font-source-code-pro)",
                       fontWeight: 100,
                       fontSize: "clamp(18px, 3.5vw, 28px)",
                       lineHeight: "100%",
@@ -729,7 +729,7 @@ function App() {
                   <h1
                     className="text-center mb-12"
                     style={{
-                      fontFamily: "var(--font-disket-mono)",
+                      fontFamily: "var(--font-sprite-graffiti)",
                       fontWeight: 400,
                       fontSize: "clamp(32px, 8vw, 80px)",
                       lineHeight: "100%",

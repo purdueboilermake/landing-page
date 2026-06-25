@@ -74,7 +74,7 @@ export default function Header({}: HeaderProps) {
               onClick={() => handleNavigation("about")}
               className="transition-all duration-300 whitespace-nowrap"
               style={{
-                fontFamily: "var(--font-futura-cyrillic)",
+                fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
                 fontSize: "clamp(18px, 3.5vw, 28px)",
                 lineHeight: "100%",
@@ -95,7 +95,7 @@ export default function Header({}: HeaderProps) {
               onClick={() => handleNavigation("schedule")}
               className="transition-all duration-300 whitespace-nowrap"
               style={{
-                fontFamily: "var(--font-futura-cyrillic)",
+                fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
                 fontSize: "clamp(18px, 3.5vw, 28px)",
                 lineHeight: "100%",
@@ -116,7 +116,7 @@ export default function Header({}: HeaderProps) {
               onClick={() => handleNavigation("faq")}
               className="transition-all duration-300 whitespace-nowrap"
               style={{
-                fontFamily: "var(--font-futura-cyrillic)",
+                fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
                 fontSize: "clamp(18px, 3.5vw, 28px)",
                 lineHeight: "100%",
@@ -137,7 +137,7 @@ export default function Header({}: HeaderProps) {
               onClick={() => handleNavigation("sponsors")}
               className="transition-all duration-300 whitespace-nowrap"
               style={{
-                fontFamily: "var(--font-futura-cyrillic)",
+                fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
                 fontSize: "clamp(18px, 3.5vw, 28px)",
                 lineHeight: "100%",
@@ -205,7 +205,7 @@ export default function Header({}: HeaderProps) {
                 }}
                 className="transition-all duration-300 text-white text-lg"
                 style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
                   textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
@@ -227,7 +227,7 @@ export default function Header({}: HeaderProps) {
                 }}
                 className="transition-all duration-300 text-white text-lg"
                 style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
                   textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
@@ -249,7 +249,7 @@ export default function Header({}: HeaderProps) {
                 }}
                 className="transition-all duration-300 text-white text-lg"
                 style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
                   textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
@@ -271,7 +271,7 @@ export default function Header({}: HeaderProps) {
                 }}
                 className="transition-all duration-300 text-white text-lg"
                 style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
                   textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
@@ -292,7 +292,7 @@ export default function Header({}: HeaderProps) {
                 rel="noreferrer"
                 className="transition-all duration-300 text-white text-lg"
                 style={{
-                  fontFamily: "var(--font-futura-cyrillic)",
+                  fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
                   textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",

@@ -39,13 +39,25 @@ const futuraCyrillic = localFont({
   display: 'swap',
 })
 
+const spriteGraffiti = localFont({
+  src: './fonts/SpriteGraffiti.otf',
+  variable: '--font-sprite-graffiti',
+  display: 'swap',
+})
+
+const SourceCodePro = localFont({
+  src: './fonts/SourceCodePro-Regular.ttf',
+  variable: '--font-source-code-pro',
+  display: 'swap',
+})
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${dosis.variable} ${averiaLibre.variable} ${arvo.variable} ${disketMono.variable} ${futuraCyrillic.variable}`}>
+    <html lang="en" className={`${dosis.variable} ${averiaLibre.variable} ${arvo.variable} ${disketMono.variable} ${futuraCyrillic.variable} ${spriteGraffiti.variable} ${SourceCodePro.variable}`}>
       <body>{children}</body>
     </html>
   )

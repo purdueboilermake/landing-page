@@ -9,17 +9,17 @@
 }
 
 /* Root Colors */
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+ :root {
+  --background: #3B344B;
+  --foreground: #ededed;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-} */
+}  */
 
 #teams-page {
   background: linear-gradient(to top, #7AA689 0%, #C0E2F9 100%);

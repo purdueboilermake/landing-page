@@ -1,14 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/app/2027/components/HeaderBM14";
 import AboutSection from "@/app/2027/components/AboutSectionBM14";
 import FAQAccordian from "@/app/2027/components/FAQAccordianBM14";
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
-import BackgroundManager from "@/app/components/BackgroundManager";
-import { BackgroundScaleMode } from "@/app/components/BackgroundLayer";
 import { TypingProvider } from "@/context/TypingContext";
 
 const sponsors = [
@@ -186,12 +182,6 @@ function App() {
   const [activeEventId, setActiveEventId] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isUltraWide, setIsUltraWide] = useState(false);
-  // Initial positions for SSR/first render only
-  const [aboutCircleTop] = useState<string>("-20vh");
-  const [aboutCircleOpacity] = useState<number>(0.8);
-  const [faqCircleTop] = useState<string>("830vh");
-  const [faqCircleOpacity] = useState<number>(0.8);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -200,110 +190,11 @@ function App() {
       setIsMobile(window.innerWidth < 768);
     };
 
-    const checkUltraWide = () => {
-      setIsUltraWide(window.innerWidth > 2559);
-    };
-
     checkMobile();
-    checkUltraWide();
     window.addEventListener("resize", checkMobile);
 
     return () => {
       window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Scope to this component so cleanup is airtight
-    const ctx = gsap.context(() => {
-      const aboutCircle = document.querySelector('[data-layer-id="about-circle"]') as HTMLElement | null;
-      const faqCircle   = document.querySelector('[data-layer-id="faq-circle"]')   as HTMLElement | null;
-
-      // Smooth, monotonic scrubs; GSAP re-computes on address bar changes via refresh
-      // ABOUT: from -20vh to 230vh  → delta 250vh
-      if (aboutCircle) {
-        gsap.set(aboutCircle, { y: 0, willChange: "transform" });
-        gsap.to(aboutCircle, {
-          // convert the same vh delta to px each refresh
-          y: () => window.innerHeight * (230 - (-20)) / 100,
-          ease: "none",
-          scrollTrigger: {
-            trigger: document.body,
-            start: 0,                                        // 0vh
-            end: () => window.innerHeight * 2.5,            // 250vh
-            scrub: true,
-            fastScrollEnd: true,
-            invalidateOnRefresh: true
-          }
-        });
-      }
-
-      // FAQ: stop when circle's center aligns with "Escape Reality" heading center
-      if (faqCircle) {
-        gsap.set(faqCircle, { y: 0, willChange: "transform", force3D: true });
-
-        const faqSection = document.getElementById("faq");
-        const contact    = document.getElementById("contact");
-        // try to grab the heading inside #contact; fallback to the section itself
-        const heading    = (contact?.querySelector("h1") as HTMLElement) || contact!;
-
-        const pageY = (el: HTMLElement) => el.getBoundingClientRect().top + window.scrollY;
-
-        // small knobs:
-        const startOffsetPx = 0;    // begin moving exactly when #faq hits viewport top; raise if you want a later start
-        const nudgePx       = 0;    // positive = stop a bit higher than exact center; negative = a bit lower
-
-        const compute = () => {
-          const baseTopPx    = parseFloat(getComputedStyle(faqCircle).top); // circle's CSS baseline (no transform)
-          const circleRect   = faqCircle.getBoundingClientRect();
-          const circleHalf   = circleRect.height / 2;
-
-          const startPx = faqSection ? pageY(faqSection) + startOffsetPx : window.scrollY;
-
-          const headingRect      = heading.getBoundingClientRect();
-          const headingCenterPx  = pageY(heading) + headingRect.height / 2;
-
-          // distance we need to translate so circle center == heading center (+ nudge)
-          const desiredY = Math.max(
-            0,
-            headingCenterPx - (baseTopPx + circleHalf) - nudgePx
-          );
-
-          // scroll span == movement distance so scrub maps 1:1
-          const endPx = startPx + desiredY;
-
-          return { startPx, endPx, desiredY };
-        };
-
-        // Build tween with dynamic, refresh-aware endpoints
-        const tween = gsap.to(faqCircle, {
-          y: () => compute().desiredY,
-          ease: "none",
-          scrollTrigger: {
-            trigger: document.body,
-            start: () => compute().startPx,
-            end:   () => compute().endPx,
-            scrub: true,
-            fastScrollEnd: true,
-            invalidateOnRefresh: true,
-            onRefresh: self => self.scroll(self.scroll()),
-            markers: false
-          }
-        });
-
-        // Helps with iOS up-scroll/address bar quirks
-        ScrollTrigger.normalizeScroll(true);
-      }
-
-      // Make sure ScrollTrigger measures correctly after content/fonts load
-      requestAnimationFrame(() => ScrollTrigger.refresh());
-    });
-
-    return () => {
-      ctx.revert(); // kills tweens and ScrollTriggers created in this effect
     };
   }, []);
 
@@ -348,324 +239,6 @@ function App() {
     }
   };
 
-  // Background layer configuration with responsive heights
-  const backgroundLayers = [
-    {
-      id: "solid-bg-color",
-      imageUrl: "/this/is/a/fake/image.png", // This will fail to load, showing fallback
-      zIndex: -100,
-      opacity: 1,
-      fallbackColor: "#2A2627", // This should show as the background color
-      priority: true, // Always load immediately
-    },
-    {
-      id: "background-comb",
-      imageUrl: "/images/bg-comb.svg",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 1,
-      top: 0,
-      blendMode: "normal",
-      useIntrinsicHeight: false,
-      height: "500vh",
-      width: "100%",
-      fallbackColor: "transparent",
-      priority: true,
-    },
-    {
-      id: "stars-left",
-      imageUrl: "/images/stars-left.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 0.8,
-      top: "80vh",
-      left: "-35%",
-      height: "30vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "stars-right",
-      imageUrl: "/images/stars-right.png",
-      position: "absolute" as const,
-      zIndex: -99,
-      opacity: 0.8,
-      top: "60vh", // A bit higher than stars-left (80vh)
-      left: "35%", // Positioned on the right side (100% + 35% overhang = 135%)
-      height: "30vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "about-circle",
-      imageUrl: "/images/about-circle.png",
-      position: "absolute" as const,
-      zIndex: -80,
-      opacity: aboutCircleOpacity,
-      top: aboutCircleTop,
-      left: "0%",
-      height: "150vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "stars-about",
-      imageUrl: "/images/stars-about.png",
-      position: "absolute" as const,
-      zIndex: -81,
-      opacity: 0.8, // Increase visibility
-      top: "255vh", // Start at the top of the viewport
-      left: "25%",
-      height: "30vh", // Covers the viewport while scrolling
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true,
-    },
-    {
-      id: "about-accent",
-      imageUrl: isUltraWide ? "/this/is/fake" : "/images/about-accent.svg",
-      position: "absolute" as const,
-      zIndex: -70,
-      opacity: 1,
-      top: "250vh",
-      left: "0%",
-      height: "30vh",
-      width: "100%",
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "stars-schedule",
-      imageUrl: "/images/stars-schedule.png",
-      position: "absolute" as const,
-      zIndex: -51,
-      opacity: 0.8,
-      top: "400vh", // A bit higher than stars-left (80vh)
-      left: "-30%", // Positioned on the right side (100% + 35% overhang = 135%)
-      height: "40vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "corridor-1",
-      imageUrl: "/images/corridor-1.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 1,
-      top: "440vh",
-      left: "calc(50% - 125px)",
-      width: "250px",
-      height: "210vh",
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      useIntrinsicHeight: false,
-    },
-    {
-      id: "ringed-red-planet",
-      imageUrl: "/images/ringed-red-planet.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 1,
-      top: "470vh",
-      left: "75vw",
-      width: "25vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "schedule-grid",
-      imageUrl: "/images/schedule-grid.png",
-      position: "absolute" as const,
-      zIndex: -70,
-      opacity: 1,
-      top: "470vh",
-      left: "0%",
-      width: "100%",
-      height: "260vh",
-      useIntrinsicHeight: false,
-      scaleMode: "cover" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "white-star",
-      imageUrl: "/images/white-star.png",
-      position: "absolute" as const,
-      zIndex: -40,
-      opacity: 1,
-      top: "525vh",
-      left: "20vw",
-      width: "20vw",
-      height: "20vh",
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "blue-red-planet",
-      imageUrl: "/images/blue-red-planet.png",
-      position: "absolute" as const,
-      zIndex: -40,
-      opacity: 1,
-      top: "600vh",
-      left: "60vw",
-      width: "20vw",
-      height: "20vh",
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "faq-gradient",
-      imageUrl: "/images/faq-gradient.png",
-      position: "absolute" as const,
-      zIndex: -50,
-      opacity: 1,
-      top: "700vh",
-      left: "0%",
-      width: "100vw",
-      height: "1200vh",
-      useIntrinsicHeight: false,
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true,
-    },
-    {
-      id: "stars-faq",
-      imageUrl: "/images/stars-faq.png",
-      position: "absolute" as const,
-      zIndex: 0,
-      opacity: 0.8,
-      top: "830vh", // A bit higher than stars-left (80vh)
-      left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
-      height: "40vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "faq-circle",
-      imageUrl: "/images/faq-circle.png",
-      position: "absolute" as const,
-      zIndex: -99,
-      opacity: faqCircleOpacity,
-      top: faqCircleTop,
-      left: "0%",
-      height: "150vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "stars-faq2",
-      imageUrl: "/images/stars-faq2.png",
-      position: "absolute" as const,
-      zIndex: 0,
-      opacity: 0.8,
-      top: "960vh", // A bit higher than stars-left (80vh)
-      left: "35%", // Positioned on the right side (100% + 35% overhang = 135%)
-      height: "40vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "faq-accent",
-      imageUrl: "/images/faq_paths.svg",
-      position: "absolute" as const,
-      zIndex: -30,
-      opacity: 1,
-      top: "840vh",
-      left: "0vw",
-      width: "100vw",
-      height: "20vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "stars-sponsors",
-      imageUrl: "/images/stars-sponsors.png",
-      position: "absolute" as const,
-      zIndex: 0,
-      opacity: 0.8, // Increase visibility
-      top: "1040vh", // Start at the top of the viewport
-      left: "35%",
-      height: "40vh", // Covers the viewport while scrolling
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true,
-    },
-    {
-      id: "orbits",
-      imageUrl: "/images/solar_sys.svg",
-      position: "absolute" as const,
-      zIndex: -40,
-      opacity: 1,
-      top: "1350vh",
-      left: "0vw",
-      width: "100vw",
-      height: "200vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-    {
-      id: "stars-message",
-      imageUrl: "/images/stars-faq.png",
-      position: "absolute" as const,
-      zIndex: 0,
-      opacity: 0.8,
-      top: "1600vh", // A bit higher than stars-left (80vh)
-      left: "-35%", // Positioned on the right side (100% + 35% overhang = 135%)
-      height: "40vh",
-      scaleMode: "contain" as BackgroundScaleMode,
-      backgroundPosition: "center",
-      blendMode: "normal",
-      fallbackColor: "transparent",
-      priority: true, // Always load immediately
-    },
-    {
-      id: "footer-accent",
-      imageUrl: "/images/footer-accent-high-res.png",
-      position: "absolute" as const,
-      zIndex: -80,
-      opacity: 1,
-      top: "1630vh",
-      left: "-40vw",
-      width: "150vw",
-      height: "120vh",
-      useIntrinsicHeight: false,
-      scaleMode: "fill" as BackgroundScaleMode,
-      blendMode: "normal",
-      fallbackColor: "transparent",
-    },
-  ];
-
   return (
     <TypingProvider>
       <>
@@ -673,13 +246,7 @@ function App() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           rel="stylesheet"
         />
-        <div className="App font-dosis">
-          {/* Background Manager - replaces parallax background system */}
-          <BackgroundManager
-            layers={backgroundLayers}
-            globalFallbackColor="#C5E1E6"
-          />
-
+        <div className="App font-dosis" style={{ backgroundColor: "#3B344B", minHeight: "100vh" }}>
           {/* Header - updated to work without parallax */}
           <Header />
 
@@ -705,7 +272,7 @@ function App() {
                   <h2
                     className="text-center mb-6"
                     style={{
-                      fontFamily: "var(--font-source-code-pro)",
+                      fontFamily: "var(--font-futura-cyrillic)",
                       fontWeight: 100,
                       fontSize: "clamp(18px, 3.5vw, 28px)",
                       lineHeight: "100%",
@@ -729,7 +296,7 @@ function App() {
                   <h1
                     className="text-center mb-12"
                     style={{
-                      fontFamily: "var(--font-sprite-graffiti)",
+                      fontFamily: "var(--font-disket-mono)",
                       fontWeight: 400,
                       fontSize: "clamp(32px, 8vw, 80px)",
                       lineHeight: "100%",

@@ -53,7 +53,7 @@ export default function AboutSection() {
           <p
             className="text-white"
             style={{
-              fontFamily: "var(--font-futura-cyrillic)",
+              fontFamily: "var(--font-code-pro)",
               fontWeight: 700,
               fontSize: "clamp(1rem, 1.7vw, 1.5rem)",
               lineHeight: 1.5,
@@ -70,7 +70,7 @@ export default function AboutSection() {
           <p
             className="text-white mt-6"
             style={{
-              fontFamily: "var(--font-futura-cyrillic)",
+              fontFamily: "var(--font-code-pro)",
               fontWeight: 700,
               fontSize: "clamp(1rem, 1.7vw, 1.5rem)",
               lineHeight: 1.5,
@@ -85,7 +85,7 @@ export default function AboutSection() {
             href="https://hackp.ac/coc"
             target="_blank"
             className="inline-block mt-6 underline text-yellow-300 hover:text-yellow-200 transition-colors duration-200"
-            style={{ fontFamily: "var(--font-futura-cyrillic)", fontWeight: 700 }}
+            style={{ fontFamily: "var(--font-code-pro)", fontWeight: 700 }}
           >
             Code of Conduct
           </a>

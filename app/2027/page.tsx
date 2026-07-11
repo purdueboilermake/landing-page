@@ -6,6 +6,7 @@ import FAQAccordian from "@/app/2027/components/FAQAccordianBM14";
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 import { TypingProvider } from "@/context/TypingContext";
+import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 
 const sponsors = [
   [
@@ -316,7 +317,7 @@ function App() {
                 </div>
                 <div
                   className="hero-buttons"
-                  style={{ 
+                  style={{
                     display: "flex",
                     flexDirection: "row",
                     gap: "1.5rem",
@@ -364,11 +365,14 @@ function App() {
               className="w-full flex items-center justify-center absolute"
               style={{ top: "410vh", paddingTop: "8rem" }}
             >
+              <ScheduleSection activities={activities} />
+              {/*
               <div className="w-full max-w-7xl mx-auto px-4">
                 <div
                   className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
                   style={{ top: "8rem" }}
                 >
+                  
                   <div
                     style={{
                       fontFamily: "var(--font-disket-mono)",
@@ -425,6 +429,9 @@ function App() {
                   })}
                 </div>
               </div>
+            
+            */}
+
             </section>
 
             {/* FAQ Section */}
@@ -466,7 +473,7 @@ function App() {
               </div>
             </section>
 
-{/* Sponsors Section */}
+            {/* Sponsors Section */}
             <section
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
@@ -491,32 +498,32 @@ function App() {
                   <span style={{ animation: "blink 1s infinite" }}>_</span>
                 </h1>
 
-                  <h2
-                    className="text-center mb-6"
-                    style={{
-                      
-                      fontWeight: 400,
-                      fontSize: "clamp(18px, 3.5vw, 28px)",
-                      lineHeight: "100%",
-                      letterSpacing: "0.1em",
-                      textAlign: "center",
-                      width: "100%",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                      fontFamily: "var(--font-disket-mono)",
-                      color: "#FFE958",
-                      textShadow: "0px 0px 15px #FFDE00",
-                    }}
+                <h2
+                  className="text-center mb-6"
+                  style={{
+
+                    fontWeight: 400,
+                    fontSize: "clamp(18px, 3.5vw, 28px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    textAlign: "center",
+                    width: "100%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                    fontFamily: "var(--font-disket-mono)",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  [coming soon]
+                  <span
+                    className="text-white"
+                  // style={{ animation: "blink 1s step-end infinite" }}
                   >
-                    [coming soon]
-                    <span
-                      className="text-white"
-                      // style={{ animation: "blink 1s step-end infinite" }}
-                    >
-                      {/* _ */}
-                    </span>
-                  </h2>
+                    {/* _ */}
+                  </span>
+                </h2>
                 {/* Button */}
                 <a
                   // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"

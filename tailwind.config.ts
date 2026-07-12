@@ -23,6 +23,7 @@ const config: Config = {
         'infinite-scroll-right': 'infinite-scroll-right 120s linear infinite',
         'fade-on-load': 'fade-in 10s ease-in-out',
         'slide-in': 'slide-in 0.5s ease-out forwards',
+        'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
         'infinite-scroll-right': {
@@ -37,6 +38,10 @@ const config: Config = {
           '0%': { transform: 'translateX(-50px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
         },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-15px)' },
+        }
       },
       textShadow: {
         sm: '0 0 0.5rem var(--tw-shadow-color)',

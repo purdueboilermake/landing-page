@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Dosis, Averia_Libre, Arvo } from 'next/font/google'
+import { Dosis, Averia_Libre, Arvo, Roboto_Flex, Rubik_Wet_Paint } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css';
 
@@ -51,13 +51,26 @@ const SourceCodePro = localFont({
   display: 'swap',
 })
 
+const robotoFlex = Roboto_Flex({
+  subsets: ['latin'],
+  variable: '--font-roboto-flex',
+  display: 'swap',
+})
+
+const rubikWetPaint = Rubik_Wet_Paint({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-rubik-wet-paint',
+  display: 'swap',
+})
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${dosis.variable} ${averiaLibre.variable} ${arvo.variable} ${disketMono.variable} ${futuraCyrillic.variable} ${spriteGraffiti.variable} ${SourceCodePro.variable}`}>
+    <html lang="en" className={`${dosis.variable} ${averiaLibre.variable} ${arvo.variable} ${disketMono.variable} ${futuraCyrillic.variable} ${spriteGraffiti.variable} ${SourceCodePro.variable} ${robotoFlex.variable} ${rubikWetPaint.variable}`}>
       <body>{children}</body>
     </html>
   )

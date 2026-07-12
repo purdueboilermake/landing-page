@@ -6,6 +6,7 @@ import FAQAccordian from "@/app/2027/components/FAQAccordianBM14";
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 import { TypingProvider } from "@/context/TypingContext";
+import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 
 const sponsors = [
   [
@@ -111,6 +112,7 @@ const sponsors = [
   ],
 ];
 
+{/*The schedule information*/}
 const activities = [
   {
     title: "Opening Ceremony",
@@ -253,7 +255,7 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "1900vh", overflow: "hidden" }}
+            style={{ height: "1950vh", overflow: "hidden" }}
           >
             {/* Hero Section */}
             <section id="hero" className="hero-section">
@@ -316,7 +318,7 @@ function App() {
                 </div>
                 <div
                   className="hero-buttons"
-                  style={{ 
+                  style={{
                     display: "flex",
                     flexDirection: "row",
                     gap: "1.5rem",
@@ -362,13 +364,16 @@ function App() {
             <section
               id="schedule"
               className="w-full flex items-center justify-center absolute"
-              style={{ top: "410vh", paddingTop: "8rem" }}
+              style={{ top: "430vh", paddingTop: "8rem" }}
             >
+              <ScheduleSection activities={activities} />
+              {/*
               <div className="w-full max-w-7xl mx-auto px-4">
                 <div
                   className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
                   style={{ top: "8rem" }}
                 >
+                  
                   <div
                     style={{
                       fontFamily: "var(--font-disket-mono)",
@@ -425,6 +430,9 @@ function App() {
                   })}
                 </div>
               </div>
+            
+            */}
+
             </section>
 
             {/* FAQ Section */}
@@ -432,7 +440,7 @@ function App() {
               id="faq"
               className="w-full flex items-start justify-center absolute overflow-x-hidden"
               style={{
-                top: "840vh",
+                top: "700vh",
                 paddingTop: "8rem",
                 paddingBottom: "8rem",
               }}
@@ -466,11 +474,11 @@ function App() {
               </div>
             </section>
 
-{/* Sponsors Section */}
+            {/* Sponsors Section */}
             <section
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1050vh" }}
+              style={{ top: "1100vh" }}
             >
               {/* Main Content Container - All content centered vertically */}
               <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
@@ -491,32 +499,32 @@ function App() {
                   <span style={{ animation: "blink 1s infinite" }}>_</span>
                 </h1>
 
-                  <h2
-                    className="text-center mb-6"
-                    style={{
-                      
-                      fontWeight: 400,
-                      fontSize: "clamp(18px, 3.5vw, 28px)",
-                      lineHeight: "100%",
-                      letterSpacing: "0.1em",
-                      textAlign: "center",
-                      width: "100%",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                      fontFamily: "var(--font-disket-mono)",
-                      color: "#FFE958",
-                      textShadow: "0px 0px 15px #FFDE00",
-                    }}
+                <h2
+                  className="text-center mb-6"
+                  style={{
+
+                    fontWeight: 400,
+                    fontSize: "clamp(18px, 3.5vw, 28px)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.1em",
+                    textAlign: "center",
+                    width: "100%",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                    fontFamily: "var(--font-disket-mono)",
+                    color: "#FFE958",
+                    textShadow: "0px 0px 15px #FFDE00",
+                  }}
+                >
+                  [coming soon]
+                  <span
+                    className="text-white"
+                  // style={{ animation: "blink 1s step-end infinite" }}
                   >
-                    [coming soon]
-                    <span
-                      className="text-white"
-                      // style={{ animation: "blink 1s step-end infinite" }}
-                    >
-                      {/* _ */}
-                    </span>
-                  </h2>
+                    {/* _ */}
+                  </span>
+                </h2>
                 {/* Button */}
                 <a
                   // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
@@ -545,7 +553,7 @@ function App() {
             <section
               id="contact"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1540vh" }}
+              style={{ top: "1590vh" }}
             >
               {/* Main Content Container - All content centered vertically */}
               <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
@@ -594,7 +602,7 @@ function App() {
             <section
               id="footer"
               className="absolute flex flex-col items-center justify-center w-full gap-8"
-              style={{ top: "1880vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
+              style={{ top: "1930vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
             >
               {/* Social Media Icons */}
               <div className="flex flex-row gap-6">

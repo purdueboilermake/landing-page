@@ -112,6 +112,7 @@ const sponsors = [
   ],
 ];
 
+{/*The schedule information*/}
 const activities = [
   {
     title: "Opening Ceremony",

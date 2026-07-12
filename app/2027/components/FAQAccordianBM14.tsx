@@ -1,103 +1,108 @@
 /**
- * FAQAccordian.tsx
- * Will be used to display the Frequently Asked Questions that hackers might have
- * @AshokSaravanan222
- * 09-15-2024
+ * FAQAccordianBM14.tsx
+ * Yellow caution-tape styled accordion for the 2027 FAQ section.
  */
-import React, { useState } from 'react';
-import Image from 'next/image';
+
+import React, { useState } from "react";
 
 type FAQAccordianProps = {
-  questions: { question: string, answer: string }[];
+  questions: { question: string; answer: string }[];
 };
+
+function HazardStripes() {
+  return (
+    <div
+      className="flex-shrink-0 self-stretch"
+      style={{
+        width: "clamp(48px, 8vw, 72px)",
+        background: `repeating-linear-gradient(
+          -55deg,
+          #000 0px,
+          #000 16px,
+          #FFE42D 16px,
+          #FFE42D 32px
+        )`,
+      }}
+      aria-hidden
+    />
+  );
+}
 
 export default function FAQAccordian({ questions }: FAQAccordianProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [hasOpenedBefore, setHasOpenedBefore] = useState<Set<number>>(new Set());
 
   const toggleAccordion = (index: number) => {
-    if (openIndex === index) {
-      // If already open, close it
-      setOpenIndex(null);
-    } else {
-      // If closed, open it (this will automatically close any previously open item)
-      // Mark as opened for the first time
-      if (!hasOpenedBefore.has(index)) {
-        setHasOpenedBefore(prevSet => new Set(prevSet).add(index));
-      }
-      setOpenIndex(index);
-    }
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-8 overflow-x-hidden">
-        {/* <div className="mb-12 text-center">
-           <div
-             style={{
-               fontFamily: 'var(--font-disket-mono)',
-               fontWeight: 400,
-               fontSize: 'clamp(32px, 8vw, 60px)',
-               lineHeight: '100%',
-               letterSpacing: '0.1em',
-               color: '#FFE958',
-               textShadow: '0px 0px 15px #FFDE00',
-             }}
-           >
-             FAQ<span style={{ animation: 'blink 1s infinite' }}>_</span>
-           </div>
-       </div> */}
+    <div className="w-full space-y-5">
+      {questions.map((faq, index) => {
+        const stripesOnLeft = index % 2 === 1;
+        const isOpen = openIndex === index;
 
-      {/* Individual question boxes matching the image */}
-      <div className="space-y-6 w-full overflow-x-hidden">
-        {questions.map((faq, index) => (
-          <div key={index} className="w-full relative overflow-x-hidden">
+        return (
+          <div key={index} className="w-full">
             <button
               type="button"
-              className={`flex items-center justify-between w-full p-4 md:p-5 lg:p-6 font-medium border-2 border-white backdrop-blur-sm text-white hover:bg-gray-800/90 transition-all duration-300 ease-in-out z-10
-                ${openIndex === index ? 'border-b-0' : ''}
-              `}
-              style={{backgroundColor: '#2A2627E6'}}
+              className="flex items-stretch w-full overflow-hidden transition-opacity duration-200 hover:opacity-90"
+              style={{ backgroundColor: "#FFE42D" }}
               onClick={() => toggleAccordion(index)}
-              aria-expanded={openIndex === index}
+              aria-expanded={isOpen}
             >
-              <div
-                className="text-white text-left text-lg md:text-xl break-words overflow-wrap-anywhere"
-                style={{ 
-                  wordBreak: 'break-word',
-                  fontFamily: 'var(--font-futura-cyrillic)',
-                  fontWeight: 'bold'
+              {stripesOnLeft && <HazardStripes />}
+
+              <span
+                className={`flex-1 py-5 px-5 text-left text-black ${
+                  stripesOnLeft ? "text-center sm:text-left" : ""
+                }`}
+                style={{
+                  fontFamily: "var(--font-source-code-pro)",
+                  fontWeight: 700,
+                  fontSize: "clamp(0.9rem, 1.6vw, 1.15rem)",
+                  lineHeight: 1.3,
                 }}
               >
                 {faq.question}
-              </div>
-              <div className={`text-white text-xl transition-transform duration-300 flex-shrink-0 ml-2 ${openIndex === index ? 'rotate-180' : ''}`}>
+              </span>
+
+              {!stripesOnLeft && <HazardStripes />}
+
+              <span
+                className="flex items-center justify-center flex-shrink-0 px-3 text-black transition-transform duration-300"
+                style={{
+                  fontSize: "clamp(0.85rem, 1.4vw, 1rem)",
+                  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                }}
+                aria-hidden
+              >
                 ▼
-              </div>
+              </span>
             </button>
-            
-            {/* Answer content - seamless connection to question header */}
+
             <div
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                openIndex === index ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+                isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
               }`}
-              style={{
-                willChange: 'max-height, opacity'
-              }}
             >
-               <div className="p-4 md:p-5 lg:p-6 border-2 border-white text-white text-left overflow-hidden overflow-wrap-anywhere" style={{backgroundColor: '#2A2627E6', wordBreak: 'break-word'}}>
-                 <div 
-                   className="text-white text-sm md:text-base leading-relaxed text-left"
-                   style={{
-                     fontFamily: 'var(--font-futura-cyrillic)'
-                   }}
-                 >
-                   {faq.answer}
-                 </div>
-               </div>
+              <div
+                className="px-5 py-4 text-white text-left"
+                style={{
+                  backgroundColor: "#111111",
+                  border: "2px solid #FFE42D",
+                  borderTop: "none",
+                  fontFamily: "var(--font-source-code-pro)",
+                  fontWeight: 400,
+                  fontSize: "clamp(0.85rem, 1.4vw, 1rem)",
+                  lineHeight: 1.6,
+                }}
+              >
+                {faq.answer}
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }

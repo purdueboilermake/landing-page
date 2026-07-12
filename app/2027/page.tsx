@@ -254,7 +254,7 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "1900vh", overflow: "hidden" }}
+            style={{ height: "1950vh", overflow: "hidden" }}
           >
             {/* Hero Section */}
             <section id="hero" className="hero-section">
@@ -363,7 +363,7 @@ function App() {
             <section
               id="schedule"
               className="w-full flex items-center justify-center absolute"
-              style={{ top: "410vh", paddingTop: "8rem" }}
+              style={{ top: "430vh", paddingTop: "8rem" }}
             >
               <ScheduleSection activities={activities} />
               {/*
@@ -439,7 +439,7 @@ function App() {
               id="faq"
               className="w-full flex items-start justify-center absolute overflow-x-hidden"
               style={{
-                top: "840vh",
+                top: "700vh",
                 paddingTop: "8rem",
                 paddingBottom: "8rem",
               }}
@@ -477,7 +477,7 @@ function App() {
             <section
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1050vh" }}
+              style={{ top: "1100vh" }}
             >
               {/* Main Content Container - All content centered vertically */}
               <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
@@ -552,7 +552,7 @@ function App() {
             <section
               id="contact"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1540vh" }}
+              style={{ top: "1590vh" }}
             >
               {/* Main Content Container - All content centered vertically */}
               <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
@@ -601,7 +601,7 @@ function App() {
             <section
               id="footer"
               className="absolute flex flex-col items-center justify-center w-full gap-8"
-              style={{ top: "1880vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
+              style={{ top: "1930vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
             >
               {/* Social Media Icons */}
               <div className="flex flex-row gap-6">

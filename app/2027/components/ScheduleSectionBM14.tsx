@@ -30,7 +30,7 @@ const TITLE_COLORS = [
     "#FF4D4D", // Red/Coral
     "#39FF14", // Green
     "#E040FB", // Purple/Magenta
-    "#00E5FF", // Cyan (extra for future 6th)
+    "#00E5FF", // Cyan
 ];
 
 // ── ActivityCard (inline sub-component) ────────────────────────────────────────
@@ -112,7 +112,7 @@ function ActivityCard({ activity, index, colorIndex }: ActivityCardProps) {
             }}
         >
             <div
-                className="bg-[#2A2627E6] border-[5px] border-white rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] cursor-default w-full"
+                className="bg-[#000000]/25 border-[4px] border-white rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] cursor-default w-full"
                 style={{ padding: "clamp(1.2rem, 3vw, 2rem) clamp(1.5rem, 3.5vw, 2.5rem)" }}
             >
                 {/* Time */}
@@ -150,54 +150,59 @@ export default function ScheduleSection({
     activities,
 }: ScheduleSectionProps) {
     return (
-        <div className="w-full max-w-6xl mx-auto px-4 relative pb-20">
-            {/* Section title — text fallback until graffiti asset is provided */}
-            <div className="relative flex justify-center items-center text-center mb-16 min-h-[120px]">
-                {/* Placeholder for the Schedule graffiti title */}
-                {/* <Image 
-          src="/imagesbm14/schedule-title.png" 
-          alt="Schedule" 
-          width={400} 
-          height={120} 
-          className="hidden md:block" 
-        /> */}
-                <h2
-                    className="text-[#FFE42D]"
-                    style={{
-                        fontFamily: 'var(--font-rubik-wet-paint), cursive',
-                        fontSize: "clamp(36px, 8vw, 72px)",
-                        textShadow: "0px 0px 20px rgba(255, 222, 0, 0.6)"
-                    }}
+        <div className="w-[100vw] relative flex flex-col items-center overflow-x-hidden">
+            <div className="w-full max-w-6xl mx-auto px-4 relative pb-10">
+                {/* Section title — graffiti asset */}
+                <div className="relative flex justify-center items-center text-center mb-24 min-h-[140px] w-full">
+                    <Image
+                        src="/imagesbm14/schedule/title.png"
+                        alt="Schedule"
+                        width={850}
+                        height={250}
+                        className="object-contain w-auto h-auto max-h-[220px]"
+                        priority
+                    />
+                </div>
+
+                {/* "ACTIVITY SECTION" vertical text on the right side */}
+                <div className="absolute right-[-2%] md:right-0 bottom-[10%] md:bottom-[15%] z-0 pointer-events-none">
+                    <Image src="/imagesbm14/schedule/activity sign.png" alt="Activity Section" width={200} height={600} className="object-contain w-[15vw] md:w-[150px] lg:w-[200px] h-auto" />
+                </div>
+
+                {/* Background Bricks */}
+                <Image src="/imagesbm14/schedule/brick2 1.png" alt="Bricks" width={180} height={180} className="absolute z-[-1] opacity-50 top-[8%] left-[8%] w-[15vw] md:w-[180px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/brick_1 2.png" alt="Bricks" width={160} height={160} className="absolute z-[-1] opacity-50 top-[35%] right-[10%] w-[12vw] md:w-[160px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/brick2 1.png" alt="Bricks" width={200} height={200} className="absolute z-[-1] opacity-50 bottom-[20%] left-[12%] w-[18vw] md:w-[200px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/brick_1 2.png" alt="Bricks" width={140} height={140} className="absolute z-[-1] opacity-50 top-[50%] left-[38%] w-[10vw] md:w-[140px] h-auto pointer-events-none" />
+
+                {/* Decorative images */}
+                <Image src="/imagesbm14/schedule/star graffiti.png" alt="Star" width={350} height={350} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite] top-[0%] md:top-[-2%] right-[5%] md:right-[10%] w-[25vw] md:w-[250px] lg:w-[350px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/skateboard.png" alt="Skateboard" width={500} height={300} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-1s] top-[12%] right-[2%] md:right-[3%] w-[30vw] md:w-[300px] lg:w-[400px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/spray paint.png" alt="Spraypaint" width={240} height={340} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-2s] top-[40%] left-[38%] md:left-[38%] w-[15vw] md:w-[180px] lg:w-[240px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/cone.png" alt="Cone" width={220} height={220} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-3s] bottom-[8%] md:bottom-[5%] left-[45%] w-[18vw] md:w-[180px] lg:w-[220px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/BMLogoSchedule.png" alt="Logo" width={500} height={500} className="absolute z-0 opacity-[0.85] animate-[float_6s_ease-in-out_infinite_-4s] top-[42%] md:top-[42%] left-[-5%] md:left-[-4%] w-[35vw] md:w-[350px] lg:w-[500px] h-auto pointer-events-none" />
+
+                {/* RoughTexPurple was moved to the bottom of the wrapper */}
+
+                {/* Zig-zag card container */}
+                <div
+                    className="flex flex-col relative w-full"
+                    style={{ gap: "clamp(2.5rem, 6vw, 5rem)" }}
                 >
-                    Schedule
-                </h2>
+                    {activities.map((activity, index) => (
+                        <ActivityCard
+                            key={`schedule-${index}`}
+                            activity={activity}
+                            index={index}
+                            colorIndex={index}
+                        />
+                    ))}
+                </div>
             </div>
 
-            {/* Placeholder for "ACTIVITY SECTION" vertical text on the right side */}
-            {/* <div className="absolute right-0 top-1/4">
-        <Image src="/imagesbm14/activity-section.png" alt="Activity Section" width={50} height={400} />
-      </div> */}
-
-            {/* Decorative placeholders */}
-            {/* <Image src="/imagesbm14/star.png" alt="Star" width={80} height={80} className="absolute z-0 opacity-80 animate-[float_6s_ease-in-out_infinite] top-[10%] left-[15%] hidden md:block" /> */}
-            {/* <Image src="/imagesbm14/skateboard.png" alt="Skateboard" width={120} height={60} className="absolute z-0 opacity-80 animate-[float_6s_ease-in-out_infinite_-1s] top-[25%] right-[20%] hidden md:block" /> */}
-            {/* <Image src="/imagesbm14/spraypaint.png" alt="Spraypaint" width={80} height={120} className="absolute z-0 opacity-80 animate-[float_6s_ease-in-out_infinite_-2s] top-[45%] left-[35%] hidden md:block" /> */}
-            {/* <Image src="/imagesbm14/cone.png" alt="Cone" width={70} height={70} className="absolute z-0 opacity-80 animate-[float_6s_ease-in-out_infinite_-3s] top-[75%] left-[45%] hidden md:block" /> */}
-            {/* <Image src="/imagesbm14/logo.png" alt="Logo" width={100} height={100} className="absolute z-0 opacity-80 animate-[float_6s_ease-in-out_infinite_-4s] top-[85%] right-[25%] hidden md:block" /> */}
-
-            {/* Zig-zag card container */}
-            <div
-                className="flex flex-col relative w-full"
-                style={{ gap: "clamp(2.5rem, 6vw, 5rem)" }}
-            >
-                {activities.map((activity, index) => (
-                    <ActivityCard
-                        key={`schedule-${index}`}
-                        activity={activity}
-                        index={index}
-                        colorIndex={index}
-                    />
-                ))}
+            {/* RoughTexPurple at the very bottom, below all activity boxes */}
+            <div className="w-full h-[250px] md:h-[400px] relative z-[-1] pointer-events-none mt-10">
+                <Image src="/imagesbm14/schedule/RoughTexPurple.png" alt="Rough Texture" fill className="object-cover object-top opacity-90" />
             </div>
         </div>
     );

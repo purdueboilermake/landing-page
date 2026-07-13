@@ -21,14 +21,29 @@ export default function AboutSection() {
       <img
         src="/imagesbm14/about/bm-left.png"
         alt=""
-        className="absolute pointer-events-none select-none z-[1]"
-        style={{ top: "-14%", left: "-13%", height: "155%", width: "auto" }}
+        className="hidden sm:block absolute pointer-events-none select-none z-[1]"
+        style={{
+          left: "clamp(-55px, -6vw, -20px)",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "clamp(200px, 40vw, 500px)",
+          height: "auto",
+          maxHeight: "120vh",
+        }}
       />
       <img
         src="/imagesbm14/about/bm-right.png"
         alt=""
-        className="absolute pointer-events-none select-none z-[1]"
-        style={{ top: "-14%", right: "-11%", height: "155%", width: "auto" }}
+        className="hidden sm:block absolute pointer-events-none select-none z-[1]"
+        style={{
+          right: "clamp(-55px, -6vw, -20px)",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "clamp(200px, 40vw, 400px)",
+          height: "auto",
+          maxHeight: "120vh",
+
+        }}
       />
  
       <div className="relative z-[2] w-full max-w-[1180px] px-5 flex flex-col items-center gap-7">
@@ -48,7 +63,11 @@ export default function AboutSection() {
  
         <div
           className="w-full border-[3px] border-white rounded-[34px] backdrop-blur-sm p-8 sm:p-10 md:p-12 lg:p-14 overflow-y-auto"
-          style={{ backgroundColor: "rgba(26, 23, 34, 0.42)", maxHeight: "80vh" }}
+          style={{
+            backgroundColor: "rgba(26, 23, 34, 0.42)",
+            maxHeight: "min(70vh, calc(100vh - 160px))",
+            minHeight: "200px",
+          }}
         >
           <p
             className="text-white"

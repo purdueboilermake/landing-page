@@ -8,6 +8,50 @@ import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 import { TypingProvider } from "@/context/TypingContext";
 import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 
+interface DecorImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  label?: string;
+}
+
+function DecorImage({ label, style, className, ...props }: DecorImageProps) {
+  const [broken, setBroken] = useState(false);
+
+  if (broken) {
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          padding: "0.5rem",
+          border: "2px dashed rgba(255, 255, 255, 0.35)",
+          borderRadius: "12px",
+          background: "rgba(255, 255, 255, 0.04)",
+          color: "rgba(255, 255, 255, 0.5)",
+          fontFamily: "var(--font-dosis, sans-serif)",
+          fontSize: "0.7rem",
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+        }}
+      >
+        {label}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      {...props}
+      style={style}
+      className={className}
+      onError={() => setBroken(true)}
+    />
+  );
+}
+
 const sponsors = [
   [
     // XL logos
@@ -255,7 +299,7 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "1950vh", overflow: "hidden" }}
+            style={{ height: "calc(1383vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
             {/* Hero Section */}
             <section id="hero" className="hero-section">
@@ -474,186 +518,310 @@ function App() {
               </div>
             </section>
 
-            {/* Sponsors Section */}
+            
+            {/* ================= Sponsors Section ================= */}
             <section
               id="sponsors"
-              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1100vh" }}
+              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden bg-[#292526]"
+              style={{ top: "1100vh", 
+                height: "283vh"
+              }}
             >
-              {/* Main Content Container - All content centered vertically */}
-              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
-                {/* Message text */}
-                <h1
-                  className="text-center"
-                  style={{
-                    fontFamily: "var(--font-disket-mono)",
-                    fontWeight: 400,
-                    fontSize: "clamp(32px, 8vw, 60px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    color: "#FFE958",
-                    textShadow: "0px 0px 15px #FFDE00",
-                  }}
-                >
-                  SPONSORS
-                  <span style={{ animation: "blink 1s infinite" }}>_</span>
-                </h1>
+              <div className="flex flex-col items-center justify-center gap-14 max-w-[1406px] w-full relative">
 
-                <h2
-                  className="text-center mb-6"
+                {/* Decoration layer — locked to the design frame's aspect
+                    ratio (1405.55 x 1550.66) so every % position below
+                    resolves against a real, defined height instead of
+                    "auto". (An auto-height container is what sent the
+                    splotch/crown/drip flying up near the page header
+                    before — % top/left on an absolutely positioned child
+                    only works reliably when its containing block has a
+                    real height.) */}
+                <div
+                  className="absolute top-0 left-0 w-full pointer-events-none"
                   style={{
+                    aspectRatio: "1405.5479736328125 / 1550.6602783203125",
+                    zIndex: 0,
+                  }}
+                >
 
-                    fontWeight: 400,
-                    fontSize: "clamp(18px, 3.5vw, 28px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    textAlign: "center",
-                    width: "100%",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                    fontFamily: "var(--font-disket-mono)",
-                    color: "#FFE958",
-                    textShadow: "0px 0px 15px #FFDE00",
-                  }}
-                >
-                  [coming soon]
-                  <span
-                    className="text-white"
-                  // style={{ animation: "blink 1s step-end infinite" }}
-                  >
-                    {/* _ */}
-                  </span>
-                </h2>
-                {/* Button */}
-                <a
-                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                  href="/past"
-                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
-                  style={{
-                    fontFamily: "var(--font-futura-cyrillic)",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 2vw, 18px)",
-                    letterSpacing: "0.15em",
-                  }}
-                >
-                  <span
+                  {/* Big pink splotch — bleeds off the left edge, level with
+                      the middle rows of the sponsor grid. Sized off the
+                      real image's own proportions (width + maxHeight cap)
+                      instead of a guessed aspect-ratio, which was
+                      distorting it. */}
+                  <DecorImage
+                    src="/imagesbm14/spons/splotch-2.png"
+                    alt=""
+                    label="Splotch"
+                    className="absolute opacity-90"
                     style={{
-                      borderBottom: "2px solid #FFFFFF",
-                      paddingBottom: "4px",
+                      
+                
+  left: "clamp(-140px, 140vw, 140px)",
+  top: "clamp(150px, 15vh, 4500px)",
+  width: "clamp(250px, 30vw, 500px)",
+  height: "auto",
+  maxHeight: "120vh",
+  zIndex: 1,
+                      transform: "translateX(-80%)",
+                      aspectRatio: "1/ 3",
                     }}
-                  >
-                    IN THE PAST
-                  </span>
-                </a>
-              </div>
+                  />
+
+
+                  {/* Crown doodle — bottom-right of the grid, matches the
+                      exact top/left/size/rotation from the design frame.
+                      zIndex bumped above its siblings so nothing (like the
+                      splotch above) can ever render over it again. */}
+                  <DecorImage
+                    src="/imagesbm14/spons/image-2.png"
+                    alt=""
+                    label="Crown"
+                    className="absolute"
+                    style={{
+                      
+                      top: "90vh",      // example, adjust
+                      right: "2vw",
+                      width: "17vw",
+                      height: "auto",
+                      aspectRatio: "1 / 1",
+                      transform: "rotate(14.87deg)",
+                      zIndex: 5,
+                    }}
+                  />
+                </div>
+
+                {/* Sponsors heading — this is a graphic asset from the design team */}
+                <DecorImage
+                  src="/imagesbm14/spons/icon-2.png"
+                  alt="Sponsors"
+                  label="Sponsors heading"
+                  className="relative z-10 h-auto"
+                  style={{
+                    width: "clamp(280px, 42vw, 676px)",
+                    aspectRatio: "676 / 357",
+                  }}
+                />
+
+                {/* Sponsor tier grid */}
+                <div className="flex flex-col items-center gap-4 w-full max-w-3xl relative z-10">
+                  {sponsors.map((tier, tierIndex) => {
+                    if (tier.length === 0) return null;
+                    const heightByTier = ["h-24", "h-24", "h-20", "h-16", "h-14", "h-14"];
+                    const boxHeight = heightByTier[tierIndex] || "h-14";
+                    return (
+                      <div
+                        key={`tier-${tierIndex}`}
+                        className="flex flex-row flex-wrap items-center justify-center gap-4 w-full"
+                      >
+                        {tier.map((sponsor, i) => (
+                          <a
+                            key={sponsor.name || `placeholder-${tierIndex}-${i}`}
+                            href={sponsor.url || "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center justify-center border-2 border-white rounded-lg ${boxHeight} flex-1 min-w-[120px] max-w-[220px] bg-transparent`}
+                          >
+                            {sponsor.logo ? (
+                              <img
+                                src={sponsor.logo}
+                                alt={sponsor.name}
+                                className="max-h-[70%] max-w-[70%] object-contain"
+                              />
+                            ) : (
+                              <span className="text-white/40 text-xs uppercase tracking-wider">
+                                [logo]
+                              </span>
+                            )}
+                          </a>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+                
+              </div>   
             </section>
 
-            {/* Contact/Message Section */}
-            <section
-              id="contact"
-              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1590vh" }}
-            >
-              {/* Main Content Container - All content centered vertically */}
-              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
-                {/* Message text */}
-                <h1
-                  className="text-center"
-                  style={{
-                    fontFamily: "var(--font-disket-mono)",
-                    fontWeight: 400,
-                    fontSize: "clamp(32px, 8vw, 60px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    color: "#FFE958",
-                    textShadow: "0px 0px 15px #FFDE00",
-                  }}
-                >
-                  Escape Reality
-                  <span style={{ animation: "blink 1s infinite" }}>_</span>
-                </h1>
+            
 
-                {/* Button */}
-                <a
-                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                  href="https://boilermake-apply.web.app"
-                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
-                  style={{
-                    fontFamily: "var(--font-futura-cyrillic)",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 2vw, 18px)",
-                    letterSpacing: "0.15em",
-                  }}
+             {/* ================= Footer Section ================= */}
+            {/* ================= Footer Section ================= */}
+<section
+  id="footer"
+  className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
+  style={{
+    top: "1383vh",
+    zIndex: 100,
+    position: "absolute",
+    backgroundColor: "#403A50",
+    minHeight: "clamp(700px, 60vw, 950px)",
+    paddingBottom: "3rem",
+  }}
+>
+  {/* Transition from Sponsors → Footer */}
+  <div
+    className="absolute left-1/2 -translate-x-1/2 w-screen pointer-events-none"
+    style={{
+      top: "-25vw",
+      zIndex: 1,
+    }}
+  >
+    <DecorImage
+      src="/imagesbm14/spons/Transition.png"
+      alt=""
+      label="Transition"
+      className="block w-full h-auto"
+    />
+  </div>
+              {/* Decoration layer — centered, capped at the design frame's
+                  1280px reference width, and locked to its 1280:1308 aspect
+                  ratio so the % positions below resolve against a real,
+                  defined height instead of "auto" (the same bug that sent
+                  the traffic light off to the wrong spot). */}
+                  
+              <div
+  className="absolute inset-0 flex items-start justify-center pointer-events-none"
+  style={{ zIndex: 10 }}
+>
+                <div
+                  className="relative w-full max-w-[1280px]"
+                  style={{ aspectRatio: "1280 / 1308" }}
                 >
-                  <span
+                  {/* Dripping heart doodle */}
+                  <DecorImage
+                    src="/imagesbm14/spons/heart.png"
+                    alt=""
+                    label="Heart"
+                    className="absolute"
                     style={{
-                      borderBottom: "2px solid #FFFFFF",
-                      paddingBottom: "4px",
+                      top: "9.4%",
+                      left: "28.75%",
+                      width: "40.2%",
+                      height: "auto",
+                      aspectRatio: "1 / 1",
                     }}
-                  >
-                    APPLY NOW!
-                  </span>
-                </a>
-              </div>
-            </section>
+                  />
+ 
+                  {/* Decorative flower — top right */}
+                  <DecorImage
+                    src="/imagesbm14/spons/flower.png"
+                    alt=""
+                    label="Flower"
+                    className="absolute opacity-90"
+                    style={{
+                      top: "7.5%",
+                      left: "80.9%",
+                      width: "18%",
+                      height: "auto",
+                      aspectRatio: "230.8 / 346.2",
+                      transform: "rotate(22.49deg)",
+                    }}
+                  />
+ 
+                  {/* Traffic light doodle — bleeds off the left edge */}
+                  <DecorImage
+                    src="/imagesbm14/spons/traffic-light.png"
+                    alt=""
+                    label="Traffic light"
+                    className="absolute opacity-90"
+                    style={{
+                     top: "clamp(60px, 10vh, 180px)",
+  left: "clamp(-60px, -4vw, -20px)",
+  width: "clamp(160px, 22vw, 300px)",
+  height: "auto",
+  paddingLeft: "clamp(0px, 5vw, 60px)",
+  transform: "rotate(-11.77deg)",
+                      aspectRatio: "277.91 / 416.87",
+                      
+                    }}
+                  />
+ 
+                  {/* Brick doodle — sits between the heart and the flower,
+                      matching the mobile Figma frame. No coordinates were
+                      given for this one — best guess. */}
+                  <DecorImage
+                    src="/imagesbm14/brick_1.webp"
+                    alt=""
+                    label="Brick"
+                    className="absolute opacity-90"
+                    style={{
+                      top: "40%",
+                      left: "10.1%",
+                      width: "10%",
+                      height: "auto",
+                      maxHeight: "11%",
+                    }}
+                  />
 
-            {/* Footer Section */}
-            <section
-              id="footer"
-              className="absolute flex flex-col items-center justify-center w-full gap-8"
-              style={{ top: "1930vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
-            >
-              {/* Social Media Icons */}
-              <div className="flex flex-row gap-6">
+                  {/* Brick doodle — sits between the heart and the flower,
+                      matching the mobile Figma frame. No coordinates were
+                      given for this one — best guess. */}
+                  <DecorImage
+                    src="/imagesbm14/brick2.webp"
+                    alt=""
+                    label="Brick"
+                    className="absolute opacity-90"
+                    style={{
+                      top: "20%",
+                      left: "70.07%",
+                      width: "10%",
+                      height: "auto",
+                      maxHeight: "11%",
+                    }}
+                  />
+                </div>
+              </div>
+ 
+              {/* Social Media Icons — stays centered, above the doodles, near the bottom */}
+              <div className="flex flex-row gap-6 relative z-10">
                 <a
                   href="https://www.instagram.com/boilermake/?hl=en"
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-                  aria-label="Instagram"
-                  onMouseEnter={(e) => {
+                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     const target = e.currentTarget as HTMLElement;
                     target.style.textShadow = "0px 0px 15px #FFE958";
                   }}
-                  onMouseLeave={(e) => {
+                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     const target = e.currentTarget as HTMLElement;
                     target.style.textShadow = "none";
                   }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
                 >
-                  <i
-                    className="fab fa-instagram"
-                    style={{ fontSize: "1.75em" }}
-                  />
+                  <i className="fab fa-instagram" style={{ fontSize: "1.75em" }} />
                 </a>
                 <a
                   href="https://www.linkedin.com/company/boilermake/"
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
                   aria-label="LinkedIn"
-                  onMouseEnter={(e) => {
+                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     const target = e.currentTarget as HTMLElement;
                     target.style.textShadow = "0px 0px 15px #FFE958";
                   }}
-                  onMouseLeave={(e) => {
+                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     const target = e.currentTarget as HTMLElement;
                     target.style.textShadow = "none";
                   }}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <i
-                    className="fab fa-linkedin"
-                    style={{ fontSize: "1.75em" }}
-                  />
+                  <i className="fab fa-linkedin" style={{ fontSize: "1.75em" }} />
                 </a>
               </div>
-
+ 
               {/* Made with love text */}
               <p
-                className="text-center text-white"
+                className="text-center text-white relative z-10 bg-[#403A50]"
                 style={{
-                  fontFamily: "var(--font-geist-vf)",
+                  fontFamily: "var(--font-rubik-wet-paint)",
                   fontWeight: 300,
                   fontSize: "clamp(14px, 1.5vw, 18px)",
                   letterSpacing: "0.05em",
                   color: "#FFFFFF",
-                  textShadow: "0px 0px 15px #FFDE00",
+                  textShadow: "0px 0px 10px #FFDE00",
                 }}
               >
                 Made with 💛 by the BoilerMake XIV team

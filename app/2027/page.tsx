@@ -7,6 +7,7 @@ import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 import { TypingProvider } from "@/context/TypingContext";
 import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
+import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 
 const sponsors = [
   [
@@ -112,7 +113,7 @@ const sponsors = [
   ],
 ];
 
-{/*The schedule information*/}
+{/*The schedule information*/ }
 const activities = [
   {
     title: "Opening Ceremony",
@@ -477,87 +478,185 @@ function App() {
             {/* Sponsors Section */}
             <section
               id="sponsors"
-              className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
-              style={{ top: "1100vh" }}
+              className="absolute flex flex-col items-center w-full"
+              style={{
+                top: "900vh",
+                overflow: "hidden",
+                paddingTop: "4rem",
+                paddingBottom: "6rem",
+              }}
             >
-              {/* Main Content Container - All content centered vertically */}
-              <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
-                {/* Message text */}
-                <h1
-                  className="text-center"
-                  style={{
-                    fontFamily: "var(--font-disket-mono)",
-                    fontWeight: 400,
-                    fontSize: "clamp(32px, 8vw, 60px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    color: "#FFE958",
-                    textShadow: "0px 0px 15px #FFDE00",
-                  }}
-                >
-                  SPONSORS
-                  <span style={{ animation: "blink 1s infinite" }}>_</span>
-                </h1>
+              {/* Background grunge texture overlays */}
+              <img
+                src="/imagesbm14/spons/Rough Tex-3.png"
+                alt=""
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "30%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: 0.15,
+                  pointerEvents: "none",
+                  zIndex: 0,
+                }}
+              />
+              <img
+                src="/imagesbm14/spons/Rough Tex-4.png"
+                alt=""
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  width: "30%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: 0.15,
+                  pointerEvents: "none",
+                  zIndex: 0,
+                }}
+              />
 
-                <h2
-                  className="text-center mb-6"
-                  style={{
+              {/* Pink smiley face — top left */}
+              <img
+                src="/imagesbm14/faq/icon.png"
+                alt="Smiley doodle"
+                style={{
+                  position: "absolute",
+                  top: "1rem",
+                  left: "1rem",
+                  width: "clamp(200px, 12vw, 400px)",
+                  height: "auto",
+                  zIndex: 2,
+                  pointerEvents: "none",
+                }}
+              />
 
-                    fontWeight: 400,
-                    fontSize: "clamp(18px, 3.5vw, 28px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    textAlign: "center",
-                    width: "100%",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                    fontFamily: "var(--font-disket-mono)",
-                    color: "#FFE958",
-                    textShadow: "0px 0px 15px #FFDE00",
-                  }}
-                >
-                  [coming soon]
-                  <span
-                    className="text-white"
-                  // style={{ animation: "blink 1s step-end infinite" }}
-                  >
-                    {/* _ */}
-                  </span>
-                </h2>
-                {/* Button */}
-                <a
-                  // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                  href="/past"
-                  className="inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20"
+              {/* Pink splotch — bottom left */}
+              <img
+                src="/imagesbm14/spons/Splotch-2.png"
+                alt=""
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  left: "0",
+                  width: "clamp(120px, 20vw, 250px)",
+                  height: "auto",
+                  zIndex: 2,
+                  pointerEvents: "none",
+                }}
+              />
+
+              {/* Cyan crown — bottom right */}
+              <img
+                src="/imagesbm14/spons/image-2.png"
+                alt="Crown doodle"
+                style={{
+                  position: "absolute",
+                  bottom: "1rem",
+                  right: "2rem",
+                  width: "clamp(60px, 10vw, 120px)",
+                  height: "auto",
+                  zIndex: 2,
+                  pointerEvents: "none",
+                }}
+              />
+
+              {/* Graffiti "SPONSORS" title image */}
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  marginBottom: "2.5rem",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src="/imagesbm14/spons/icon-2.png"
+                  alt="Sponsors"
                   style={{
-                    fontFamily: "var(--font-futura-cyrillic)",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 2vw, 18px)",
-                    letterSpacing: "0.15em",
+                    width: "clamp(220px, 45vw, 480px)",
+                    height: "auto",
                   }}
-                >
-                  <span
-                    style={{
-                      borderBottom: "2px solid #FFFFFF",
-                      paddingBottom: "4px",
-                    }}
-                  >
-                    IN THE PAST
-                  </span>
-                </a>
+                />
               </div>
+
+              {/* Sponsor card grid */}
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "clamp(12px, 2.5vw, 24px)",
+                  width: "100%",
+                  maxWidth: "1400px",
+                  padding: "0 1rem",
+                }}
+              >
+                {/* Tier sizes mapped to sponsor array indices */}
+                {(() => {
+                  const tierSizes: Array<'xl' | 'lg' | 'md' | 'sm'> = ['xl', 'lg', 'md', 'sm', 'sm', 'sm'];
+                  return sponsors.map((tier, tierIndex) => {
+                    // Skip empty tiers
+                    if (tier.length === 0) return null;
+                    return (
+                      <div
+                        key={`sponsor-tier-${tierIndex}`}
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          justifyContent: "center",
+                          gap: "clamp(8px, 2vw, 20px)",
+                          width: "100%",
+                        }}
+                      >
+                        {tier.map((sponsor, sponsorIndex) => (
+                          <SponsorCard
+                            key={`sponsor-${tierIndex}-${sponsorIndex}`}
+                            sponsor={sponsor}
+                            size={tierSizes[tierIndex] || 'sm'}
+                          />
+                        ))}
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
+
+              {/* Bottom transition gradient */}
+              <img
+                src="/imagesbm14/spons/Transition.png"
+                alt=""
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "auto",
+                  zIndex: 0,
+                  pointerEvents: "none",
+                }}
+              />
             </section>
 
-            {/* Contact/Message Section */}
+            {/*
+            {/* Contact/Message Section 
             <section
               id="contact"
               className="absolute flex flex-col items-center justify-center py-20 px-8 w-full"
               style={{ top: "1590vh" }}
             >
-              {/* Main Content Container - All content centered vertically */}
+              {/* Main Content Container - All content centered vertically 
               <div className="flex flex-col items-center justify-center gap-12 max-w-4xl">
-                {/* Message text */}
+                {/* Message text
                 <h1
                   className="text-center"
                   style={{
@@ -574,7 +673,7 @@ function App() {
                   <span style={{ animation: "blink 1s infinite" }}>_</span>
                 </h1>
 
-                {/* Button */}
+                {/* Button
                 <a
                   // href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                   href="https://boilermake-apply.web.app"
@@ -597,12 +696,13 @@ function App() {
                 </a>
               </div>
             </section>
+            */}
 
             {/* Footer Section */}
             <section
               id="footer"
               className="absolute flex flex-col items-center justify-center w-full gap-8"
-              style={{ top: "1930vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
+              style={{ top: "1500vh", zIndex: 100, position: "absolute", backgroundColor: "transparent" }}
             >
               {/* Social Media Icons */}
               <div className="flex flex-row gap-6">

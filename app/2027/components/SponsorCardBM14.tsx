@@ -17,11 +17,12 @@ type SponsorCardProps = {
     size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-const sizeClasses = {
-    'sm': 'w-[125px] sm:w-[150px] md:w-[175px] lg:w-[225px]',
-    'md': 'w-[150px] sm:w-[200px] md:w-[225px] lg:w-[275px]',
-    'lg': 'w-[200px] sm:w-[275px] md:w-[325px] lg:w-[375px]',
-    'xl': 'w-[300px] sm:w-[375px] md:w-[450px] lg:w-[550px]'
+// Card container dimensions (width x height) per tier
+const cardSizeStyles: Record<string, { width: string; height: string; padding: string }> = {
+    'xl': { width: 'clamp(300px, 52vw, 420px)', height: 'clamp(140px, 20vw, 180px)', padding: '24px' },
+    'lg': { width: 'clamp(260px, 38vw, 340px)', height: 'clamp(120px, 16vw, 150px)', padding: '20px' },
+    'md': { width: 'clamp(240px, 38vw, 320px)', height: 'clamp(110px, 15vw, 140px)', padding: '16px' },
+    'sm': { width: 'clamp(200px, 30vw, 260px)', height: 'clamp(100px, 13vw, 120px)', padding: '12px' },
 };
 
 export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) {
@@ -53,21 +54,36 @@ export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) 
         };
     }, []);
 
+    const sizeStyle = cardSizeStyles[size] || cardSizeStyles['md'];
+
     return (
-        <a 
-            href={sponsor.url} 
-            target="_blank" 
-            rel="noreferrer" 
+        <a
+            href={sponsor.url}
+            target="_blank"
+            rel="noreferrer"
             ref={cardRef}
-            className={`transition-all duration-700 hover:scale-110 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`transition-all duration-700 hover:scale-105 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: sizeStyle.width,
+                height: sizeStyle.height,
+                padding: sizeStyle.padding,
+                backgroundColor: 'rgba(0, 0, 0, 0. 0.2)',
+                border: '2px solid rgba(255, 255, 255, 1)',
+                borderRadius: '16px',
+                boxSizing: 'border-box',
+            }}
         >
-            <Image 
-                src={sponsor.logo} 
-                alt={sponsor.name} 
-                className={`${sizeClasses[size]} object-contain`}
+            <Image
+                src={sponsor.logo}
+                alt={sponsor.name}
+                className="object-contain"
                 width={0}
                 height={0}
                 sizes="100vw"
+                style={{ width: '80%', height: '80%', objectFit: 'contain' }}
             />
         </a>
     )

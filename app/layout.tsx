@@ -5,8 +5,8 @@ import './globals.css';
 
 
 export const metadata: Metadata = {
-  title: "BoilerMake XIII",
-  description: "Purdue University's flagship hackathon, BoilerMake, is back in January 2026. Escape Reality.",
+  title: "BoilerMake XIV",
+  description: "Purdue University's flagship hackathon, BoilerMake, is back in January 2026.",
 }
   
 const dosis = Dosis({
@@ -47,7 +47,7 @@ const spriteGraffiti = localFont({
 
 const SourceCodePro = localFont({
   src: './fonts/SourceCodePro-Regular.ttf',
-  variable: '--font-source-code-pro',
+  variable: '--font-code-pro',
   display: 'swap',
 })
 

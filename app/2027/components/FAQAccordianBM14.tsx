@@ -14,7 +14,7 @@ function HazardStripes() {
     <div
       className="flex-shrink-0 self-stretch"
       style={{
-        width: "clamp(48px, 8vw, 72px)",
+        width: "clamp(56px, 9vw, 96px)",
         background: `repeating-linear-gradient(
           -55deg,
           #000 0px,
@@ -36,7 +36,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
   };
 
   return (
-    <div className="w-full space-y-5">
+    <div className="w-full space-y-6">
       {questions.map((faq, index) => {
         const stripesOnLeft = index % 2 === 1;
         const isOpen = openIndex === index;
@@ -53,13 +53,13 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
               {stripesOnLeft && <HazardStripes />}
 
               <span
-                className={`flex-1 py-5 px-5 text-left text-black ${
+                className={`flex-1 py-7 px-6 text-left text-black ${
                   stripesOnLeft ? "text-center sm:text-left" : ""
                 }`}
                 style={{
                   fontFamily: "var(--font-source-code-pro)",
                   fontWeight: 700,
-                  fontSize: "clamp(0.9rem, 1.6vw, 1.15rem)",
+                  fontSize: "clamp(1.1rem, 2.2vw, 1.6rem)",
                   lineHeight: 1.3,
                 }}
               >
@@ -69,9 +69,9 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
               {!stripesOnLeft && <HazardStripes />}
 
               <span
-                className="flex items-center justify-center flex-shrink-0 px-3 text-black transition-transform duration-300"
+                className="flex items-center justify-center flex-shrink-0 px-4 text-black transition-transform duration-300"
                 style={{
-                  fontSize: "clamp(0.85rem, 1.4vw, 1rem)",
+                  fontSize: "clamp(1rem, 1.8vw, 1.4rem)",
                   transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                 }}
                 aria-hidden
@@ -86,14 +86,14 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
               }`}
             >
               <div
-                className="px-5 py-4 text-white text-left"
+                className="px-6 py-5 text-white text-left"
                 style={{
                   backgroundColor: "#111111",
                   border: "2px solid #FFE42D",
                   borderTop: "none",
                   fontFamily: "var(--font-source-code-pro)",
                   fontWeight: 400,
-                  fontSize: "clamp(0.85rem, 1.4vw, 1rem)",
+                  fontSize: "clamp(0.95rem, 1.6vw, 1.2rem)",
                   lineHeight: 1.6,
                 }}
               >

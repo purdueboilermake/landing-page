@@ -115,8 +115,8 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         className="absolute pointer-events-none select-none z-[3]"
         style={{
           right: "clamp(0px, 2vw, 56px)",
-          bottom: "clamp(48px, 10vw, 160px)",
-          width: "clamp(240px, 44vw, 560px)",
+          bottom: "clamp(12px, 4vw, 60px)",
+          width: "clamp(180px, 32vw, 420px)",
         }}
       >
         <img

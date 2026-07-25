@@ -152,24 +152,30 @@ const activities = [
 
 const questions = [
   {
-    question: "Question 1",
+    question: "What is a Hackathon?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id nunc eros. Fusce nec felis dapibus, sagittis orci sagittis, imperdiet erat. Aliquam erat volutpat. Vivamus efficitur vel ante a ornare.",
+      "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activities as well to keep the fun going, and provide a platform to network with companies in the tech sector and other like-minded individuals from numerous backgrounds.",
   },
   {
-    question: "Question 2",
+    question:
+      "Who can attend and how much experience do I need to participate?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id nunc eros. Fusce nec felis dapibus, sagittis orci sagittis, imperdiet erat. Aliquam erat volutpat. Vivamus efficitur vel ante a ornare.",
+      "Any undergraduate university student age 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.",
   },
   {
-    question: "Question 3",
+    question: "How does the application process work?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id nunc eros. Fusce nec felis dapibus, sagittis orci sagittis, imperdiet erat. Aliquam erat volutpat. Vivamus efficitur vel ante a ornare.",
+      "Once applications open, try to submit as soon as possible, make sure to write thoughtful responses in the application, and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.",
   },
   {
-    question: "Question 4",
+    question: "What projects can I make at BoilerMake?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam id nunc eros. Fusce nec felis dapibus, sagittis orci sagittis, imperdiet erat. Aliquam erat volutpat. Vivamus efficitur vel ante a ornare.",
+      "You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies used and various applications for projects, and even see hardware-based projects — the possibilities are endless!",
+  },
+  {
+    question: "Does BoilerMake offer travel reimbursements?",
+    answer:
+      "Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking to those who need it. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.",
   },
 ];
 

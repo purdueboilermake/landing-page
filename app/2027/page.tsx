@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/app/2027/components/HeaderBM14";
 import AboutSection from "@/app/2027/components/AboutSectionBM14";
-import FAQAccordian from "@/app/2027/components/FAQAccordianBM14";
+import FAQSection from "@/app/2027/components/FAQSectionBM14";
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 import { TypingProvider } from "@/context/TypingContext";
@@ -439,40 +439,10 @@ function App() {
             {/* FAQ Section */}
             <section
               id="faq"
-              className="w-full flex items-start justify-center absolute overflow-x-hidden"
-              style={{
-                top: "700vh",
-                paddingTop: "8rem",
-                paddingBottom: "8rem",
-              }}
+              className="w-full absolute overflow-x-clip"
+              style={{ top: "700vh", minHeight: "150vh" }}
             >
-              {/* Absolute header like the others */}
-              <div
-                className="text-center absolute left-1/2 -translate-x-1/2 z-[100] pointer-events-none"
-                style={{ top: "8rem" }}
-              >
-                <div
-                  style={{
-                    fontFamily: "var(--font-disket-mono)",
-                    fontWeight: 400,
-                    fontSize: "clamp(32px, 8vw, 60px)",
-                    lineHeight: "100%",
-                    letterSpacing: "0.1em",
-                    color: "#FFE958",
-                    textShadow: "0px 0px 15px #FFDE00",
-                  }}
-                >
-                  FAQ<span style={{ animation: "blink 1s infinite" }}>_</span>
-                </div>
-              </div>
-
-              {/* Actual accordion content */}
-              <div
-                className="faq-sign w-full flex justify-center pb-8 overflow-x-hidden"
-                style={{ marginTop: "12rem" }}
-              >
-                <FAQAccordian questions={questions} />
-              </div>
+              <FAQSection questions={questions} />
             </section>
 
             {/* Sponsors Section */}

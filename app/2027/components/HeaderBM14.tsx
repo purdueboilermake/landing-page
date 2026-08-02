@@ -35,11 +35,17 @@ export default function Header({}: HeaderProps) {
     if (currentPath === basePath) {
       const element = document.getElementById(sectionId);
       if (element) {
-        if (sectionId == "about" || sectionId == "sponsors") {
-          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        // Use window.scrollTo instead of element.scrollIntoView: <main> is
+        // position:relative + overflow:hidden (a real scroll container), so
+        // scrollIntoView also nudges main.scrollTop, leaving a permanent
+        // internal offset that exposes blank space below the footer.
+        const rect = element.getBoundingClientRect();
+        const absoluteTop = rect.top + window.scrollY;
+        const targetY =
+          sectionId === "about" || sectionId === "sponsors"
+            ? absoluteTop + rect.height / 2 - window.innerHeight / 2
+            : absoluteTop;
+        window.scrollTo({ top: targetY, behavior: "smooth" });
       }
     } else {
       window.location.href = `${basePath}#${sectionId}`;

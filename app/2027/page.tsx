@@ -675,6 +675,21 @@ function App() {
                     }}
                   />
  
+                  {/* Splotch — backdrop blob behind the flower */}
+                  <DecorImage
+                    src="/imagesbm14/end/splotch-3.png"
+                    alt=""
+                    label="Splotch"
+                    className="absolute opacity-90"
+                    style={{
+                      top: "-32%",
+                      left: "91%",
+                      width: "24%",
+                      height: "auto",
+                      aspectRatio: "149 / 506",
+                    }}
+                  />
+
                   {/* Decorative flower — top right */}
                   <DecorImage
                     src="/imagesbm14/spons/flower.png"
@@ -690,7 +705,7 @@ function App() {
                       transform: "rotate(22.49deg)",
                     }}
                   />
- 
+
                   {/* Traffic light doodle — bleeds off the left edge */}
                   <DecorImage
                     src="/imagesbm14/spons/traffic-light.png"
@@ -705,7 +720,7 @@ function App() {
   paddingLeft: "clamp(0px, 5vw, 60px)",
   transform: "rotate(-11.77deg)",
                       aspectRatio: "277.91 / 416.87",
-                      
+
                     }}
                   />
  
@@ -718,7 +733,7 @@ function App() {
                     label="Brick"
                     className="absolute opacity-90"
                     style={{
-                      top: "40%",
+                      top: isMobile ? "70%" : "40%",
                       left: "10.1%",
                       width: "10%",
                       height: "auto",

@@ -36,8 +36,8 @@ export default function Home() {
         {/* Mid buildings — slight overscale to kill edge gaps in the asset */}
         <div className="relative z-[3] w-full">
           <div
-            className="relative z-[3] left-1/2 -translate-x-1/2"
-            style={{ width: "103%" }}
+            className="relative z-[3] left-1/2"
+            style={{ width: "103%", transform: "translate(-50%, -60px)" }}
           >
             <Image
               src="/imagesbm14/landing/Buildings.webp"
@@ -51,12 +51,15 @@ export default function Home() {
           </div>
 
           {/*
-            Billboard sits behind the mid buildings (z below), poles tuck
-            into the rooftops. CTA stays clickable above buildings.
+            Billboard sits behind the buildings
           */}
           <div
-            className="absolute left-1/2 z-[2] -translate-x-1/2 pointer-events-none"
-            style={{ bottom: "32%", width: "min(56vw, 560px)" }}
+            className="absolute left-1/2 z-[2] pointer-events-none"
+            style={{
+              bottom: "32%",
+              width: "min(56vw, 560px)",
+              transform: "translate(-50%, -60px)",
+            }}
           >
             <div className="relative w-full">
               <Image
@@ -98,9 +101,10 @@ export default function Home() {
 
           <button
             type="button"
-            className="absolute left-1/2 z-[5] -translate-x-1/2 cursor-pointer"
+            className="absolute left-1/2 z-[5] cursor-pointer"
             style={{
               bottom: "41%",
+              transform: "translate(-50%, -60px)",
               fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
               fontWeight: 700,
               fontSize: "clamp(13px, 2.1vw, 16px)",

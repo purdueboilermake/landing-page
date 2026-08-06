@@ -8,6 +8,7 @@ import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 import { TypingProvider } from "@/context/TypingContext";
 import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 import SponsorCard from "@/app/2027/components/SponsorCardBM14";
+import Image from "next/image";
 
 interface DecorImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   label?: string;
@@ -293,107 +294,223 @@ function App() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           rel="stylesheet"
         />
-        <div className="App font-dosis" style={{ backgroundColor: "#3B344B", minHeight: "100vh" }}>
-          {/* Header - updated to work without parallax */}
-          <Header />
+        <div className="App font-dosis relative"  style={{ backgroundColor: "#3B344B", minHeight: "100vh" }}>
+          
+          {/* Header floats over the scene so the sky reaches the true top */}
+          <div className="absolute inset-x-0 top-0 z-[200]">
+            <Header />
+          </div>
 
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
             style={{ height: "calc(1383vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
-            {/* Hero Section */}
-            <section id="hero" className="hero-section">
+          {/* Hero Section — BoilerMake XIV skyline scene */}
+            <section
+              id="hero"
+              className="hero-section relative w-full overflow-hidden"
+              style={
+                {
+                  height: "160dvh",
+                  backgroundColor: "#0d0618",
+                  // --- tuning knobs ---
+                  "--bb-w": "70%",     // billboard width, % of skyline box
+                  "--bb-y": "30%",     // billboard height above skyline baseline
+                  "--ledge-h": "clamp(52px, 11vw, 190px)",
+                  "--sky-zoom": "1", // 1 = plain cover, higher = bigger clouds
+                  
+                  "--btn-y": "55%",   // button height on the sign, % of billboard height
+                  "--scene-drop": "0%",   // pushes the whole scene down; more = more sky above
+  "--sky-offset-y": "-135px",
+                } as React.CSSProperties
+              }
+            >
+              {/* Sky — clouds at top, magenta bleed at bottom */}
+<div
+  className="pointer-events-none absolute z-[1]"
+  aria-hidden
+  style={{
+    top: 0,
+    bottom: 0,
+    left: "-6%",
+    width: "133%",
+  }}
+>
+  <Image
+    src="/imagesbm14/landing/Background.webp"
+    alt=""
+    fill
+    priority
+    sizes="100vw"
+    draggable={false}
+    className="select-none object-cover"
+    style={{
+      objectPosition: "50% 100%",
+    
+      transform: "translateY(var(--sky-offset-y)) translateX(0%) scaleX(1.35)",
+      transformOrigin: "top right",
+      
+    }}
+  />
+</div>
+
+              {/* SKYLINE — full-bleed, exact aspect ratio, bottom-anchored */}
               <div
-                className="hero-content "
+                className="pointer-events-none absolute inset-x-0 z-[3] w-full"
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  width: "100%",
+                  aspectRatio: "1652 / 1080",
+                  bottom: "calc(-1 * var(--scene-drop))",
                 }}
               >
-                <div className="hero-text">
-                  <h2
-                    className="text-center mb-6"
-                    style={{
-                      fontFamily: "var(--font-futura-cyrillic)",
-                      fontWeight: 100,
-                      fontSize: "clamp(18px, 3.5vw, 28px)",
-                      lineHeight: "100%",
-                      letterSpacing: "0.1em",
-                      color: "#FFFFFF",
-                      textAlign: "center",
-                      width: "100%",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                    }}
-                  >
-                    23 - 25 January 2026
-                    <span
-                      className="text-white"
-                      style={{ animation: "blink 1s step-end infinite" }}
-                    >
-                      _
-                    </span>
-                  </h2>
-                  <h1
-                    className="text-center mb-12"
-                    style={{
-                      fontFamily: "var(--font-disket-mono)",
-                      fontWeight: 400,
-                      fontSize: "clamp(32px, 8vw, 80px)",
-                      lineHeight: "100%",
-                      letterSpacing: "0.1em",
-                      color: "#FFE958",
-                      textShadow: "0px 0px 15px #FFDE00",
-                    }}
-                  >
-                    {" "}
-                    BOILERMAKE XIV{" "}
-                  </h1>
-                  <link
-                    rel="icon"
-                    href="assets/favicon.ico"
-                    type="image/x-icon"
-                  />
-                </div>
+                {/* Billboard art — before the buildings so rooftops occlude its base */}
                 <div
-                  className="hero-buttons"
+                  className="absolute left-1/2 z-[1] -translate-x-1/2"
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "1.5rem",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexWrap: "wrap"
+                    bottom: "var(--bb-y)",
+                    width: "var(--bb-w)",
+                    containerType: "inline-size",
                   }}
                 >
-                  <ApplyButton
-                    text="APPLY NOW!"
-                    link="https://boilermake-apply.web.app"
-                    size="large"
-                    variant="hero"
-                    className="mr-0"
+                  <Image
+                    src="/imagesbm14/landing/Billboard Before.webp"
+                    alt=""
+                    width={905}
+                    height={578}
+                    priority
+                    draggable={false}
+                    className="h-auto w-full select-none"
                   />
-                  <ApplyButton
-                    text="INTEREST FORM"
-                    link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-                    size="large"
-                    variant="hero"
-                    className="mr-0"
-                  />
-                  <ApplyButton
-                    text="MENTOR FORM"
-                    link="https://docs.google.com/forms/d/e/1FAIpQLScmpc_zMGpQGUZy5vFkCTbkh-3oG5WMKx1eDES1ziDDSOqA4w/viewform"
-                    size="large"
-                    variant="hero"
-                    className="mr-0"
-                  />
+
+                  {/* Sign copy — dark ink on the painted panel */}
+                  <div className="absolute inset-x-[6%] top-[5%] flex h-[39%] flex-col items-center justify-center text-center">
+                    <h1
+                      className="w-full text-balance"
+                      style={{
+                        fontFamily: "var(--font-disket-mono)",
+                        fontWeight: 400,
+                        fontSize: "8.2cqi",
+                        lineHeight: 1.02,
+                        letterSpacing: "0.06em",
+                        color: "#1a1a1a",
+                      }}
+                    >
+                      BOILERMAKE XIV
+                    </h1>
+                    <h2
+                      style={{
+                        fontFamily: "var(--font-futura-cyrillic)",
+                        fontWeight: 400,
+                        fontSize: "3.4cqi",
+                        letterSpacing: "0.1em",
+                        color: "#4a4a4a",
+                        marginBottom: "0.5em",
+                      }}
+                    >
+                      22 - 24 JANUARY 2027
+                    </h2>
+                    
+                  </div>
                 </div>
+
+                {/* Buildings — sit on top of the sign */}
+                <Image
+                  src="/imagesbm14/landing/Buildings.webp"
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  draggable={false}
+                  className="z-[2] select-none object-cover object-bottom"
+                  style={{
+  transform: "scaleX(1.04)",
+  transformOrigin: "center bottom",
+}}
+                />
+
+                {/* Button layer — an empty box with the sign's exact geometry, stacked
+            above the buildings so the CTA stays visible and clickable. */}
+  <div
+  className="absolute left-1/2 z-[3] -translate-x-1/2"
+  style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "905 / 578", containerType: "inline-size" }}
+>
+  {/* Same inset as the sign copy, so the button shares the panel's box */}
+  <div
+    className="absolute inset-x-[6%] flex justify-center"
+    style={{ top: "var(--btn-y)" }}
+  >
+    
+      <a href="https://boilermake-apply.web.app"
+      className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+      style={{
+        fontFamily: "var(--font-futura-cyrillic), system-ui, sans-serif",
+        fontWeight: 700,
+        fontSize: "clamp(13px, 4.4cqi, 30px)",
+        letterSpacing: "0.08em",
+        lineHeight: 1,
+        color: "#FFFFFF",
+        background: "#5A8A4A",
+        border: "0.5cqi solid #FFFFFF",
+        borderRadius: "9999px",
+        padding: "0.72em 2.1em",
+        boxShadow: "0 0.5cqi 0 rgba(0,0,0,0.28)",
+      }}
+    >
+      Interest form
+    </a>
+  </div>
+</div>
+      
+              </div>
+
+
+              {/* Foreground ledge */}
+              <div
+                className="pointer-events-none absolute inset-x-0 z-[7] w-full"
+                style={{
+                  height: "var(--ledge-h)",
+                  bottom: "calc(-1 * var(--scene-drop))",
+                }}
+                aria-hidden
+              >
+                <Image
+                  src="/imagesbm14/landing/Front_Buildings.webp"
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  draggable={false}
+                  className="select-none object-cover object-bottom"
+                  
+                />
+              </div>
+
+              {/* CTAs — above every scene layer, clear of the ledge */}
+              <div
+                className="absolute inset-x-0 z-[20] flex flex-row flex-wrap items-center justify-center gap-6 px-4"
+                style={{ bottom: "calc(var(--ledge-h) + clamp(16px, 4vh, 56px))" }}
+              >
+                {/* <ApplyButton
+                  text="APPLY NOW!"
+                  link="https://boilermake-apply.web.app"
+                  size="large"
+                  variant="hero"
+                  className="mr-0"
+                />
+                <ApplyButton
+                  text="INTEREST FORM"
+                  link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                  size="large"
+                  variant="hero"
+                  className="mr-0"
+                />
+                <ApplyButton
+                  text="MENTOR FORM"
+                  link="https://docs.google.com/forms/d/e/1FAIpQLScmpc_zMGpQGUZy5vFkCTbkh-3oG5WMKx1eDES1ziDDSOqA4w/viewform"
+                  size="large"
+                  variant="hero"
+                  className="mr-0"
+                /> */}
               </div>
             </section>
             {/* About Section */}

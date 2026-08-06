@@ -7,6 +7,8 @@
  * 9-28-2025
  */
 
+/*Currently website opens to this page, which is a coming soon announcement for BoilerMake XIV.*/
+
 import Image from "next/image";
 
 export default function Home() {

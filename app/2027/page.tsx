@@ -294,8 +294,8 @@ function App() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           rel="stylesheet"
         />
-        <div className="App font-dosis relative"  style={{ backgroundColor: "#3B344B", minHeight: "100vh" }}>
-          
+        <div className="App font-dosis relative" style={{ backgroundColor: "#3B344B", minHeight: "100vh" }}>
+
           {/* Header floats over the scene so the sky reaches the true top */}
           <div className="absolute inset-x-0 top-0 z-[200]">
             <Header />
@@ -306,7 +306,7 @@ function App() {
             className="w-full main-content"
             style={{ height: "calc(1383vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
-          {/* Hero Section — BoilerMake XIV skyline scene */}
+            {/* Hero Section — BoilerMake XIV skyline scene */}
             <section
               id="hero"
               className="hero-section relative w-full overflow-hidden"
@@ -319,41 +319,41 @@ function App() {
                   "--bb-y": "30%",     // billboard height above skyline baseline
                   "--ledge-h": "clamp(52px, 11vw, 190px)",
                   "--sky-zoom": "1", // 1 = plain cover, higher = bigger clouds
-                  
+
                   "--btn-y": "55%",   // button height on the sign, % of billboard height
                   "--scene-drop": "0%",   // pushes the whole scene down; more = more sky above
-  "--sky-offset-y": "-135px",
+                  "--sky-offset-y": "-135px",
                 } as React.CSSProperties
               }
             >
               {/* Sky — clouds at top, magenta bleed at bottom */}
-<div
-  className="pointer-events-none absolute z-[1]"
-  aria-hidden
-  style={{
-    top: 0,
-    bottom: 0,
-    left: "-6%",
-    width: "133%",
-  }}
->
-  <Image
-    src="/imagesbm14/landing/Background.webp"
-    alt=""
-    fill
-    priority
-    sizes="100vw"
-    draggable={false}
-    className="select-none object-cover"
-    style={{
-      objectPosition: "50% 100%",
-    
-      transform: "translateY(var(--sky-offset-y)) translateX(0%) scaleX(1.35)",
-      transformOrigin: "top right",
-      
-    }}
-  />
-</div>
+              <div
+                className="pointer-events-none absolute z-[1]"
+                aria-hidden
+                style={{
+                  top: 0,
+                  bottom: 0,
+                  left: "-6%",
+                  width: "133%",
+                }}
+              >
+                <Image
+                  src="/imagesbm14/landing/Background.webp"
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  draggable={false}
+                  className="select-none object-cover"
+                  style={{
+                    objectPosition: "50% 100%",
+
+                    transform: "translateY(var(--sky-offset-y)) translateX(0%) scaleX(1.35)",
+                    transformOrigin: "top right",
+
+                  }}
+                />
+              </div>
 
               {/* SKYLINE — full-bleed, exact aspect ratio, bottom-anchored */}
               <div
@@ -409,7 +409,7 @@ function App() {
                     >
                       22 - 24 JANUARY 2027
                     </h2>
-                    
+
                   </div>
                 </div>
 
@@ -423,44 +423,44 @@ function App() {
                   draggable={false}
                   className="z-[2] select-none object-cover object-bottom"
                   style={{
-  transform: "scaleX(1.04)",
-  transformOrigin: "center bottom",
-}}
+                    transform: "scaleX(1.04)",
+                    transformOrigin: "center bottom",
+                  }}
                 />
 
                 {/* Button layer — an empty box with the sign's exact geometry, stacked
             above the buildings so the CTA stays visible and clickable. */}
-  <div
-  className="absolute left-1/2 z-[3] -translate-x-1/2"
-  style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "905 / 578", containerType: "inline-size" }}
->
-  {/* Same inset as the sign copy, so the button shares the panel's box */}
-  <div
-    className="absolute inset-x-[6%] flex justify-center"
-    style={{ top: "var(--btn-y)" }}
-  >
-    
-      <a href="https://boilermake-apply.web.app"
-      className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-      style={{
-        fontFamily: "var(--font-futura-cyrillic), system-ui, sans-serif",
-        fontWeight: 700,
-        fontSize: "clamp(13px, 4.4cqi, 30px)",
-        letterSpacing: "0.08em",
-        lineHeight: 1,
-        color: "#FFFFFF",
-        background: "#5A8A4A",
-        border: "0.5cqi solid #FFFFFF",
-        borderRadius: "9999px",
-        padding: "0.72em 2.1em",
-        boxShadow: "0 0.5cqi 0 rgba(0,0,0,0.28)",
-      }}
-    >
-      Interest form
-    </a>
-  </div>
-</div>
-      
+                <div
+                  className="absolute left-1/2 z-[3] -translate-x-1/2"
+                  style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "905 / 578", containerType: "inline-size" }}
+                >
+                  {/* Same inset as the sign copy, so the button shares the panel's box */}
+                  <div
+                    className="absolute inset-x-[6%] flex justify-center"
+                    style={{ top: "var(--btn-y)" }}
+                  >
+
+                    <a href="https://boilermake-apply.web.app"
+                      className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                      style={{
+                        fontFamily: "var(--font-futura-cyrillic), system-ui, sans-serif",
+                        fontWeight: 700,
+                        fontSize: "clamp(13px, 4.4cqi, 30px)",
+                        letterSpacing: "0.08em",
+                        lineHeight: 1,
+                        color: "#FFFFFF",
+                        background: "#5A8A4A",
+                        border: "0.5cqi solid #FFFFFF",
+                        borderRadius: "9999px",
+                        padding: "0.72em 2.1em",
+                        boxShadow: "0 0.5cqi 0 rgba(0,0,0,0.28)",
+                      }}
+                    >
+                      Interest form
+                    </a>
+                  </div>
+                </div>
+
               </div>
 
 
@@ -481,7 +481,7 @@ function App() {
                   sizes="100vw"
                   draggable={false}
                   className="select-none object-cover object-bottom"
-                  
+
                 />
               </div>
 
@@ -606,12 +606,13 @@ function App() {
               <FAQSection questions={questions} />
             </section>
 
-            
+
             {/* ================= Sponsors Section ================= */}
             <section
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden bg-[#292526]"
-              style={{ top: "1100vh", 
+              style={{
+                top: "1100vh",
                 height: "283vh"
               }}
             >
@@ -644,14 +645,14 @@ function App() {
                     label="Splotch"
                     className="absolute opacity-90"
                     style={{
-                      
-                
-  left: "clamp(-140px, 140vw, 140px)",
-  top: "clamp(150px, 15vh, 4500px)",
-  width: "clamp(250px, 30vw, 500px)",
-  height: "auto",
-  maxHeight: "120vh",
-  zIndex: 1,
+
+
+                      left: "clamp(-140px, 140vw, 140px)",
+                      top: "clamp(150px, 15vh, 4500px)",
+                      width: "clamp(250px, 30vw, 500px)",
+                      height: "auto",
+                      maxHeight: "120vh",
+                      zIndex: 1,
                       transform: "translateX(-80%)",
                       aspectRatio: "1/ 3",
                     }}
@@ -668,7 +669,7 @@ function App() {
                     label="Crown"
                     className="absolute"
                     style={{
-                      
+
                       top: "90vh",      // example, adjust
                       right: "2vw",
                       width: "17vw",
@@ -692,7 +693,7 @@ function App() {
                   }}
                 />
 
-                {/* Sponsor tier grid */}
+                {/* Sponsor tier grid*/}
                 <div className="flex flex-col items-center gap-4 w-full max-w-3xl relative z-10">
                   {sponsors.map((tier, tierIndex) => {
                     if (tier.length === 0) return null;
@@ -728,51 +729,48 @@ function App() {
                     );
                   })}
                 </div>
-                
-              </div>   
+
+              </div>
             </section>
 
-            
-
-             {/* ================= Footer Section ================= */}
             {/* ================= Footer Section ================= */}
-<section
-  id="footer"
-  className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
-  style={{
-    top: "1383vh",
-    zIndex: 100,
-    position: "absolute",
-    backgroundColor: "#403A50",
-    minHeight: "clamp(700px, 60vw, 950px)",
-    paddingBottom: "3rem",
-  }}
->
-  {/* Transition from Sponsors → Footer */}
-  <div
-    className="absolute left-1/2 -translate-x-1/2 w-screen pointer-events-none"
-    style={{
-      top: "-25vw",
-      zIndex: 1,
-    }}
-  >
-    <DecorImage
-      src="/imagesbm14/spons/Transition.png"
-      alt=""
-      label="Transition"
-      className="block w-full h-auto"
-    />
-  </div>
+            <section
+              id="footer"
+              className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
+              style={{
+                top: "1383vh",
+                zIndex: 100,
+                position: "absolute",
+                backgroundColor: "#403A50",
+                minHeight: "clamp(700px, 60vw, 950px)",
+                paddingBottom: "3rem",
+              }}
+            >
+              {/* Transition from Sponsors → Footer */}
+              <div
+                className="absolute left-1/2 -translate-x-1/2 w-screen pointer-events-none"
+                style={{
+                  top: "-25vw",
+                  zIndex: 1,
+                }}
+              >
+                <DecorImage
+                  src="/imagesbm14/spons/Transition.png"
+                  alt=""
+                  label="Transition"
+                  className="block w-full h-auto"
+                />
+              </div>
               {/* Decoration layer — centered, capped at the design frame's
                   1280px reference width, and locked to its 1280:1308 aspect
                   ratio so the % positions below resolve against a real,
                   defined height instead of "auto" (the same bug that sent
                   the traffic light off to the wrong spot). */}
-                  
+
               <div
-  className="absolute inset-0 flex items-start justify-center pointer-events-none"
-  style={{ zIndex: 10 }}
->
+                className="absolute inset-0 flex items-start justify-center pointer-events-none"
+                style={{ zIndex: 10 }}
+              >
                 <div
                   className="relative w-full max-w-[1280px]"
                   style={{ aspectRatio: "1280 / 1308" }}
@@ -791,7 +789,7 @@ function App() {
                       aspectRatio: "1 / 1",
                     }}
                   />
- 
+
                   {/* Splotch — backdrop blob behind the flower */}
                   <DecorImage
                     src="/imagesbm14/end/splotch-3.png"
@@ -830,17 +828,17 @@ function App() {
                     label="Traffic light"
                     className="absolute opacity-90"
                     style={{
-                     top: "clamp(60px, 10vh, 180px)",
-  left: "clamp(-60px, -4vw, -20px)",
-  width: "clamp(160px, 22vw, 300px)",
-  height: "auto",
-  paddingLeft: "clamp(0px, 5vw, 60px)",
-  transform: "rotate(-11.77deg)",
+                      top: "clamp(60px, 10vh, 180px)",
+                      left: "clamp(-60px, -4vw, -20px)",
+                      width: "clamp(160px, 22vw, 300px)",
+                      height: "auto",
+                      paddingLeft: "clamp(0px, 5vw, 60px)",
+                      transform: "rotate(-11.77deg)",
                       aspectRatio: "277.91 / 416.87",
 
                     }}
                   />
- 
+
                   {/* Brick doodle — sits between the heart and the flower,
                       matching the mobile Figma frame. No coordinates were
                       given for this one — best guess. */}
@@ -876,7 +874,7 @@ function App() {
                   />
                 </div>
               </div>
- 
+
               {/* Social Media Icons — stays centered, above the doodles, near the bottom */}
               <div className="flex flex-row gap-6 relative z-10">
                 <a
@@ -914,7 +912,7 @@ function App() {
                   <i className="fab fa-linkedin" style={{ fontSize: "1.75em" }} />
                 </a>
               </div>
- 
+
               {/* Made with love text */}
               <p
                 className="text-center text-white relative z-10 bg-[#403A50]"

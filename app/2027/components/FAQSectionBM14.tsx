@@ -103,9 +103,9 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         alt=""
         className="absolute pointer-events-none select-none z-[3]"
         style={{
-          left: "clamp(16px, 4vw, 52px)",
-          bottom: "clamp(16px, 3vw, 40px)",
-          width: "clamp(34px, 5vw, 56px)",
+          left: "clamp(144px, 36vw, 456px)",
+          bottom: "clamp(144px, 36vw, 420px)",
+          width: "clamp(306px, 36vw, 840px)",
           height: "auto",
         }}
       />

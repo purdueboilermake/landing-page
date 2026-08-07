@@ -693,7 +693,9 @@ function App() {
                   }}
                 />
 
-                {/* Sponsor tier grid*/}
+                <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)" }}>COMING SOON</h1>
+                {/*
+                {/* Sponsor tier grid
                 <div className="flex flex-col items-center gap-4 w-full max-w-3xl relative z-10">
                   {sponsors.map((tier, tierIndex) => {
                     if (tier.length === 0) return null;
@@ -729,6 +731,7 @@ function App() {
                     );
                   })}
                 </div>
+                */}
 
               </div>
             </section>

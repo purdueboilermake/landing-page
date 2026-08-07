@@ -20,7 +20,7 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         backgroundImage: "url('/imagesbm14/faq/Rough%20Tex.png')",
         backgroundSize: "cover",
         backgroundPosition: "center top",
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "#292526",
       }}
     >
       {/* Caution tape header — two overlapping torn strips (Tape.png also carries the cyan splatter) */}

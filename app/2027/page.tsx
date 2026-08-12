@@ -304,8 +304,37 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "calc(1383vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
+            style={{ height: "calc(1028vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
+            {/* Seamless connector: bridges the empty band between the FAQ
+                section (starts 570vh) and the Sponsors section (starts 745vh).
+                Both sections share #292526, so filling this gap with the same
+                color — and fading in from the purple page above — removes the
+                hard dark→purple→dark seam. Sits behind all section content. */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 pointer-events-none z-0"
+              style={{
+                top: "570vh",
+                height: "175vh",
+                background:
+                  "linear-gradient(to bottom, #3B344B 0%, #292526 12vh, #292526 100%)",
+              }}
+            />
+            {/* Grounding shadow beneath the hero skyline: sits entirely in the
+                purple band below the hero so it never touches the scene, and
+                softens the hard flat bottom edge of the foreground buildings
+                into the page background. */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 pointer-events-none z-0"
+              style={{
+                top: "160dvh",
+                height: "26vh",
+                background:
+                  "linear-gradient(to bottom, rgba(13,6,24,0.55) 0%, rgba(13,6,24,0.22) 35%, rgba(59,52,75,0) 100%)",
+              }}
+            />
             {/* Hero Section — BoilerMake XIV skyline scene */}
             <section
               id="hero"
@@ -517,7 +546,7 @@ function App() {
             <section
               id="about"
               className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
-              style={{ top: "270vh" }}
+              style={{ top: "180vh" }}
             >
               <AboutSection />
             </section>
@@ -526,7 +555,7 @@ function App() {
             <section
               id="schedule"
               className="w-full flex items-center justify-center absolute"
-              style={{ top: "430vh", paddingTop: "8rem" }}
+              style={{ top: "325vh", paddingTop: "8rem" }}
             >
               <ScheduleSection activities={activities} />
               {/*
@@ -601,7 +630,7 @@ function App() {
             <section
               id="faq"
               className="w-full absolute overflow-x-clip"
-              style={{ top: "700vh", minHeight: "150vh" }}
+              style={{ top: "570vh", minHeight: "150vh" }}
             >
               <FAQSection questions={questions} />
             </section>
@@ -612,7 +641,7 @@ function App() {
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden bg-[#292526]"
               style={{
-                top: "1100vh",
+                top: "745vh",
                 height: "283vh"
               }}
             >
@@ -741,7 +770,7 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
               style={{
-                top: "1383vh",
+                top: "1028vh",
                 zIndex: 100,
                 position: "absolute",
                 backgroundColor: "#403A50",

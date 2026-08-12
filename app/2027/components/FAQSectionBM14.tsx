@@ -28,13 +28,13 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         src="/imagesbm14/faq/Tape.png"
         alt=""
         className="absolute left-0 w-full pointer-events-none select-none z-[2]"
-        style={{ top: "-20vw", height: "auto" }}
+        style={{ top: "-30vw", height: "auto" }}
       />
       <img
         src="/imagesbm14/faq/Tape-2.png"
         alt=""
         className="absolute left-0 w-full pointer-events-none select-none z-[3]"
-        style={{ top: "-14vw", height: "auto" }}
+        style={{ top: "-24vw", height: "auto" }}
       />
 
       {/* Left sidebar: logo + SECTION label */}

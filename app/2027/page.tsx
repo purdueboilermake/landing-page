@@ -745,7 +745,21 @@ function App() {
                   }}
                 />
 
-                <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)" }}>COMING SOON</h1>
+                <h1
+                  className="relative z-10"
+                  style={{
+                    fontFamily: "var(--font-sprite-graffiti)",
+                    fontWeight: 400,
+                    fontSize: "clamp(2rem, 4.5vw, 4rem)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.04em",
+                    color: "#FFE958",
+                    textShadow:
+                      "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
+                  }}
+                >
+                  COMING SOON
+                </h1>
                 {/*
                 {/* Sponsor tier grid
                 <div className="flex flex-col items-center gap-4 w-full max-w-3xl relative z-10">

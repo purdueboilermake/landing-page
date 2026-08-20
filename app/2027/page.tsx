@@ -10,6 +10,22 @@ import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 import Image from "next/image";
 
+/**
+ * The Rough Tex backdrop is painted once, by the connector band that starts at
+ * 570vh. The footer's Transition.png is opaque and overlaps upwards from
+ * 1028vh - 25vw, so it would otherwise cut the texture off well before the
+ * purple actually begins. A second element re-draws the same texture on top of
+ * that graphic, which only lines up if both use an identical, centred
+ * background size and the overlay shifts the image up by the distance between
+ * the band's top and its own (458vh - 25vw).
+ */
+const TEX_SIZE = "100vw auto";
+const TEX_FOOTER_OFFSET = "calc(25vw - 458vh)";
+const TEX_FOOTER_FADE_IN =
+  "linear-gradient(to bottom, transparent 0px, #000 24px)";
+const TEX_FOOTER_MASK =
+  "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
+
 interface DecorImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   label?: string;
 }
@@ -324,7 +340,7 @@ function App() {
                 backgroundImage:
                   "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
                 backgroundRepeat: "no-repeat, no-repeat",
-                backgroundSize: "100% 12vh, cover",
+                backgroundSize: `100% 12vh, ${TEX_SIZE}`,
                 backgroundPosition: "center top, center top",
               }}
             />
@@ -793,11 +809,36 @@ function App() {
                   zIndex: 1,
                 }}
               >
+                {/* The graphic is opaque, so its top edge cut the texture off
+                    with a hairline. It fades in over its first 24px instead,
+                    and the texture overlay below fades in over the same 24px —
+                    as the graphic hides the band's texture, the overlay's copy
+                    replaces it at the same rate, so coverage stays constant
+                    and there's no edge. */}
                 <DecorImage
                   src="/imagesbm14/spons/Transition.png"
                   alt=""
                   label="Transition"
                   className="block w-full h-auto"
+                  style={{
+                    WebkitMaskImage: TEX_FOOTER_FADE_IN,
+                    maskImage: TEX_FOOTER_FADE_IN,
+                  }}
+                />
+                {/* Carries the Rough Tex band across the opaque part of the
+                    graphic, then masks itself out where it turns purple. */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "url('/imagesbm14/faq/Rough%20Tex.png')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: TEX_SIZE,
+                    backgroundPosition: `center ${TEX_FOOTER_OFFSET}`,
+                    WebkitMaskImage: TEX_FOOTER_MASK,
+                    maskImage: TEX_FOOTER_MASK,
+                  }}
                 />
               </div>
               {/* Decoration layer — centered, capped at the design frame's

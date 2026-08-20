@@ -306,19 +306,26 @@ function App() {
             className="w-full main-content"
             style={{ height: "calc(1028vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
-            {/* Seamless connector: bridges the empty band between the FAQ
-                section (starts 570vh) and the Sponsors section (starts 745vh).
-                Both sections share #292526, so filling this gap with the same
-                color — and fading in from the purple page above — removes the
-                hard dark→purple→dark seam. Sits behind all section content. */}
+            {/* Seamless connector: one continuous Rough Tex backdrop running
+                from the top of FAQ (570vh) all the way to the top of the
+                footer (1028vh), covering Sponsors and the empty band between
+                them. FAQ and Sponsors are deliberately transparent so this is
+                the only thing painting that backdrop — when they each painted
+                their own, the texture stopped dead at the FAQ section's bottom
+                edge and left a hard line. The gradient on top fades the purple
+                page above into the texture. Sits behind all section content. */}
             <div
               aria-hidden
               className="absolute inset-x-0 pointer-events-none z-0"
               style={{
                 top: "570vh",
-                height: "175vh",
-                background:
-                  "linear-gradient(to bottom, #3B344B 0%, #292526 12vh, #292526 100%)",
+                height: "458vh",
+                backgroundColor: "#292526",
+                backgroundImage:
+                  "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
+                backgroundRepeat: "no-repeat, no-repeat",
+                backgroundSize: "100% 12vh, cover",
+                backgroundPosition: "center top, center top",
               }}
             />
             {/* Grounding shadow beneath the hero skyline: sits entirely in the
@@ -639,7 +646,7 @@ function App() {
             {/* ================= Sponsors Section ================= */}
             <section
               id="sponsors"
-              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden bg-[#292526]"
+              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden"
               style={{
                 top: "745vh",
                 height: "283vh"
@@ -803,6 +810,41 @@ function App() {
                 className="absolute inset-0 flex items-start justify-center pointer-events-none"
                 style={{ zIndex: 10 }}
               >
+                {/* Blue spray blob and the traffic light that sits on it. Both
+                    live outside the 1280 frame and are anchored to the real
+                    left edge of the viewport — inside the frame they'd drift
+                    apart by the frame's inset on screens wider than 1280. The
+                    blob comes first in the DOM so the light paints over it.
+                    The kit has no cyan blob, so the orange cloud is
+                    hue-rotated. */}
+                <DecorImage
+                  src="/imagesbm14/faq/Splotch.png"
+                  alt=""
+                  label="Splotch"
+                  className="absolute"
+                  style={{
+                    top: "14%",
+                    left: "calc(-1 * clamp(130px, 19vw, 300px))",
+                    width: "clamp(220px, 33vw, 500px)",
+                    height: "auto",
+                    filter: "hue-rotate(168deg) saturate(1.25)",
+                  }}
+                />
+                <DecorImage
+                  src="/imagesbm14/spons/traffic-light.png"
+                  alt=""
+                  label="Traffic light"
+                  className="absolute opacity-90"
+                  style={{
+                    top: "clamp(60px, 10vh, 180px)",
+                    left: "clamp(-6px, 1vw, 24px)",
+                    width: "clamp(150px, 17vw, 240px)",
+                    height: "auto",
+                    transform: "rotate(-11.77deg)",
+                    aspectRatio: "277.91 / 416.87",
+                  }}
+                />
+
                 <div
                   className="relative w-full max-w-[1280px]"
                   style={{ aspectRatio: "1280 / 1308" }}
@@ -819,55 +861,6 @@ function App() {
                       width: "40.2%",
                       height: "auto",
                       aspectRatio: "1 / 1",
-                    }}
-                  />
-
-                  {/* Splotch — backdrop blob behind the flower */}
-                  <DecorImage
-                    src="/imagesbm14/end/splotch-3.png"
-                    alt=""
-                    label="Splotch"
-                    className="absolute opacity-90"
-                    style={{
-                      top: "-32%",
-                      left: "91%",
-                      width: "24%",
-                      height: "auto",
-                      aspectRatio: "149 / 506",
-                    }}
-                  />
-
-                  {/* Decorative flower — top right */}
-                  <DecorImage
-                    src="/imagesbm14/spons/flower.png"
-                    alt=""
-                    label="Flower"
-                    className="absolute opacity-90"
-                    style={{
-                      top: "7.5%",
-                      left: "80.9%",
-                      width: "18%",
-                      height: "auto",
-                      aspectRatio: "230.8 / 346.2",
-                      transform: "rotate(22.49deg)",
-                    }}
-                  />
-
-                  {/* Traffic light doodle — bleeds off the left edge */}
-                  <DecorImage
-                    src="/imagesbm14/spons/traffic-light.png"
-                    alt=""
-                    label="Traffic light"
-                    className="absolute opacity-90"
-                    style={{
-                      top: "clamp(60px, 10vh, 180px)",
-                      left: "clamp(-60px, -4vw, -20px)",
-                      width: "clamp(160px, 22vw, 300px)",
-                      height: "auto",
-                      paddingLeft: "clamp(0px, 5vw, 60px)",
-                      transform: "rotate(-11.77deg)",
-                      aspectRatio: "277.91 / 416.87",
-
                     }}
                   />
 
@@ -905,6 +898,35 @@ function App() {
                     }}
                   />
                 </div>
+
+                {/* Orange blob + flower, pinned to the real right edge of the
+                    viewport rather than the 1280 frame so the blob bleeds off
+                    screen the way the mock does. */}
+                <DecorImage
+                  src="/imagesbm14/end/splotch-3.png"
+                  alt=""
+                  label="Splotch"
+                  className="absolute"
+                  style={{
+                    top: "-11%",
+                    right: "0px",
+                    height: "clamp(260px, 62vw, 680px)",
+                    width: "auto",
+                  }}
+                />
+                <DecorImage
+                  src="/imagesbm14/spons/flower.png"
+                  alt=""
+                  label="Flower"
+                  className="absolute"
+                  style={{
+                    top: "8%",
+                    right: "clamp(8px, 1.8vw, 34px)",
+                    width: "clamp(120px, 20vw, 270px)",
+                    height: "auto",
+                    transform: "rotate(18deg)",
+                  }}
+                />
               </div>
 
               {/* Social Media Icons — stays centered, above the doodles, near the bottom */}

@@ -17,10 +17,6 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
       style={{
         paddingTop: "clamp(96px, 19vw, 250px)",
         paddingBottom: "clamp(120px, 18vw, 240px)",
-        backgroundImage: "url('/imagesbm14/faq/Rough%20Tex.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center top",
-        backgroundColor: "#292526",
       }}
     >
       {/* Caution tape header — two overlapping torn strips (Tape.png also carries the cyan splatter) */}
@@ -28,13 +24,13 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         src="/imagesbm14/faq/Tape.png"
         alt=""
         className="absolute left-0 w-full pointer-events-none select-none z-[2]"
-        style={{ top: "-20vw", height: "auto" }}
+        style={{ top: "-30vw", height: "auto" }}
       />
       <img
         src="/imagesbm14/faq/Tape-2.png"
         alt=""
         className="absolute left-0 w-full pointer-events-none select-none z-[3]"
-        style={{ top: "-14vw", height: "auto" }}
+        style={{ top: "-24vw", height: "auto" }}
       />
 
       {/* Left sidebar: logo + SECTION label */}
@@ -103,9 +99,9 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         alt=""
         className="absolute pointer-events-none select-none z-[3]"
         style={{
-          left: "clamp(144px, 36vw, 456px)",
-          bottom: "clamp(144px, 36vw, 420px)",
-          width: "clamp(306px, 36vw, 840px)",
+          left: "clamp(16px, 4vw, 48px)",
+          bottom: "clamp(16px, 3vw, 40px)",
+          width: "clamp(96px, 14vw, 180px)",
           height: "auto",
         }}
       />
@@ -114,7 +110,7 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
       <div
         className="absolute pointer-events-none select-none z-[3]"
         style={{
-          right: "clamp(0px, 2vw, 56px)",
+          right: "clamp(-48px, -2.5vw, 0px)",
           bottom: "clamp(12px, 4vw, 60px)",
           width: "clamp(180px, 32vw, 420px)",
         }}

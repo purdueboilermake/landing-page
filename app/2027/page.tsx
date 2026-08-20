@@ -10,6 +10,22 @@ import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 import Image from "next/image";
 
+/**
+ * The Rough Tex backdrop is painted once, by the connector band that starts at
+ * 570vh. The footer's Transition.png is opaque and overlaps upwards from
+ * 1028vh - 25vw, so it would otherwise cut the texture off well before the
+ * purple actually begins. A second element re-draws the same texture on top of
+ * that graphic, which only lines up if both use an identical, centred
+ * background size and the overlay shifts the image up by the distance between
+ * the band's top and its own (458vh - 25vw).
+ */
+const TEX_SIZE = "100vw auto";
+const TEX_FOOTER_OFFSET = "calc(25vw - 458vh)";
+const TEX_FOOTER_FADE_IN =
+  "linear-gradient(to bottom, transparent 0px, #000 24px)";
+const TEX_FOOTER_MASK =
+  "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
+
 interface DecorImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   label?: string;
 }
@@ -304,8 +320,44 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "calc(1383vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
+            style={{ height: "calc(1028vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
+            {/* Seamless connector: one continuous Rough Tex backdrop running
+                from the top of FAQ (570vh) all the way to the top of the
+                footer (1028vh), covering Sponsors and the empty band between
+                them. FAQ and Sponsors are deliberately transparent so this is
+                the only thing painting that backdrop — when they each painted
+                their own, the texture stopped dead at the FAQ section's bottom
+                edge and left a hard line. The gradient on top fades the purple
+                page above into the texture. Sits behind all section content. */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 pointer-events-none z-0"
+              style={{
+                top: "570vh",
+                height: "458vh",
+                backgroundColor: "#292526",
+                backgroundImage:
+                  "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
+                backgroundRepeat: "no-repeat, no-repeat",
+                backgroundSize: `100% 12vh, ${TEX_SIZE}`,
+                backgroundPosition: "center top, center top",
+              }}
+            />
+            {/* Grounding shadow beneath the hero skyline: sits entirely in the
+                purple band below the hero so it never touches the scene, and
+                softens the hard flat bottom edge of the foreground buildings
+                into the page background. */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 pointer-events-none z-0"
+              style={{
+                top: "160dvh",
+                height: "26vh",
+                background:
+                  "linear-gradient(to bottom, rgba(13,6,24,0.55) 0%, rgba(13,6,24,0.22) 35%, rgba(59,52,75,0) 100%)",
+              }}
+            />
             {/* Hero Section — BoilerMake XIV skyline scene */}
             <section
               id="hero"
@@ -517,7 +569,7 @@ function App() {
             <section
               id="about"
               className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
-              style={{ top: "270vh" }}
+              style={{ top: "180vh" }}
             >
               <AboutSection />
             </section>
@@ -526,7 +578,7 @@ function App() {
             <section
               id="schedule"
               className="w-full flex items-center justify-center absolute"
-              style={{ top: "430vh", paddingTop: "8rem" }}
+              style={{ top: "325vh", paddingTop: "8rem" }}
             >
               <ScheduleSection activities={activities} />
               {/*
@@ -601,7 +653,7 @@ function App() {
             <section
               id="faq"
               className="w-full absolute overflow-x-clip"
-              style={{ top: "700vh", minHeight: "150vh" }}
+              style={{ top: "570vh", minHeight: "150vh" }}
             >
               <FAQSection questions={questions} />
             </section>
@@ -610,9 +662,9 @@ function App() {
             {/* ================= Sponsors Section ================= */}
             <section
               id="sponsors"
-              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden bg-[#292526]"
+              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden"
               style={{
-                top: "1100vh",
+                top: "745vh",
                 height: "283vh"
               }}
             >
@@ -693,7 +745,21 @@ function App() {
                   }}
                 />
 
-                <h1 style={{ fontSize: "clamp(24px, 4vw, 48px)" }}>COMING SOON</h1>
+                <h1
+                  className="relative z-10"
+                  style={{
+                    fontFamily: "var(--font-sprite-graffiti)",
+                    fontWeight: 400,
+                    fontSize: "clamp(2rem, 4.5vw, 4rem)",
+                    lineHeight: "100%",
+                    letterSpacing: "0.04em",
+                    color: "#FFE958",
+                    textShadow:
+                      "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
+                  }}
+                >
+                  COMING SOON
+                </h1>
                 {/*
                 {/* Sponsor tier grid
                 <div className="flex flex-col items-center gap-4 w-full max-w-3xl relative z-10">
@@ -741,7 +807,7 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
               style={{
-                top: "1383vh",
+                top: "1028vh",
                 zIndex: 100,
                 position: "absolute",
                 backgroundColor: "#403A50",
@@ -757,11 +823,36 @@ function App() {
                   zIndex: 1,
                 }}
               >
+                {/* The graphic is opaque, so its top edge cut the texture off
+                    with a hairline. It fades in over its first 24px instead,
+                    and the texture overlay below fades in over the same 24px —
+                    as the graphic hides the band's texture, the overlay's copy
+                    replaces it at the same rate, so coverage stays constant
+                    and there's no edge. */}
                 <DecorImage
                   src="/imagesbm14/spons/Transition.png"
                   alt=""
                   label="Transition"
                   className="block w-full h-auto"
+                  style={{
+                    WebkitMaskImage: TEX_FOOTER_FADE_IN,
+                    maskImage: TEX_FOOTER_FADE_IN,
+                  }}
+                />
+                {/* Carries the Rough Tex band across the opaque part of the
+                    graphic, then masks itself out where it turns purple. */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "url('/imagesbm14/faq/Rough%20Tex.png')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: TEX_SIZE,
+                    backgroundPosition: `center ${TEX_FOOTER_OFFSET}`,
+                    WebkitMaskImage: TEX_FOOTER_MASK,
+                    maskImage: TEX_FOOTER_MASK,
+                  }}
                 />
               </div>
               {/* Decoration layer — centered, capped at the design frame's
@@ -774,6 +865,41 @@ function App() {
                 className="absolute inset-0 flex items-start justify-center pointer-events-none"
                 style={{ zIndex: 10 }}
               >
+                {/* Blue spray blob and the traffic light that sits on it. Both
+                    live outside the 1280 frame and are anchored to the real
+                    left edge of the viewport — inside the frame they'd drift
+                    apart by the frame's inset on screens wider than 1280. The
+                    blob comes first in the DOM so the light paints over it.
+                    The kit has no cyan blob, so the orange cloud is
+                    hue-rotated. */}
+                <DecorImage
+                  src="/imagesbm14/faq/Splotch.png"
+                  alt=""
+                  label="Splotch"
+                  className="absolute"
+                  style={{
+                    top: "14%",
+                    left: "calc(-1 * clamp(130px, 19vw, 300px))",
+                    width: "clamp(220px, 33vw, 500px)",
+                    height: "auto",
+                    filter: "hue-rotate(168deg) saturate(1.25)",
+                  }}
+                />
+                <DecorImage
+                  src="/imagesbm14/spons/traffic-light.png"
+                  alt=""
+                  label="Traffic light"
+                  className="absolute opacity-90"
+                  style={{
+                    top: "clamp(60px, 10vh, 180px)",
+                    left: "clamp(-6px, 1vw, 24px)",
+                    width: "clamp(150px, 17vw, 240px)",
+                    height: "auto",
+                    transform: "rotate(-11.77deg)",
+                    aspectRatio: "277.91 / 416.87",
+                  }}
+                />
+
                 <div
                   className="relative w-full max-w-[1280px]"
                   style={{ aspectRatio: "1280 / 1308" }}
@@ -790,55 +916,6 @@ function App() {
                       width: "40.2%",
                       height: "auto",
                       aspectRatio: "1 / 1",
-                    }}
-                  />
-
-                  {/* Splotch — backdrop blob behind the flower */}
-                  <DecorImage
-                    src="/imagesbm14/end/splotch-3.png"
-                    alt=""
-                    label="Splotch"
-                    className="absolute opacity-90"
-                    style={{
-                      top: "-32%",
-                      left: "91%",
-                      width: "24%",
-                      height: "auto",
-                      aspectRatio: "149 / 506",
-                    }}
-                  />
-
-                  {/* Decorative flower — top right */}
-                  <DecorImage
-                    src="/imagesbm14/spons/flower.png"
-                    alt=""
-                    label="Flower"
-                    className="absolute opacity-90"
-                    style={{
-                      top: "7.5%",
-                      left: "80.9%",
-                      width: "18%",
-                      height: "auto",
-                      aspectRatio: "230.8 / 346.2",
-                      transform: "rotate(22.49deg)",
-                    }}
-                  />
-
-                  {/* Traffic light doodle — bleeds off the left edge */}
-                  <DecorImage
-                    src="/imagesbm14/spons/traffic-light.png"
-                    alt=""
-                    label="Traffic light"
-                    className="absolute opacity-90"
-                    style={{
-                      top: "clamp(60px, 10vh, 180px)",
-                      left: "clamp(-60px, -4vw, -20px)",
-                      width: "clamp(160px, 22vw, 300px)",
-                      height: "auto",
-                      paddingLeft: "clamp(0px, 5vw, 60px)",
-                      transform: "rotate(-11.77deg)",
-                      aspectRatio: "277.91 / 416.87",
-
                     }}
                   />
 
@@ -876,6 +953,35 @@ function App() {
                     }}
                   />
                 </div>
+
+                {/* Orange blob + flower, pinned to the real right edge of the
+                    viewport rather than the 1280 frame so the blob bleeds off
+                    screen the way the mock does. */}
+                <DecorImage
+                  src="/imagesbm14/end/splotch-3.png"
+                  alt=""
+                  label="Splotch"
+                  className="absolute"
+                  style={{
+                    top: "-11%",
+                    right: "0px",
+                    height: "clamp(260px, 62vw, 680px)",
+                    width: "auto",
+                  }}
+                />
+                <DecorImage
+                  src="/imagesbm14/spons/flower.png"
+                  alt=""
+                  label="Flower"
+                  className="absolute"
+                  style={{
+                    top: "8%",
+                    right: "clamp(8px, 1.8vw, 34px)",
+                    width: "clamp(120px, 20vw, 270px)",
+                    height: "auto",
+                    transform: "rotate(18deg)",
+                  }}
+                />
               </div>
 
               {/* Social Media Icons — stays centered, above the doodles, near the bottom */}

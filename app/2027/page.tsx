@@ -20,7 +20,7 @@ import Image from "next/image";
  * the band's top and its own (458vh - 25vw).
  */
 const TEX_SIZE = "100vw auto";
-const TEX_FOOTER_OFFSET = "calc(25vw - 458vh)";
+const TEX_FOOTER_OFFSET = "calc(25vw - 320vh)";
 const TEX_FOOTER_FADE_IN =
   "linear-gradient(to bottom, transparent 0px, #000 24px)";
 const TEX_FOOTER_MASK =
@@ -303,6 +303,7 @@ function App() {
     }
   };
 
+  
   return (
     <TypingProvider>
       <>
@@ -310,7 +311,7 @@ function App() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           rel="stylesheet"
         />
-        <div className="App font-dosis relative" style={{ backgroundColor: "#3B344B", minHeight: "100vh" }}>
+        <div className="App font-dosis relative" style={{ background: " #3B344B ", minHeight: "100vh" }}>
 
           {/* Header floats over the scene so the sky reaches the true top */}
           <div className="absolute inset-x-0 top-0 z-[200]">
@@ -320,7 +321,7 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "calc(1028vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
+            style={{ height: "calc(835vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
             {/* Seamless connector: one continuous Rough Tex backdrop running
                 from the top of FAQ (570vh) all the way to the top of the
@@ -334,8 +335,8 @@ function App() {
               aria-hidden
               className="absolute inset-x-0 pointer-events-none z-0"
               style={{
-                top: "570vh",
-                height: "458vh",
+                top: "500vh",
+                height: "320vh",
                 backgroundColor: "#292526",
                 backgroundImage:
                   "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
@@ -344,27 +345,14 @@ function App() {
                 backgroundPosition: "center top, center top",
               }}
             />
-            {/* Grounding shadow beneath the hero skyline: sits entirely in the
-                purple band below the hero so it never touches the scene, and
-                softens the hard flat bottom edge of the foreground buildings
-                into the page background. */}
-            <div
-              aria-hidden
-              className="absolute inset-x-0 pointer-events-none z-0"
-              style={{
-                top: "160dvh",
-                height: "26vh",
-                background:
-                  "linear-gradient(to bottom, rgba(13,6,24,0.55) 0%, rgba(13,6,24,0.22) 35%, rgba(59,52,75,0) 100%)",
-              }}
-            />
+            
             {/* Hero Section — BoilerMake XIV skyline scene */}
             <section
               id="hero"
               className="hero-section relative w-full overflow-hidden"
               style={
                 {
-                  height: "160dvh",
+                  height: "160vh",
                   backgroundColor: "#0d0618",
                   // --- tuning knobs ---
                   "--bb-w": "70%",     // billboard width, % of skyline box
@@ -378,6 +366,7 @@ function App() {
                 } as React.CSSProperties
               }
             >
+              
               {/* Sky — clouds at top, magenta bleed at bottom */}
               <div
                 className="pointer-events-none absolute z-[1]"
@@ -492,7 +481,8 @@ function App() {
                     style={{ top: "var(--btn-y)" }}
                   >
 
-                    <a href="https://boilermake-apply.web.app"
+                    {/* <a href="https://boilermake-apply.web.app" */}
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
                       className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                       style={{
                         fontFamily: "var(--font-futura-cyrillic), system-ui, sans-serif",
@@ -525,6 +515,19 @@ function App() {
                 }}
                 aria-hidden
               >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 bottom-0 z-[8]"
+                  style={{
+                    height: "calc(var(--ledge-h) * 0.55)",
+                    background:
+                      "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.6) 65%, #3B344B 100%)",
+                  }}
+                  
+                />
+
+                
+
                 <Image
                   src="/imagesbm14/landing/Front_Buildings.webp"
                   alt=""
@@ -535,6 +538,7 @@ function App() {
                   className="select-none object-cover object-bottom"
 
                 />
+                
               </div>
 
               {/* CTAs — above every scene layer, clear of the ledge */}
@@ -569,7 +573,7 @@ function App() {
             <section
               id="about"
               className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
-              style={{ top: "180vh" }}
+              style={{ top: "160vh" }}
             >
               <AboutSection />
             </section>
@@ -578,74 +582,10 @@ function App() {
             <section
               id="schedule"
               className="w-full flex items-center justify-center absolute"
-              style={{ top: "325vh", paddingTop: "8rem" }}
+              style={{ top: isMobile ? "300vh" : "280vh", paddingTop: "8rem" }}
             >
               <ScheduleSection activities={activities} />
-              {/*
-              <div className="w-full max-w-7xl mx-auto px-4">
-                <div
-                  className="text-center absolute left-1/2 -translate-x-1/2 z-10 pointer-events-none"
-                  style={{ top: "8rem" }}
-                >
-                  
-                  <div
-                    style={{
-                      fontFamily: "var(--font-disket-mono)",
-                      fontWeight: 400,
-                      fontSize: "clamp(32px, 8vw, 60px)",
-                      lineHeight: "100%",
-                      letterSpacing: "0.1em",
-                      color: "#FFE958",
-                      textShadow: "0px 0px 15px #FFDE00",
-                    }}
-                  >
-                    Schedule
-                    <span style={{ animation: "blink 1s infinite" }}>_</span>
-                  </div>
-                </div>
-
-                <div
-                  className="schedule-activities w-full relative mt-12 md:mt-32"
-                  style={{ marginTop: "12rem" }}
-                >
-                  {activities.map((activity, index) => {
-                    const isLeft = index % 2 === 0;
-                    return (
-                      <div
-                        key={`activity${index + 1}`}
-                        className={`
-                          absolute
-                          transition-transform duration-500
-                            ${
-                              isLeft
-                                ? "left-0 -translate-x-[-2%] md:-translate-x-[-5%] lg:-translate-x-[-3%] xl:-translate-x-[1%] min-[1340px]:-translate-x-[6%] min-[1400px]:-translate-x-[10%] min-[1470px]:-translate-x-[17%] 2xl:-translate-x-[20%]"
-                                : "right-0 translate-x-[-2%] md:translate-x-[-6%] lg:translate-x-[-3%] xl:translate-x-[1%] min-[1340px]:translate-x-[5%] min-[1400px]:translate-x-[10%] min-[1470px]:translate-x-[17%] 2xl:translate-x-[20%]"
-                            }
-                        `}
-                        style={{
-                          top: `${index * 33}vh`,
-                        }}
-                      >
-                        <ActivityPreview
-                          title={activity.title}
-                          startDate={activity.startDate}
-                          endDate={activity.endDate || ""}
-                          location={activity.location}
-                          description={activity.description}
-                          isActive={activeEventId === index + 1}
-                          onEventClick={() => handleEventClick(index + 1)}
-                          size="large"
-                          popup="left"
-                          align={isLeft ? "left" : "right"}
-                          activityId={index + 1}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            
-            */}
+              
 
             </section>
 
@@ -653,7 +593,7 @@ function App() {
             <section
               id="faq"
               className="w-full absolute overflow-x-clip"
-              style={{ top: "570vh", minHeight: "150vh" }}
+              style={{ top: isMobile ? "517vh" : "520vh", minHeight: "150vh",  }}
             >
               <FAQSection questions={questions} />
             </section>
@@ -664,8 +604,8 @@ function App() {
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden"
               style={{
-                top: "745vh",
-                height: "283vh"
+                top: "550vh",
+                height: "280vh"
               }}
             >
               <div className="flex flex-col items-center justify-center gap-14 max-w-[1406px] w-full relative">
@@ -807,7 +747,7 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
               style={{
-                top: "1028vh",
+                top: "835vh",
                 zIndex: 100,
                 position: "absolute",
                 backgroundColor: "#403A50",
@@ -880,9 +820,10 @@ function App() {
                   style={{
                     top: "14%",
                     left: "calc(-1 * clamp(130px, 19vw, 300px))",
-                    width: "clamp(220px, 33vw, 500px)",
+                    width: "clamp(300px, 40vw, 650px)",
                     height: "auto",
                     filter: "hue-rotate(168deg) saturate(1.25)",
+                    transform: "rotate(270deg)",
                   }}
                 />
                 <DecorImage
@@ -1038,6 +979,7 @@ function App() {
               </p>
             </section>
           </main>
+          
         </div>
       </>
     </TypingProvider>

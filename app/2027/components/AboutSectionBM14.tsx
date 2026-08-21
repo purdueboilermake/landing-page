@@ -13,7 +13,7 @@ export default function AboutSection() {
     // so w-screen spans the full viewport instead of starting at the section's edge
     <div
       className="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-screen overflow-visible flex items-center justify-center"
-      style={{ background: "#3b344b" }}
+      style={{ background: " #3B344B", }}
     >
  
       {/* Decorative sticker strips. top/left/height are calibrated so the bricks

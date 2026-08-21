@@ -31,26 +31,32 @@ export default function Header({}: HeaderProps) {
   const basePath = currentPath === "/2027" ? "/2027" : "/";
   // changed to 2027 here
 
-  const handleNavigation = (sectionId: string) => {
-    if (currentPath === basePath) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        // Use window.scrollTo instead of element.scrollIntoView: <main> is
-        // position:relative + overflow:hidden (a real scroll container), so
-        // scrollIntoView also nudges main.scrollTop, leaving a permanent
-        // internal offset that exposes blank space below the footer.
-        const rect = element.getBoundingClientRect();
-        const absoluteTop = rect.top + window.scrollY;
-        const targetY =
-          sectionId === "about" || sectionId === "sponsors"
-            ? absoluteTop + rect.height / 2 - window.innerHeight / 2
-            : absoluteTop;
-        window.scrollTo({ top: targetY, behavior: "smooth" });
-      }
-    } else {
-      window.location.href = `${basePath}#${sectionId}`;
+ const HEADER_OFFSET = 70; // adjust to match your header height
+
+const handleNavigation = (sectionId: string) => {
+  if (currentPath === basePath) {
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const absoluteTop = rect.top + window.scrollY;
+
+      const targetY =
+        sectionId === "sponsors"
+          ? absoluteTop + rect.height / 2 - window.innerHeight / 2
+          : sectionId === "schedule"
+            ? absoluteTop - HEADER_OFFSET - 200
+            : absoluteTop - HEADER_OFFSET;
+
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth",
+      });
     }
-  };
+  } else {
+    window.location.href = `${basePath}#${sectionId}`;
+  }
+};
 
  return (
     <header 
@@ -258,7 +264,7 @@ className="w-10 h-10"
                 Sponsors
               </button>
               
-              <a
+              {/* <a
                 href="https://boilermake-apply.web.app"
                 target="_blank"
                 rel="noreferrer"
@@ -273,7 +279,7 @@ className="w-10 h-10"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Apply Now!
-              </a>
+              </a> */}
            </nav>
           </div>
         </div>

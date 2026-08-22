@@ -757,12 +757,17 @@ function App() {
             >
               {/* Transition from Sponsors → Footer */}
               <div
-                className="absolute left-1/2 -translate-x-1/2 w-screen pointer-events-none"
-                style={{
-                  top: "-25vw",
-                  zIndex: 1,
-                }}
-              >
+  className="
+    absolute left-1/2 -translate-x-1/2
+    w-screen pointer-events-none
+    top-[-55vw]
+    sm:top-[-40vw]
+    lg:top-[-25vw]
+  "
+  style={{
+    zIndex: 1,
+  }}
+>
                 {/* The graphic is opaque, so its top edge cut the texture off
                     with a hairline. It fades in over its first 24px instead,
                     and the texture overlay below fades in over the same 24px —

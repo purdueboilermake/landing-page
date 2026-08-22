@@ -398,32 +398,38 @@ export default function Home() {
                 priority
                 className="w-full h-auto select-none"
               />
-              <div className="absolute left-[5%] right-[5%] top-[8%] h-[42%] flex flex-col items-center justify-center text-center">
-                <h1
-                  className="w-full"
-                  style={{
-                    fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
-                    fontWeight: 800,
-                    fontSize: "clamp(2.1rem, 6vw, 4rem)",
-                    lineHeight: 1.05,
-                    letterSpacing: "0.04em",
-                    color: "#1a1a1a",
-                  }}
-                >
-                  BOILERMAKE XIV
-                </h1>
-                <p
-                  style={{
-                    fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
-                    fontWeight: 500,
-                    fontSize: "clamp(0.75rem, 2.4vw, 1.05rem)",
-                    color: "#1a1a1a",
-                    marginTop: "0.35em",
-                  }}
-                >
-                  22-24 January 2026
-                </p>
-              </div>
+              <div
+  className="absolute left-[7%] right-[7%] top-[7%] h-[43%] flex flex-col items-center justify-center text-center"
+>
+  <h1
+    className="w-full"
+    style={{
+      fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
+      fontWeight: 800,
+      fontSize: "clamp(1.25rem, 6.2vw, 4rem)",
+      lineHeight: 1,
+      letterSpacing: "clamp(0.01em, 0.8vw, 0.04em)",
+      color: "#1a1a1a",
+      whiteSpace: "nowrap",
+    }}
+  >
+    BOILERMAKE XIV
+  </h1>
+
+  <p
+    style={{
+      fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
+      fontWeight: 500,
+      fontSize: "clamp(0.5rem, 2.3vw, 1.05rem)",
+      lineHeight: 1.1,
+      color: "#1a1a1a",
+      marginTop: "clamp(0.2rem, 1vw, 0.35em)",
+      whiteSpace: "nowrap",
+    }}
+  >
+    22-24 January 2026
+  </p>
+</div>
             </div>
           </div>
 

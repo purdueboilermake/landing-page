@@ -632,7 +632,7 @@ function App() {
                       instead of a guessed aspect-ratio, which was
                       distorting it. */}
                   <DecorImage
-                    src="/imagesbm14/spons/splotch-2.png"
+                    src="/imagesbm14/spons/splotchpink.png"
                     alt=""
                     label="Splotch"
                     className="absolute opacity-90"

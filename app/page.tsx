@@ -443,7 +443,7 @@ export default function Home() {
               transform: "translate(-50%, -60px)",
               fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
               fontWeight: 700,
-              fontSize: "clamp(0.8rem, 2vw, 1rem)",
+              fontSize: "clamp(0.8rem, 0.9vw, 0.8rem)",
               color: "#FFFFFF",
               background: "#5A8A4A",
               border: "2px solid #FFFFFF",

@@ -20,7 +20,7 @@ import Image from "next/image";
  * the band's top and its own (458vh - 25vw).
  */
 const TEX_SIZE = "100vw auto";
-const TEX_FOOTER_OFFSET = "calc(25vw - 320vh)";
+const TEX_FOOTER_OFFSET = "calc(25vw - 485vh)";
 const TEX_FOOTER_FADE_IN =
   "linear-gradient(to bottom, transparent 0px, #000 24px)";
 const TEX_FOOTER_MASK =
@@ -39,6 +39,7 @@ function DecorImage({ label, style, className, ...props }: DecorImageProps) {
         className={className}
         style={{
           ...style,
+          pointerEvents: "none",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -63,7 +64,7 @@ function DecorImage({ label, style, className, ...props }: DecorImageProps) {
   return (
     <img
       {...props}
-      style={style}
+      style={{ ...style, pointerEvents: 'none' }}
       className={className}
       onError={() => setBroken(true)}
     />
@@ -321,7 +322,7 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "calc(835vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
+            style={{ height: "calc(1000vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
             {/* Seamless connector: one continuous Rough Tex backdrop running
                 from the top of FAQ (570vh) all the way to the top of the
@@ -336,7 +337,7 @@ function App() {
               className="absolute inset-x-0 pointer-events-none z-0"
               style={{
                 top: "500vh",
-                height: "320vh",
+                height: "485vh",
                 backgroundColor: "#292526",
                 backgroundImage:
                   "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
@@ -602,9 +603,9 @@ function App() {
             {/* ================= Sponsors Section ================= */}
             <section
               id="sponsors"
-              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden"
+              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden pointer-events-none"
               style={{
-                top: "550vh",
+                top: "650vh",
                 height: "280vh"
               }}
             >
@@ -632,7 +633,7 @@ function App() {
                       instead of a guessed aspect-ratio, which was
                       distorting it. */}
                   <DecorImage
-                    src="/imagesbm14/spons/splotchpink.png"
+                    src="/imagesbm14/spons/Splotchpink.png"
                     alt=""
                     label="Splotch"
                     className="absolute opacity-90"
@@ -747,7 +748,7 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
               style={{
-                top: "835vh",
+                top: "1000vh",
                 zIndex: 100,
                 position: "absolute",
                 backgroundColor: "#403A50",

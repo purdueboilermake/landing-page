@@ -331,15 +331,30 @@ export default function Home() {
         className="relative w-full overflow-x-hidden"
         style={{ backgroundColor: "#0d0618" }}
       >
-        {/* Full-page sky + pink */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Sky — mirror the 2027 background treatment */}
+        <div
+          className="pointer-events-none absolute z-[1]"
+          aria-hidden
+          style={{
+            top: 0,
+            bottom: 0,
+            left: "-6%",
+            width: "133%",
+          }}
+        >
           <Image
-            src="/imagesbm14/landing/Background-fill.png"
+            src="/imagesbm14/landing/Background.webp"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover object-top select-none"
+            draggable={false}
+            className="select-none object-cover"
+            style={{
+              objectPosition: "50% 100%",
+              transform: "translateY(-135px) translateX(0%) scaleX(1.35)",
+              transformOrigin: "top right",
+            }}
           />
         </div>
 
@@ -370,7 +385,7 @@ export default function Home() {
             className="absolute left-1/2 z-[2] pointer-events-none"
             style={{
               bottom: "32%",
-              width: "min(56vw, 2000px)",
+              width: "min(72vw, 2000px)",
               transform: "translate(-50%, -60px)",
             }}
           >
@@ -389,7 +404,7 @@ export default function Home() {
                   style={{
                     fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
                     fontWeight: 800,
-                    fontSize: "clamp(5rem, 8vw, 2.4rem)",
+                    fontSize: "clamp(2.1rem, 6vw, 4rem)",
                     lineHeight: 1.05,
                     letterSpacing: "0.04em",
                     color: "#1a1a1a",
@@ -401,7 +416,7 @@ export default function Home() {
                   style={{
                     fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
                     fontWeight: 500,
-                    fontSize: "clamp(0.8rem, 2vw, 1.05rem)",
+                    fontSize: "clamp(0.75rem, 2.4vw, 1.05rem)",
                     color: "#1a1a1a",
                     marginTop: "0.35em",
                   }}
@@ -422,14 +437,15 @@ export default function Home() {
               transform: "translate(-50%, -60px)",
               fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
               fontWeight: 700,
-              fontSize: "clamp(20px, 2.1vw, 16px)",
+              fontSize: "clamp(0.8rem, 2vw, 1rem)",
               color: "#FFFFFF",
               background: "#5A8A4A",
               border: "2px solid #FFFFFF",
               borderRadius: "9999px",
-              padding: "12px 30px",
+              padding: "clamp(10px, 1.5vw, 14px) clamp(18px, 4vw, 32px)",
               boxShadow: "0 3px 0 rgba(0,0,0,0.18)",
               textDecoration: "none",
+              whiteSpace: "nowrap",
             }}
           >
             Interest Form

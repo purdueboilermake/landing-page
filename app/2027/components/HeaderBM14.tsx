@@ -31,20 +31,32 @@ export default function Header({}: HeaderProps) {
   const basePath = currentPath === "/2027" ? "/2027" : "/";
   // changed to 2027 here
 
-  const handleNavigation = (sectionId: string) => {
-    if (currentPath === basePath) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        if (sectionId == "about" || sectionId == "sponsors") {
-          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    } else {
-      window.location.href = `${basePath}#${sectionId}`;
+ const HEADER_OFFSET = 70; // adjust to match your header height
+
+const handleNavigation = (sectionId: string) => {
+  if (currentPath === basePath) {
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const absoluteTop = rect.top + window.scrollY;
+
+      const targetY =
+        sectionId === "sponsors"
+          ? absoluteTop + rect.height / 2 - window.innerHeight / 2
+          : sectionId === "schedule"
+            ? absoluteTop - HEADER_OFFSET - 200
+            : absoluteTop - HEADER_OFFSET;
+
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth",
+      });
     }
-  };
+  } else {
+    window.location.href = `${basePath}#${sectionId}`;
+  }
+};
 
  return (
     <header 
@@ -53,23 +65,30 @@ export default function Header({}: HeaderProps) {
         background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%)'
       } : undefined}
     >
-      <div className="relative px-8 lg:px-12 xl:px-16 py-4">
+      <div className="relative flex items-center h-16 px-8">
         {/* Logo positioned in top-left corner */}
-        <a href={basePath} className="absolute top-0 left-0 hover:scale-105 transition z-10 p-2 md:p-3 lg:p-4">
+        <a
+  href={basePath}
+  className="absolute left-6 top-1/2 -translate-y-1/2 hover:scale-105 transition">
           {/* accordingly modify href here */}
           <Image
             src={"/images/logo_BMXIII.png"}
             alt="Boilermake Logo"
-            width={75}
-            height={75}
-            className="w-12 h-12 md:h-16 md:w-16 lg:w-20 lg:h-20 object-contain"
+            width={42}
+height={42}
+className="w-10 h-10"
           />
         </a>
         
-        <div className="flex justify-between items-center text-white max-w-screen-2xl mx-auto">
+        {/* was: flex justify-between items-center text-white max-w-screen-2xl mx-auto */}
+        <div className="flex w-full justify-end items-center text-white">
 
-          {/* Desktop Navigation - centered and spanning */}
-          <nav className="hidden md:flex flex-1 items-center justify-between ml-20 lg:ml-24 xl:ml-28 pt-6" style={{ gap: 'clamp(1rem, 1.5vw, 2rem)' }}>
+    {/* Desktop Navigation - right aligned */}
+    {/* was: hidden md:flex flex-1 items-center justify-between ml-20 lg:ml-24 xl:ml-28 pt-6 */}
+            <nav
+              className="hidden md:flex items-center justify-end pt-6"
+              style={{ gap: 'clamp(1rem, 1.5vw, 2rem)' }}
+            >
             <button
               onClick={() => handleNavigation("about")}
               className="transition-all duration-300 whitespace-nowrap"
@@ -80,14 +99,9 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
+                
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
-              }}
+              
             >
               About
             </button>
@@ -101,14 +115,9 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
+                
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
-              }}
+              
             >
               Schedule
             </button>
@@ -121,15 +130,9 @@ export default function Header({}: HeaderProps) {
                 fontSize: "clamp(18px, 3.5vw, 28px)",
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
-                color: "#FFFFFF",
-                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
+                color: "#FFFFFF"
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
-              }}
+              
             >
               FAQs
             </button>
@@ -143,14 +146,9 @@ export default function Header({}: HeaderProps) {
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                textShadow: "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)",
+                
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.textShadow = "0px 0px 15px rgba(255, 222, 0, 0.7), 0px 0px 25px rgba(255, 222, 0, 0.5)";
-              }}
+              
             >
               Sponsors
             </button>
@@ -208,14 +206,9 @@ export default function Header({}: HeaderProps) {
                   fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                  
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
+                
               >
                 About
               </button>
@@ -230,14 +223,9 @@ export default function Header({}: HeaderProps) {
                   fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                  
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
+                
               >
                 Schedule
               </button>
@@ -252,14 +240,9 @@ export default function Header({}: HeaderProps) {
                   fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                  
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
+                
               >
                 FAQs
               </button>
@@ -274,19 +257,14 @@ export default function Header({}: HeaderProps) {
                   fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                  
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
+                
               >
                 Sponsors
               </button>
               
-              <a
+              {/* <a
                 href="https://boilermake-apply.web.app"
                 target="_blank"
                 rel="noreferrer"
@@ -295,18 +273,13 @@ export default function Header({}: HeaderProps) {
                   fontFamily: "var(--font-code-pro)",
                   fontWeight: 500,
                   letterSpacing: "0.05em",
-                  textShadow: "0px 0px 10px rgba(255, 222, 0, 0.5)",
+                  
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 15px #FFDE00, 0px 0px 25px #FFDE00";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "0px 0px 10px rgba(255, 222, 0, 0.5)";
-                }}
+                
                 onClick={() => setIsMenuOpen(false)}
               >
                 Apply Now!
-              </a>
+              </a> */}
            </nav>
           </div>
         </div>

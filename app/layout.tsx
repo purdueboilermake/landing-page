@@ -5,7 +5,7 @@ import './globals.css';
 
 
 export const metadata: Metadata = {
-  title: "BoilerMake XIII",
+  title: "BoilerMake XIV",
   description: "Purdue University's flagship hackathon, BoilerMake, is back in January 2026. Escape Reality.",
 }
   

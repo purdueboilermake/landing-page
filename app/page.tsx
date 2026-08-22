@@ -309,6 +309,8 @@
 //     </>
 //   );
 // }
+
+
 /**
  * app/page.tsx
  * Home page — BoilerMake XIV coming soon
@@ -404,15 +406,17 @@ export default function Home() {
                     marginTop: "0.35em",
                   }}
                 >
-                  22 - 24 January 2027
+                  22-24 January 2026
                 </p>
               </div>
             </div>
           </div>
 
-          <button
-            type="button"
-            className="absolute left-1/2 z-[5] cursor-pointer"
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute left-1/2 z-[5] inline-flex items-center justify-center cursor-pointer"
             style={{
               bottom: "50%",
               transform: "translate(-50%, -60px)",
@@ -425,10 +429,11 @@ export default function Home() {
               borderRadius: "9999px",
               padding: "12px 30px",
               boxShadow: "0 3px 0 rgba(0,0,0,0.18)",
+              textDecoration: "none",
             }}
           >
             Interest Form
-          </button>
+          </a>
 
           {/* Front ledge — overlaps bottom of mid buildings */}
           <div className="absolute inset-x-0 bottom-0 z-[8] w-full pointer-events-none">
@@ -469,4 +474,3 @@ export default function Home() {
     </>
   );
 }
-

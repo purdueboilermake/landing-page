@@ -322,11 +322,11 @@ function App() {
           {/* Main content container with CSS Grid layout */}
           <main
             className="w-full main-content"
-            style={{ height: "calc(1000vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
+            style={{ height: "calc(1140vh + clamp(700px, 60vw, 950px))", overflow: "hidden" }}
           >
             {/* Seamless connector: one continuous Rough Tex backdrop running
-                from the top of FAQ (570vh) all the way to the top of the
-                footer (1028vh), covering Sponsors and the empty band between
+                from just before FAQ all the way to the top of the
+                footer, covering Sponsors and the empty band between
                 them. FAQ and Sponsors are deliberately transparent so this is
                 the only thing painting that backdrop — when they each painted
                 their own, the texture stopped dead at the FAQ section's bottom
@@ -336,7 +336,7 @@ function App() {
               aria-hidden
               className="absolute inset-x-0 pointer-events-none z-0"
               style={{
-                top: "500vh",
+                top: "640vh",
                 height: "485vh",
                 backgroundColor: "#292526",
                 backgroundImage:
@@ -574,7 +574,7 @@ function App() {
             <section
               id="about"
               className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
-              style={{ top: "160vh" }}
+              style={{ top: "170vh" }}
             >
               <AboutSection />
             </section>
@@ -582,19 +582,28 @@ function App() {
             {/* Schedule Section */}
             <section
               id="schedule"
-              className="w-full flex items-center justify-center absolute"
-              style={{ top: isMobile ? "300vh" : "280vh", paddingTop: "8rem" }}
+              className="w-full absolute flex items-start justify-center"
+              style={{
+                // Give Schedule a larger, more deliberate slice of the page
+                // while leaving a deliberate gap before the FAQ below it.
+                top: isMobile ? "292vh" : "272vh",
+                minHeight: isMobile ? "225vh" : "248vh",
+                paddingTop: isMobile ? "5rem" : "7rem",
+                paddingBottom: isMobile ? "7rem" : "10rem",
+              }}
             >
-              <ScheduleSection activities={activities} />
-              
-
+              {/* Wider responsive frame = less cramped cards/content on desktop,
+                  while keeping comfortable gutters on smaller screens. */}
+              <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-8 lg:px-12 xl:px-16">
+                <ScheduleSection activities={activities} />
+              </div>
             </section>
 
             {/* FAQ Section */}
             <section
               id="faq"
               className="w-full absolute overflow-x-clip"
-              style={{ top: isMobile ? "517vh" : "520vh", minHeight: "150vh",  }}
+              style={{ top: isMobile ? "657vh" : "660vh", minHeight: "150vh" }}
             >
               <FAQSection questions={questions} />
             </section>
@@ -605,7 +614,7 @@ function App() {
               id="sponsors"
               className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden pointer-events-none"
               style={{
-                top: "650vh",
+                top: "790vh",
                 height: "280vh"
               }}
             >
@@ -748,7 +757,7 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
               style={{
-                top: "1000vh",
+                top: "1140vh",
                 zIndex: 100,
                 position: "absolute",
                 backgroundColor: "#403A50",

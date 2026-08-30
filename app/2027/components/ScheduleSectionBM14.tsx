@@ -150,7 +150,7 @@ export default function ScheduleSection({
     activities,
 }: ScheduleSectionProps) {
     return (
-        <div className="w-[100vw] relative flex flex-col items-center overflow-x-hidden">
+        <div className="w-full relative flex flex-col items-center overflow-visible">
             <div className="w-full max-w-6xl mx-auto px-4 relative pb-10">
                 {/* Section title — graffiti asset */}
                 <div className="relative flex justify-center items-center text-center mb-24 min-h-[140px] w-full">
@@ -200,10 +200,22 @@ export default function ScheduleSection({
                 </div>
             </div>
 
-            {/* RoughTexPurple at the very bottom, below all activity boxes */}
-            <div className="w-full h-[250px] md:h-[400px] relative z-[-1] pointer-events-none mt-10">
-                <Image src="/imagesbm14/schedule/RoughTexPurple.png" alt="Rough Texture" fill className="object-cover object-top opacity-90" />
-            </div>
+            <div
+    className="relative h-[250px] md:h-[400px] mt-10 pointer-events-none overflow-hidden"
+    style={{
+        width: "100vw",
+        marginLeft: "calc(50% - 50vw)",
+        marginRight: "calc(50% - 50vw)",
+    }}
+>
+    <Image
+        src="/imagesbm14/schedule/RoughTexPurple.png"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-top opacity-90"
+    />
+</div>
         </div>
     );
 }

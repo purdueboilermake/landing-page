@@ -427,7 +427,7 @@ export default function Home() {
       whiteSpace: "nowrap",
     }}
   >
-    22-24 January 2026
+    22-24 January 2027
   </p>
 </div>
             </div>

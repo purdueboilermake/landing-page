@@ -370,32 +370,30 @@ function App() {
               
               {/* Sky — clouds at top, magenta bleed at bottom */}
               <div
-                className="pointer-events-none absolute z-[1]"
-                aria-hidden
-                style={{
-                  top: 0,
-                  bottom: 0,
-                  left: "-6%",
-                  width: "133%",
-                }}
-              >
-                <Image
-                  src="/imagesbm14/landing/Background.webp"
-                  alt=""
-                  fill
-                  priority
-                  sizes="100vw"
-                  draggable={false}
-                  className="select-none object-cover"
-                  style={{
-                    objectPosition: "50% 100%",
-
-                    transform: "translateY(var(--sky-offset-y)) translateX(0%) scaleX(1.35)",
-                    transformOrigin: "top right",
-
-                  }}
-                />
-              </div>
+  className="pointer-events-none absolute z-[1]"
+  aria-hidden
+  style={{
+    top: "var(--sky-offset-y)",
+    bottom: 0,
+    left: "-6%",
+    width: "133%",
+  }}
+>
+  <Image
+    src="/imagesbm14/landing/Background.webp"
+    alt=""
+    fill
+    priority
+    sizes="100vw"
+    draggable={false}
+    className="select-none object-cover"
+    style={{
+      objectPosition: "50% 100%",
+      transform: "scaleX(1.35)",
+      transformOrigin: "center",
+    }}
+  />
+</div>
 
               {/* SKYLINE — full-bleed, exact aspect ratio, bottom-anchored */}
               <div

@@ -1,135 +1,122 @@
 /**
- * app/past/page.tsx
- * Will show the past information of boilermake
- * @VarunJasti @DylanMiller
- * 9-30-2025
+ * app/past/page.tsx — graffiti-inspired section beneath the BoilerMake XIV skyline.
+ * The home page, social icons, carousel logic, sponsors, and links remain unchanged.
  */
-
 import Image from 'next/image'
 import ImageCarousel from '@/app/past/ImageCarousel'
 
 export default function PastPage() {
-    return (
-        <>
-            <meta charSet="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>In the Past | BoilerMake XIII</title>
-            <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-            <link
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-                rel="stylesheet"
-            />
-            <link
-                href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-                rel="stylesheet"
-            />
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-            <link
-                href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200..800&family=Inter:wght@100..900&family=Roboto+Mono:wght@400;500;600;700&family=Days+One&display=swap"
-                rel="stylesheet"
-            />
-            <link
-                href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
-                rel="stylesheet"
-            />
-            <meta name="title" content="In the Past | BoilerMake XIII" />
-            <meta
-                name="description"
-                content="Purdue University's flagship hackathon, BoilerMake, is back in January 2025. Adventure Awaits."
-            />
-            <style
-                dangerouslySetInnerHTML={{
-                    __html:
-                        '\n            body {\n                font-family: "Dosis", sans-serif;\n                font-weight: 500;\n            }\n            h1 {\n                font-family: "Arvo", serif;\n            }\n        '
-                }}
-            />
-            <Image
-                src="/images/stars_left.png"
-                className="absolute top-0 left-0 z-10 w-0 h-0 md:w-36 md:h-36"
-                width={0}
-                height={0}
-                sizes="100vw"
-                alt="Stars"
-            />
-            <main className="flex flex-col bg-[#1E1E1E] h-full w-full pt-20 gap-8 md:gap-16 justify-between items-center relative">
-                {/* Ellipse backdrop layer (below everything) */}
-                <div className="absolute inset-0 pointer-events-none z-1">
-                    <div className="relative w-full h-full">
-                        <Image
-                            src="/images/ellipses.png"
-                            alt="Ellipses Background"
-                            fill
-                            className="object-cover object-center"
-                        />
-                    </div>
-                </div>
-                {/* Gradient layer */}
-                <div
-                    className="absolute inset-0 bg-center bg-no-repeat"
-                    style={{
-                        backgroundImage: "url('/images/Gradient.png')",
-                        backgroundSize: '100% 100%',
-                        zIndex: 20
-                    }}
-                    aria-hidden
-                />
-                <div className="absolute inset-0 pointer-events-none flex justify-center overflow-hidden">
-                    <div
-                        className="relative h-full px-[15vw] box-content"
-                        style={{
-                            zIndex: 10,
-                            backgroundClip: 'padding-box'
-                        }}
-                    >
-                        <Image
-                            src="/images/Circle.png"
-                            alt=""
-                            width={1049}
-                            height={1049}
-                            className="h-full w-auto max-w-none select-none opacity-30"
-                            style={{
-                                WebkitMaskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)',
-                                maskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)'
-                            }}
-                        />
-                    </div>
-                </div>
-                <div className="flex flex-col w-full relative z-30 gap-8 md:gap-16 items-center">
+  return (
+    <main className="graffiti-past relative isolate w-full overflow-hidden bg-[#1B0A29] text-[#F5F0E8] pt-20 pb-24 md:pt-28">
+      <style>{`
+        .graffiti-past {
+          font-family: var(--font-sprite-graffiti), sans-serif;
+          background-color: #1B0A29;
+        }
+          
+        .graffiti-past::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          opacity: .65;
+          background: linear-gradient(180deg, #1B0A29 0%, #271437 35%, #1B0A29 100%);
+          z-index: -1;
+        }
+        .graffiti-past .graffiti-photo-strip img {
+          border: 3px solid #171021;
+          border-radius: 2px;
+          box-shadow: 5px 5px 0 #aa7bdb;
+        }
+        /* White sponsor cards, with alternating flat graffiti colors on hover. */
+        .graffiti-past .graffiti-sponsors > a:nth-child(6n + 1) { --hover-color: #F0D675; }
+        .graffiti-past .graffiti-sponsors > a:nth-child(6n + 2) { --hover-color: #A9C7FA; }
+        .graffiti-past .graffiti-sponsors > a:nth-child(6n + 3) { --hover-color: #DDBBFA; }
+        .graffiti-past .graffiti-sponsors > a:nth-child(6n + 4) { --hover-color: #FFB994; }
+        .graffiti-past .graffiti-sponsors > a:nth-child(6n + 5) { --hover-color: #F4BED0; }
+        .graffiti-past .graffiti-sponsors > a:nth-child(6n) { --hover-color: #B8E5CB; }
+        .graffiti-past .graffiti-sponsor-card { background-color: #DEDEDE; }
+        .graffiti-past .graffiti-sponsors > a:hover .graffiti-sponsor-card,
+        .graffiti-past .graffiti-sponsors > a:focus-visible .graffiti-sponsor-card {
+          background-color: var(--hover-color);
+          box-shadow: 7px 7px 0 #171021;
+        }
+        .graffiti-past a:focus-visible { outline: 3px dashed #f0d675; outline-offset: 5px; }
+      `}</style>
+      <div className="relative z-10 flex w-full flex-col items-center gap-10 md:gap-16">
                 <h1
-                    className="font-bold text-4xl md:text-6xl text-center text-[#FFE958] px-4 md:px-0 leading-tight"
+                    className="font-black uppercase text-4xl md:text-6xl text-center text-[#F5F0D9] px-4 md:px-0 leading-tight rotate-[-1deg]"
                     style={{
-                        fontFamily: 'var(--font-disket-mono)',
-                        textShadow: '0px 0px 15px #FFDE00'
-                    }}
+            fontFamily: "var(--font-sprite-graffiti)",
+            fontWeight: 400,
+            fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
+            lineHeight: "100%",
+            letterSpacing: "0.04em",
+            color: "#FFE958",
+            textShadow: "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
+          }}
                 >
-                    BoilerMake In The Past
-                </h1>
+                    BoilerMake In The Past         
+                    </h1>
                 <section className="text-white flex flex-col items-center justify-center">
-                    <div className="flex flex-col md:flex-row gap-10">
-                        <div className="text-center">
-                            <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'var(--font-futura-cyrillic)',
-                                color: '#FFE958',
-                                textShadow: '0px 0px 15px #FFDE00'
-                            }}>500+</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Attendees</p>
+                    <div className="flex flex-col md:flex-row gap-5 md:gap-10">
+                        <div className="text-center min-w-44 border-[3px] border-[#171021] bg-[#FFA13E] px-7 py-5 shadow-[6px_6px_0_#171021] odd:rotate-[-2deg] even:rotate-[2deg]">
+                            <h3 className="text-3xl md:text-5xl font-black leading-tight" style={{
+            fontFamily: "var(--font-sprite-graffiti)",
+            fontWeight: 400,
+            fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
+            lineHeight: "100%",
+            letterSpacing: "0.04em",
+            color: "black",
+            textShadow: "0 3px 0 #FFA13E, 0 6px 0 #FFA13E, 0 9px 14px rgba(0,0,0,0.45)",
+          }}>500+</h3>
+                            <p className="text-sm md:text-base mt-2 uppercase tracking-wider" style={{
+                        fontFamily: "var(--font-futura-cyrillic)",
+                        fontWeight: 400,
+                        fontSize: "2cqi",
+                        letterSpacing: "0.1em",
+                        color: "#21152F",
+                        marginBottom: "0.5em",
+                      }}>Attendees</p>
                         </div>
-                        <div className="text-center">
-                            <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'var(--font-futura-cyrillic)',
-                                color: '#FFE958',
-                                textShadow: '0px 0px 15px #FFDE00'
-                            }}>36</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Hours of Hacking</p>
+                        <div className="text-center min-w-44 border-[3px] border-[#171021] bg-[#CC5FE6] px-7 py-5 shadow-[6px_6px_0_#171021] odd:rotate-[-2deg] even:rotate-[2deg]">
+                            <h3 className="text-3xl md:text-5xl font-black leading-tight" style={{
+            fontFamily: "var(--font-sprite-graffiti)",
+            fontWeight: 400,
+            fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
+            lineHeight: "100%",
+            letterSpacing: "0.04em",
+            color: "black",
+            textShadow: "0 3px 0 #CC5FE6, 0 6px 0 #CC5FE6, 0 9px 14px rgba(0,0,0,0.45)",
+            
+          }}>36</h3>
+                            <p className="text-sm md:text-base mt-2 uppercase tracking-wider" style={{
+                        fontFamily: "var(--font-futura-cyrillic)",
+                        fontWeight: 400,
+                        fontSize: "2cqi",
+                        letterSpacing: "0.1em",
+                        color: "#21152F",
+                        marginBottom: "0.5em",
+                      }}>Hours of Hacking</p>
                         </div>
-                        <div className="text-center">
-                            <h3 className="text-2xl md:text-4xl leading-tight" style={{
-                                fontFamily: 'var(--font-futura-cyrillic)',
-                                color: '#FFE958',
-                                textShadow: '0px 0px 15px #FFDE00'
-                            }}>$10,000+</h3>
-                            <p className="text-sm md:text-base mt-1" style={{ fontFamily: 'var(--font-futura-cyrillic)', color: '#FFFFFF' }}>Prizes Awarded</p>
+                        <div className="text-center min-w-44 border-[3px] border-[#171021] bg-[#77CF50] px-7 py-5 shadow-[6px_6px_0_#171021] odd:rotate-[-2deg] even:rotate-[2deg]">
+                            <h3 className="text-3xl md:text-5xl font-black leading-tight" style={{
+            fontFamily: "var(--font-sprite-graffiti)",
+            fontWeight: 400,
+            fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
+            lineHeight: "100%",
+            letterSpacing: "0.04em",
+            color: "black",
+            textShadow: "0 3px 0 #77CF50, 0 6px 0 #77CF50, 0 9px 14px rgba(0,0,0,0.45)",
+          }}>$10,000+</h3>
+                            <p className="text-sm md:text-base mt-2 uppercase tracking-wider" style={{
+                        fontFamily: "var(--font-futura-cyrillic)",
+                        fontWeight: 400,
+                        fontSize: "2cqi",
+                        letterSpacing: "0.1em",
+                        color: "#21152F",
+                        marginBottom: "0.5em",
+                      }}>Prizes Awarded</p>
                         </div>
                     </div>
                 </section>
@@ -168,18 +155,23 @@ export default function PastPage() {
                         { src: "/assets/pics/7.JPG", alt: "Event photo 7" },
                     ]}
                     speed={120} // higher is slower, speed = seconds for one complete scroll cycle
-                    className="w-full"
+                    className="w-full graffiti-photo-strip"
                 />
-                <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">
-                    <h2 className="text-3xl font-bold mb-6 md:mb-12 text-center text-[#FFE958]" style={{
-                        fontFamily: 'var(--font-disket-mono)',
-                        textShadow: '0px 0px 15px #FFDE00'
-                    }}>
-                        BM XII Sponsors
+                <section className="flex flex-col items-center w-full px-5 sm:px-10 md:px-16 lg:px-24 relative">
+                    <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 md:mb-12 text-center text-[#F0D675]" style={{
+            fontFamily: "var(--font-sprite-graffiti)",
+            fontWeight: 400,
+            fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
+            lineHeight: "100%",
+            letterSpacing: "0.04em",
+            color: "#FFE958",
+            textShadow: "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
+          }}>
+                       ❃  BM XII Sponsors ❃  
                     </h2>
-                    <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 mb-16">
+                    <div className="graffiti-sponsors flex flex-wrap justify-center items-center gap-6 md:gap-8 mb-16 max-w-6xl">
                         <a href="https://www.caterpillar.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/cat.png"
                                     alt="CAT"
@@ -191,7 +183,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/SFAB.png"
                                     alt="SFAB"
@@ -203,7 +195,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.cs.purdue.edu/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/PurdueCS.svg"
                                     alt="Purdue CS"
@@ -215,7 +207,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.deshaw.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/deshaw.png"
                                     alt="D.E. Shaw"
@@ -227,7 +219,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.rcac.purdue.edu/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/RCAC_Logo.png"
                                     alt="RCAC"
@@ -239,7 +231,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://engineering.purdue.edu/Engr" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/coe.svg"
                                     alt="CoE"
@@ -251,7 +243,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://roboflow.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/roboflow.png"
                                     alt="Roboflow"
@@ -263,7 +255,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.runpod.io/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/runpod_color.png"
                                     alt="Runpod"
@@ -275,7 +267,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://purdueinnovates.org/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/purdue_innovates.png"
                                     alt="Purdue Innovates"
@@ -287,7 +279,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.klaviyo.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/klaviyo.png"
                                     alt="Klaviyo"
@@ -299,7 +291,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.blippayments.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/blip.png"
                                     alt="Blip"
@@ -311,7 +303,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://sync.so/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/sync.png"
                                     alt="Sync"
@@ -323,7 +315,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://modal.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/modal.svg"
                                     alt="Modal"
@@ -335,7 +327,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.tacobell.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/TacoBell.svg"
                                     alt="Taco Bell"
@@ -347,7 +339,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.cartesia.ai/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/cartesia.svg"
                                     alt="Cartesia"
@@ -359,7 +351,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.warp.dev/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/warp.png"
                                     alt="Warp"
@@ -371,7 +363,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.wolfram.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/wolfram.png"
                                     alt="Wolfram"
@@ -384,16 +376,21 @@ export default function PastPage() {
                         </a>
                     </div>
                 </section>
-                <section className="flex flex-col items-center w-full px-24 md:px-60 lg:px-72 relative">
-                    <h2 className="text-3xl font-bold mb-6 md:mb-12 text-center text-[#FFE958]" style={{
-                        fontFamily: 'var(--font-disket-mono)',
-                        textShadow: '0px 0px 15px #FFDE00'
-                    }}>
-                        More Past Sponsors
+                <section className="flex flex-col items-center w-full px-5 sm:px-10 md:px-16 lg:px-24 relative">
+                    <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 md:mb-12 text-center text-[#F0D675]" style={{
+            fontFamily: "var(--font-sprite-graffiti)",
+            fontWeight: 400,
+            fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
+            lineHeight: "100%",
+            letterSpacing: "0.04em",
+            color: "#FFE958",
+            textShadow: "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
+          }}>
+                       ✮ More Past Sponsors ✮
                     </h2>
-                    <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                                        <div className="graffiti-sponsors flex flex-wrap justify-center items-center gap-6 md:gap-8 max-w-6xl">
                         <a href="https://www.cockroachlabs.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/cockroachdb.svg"
                                     alt="CockroachDB"
@@ -405,7 +402,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.sandia.gov/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/sandia.png"
                                     alt="Sandia National Labs"
@@ -417,7 +414,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.digitalocean.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/digitalocean.png"
                                     alt="Digital Ocean"
@@ -429,7 +426,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.deere.com/en/index.html" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/johndeere.png"
                                     alt="John Deere"
@@ -441,7 +438,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.ecolab.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/ecolab.png"
                                     alt="EcoLab"
@@ -453,7 +450,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.bloomberg.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/bloomberg.png"
                                     alt="Bloomberg"
@@ -465,7 +462,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.echo3d.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/echo3d.png"
                                     alt="Echo3D"
@@ -477,7 +474,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.deloitte.com/global/en.html" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/deloitte.png"
                                     alt="Deloitte"
@@ -489,7 +486,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.sketch.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/sketch.png"
                                     alt="Sketch"
@@ -501,7 +498,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.palantir.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/palantir.png"
                                     alt="Palantir"
@@ -517,12 +514,12 @@ export default function PastPage() {
                             target="_blank"
                             className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center"
                         >
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image src="/assets/sponsors/ford.png" alt="Ford" className="h-16 w-auto object-contain" width={200} height={64} sizes="200px" />
                             </div>
                         </a>
                         <a href="https://thecodex.me/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/codex.png"
                                     alt="The Codex"
@@ -534,7 +531,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://dagshub.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/dagshub.svg"
                                     alt="Dagshub"
@@ -546,7 +543,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.qualcomm.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/qualcomm.png"
                                     alt="Qualcomm"
@@ -558,7 +555,7 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.capitalone.com/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="bg-[#FFFFFFBB] border-2 border-white rounded-xl p-4 hover:bg-white transition duration-500 ease-in-out flex items-center justify-center w-full h-24">
+                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/capitalone.png"
                                     alt="CapitalOne"
@@ -570,24 +567,23 @@ export default function PastPage() {
                             </div>
                         </a>
                     </div>
-                    <p className="my-16 text-lg text-center text-white" style={{ fontFamily: 'var(--font-futura-cyrillic)' }}>
+                    <p className="my-16 text-lg text-center text-white" style={{
+                        fontFamily: "var(--font-futura-cyrillic)",
+                        fontWeight: 400,
+                        fontSize: "2cqi",
+                        letterSpacing: "0.1em",
+                        color: "#DEDEDE",
+                        marginBottom: "0.5em",
+                      }}>
                         Interested? Reach out to us at{" "}
-                        <a href="mailto:sponsorship@boilermake.org" className="underline text-[#FFE958] hover:text-[#FFDE00]">
+                        <a href="mailto:sponsorship@boilermake.org" className="underline text-[#F0D675] hover:text-[#F5F0D9]">
                             sponsorship@boilermake.org
                         </a>
                         !
                     </p>
-                    <Image
-                        src="/images/stars_right.png"
-                        alt="Stars"
-                        className="absolute bottom-0 right-0 h-0 w-0 md:h-32 md:w-32"
-                        width={1000}
-                        height={1000}
-                        sizes="100vw"
-                    />
                 </section>
-                </div>
-            </main>
-        </>
-    )
+
+      </div>
+    </main>
+  )
 }

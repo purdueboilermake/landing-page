@@ -319,7 +319,11 @@
  */
 
 import Image from "next/image";
-
+import PastPage from "@/app/past/page";
+const TEX_FOOTER_FADE_IN =
+  "linear-gradient(to bottom, transparent 0px, #000 24px)";
+const TEX_FOOTER_MASK =
+  "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
 export default function Home() {
   return (
     <>
@@ -470,7 +474,7 @@ export default function Home() {
             />
           </div>
 
-          {/* Socials — overlay on front buildings */}
+          {/* Socials — overlay on front buildings
           <div className="absolute inset-x-0 bottom-0 z-[12] flex justify-center gap-5 sm:gap-6 pb-4 sm:pb-5">
             {[
               { href: "mailto:team@boilermake.org", label: "Email", icon: "fas fa-envelope" },
@@ -490,9 +494,30 @@ export default function Home() {
                 <i className={item.icon} />
               </a>
             ))}
-          </div>
+          </div> */}
         </div>
       </main>
+      {/* Full-width graffiti transition, directly beneath the social icons. */}
+      {/* Transition overlay between landing and past page */}
+<div className="relative z-[20] h-0 pointer-events-none"style={{
+
+
+    }}>
+  <img
+    src="/imagesbm14/about/Transition.webp"
+    alt=""
+    className="absolute left-0 top-0 block w-full h-auto"
+    style={{
+      transform: "translateY(-62%)",
+      WebkitMaskImage:
+        "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+      maskImage:
+        "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+    }}
+  />
+</div>
+
+<PastPage />
     </>
   );
 }

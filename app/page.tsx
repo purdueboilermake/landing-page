@@ -335,6 +335,23 @@ export default function Home() {
         className="relative w-full overflow-x-hidden"
         style={{ backgroundColor: "#0d0618" }}
       >
+
+        {/* Responsive top-left logo */}
+<header className="absolute top-0 left-0 z-[30] w-full pointer-events-none">
+  <div className="px-4 pt-4 sm:px-8 sm:pt-8 lg:px-12 lg:pt-10">
+      <Image
+        src="/images/logo_BMXIII.png"
+        alt="BoilerMake Logo"
+        width={158}
+        height={149}
+        priority
+        sizes="(max-width: 639px) 40px, 48px"
+        className="h-auto w-10 sm:w-12 select-none"
+      />
+  </div>
+</header>
+
+        
         {/* Sky — mirror the 2027 background treatment */}
         <div
           className="pointer-events-none absolute z-[1]"
@@ -408,14 +425,13 @@ export default function Home() {
   <h1
     className="w-full"
     style={{
-      fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
-      fontWeight: 800,
-      fontSize: "clamp(1.25rem, 6.2vw, 4rem)",
-      lineHeight: 1,
-      letterSpacing: "clamp(0.01em, 0.8vw, 0.04em)",
-      color: "#1a1a1a",
-      whiteSpace: "nowrap",
-    }}
+                        fontFamily: "var(--font-disket-mono)",
+                        fontWeight: 400,
+                        fontSize: "6.2cqi",
+                        lineHeight: 1.02,
+                        letterSpacing: "0.06em",
+                        color: "#1a1a1a",
+                      }}
   >
     BOILERMAKE XIV
   </h1>
@@ -438,40 +454,44 @@ export default function Home() {
           </div>
 
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute left-1/2 z-[5] inline-flex items-center justify-center cursor-pointer"
-            style={{
-              bottom: "50%",
-              transform: "translate(-50%, -60px)",
-              fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(0.8rem, 0.9vw, 0.8rem)",
-              color: "#FFFFFF",
-              background: "#5A8A4A",
-              border: "2px solid #FFFFFF",
-              borderRadius: "9999px",
-              padding: "clamp(10px, 1.5vw, 14px) clamp(18px, 4vw, 32px)",
-              boxShadow: "0 3px 0 rgba(0,0,0,0.18)",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-            }}
-          >
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute left-1/2 z-[5] inline-flex items-center justify-center cursor-pointer
+                    text-[10px] sm:text-[13px]
+                    px-3 py-1.5 sm:px-6 sm:py-3
+                    border sm:border-2 border-white rounded-full"
+          style={{
+            bottom: "50%",
+            transform: "translate(-50%, -60px)",
+            fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
+            fontWeight: 700,
+            color: "#FFFFFF",
+            background: "#5A8A4A",
+            boxShadow: "0 3px 0 rgba(0,0,0,0.18)",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
             Interest Form
           </a>
-
           {/* Front ledge — overlaps bottom of mid buildings */}
           <div className="absolute inset-x-0 bottom-0 z-[8] w-full pointer-events-none">
             <Image
-              src="/imagesbm14/landing/Front_Buildings.webp"
-              alt=""
-              width={1280}
-              height={203}
-              priority
-              sizes="100vw"
-              className="w-full h-auto select-none block"
-            />
+    src="/imagesbm14/landing/Front_Buildings.webp"
+    alt=""
+    width={1280}
+    height={203}
+    priority
+    sizes="100vw"
+    className="
+      block w-full h-auto
+      select-none
+      origin-bottom
+      scale-y-[1.35]
+      sm:scale-y-100
+    "
+  />
           </div>
 
           {/* Socials — overlay on front buildings

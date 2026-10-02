@@ -320,17 +320,36 @@
 
 import Image from "next/image";
 import PastPage from "@/app/past/page";
+import { useEffect } from "react";
 const TEX_FOOTER_FADE_IN =
   "linear-gradient(to bottom, transparent 0px, #000 24px)";
 const TEX_FOOTER_MASK =
   "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
 export default function Home() {
+  useEffect(() => {
+    const arrow = document.querySelector(".scroll-arrow");
+
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        arrow?.classList.add("opacity-0", "pointer-events-none");
+      } else {
+        arrow?.classList.remove("opacity-0", "pointer-events-none");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
+    
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         rel="stylesheet"
       />
+
+      
       <main
         className="relative w-full overflow-x-hidden"
         style={{ backgroundColor: "#0d0618" }}
@@ -516,6 +535,20 @@ export default function Home() {
             ))}
           </div> */}
         </div>
+        
+<a
+  href="#past"
+  aria-label="Scroll down"
+  className="scroll-arrow hidden sm:block absolute left-[50%] top-[66%] z-[30]
+             -translate-x-1/2
+             text-3xl sm:text-4xl md:text-5xl
+             text-white
+             drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]
+             animate-bounce transition-opacity duration-300"
+>
+  <i className="fas fa-chevron-down" />
+  
+</a>
       </main>
       {/* Full-width graffiti transition, directly beneath the social icons. */}
       {/* Transition overlay between landing and past page */}

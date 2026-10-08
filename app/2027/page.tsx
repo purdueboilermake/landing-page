@@ -413,7 +413,7 @@ function App() {
                   }}
                 >
                   <Image
-                    src="/imagesbm14/landing/Billboard Before.webp"
+                    src="/imagesbm14/landing/Billboard.webp"
                     alt=""
                     width={905}
                     height={578}
@@ -421,36 +421,20 @@ function App() {
                     draggable={false}
                     className="h-auto w-full select-none"
                   />
-
-                  {/* Sign copy — dark ink on the painted panel */}
-                  <div className="absolute inset-x-[6%] top-[5%] flex h-[39%] flex-col items-center justify-center text-center">
-                    <h1
-                      className="w-full text-balance"
-                      style={{
-                        fontFamily: "var(--font-disket-mono)",
-                        fontWeight: 400,
-                        fontSize: "8.2cqi",
-                        lineHeight: 1.02,
-                        letterSpacing: "0.06em",
-                        color: "#1a1a1a",
-                      }}
-                    >
-                      BOILERMAKE XIV
-                    </h1>
-                    <h2
-                      style={{
-                        fontFamily: "var(--font-futura-cyrillic)",
-                        fontWeight: 400,
-                        fontSize: "3.4cqi",
-                        letterSpacing: "0.1em",
-                        color: "#4a4a4a",
-                        marginBottom: "0.5em",
-                      }}
-                    >
-                      22 - 24 JANUARY 2027
-                    </h2>
-
-                  </div>
+                <h2
+                    className="absolute inset-x-0 z-[2] text-center"
+                style={{
+                    bottom: "100%",
+                    marginBottom: "0.5em",
+                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontWeight: 400,
+                    fontSize: "3.4cqi",
+                    letterSpacing: "0.1em",
+                    color: "#ffffff",
+                  }}
+                  >
+                    22 - 24 JANUARY 2027
+                  </h2>
                 </div>
 
                 {/* Buildings — sit on top of the sign */}
@@ -474,6 +458,8 @@ function App() {
                   className="absolute left-1/2 z-[3] -translate-x-1/2"
                   style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "905 / 578", containerType: "inline-size" }}
                 >
+
+                  
                   {/* Same inset as the sign copy, so the button shares the panel's box */}
                   <div
                     className="absolute inset-x-[6%] flex justify-center"

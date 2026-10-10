@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "@/app/2027/components/HeaderBM14";
 import AboutSection from "@/app/2027/components/AboutSectionBM14";
 import FAQSection from "@/app/2027/components/FAQSectionBM14";
@@ -248,6 +248,52 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // --- Buildings scroll wobble ---
+  const buildingsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let velocity = 0;
+    let skew = 0;
+    let rafId: number;
+
+    const MAX_SKEW = 2.5;   // max degrees
+    const STIFFNESS = 0.08; // lower = bouncier
+    const DAMPING = 0.75;   // velocity decay per frame
+
+    const spring = () => {
+      skew += (0 - skew) * STIFFNESS + velocity * 0.012;
+      velocity *= DAMPING;
+      skew = Math.max(-MAX_SKEW, Math.min(MAX_SKEW, skew));
+
+      if (buildingsRef.current) {
+        buildingsRef.current.style.transform =
+          `scaleX(1.04) skewX(${skew.toFixed(3)}deg)`;
+      }
+
+      if (Math.abs(skew) > 0.01 || Math.abs(velocity) > 0.01) {
+        rafId = requestAnimationFrame(spring);
+      } else if (buildingsRef.current) {
+        buildingsRef.current.style.transform = "scaleX(1.04) skewX(0deg)";
+      }
+    };
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      velocity = (currentY - lastScrollY) * 0.6;
+      lastScrollY = currentY;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(spring);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+  // --- end Buildings wobble ---
+
   useEffect(() => {
     setIsLoaded(true);
 
@@ -456,20 +502,26 @@ function App() {
                   </div>
                 </div>
 
-                {/* Buildings — sit on top of the sign */}
-                <Image
-                  src="/imagesbm14/landing/Buildings.webp"
-                  alt=""
-                  fill
-                  priority
-                  sizes="100vw"
-                  draggable={false}
-                  className="z-[2] select-none object-cover object-bottom"
+                {/* Buildings — sit on top of the sign, wobble on scroll */}
+                <div
+                  ref={buildingsRef}
+                  className="absolute inset-0 z-[2]"
                   style={{
-                    transform: "scaleX(1.04)",
+                    transform: "scaleX(1.04) skewX(0deg)",
                     transformOrigin: "center bottom",
+                    willChange: "transform",
                   }}
-                />
+                >
+                  <Image
+                    src="/imagesbm14/landing/Buildings.webp"
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    draggable={false}
+                    className="select-none object-cover object-bottom"
+                  />
+                </div>
 
                 {/* Button layer — an empty box with the sign's exact geometry, stacked
             above the buildings so the CTA stays visible and clickable. */}

@@ -9,6 +9,7 @@ import { TypingProvider } from "@/context/TypingContext";
 import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 import Image from "next/image";
+import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
 
 /**
  * The Rough Tex backdrop is painted once, by the connector band that starts at
@@ -364,6 +365,9 @@ function App() {
           <div className="absolute inset-x-0 top-0 z-[200]">
             <Header />
           </div>
+
+          {/* Spray paint cursor trail — activates when scrolled past hero */}
+          <SprayPaintOverlay />
 
           {/* Main content container with CSS Grid layout */}
           <main

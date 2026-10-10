@@ -67,7 +67,7 @@ const ActivityPreview: React.FC<ActivityPreviewProps> = ({
         onMouseLeave={handleMouseLeave}
       >
         <ActivitySign
-          title={title}
+          title={"title"}
           startDate={startDate}
           endDate={endDate}
           size={currentSize}

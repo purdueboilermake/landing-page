@@ -304,7 +304,7 @@ function App() {
     }
   };
 
-  
+
   return (
     <TypingProvider>
       <>
@@ -346,7 +346,7 @@ function App() {
                 backgroundPosition: "center top, center top",
               }}
             />
-            
+
             {/* Hero Section — BoilerMake XIV skyline scene */}
             <section
               id="hero"
@@ -367,33 +367,33 @@ function App() {
                 } as React.CSSProperties
               }
             >
-              
+
               {/* Sky — clouds at top, magenta bleed at bottom */}
               <div
-  className="pointer-events-none absolute z-[1]"
-  aria-hidden
-  style={{
-    top: "var(--sky-offset-y)",
-    bottom: 0,
-    left: "-6%",
-    width: "133%",
-  }}
->
-  <Image
-    src="/imagesbm14/landing/Background.webp"
-    alt=""
-    fill
-    priority
-    sizes="100vw"
-    draggable={false}
-    className="select-none object-cover"
-    style={{
-      objectPosition: "50% 100%",
-      transform: "scaleX(1.35)",
-      transformOrigin: "center",
-    }}
-  />
-</div>
+                className="pointer-events-none absolute z-[1]"
+                aria-hidden
+                style={{
+                  top: "var(--sky-offset-y)",
+                  bottom: 0,
+                  left: "-6%",
+                  width: "133%",
+                }}
+              >
+                <Image
+                  src="/imagesbm14/landing/Background.webp"
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  draggable={false}
+                  className="select-none object-cover"
+                  style={{
+                    objectPosition: "50% 100%",
+                    transform: "scaleX(1.35)",
+                    transformOrigin: "center",
+                  }}
+                />
+              </div>
 
               {/* SKYLINE — full-bleed, exact aspect ratio, bottom-anchored */}
               <div
@@ -413,7 +413,7 @@ function App() {
                   }}
                 >
                   <Image
-                    src="/imagesbm14/landing/Billboard Before.webp"
+                    src="/imagesbm14/landing/Billboard.webp"
                     alt=""
                     width={905}
                     height={578}
@@ -423,7 +423,8 @@ function App() {
                   />
 
                   {/* Sign copy — dark ink on the painted panel */}
-                  <div className="absolute inset-x-[6%] top-[5%] flex h-[39%] flex-col items-center justify-center text-center">
+                  <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
+                    {/* Hide the title
                     <h1
                       className="w-full text-balance"
                       style={{
@@ -437,6 +438,8 @@ function App() {
                     >
                       BOILERMAKE XIV
                     </h1>
+                    */}
+
                     <h2
                       style={{
                         fontFamily: "var(--font-futura-cyrillic)",
@@ -522,10 +525,10 @@ function App() {
                     background:
                       "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.6) 65%, #3B344B 100%)",
                   }}
-                  
+
                 />
 
-                
+
 
                 <Image
                   src="/imagesbm14/landing/Front_Buildings.webp"
@@ -537,7 +540,7 @@ function App() {
                   className="select-none object-cover object-bottom"
 
                 />
-                
+
               </div>
 
               {/* CTAs — above every scene layer, clear of the ledge */}
@@ -765,17 +768,17 @@ function App() {
             >
               {/* Transition from Sponsors → Footer */}
               <div
-  className="
+                className="
     absolute left-1/2 -translate-x-1/2
     w-screen pointer-events-none
     top-[-55vw]
     sm:top-[-40vw]
     lg:top-[-25vw]
   "
-  style={{
-    zIndex: 1,
-  }}
->
+                style={{
+                  zIndex: 1,
+                }}
+              >
                 {/* The graphic is opaque, so its top edge cut the texture off
                     with a hairline. It fades in over its first 24px instead,
                     and the texture overlay below fades in over the same 24px —
@@ -992,7 +995,7 @@ function App() {
               </p>
             </section>
           </main>
-          
+
         </div>
       </>
     </TypingProvider>

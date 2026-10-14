@@ -8,6 +8,8 @@ import AboutSection from "@/app/2027/components/AboutSectionBM14";
 
 import FAQSection from "@/app/2027/components/FAQSectionBM14";
 
+import JudgesSection from "@/app/2027/components/JudgesSectionBM14";
+
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
 
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
@@ -932,7 +934,7 @@ function App() {
 
             className="w-full main-content bm-layout"
 
-            style={{ height: `calc(${isMobile ? "1000vh" : "1140vh"} + clamp(700px, 60vw, 950px))`, overflow: "hidden" }}
+            style={{ height: `calc(${isMobile ? "1000vh" : "1200vh"} + clamp(700px, 60vw, 950px))`, overflow: "hidden" }}
 
           >
 
@@ -960,7 +962,7 @@ function App() {
 
               style={{
 
-                top: "640vh",
+                top: "700vh",
 
                 height: "485vh",
 
@@ -1507,21 +1509,14 @@ function App() {
 
 
 
-            {/* ================= Judges Section ================= */}
+          {/* ================= Judges Section ================= */}
           <section
             id="judges"
             aria-labelledby="judges-heading"
-            className="absolute w-full flex flex-col items-center px-8"
-            style={{ top: isMobile ? "535vh" : "580vh", minHeight: isMobile ? "55vh" : "45vh" }}
+            className="absolute w-full px-8"
+            style={{ top: isMobile ? "535vh" : "580vh" }}
           >
-            <h2
-              id="judges-heading"
-              className="text-[#FFE958] text-4xl md:text-6xl text-center"
-              style={{ fontFamily: "var(--font-sprite-graffiti)" }}
-            >
-              JUDGES
-            </h2>
-            {/* Judge cards will go here. */}
+            <JudgesSection />
           </section>
 
 
@@ -1533,7 +1528,7 @@ function App() {
 
               className="w-full absolute overflow-x-clip"
 
-              style={{ top: isMobile ? "535vh" : "660vh", minHeight: isMobile ? "140vh" : "150vh" }}
+              style={{ top: isMobile ? "535vh" : "780vh", minHeight: isMobile ? "140vh" : "150vh" }}
 
             >
 
@@ -1555,7 +1550,7 @@ function App() {
 
               style={{
 
-                top: isMobile ? "750vh" : "790vh",
+                top: isMobile ? "750vh" : "850vh",
 
                 height: isMobile ? "200vh" : "280vh"
 
@@ -1841,7 +1836,7 @@ function App() {
 
               style={{
 
-                top: isMobile ? "1000vh" : "1140vh",
+                top: isMobile ? "1000vh" : "1200vh",
 
                 zIndex: 100,
 

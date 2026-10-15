@@ -33,7 +33,7 @@ export default function ApplyButton({text, link, size, variant = 'default', clas
                 rel='noreferrer'
                 className={`inline-block px-12 py-4 border-2 border-white text-white uppercase tracking-wider transition-all duration-300 hover:bg-black/20 cursor-pointer relative z-10 ${className || ''}`}
                 style={{
-                    fontFamily: "var(--font-futura-cyrillic)",
+                    fontFamily: "var(--font-code-pro)",
                     fontWeight: 500,
                     fontSize: "clamp(14px, 2vw, 18px)",
                     letterSpacing: "0.15em",

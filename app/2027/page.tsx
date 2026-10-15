@@ -104,7 +104,7 @@ function DecorImage({ label, style, className, ...props }: DecorImageProps) {
 
           color: "rgba(255, 255, 255, 0.5)",
 
-          fontFamily: "var(--font-dosis, sans-serif)",
+          fontFamily: "var(--font-code-pro, sans-serif)",
 
           fontSize: "0.7rem",
 
@@ -1181,7 +1181,7 @@ function App() {
 
                       style={{
 
-                        fontFamily: "var(--font-futura-cyrillic)",
+                        fontFamily: "var(--font-code-pro)",
 
                         fontWeight: 400,
 
@@ -1189,7 +1189,7 @@ function App() {
 
                         letterSpacing: "0.1em",
 
-                        color: "#4a4a4a",
+                        color: "#E8E4DA",
 
                         marginBottom: "0.5em",
 
@@ -1283,7 +1283,7 @@ function App() {
 
                       style={{
 
-                        fontFamily: "var(--font-futura-cyrillic), system-ui, sans-serif",
+                        fontFamily: "var(--font-code-pro), system-ui, sans-serif",
 
                         fontWeight: 700,
 
@@ -1309,7 +1309,7 @@ function App() {
 
                     >
 
-                      Interest form
+                      Interest Form
 
                     </a>
 
@@ -2286,7 +2286,7 @@ function App() {
 
                 style={{
 
-                  fontFamily: "var(--font-rubik-wet-paint)",
+                  fontFamily: "var(--font-code-pro)",
 
                   fontWeight: 300,
 

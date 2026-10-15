@@ -122,6 +122,20 @@ className="w-10 h-10"
               Schedule
             </button>
             <button
+              onClick={() => handleNavigation("judges")}
+              className="transition-all duration-300 whitespace-nowrap"
+              style={{
+                fontFamily: "var(--font-code-pro)",
+                fontWeight: 500,
+                fontSize: "clamp(18px, 3.5vw, 28px)",
+                lineHeight: "100%",
+                letterSpacing: "0.1em",
+                color: "#FFFFFF",
+              }}
+            >
+              Judges
+            </button>
+            <button
               onClick={() => handleNavigation("faq")}
               className="transition-all duration-300 whitespace-nowrap"
               style={{
@@ -229,7 +243,20 @@ className="w-10 h-10"
               >
                 Schedule
               </button>
-              
+              <button
+                onClick={() => {
+                  handleNavigation("judges");
+                  setIsMenuOpen(false);
+                }}
+                className="transition-all duration-300 text-white text-lg"
+                style={{
+                  fontFamily: "var(--font-code-pro)",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                }}
+              >
+                Judges
+              </button>
               <button
                 onClick={() => {
                   handleNavigation("faq");

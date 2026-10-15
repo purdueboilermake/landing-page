@@ -47,25 +47,21 @@ export default function AboutSection() {
       />
  
       <div className="relative z-[2] w-full max-w-[1180px] px-5 flex flex-col items-center gap-7">
-        <div
+        <img
+          src="/imagesbm14/about/about-graffiti.png"
+          alt="About"
+          className="select-none pointer-events-none"
           style={{
-            fontFamily: "var(--font-sprite-graffiti)",
-            fontWeight: 400,
-            fontSize: "clamp(2.75rem, 6vw, 5.5rem)",
-            lineHeight: "100%",
-            letterSpacing: "0.04em",
-            color: "#FFE958",
-            textShadow: "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
+            width: "clamp(220px, 20vw, 520px)",
+            height: "auto",
+            aspectRatio: "1940 / 840",
           }}
-        >
-          ABOUT
-        </div>
+        />
  
         <div
-          className="w-full border-[3px] border-white rounded-[34px] backdrop-blur-sm p-8 sm:p-10 md:p-12 lg:p-14 overflow-y-auto"
+          className="w-full border-[3px] border-white rounded-[34px] backdrop-blur-sm p-8 sm:p-10 md:p-12 lg:p-14"
           style={{
             backgroundColor: "rgba(26, 23, 34, 0.42)",
-            maxHeight: "min(70vh, calc(100vh - 160px))",
             minHeight: "200px",
           }}
         >
@@ -97,7 +93,7 @@ export default function AboutSection() {
           >
             It's also a great opportunity to network with large companies in
             industry and develop new skills. BoilerMake XIV will take place
-            January 23-25, 2026. BoilerMake is also an MLH partner meaning we
+            January 22-24, 2027. BoilerMake is also an MLH partner meaning we
             adhere to their Code of Conduct.
           </p>
           <a

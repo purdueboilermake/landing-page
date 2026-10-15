@@ -118,7 +118,7 @@ function ActivityCard({ activity, index, colorIndex }: ActivityCardProps) {
                 {/* Time */}
                 <div
                     className="text-white/85 tracking-widest mb-1 font-semibold"
-                    style={{ fontFamily: 'var(--font-roboto-flex)', fontSize: "clamp(14px, 2vw, 18px)" }}
+                    style={{ fontFamily: 'var(--font-code-pro)', fontSize: "clamp(14px, 2vw, 18px)" }}
                 >
                     {startTime}
                     {endTime && ` – ${endTime}`}
@@ -127,7 +127,7 @@ function ActivityCard({ activity, index, colorIndex }: ActivityCardProps) {
                 {/* Title */}
                 <h3
                     className="leading-tight mb-3"
-                    style={{ color: titleColor, fontFamily: 'var(--font-rubik-wet-paint)', fontSize: "clamp(22px, 3.5vw, 34px)" }}
+                    style={{ color: titleColor, fontFamily: 'var(--font-sprite-graffiti)', fontSize: "clamp(22px, 3.5vw, 34px)" }}
                 >
                     {activity.title}
                 </h3>
@@ -135,7 +135,7 @@ function ActivityCard({ activity, index, colorIndex }: ActivityCardProps) {
                 {/* Description */}
                 <p
                     className="text-white/80 leading-relaxed font-light"
-                    style={{ fontFamily: 'var(--font-roboto-flex)', fontSize: "clamp(12px, 1.6vw, 15px)" }}
+                    style={{ fontFamily: 'var(--font-code-pro)', fontSize: "clamp(12px, 1.6vw, 15px)" }}
                 >
                     {activity.description}
                 </p>

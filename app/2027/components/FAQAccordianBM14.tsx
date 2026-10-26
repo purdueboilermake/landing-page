@@ -57,7 +57,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
                   stripesOnLeft ? "text-center sm:text-left" : ""
                 }`}
                 style={{
-                  fontFamily: "var(--font-source-code-pro)",
+                  fontFamily: "var(--font-code-pro)",
                   fontWeight: 700,
                   fontSize: "clamp(1.1rem, 2.2vw, 1.6rem)",
                   lineHeight: 1.3,
@@ -91,7 +91,7 @@ export default function FAQAccordian({ questions }: FAQAccordianProps) {
                   backgroundColor: "#111111",
                   border: "2px solid #FFE42D",
                   borderTop: "none",
-                  fontFamily: "var(--font-source-code-pro)",
+                  fontFamily: "var(--font-code-pro)",
                   fontWeight: 400,
                   fontSize: "clamp(0.95rem, 1.6vw, 1.2rem)",
                   lineHeight: 1.6,

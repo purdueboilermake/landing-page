@@ -45,6 +45,12 @@ const spriteGraffiti = localFont({
   display: 'swap',
 })
 
+const codePro = localFont({
+  src: './fonts/CodePro-NormalLC.otf',
+  variable: '--font-code-pro',
+  display: 'swap',
+})
+
 const SourceCodePro = localFont({
   src: './fonts/SourceCodePro-Regular.ttf',
   variable: '--font-source-code-pro',
@@ -70,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${dosis.variable} ${averiaLibre.variable} ${arvo.variable} ${disketMono.variable} ${futuraCyrillic.variable} ${spriteGraffiti.variable} ${SourceCodePro.variable} ${robotoFlex.variable} ${rubikWetPaint.variable}`}>
+    <html lang="en" className={`${dosis.variable} ${averiaLibre.variable} ${arvo.variable} ${disketMono.variable} ${futuraCyrillic.variable} ${spriteGraffiti.variable} ${codePro.variable} ${SourceCodePro.variable} ${robotoFlex.variable} ${rubikWetPaint.variable}`}>
       <body>{children}</body>
     </html>
   )

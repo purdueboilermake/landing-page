@@ -837,9 +837,21 @@ function App() {
 
 
 
-        {/* Mobile-only layout: content flows naturally so expanded FAQs push Sponsors down. */}
-        <style>{`
-          @media (max-width: 767px) {
+          {/* Mobile & Tablet layout: content flows naturally with tailored hero sizing */}
+          <style>{`
+          #hero {
+            --bb-w-active: var(--bb-w-mobile);
+            --bb-y-active: var(--bb-y-mobile);
+            --btn-y-active: var(--btn-y-mobile);
+          }
+          @media (min-width: 700px) and (max-width: 1023px) {
+            #hero {
+              --bb-w-active: var(--bb-w-tablet);
+              --bb-y-active: var(--bb-y-tablet);
+              --btn-y-active: var(--btn-y-tablet);
+            }
+          }
+          @media (max-width: 1023px) {
             .bm-layout {
               display: flex !important;
               flex-direction: column !important;
@@ -862,11 +874,6 @@ function App() {
               top: auto !important;
               bottom: auto !important;
               flex-shrink: 0;
-            }
-            /* Shrink the excessive empty sky, while preserving the skyline composition. */
-            .bm-layout > #hero {
-              height: clamp(500px, calc(130vw + 55px), 610px) !important;
-              min-height: 0 !important;
             }
             /* Meet the purple ledge directly; do not leave a viewport-sized gap. */
             .bm-layout > #about {
@@ -915,15 +922,24 @@ function App() {
             }
             .bm-layout > #sponsors > div { gap: 8px !important; }
             .bm-layout > #sponsors h1 { margin: 0; }
-            /* Prevent nested section decorations from clipping the content. */
-            .bm-layout > #faq > *,
-            .bm-layout > #sponsors > * { visibility: visible !important; }
             /* Start the heart/footer straight after Coming Soon. */
             .bm-layout > #footer {
               height: auto !important;
               min-height: 610px !important;
               padding-top: 50px;
               padding-bottom: 32px !important;
+            }
+          }
+          @media (max-width: 699px) {
+            .bm-layout > #hero {
+              height: var(--hero-h-mobile, clamp(560px, 92svh, 750px)) !important;
+              min-height: 0 !important;
+            }
+          }
+          @media (min-width: 700px) and (max-width: 1023px) {
+            .bm-layout > #hero {
+              height: var(--hero-h-tablet, clamp(750px, 95svh, 1050px)) !important;
+              min-height: 0 !important;
             }
           }
         `}</style>
@@ -1003,86 +1019,89 @@ function App() {
 
                 {
 
-                  height: "160vh",
+                  // Hero Section Height (controls how tall the sky is)
+                  height: "140vh",
 
                   backgroundColor: "#0d0618",
 
-                  // --- tuning knobs ---
+                  // --- Hero Tuning Knobs (Edit billboard & layout here) ---
+                  // Desktop Anchored Billboard (lg screens, >= 1024px):
+                  "--bb-w": "55%",          // Desktop width
+                  "--bb-y": "30%",          // Height above skyline baseline
+                  "--btn-y": "55%",         // Button position on the sign
 
-                  "--bb-w": "70%",     // billboard width, % of skyline box
+                  // Tablet Floating Billboard (700px - 1023px, iPad Mini, iPad Pro, iPad Air):
+                  "--bb-w-tablet": "85%",              // Tablet width (fills tablet nicely)
+                  "--bb-y-tablet": "calc(52% + 14vh)", // Height above baseline with viewport lift to stay centered
+                  "--btn-y-tablet": "108%",            // Button position on floating sign
 
-                  "--bb-y": "30%",     // billboard height above skyline baseline
+                  // Mobile Floating Billboard (phones, < 700px):
+                  "--bb-w-mobile": "95%",              // Mobile width
+                  "--bb-y-mobile": "calc(60% + 18vh)", // Height above baseline with viewport lift (lifts off bottom!)
+                  "--btn-y-mobile": "110%",            // Button position on floating sign
+
+                  // Responsive Hero Heights:
+                  "--hero-h-mobile": "clamp(560px, 92svh, 750px)",
+                  "--hero-h-tablet": "clamp(750px, 95svh, 1050px)",
 
                   "--ledge-h": "clamp(52px, 11vw, 190px)",
 
-                  "--sky-zoom": "1", // 1 = plain cover, higher = bigger clouds
+                  "--scene-drop": "0%",
 
-
-
-                  "--btn-y": "55%",   // button height on the sign, % of billboard height
-
-                  "--scene-drop": "0%",   // pushes the whole scene down; more = more sky above
-
-                  "--sky-offset-y": "-135px",
-
+                  // Sky & Clouds Overscale & Offsets (bleed border whitespace off-screen):
+                  "--clouds-w": "calc(100% + 150px)",    // Width: 100% + extra bleed (e.g. "calc(100% + 80px)" or "108%")
+                  "--clouds-top": "-50px",              // Top offset: negative value pulls top edge up past screen
+                  "--gradient-w": "calc(100% + 80px)",  // Width: bleed gradient past left & right screen edges
                 } as React.CSSProperties
-
               }
-
             >
 
-
-
-              {/* Sky — clouds at top, magenta bleed at bottom */}
-
+              {/* Sky — base gradient (anchored to bottom) and clouds/stars overlay */}
               <div
-
-                className="pointer-events-none absolute z-[1]"
-
+                className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
                 aria-hidden
-
-                style={{
-
-                  top: "var(--sky-offset-y)",
-
-                  bottom: 0,
-
-                  left: "-6%",
-
-                  width: "133%",
-
-                }}
-
               >
-
-                <Image
-
-                  src="/imagesbm14/landing/Background.webp"
-
-                  alt=""
-
-                  fill
-
-                  priority
-
-                  sizes="100vw"
-
-                  draggable={false}
-
-                  className="select-none object-cover"
-
+                {/* Base Gradient Layer — centered and overscaled to eliminate side border whitespace */}
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 inset-y-0 pointer-events-none"
                   style={{
-
-                    objectPosition: "50% 100%",
-
-                    transform: "scaleX(1.35)",
-
-                    transformOrigin: "center",
-
+                    width: "var(--gradient-w, calc(100% + 80px))",
                   }}
+                >
+                  <Image
+                    src="/imagesbm14/landing/Gradient.webp"
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    draggable={false}
+                    className="select-none object-cover object-bottom opacity-50"
+                    style={{
+                      objectPosition: "center 200%", // combined with pushing it down
+                    }}
+                  />
+                </div>
 
-                />
-
+                {/* Clouds & Stars Layer — centered and overscaled to eliminate border whitespace */}
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    top: "var(--clouds-top, -15px)",
+                    width: "var(--clouds-w, calc(100% + 80px))",
+                    maxWidth: "none",
+                  }}
+                >
+                  <Image
+                    src="/imagesbm14/landing/Clouds Stars.webp"
+                    alt=""
+                    width={3000}
+                    height={1110}
+                    priority
+                    sizes="100vw"
+                    draggable={false}
+                    className="w-full h-auto select-none"
+                  />
+                </div>
               </div>
 
 
@@ -1103,11 +1122,11 @@ function App() {
 
               >
 
-                {/* Billboard art — before the buildings so rooftops occlude its base */}
+                {/* Desktop: Anchored Billboard with scaffolding legs (lg screens only, >= 1024px) */}
 
                 <div
 
-                  className="absolute left-1/2 z-[1] -translate-x-1/2"
+                  className="hidden lg:block absolute left-1/2 z-[1] -translate-x-1/2"
 
                   style={{
 
@@ -1125,11 +1144,11 @@ function App() {
 
                     src="/imagesbm14/landing/Billboard.webp"
 
-                    alt=""
+                    alt="BoilerMake XIV"
 
-                    width={905}
+                    width={2000}
 
-                    height={578}
+                    height={1277}
 
                     priority
 
@@ -1141,41 +1160,9 @@ function App() {
 
 
 
-                  {/* Sign copy — dark ink on the painted panel */}
+                  {/* Sign copy — date above the painted panel */}
 
-                  <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
-
-                    {/* Hide the title
-
-                    <h1
-
-                      className="w-full text-balance"
-
-                      style={{
-
-                        fontFamily: "var(--font-disket-mono)",
-
-                        fontWeight: 400,
-
-                        fontSize: "8.2cqi",
-
-                        lineHeight: 1.02,
-
-                        letterSpacing: "0.06em",
-
-                        color: "#1a1a1a",
-
-                      }}
-
-                    >
-
-                      BOILERMAKE XIV
-
-                    </h1>
-
-                    */}
-
-
+                  <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center">
 
                     <h2
 
@@ -1197,11 +1184,139 @@ function App() {
 
                     >
 
-                      22 - 24 JANUARY 2027
+                      January 22nd - 24th, 2027
 
                     </h2>
 
+                  </div>
 
+                </div>
+
+
+
+                {/* Mobile & Tablet: Floating Billboard (hidden on desktop lg) */}
+
+                <div
+
+                  className="lg:hidden absolute left-1/2 z-[3] -translate-x-1/2"
+
+                  style={{
+
+                    bottom: "var(--bb-y-active)",
+
+                    width: "var(--bb-w-active)",
+
+                    containerType: "inline-size",
+
+                  }}
+
+                >
+
+                  <div className="relative w-full" style={{ aspectRatio: "2000 / 654" }}>
+
+                    <Image
+
+                      src="/imagesbm14/landing/Billboard Floating.webp"
+
+                      alt="BoilerMake XIV"
+
+                      width={2000}
+
+                      height={654}
+
+                      priority
+
+                      draggable={false}
+
+                      className="h-auto w-full select-none"
+
+                    />
+
+
+
+                    {/* Sign copy — date above mobile billboard */}
+
+                    <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
+
+                      <h2
+
+                        style={{
+
+                          fontFamily: "var(--font-code-pro)",
+
+                          fontWeight: 400,
+
+                          fontSize: "4.5cqi",
+
+                          letterSpacing: "0.1em",
+
+                          color: "#E8E4DA",
+
+                          marginBottom: "0.5em",
+
+                        }}
+
+                      >
+
+                        January 22nd - 24th, 2027
+
+                      </h2>
+
+                    </div>
+
+
+
+                    {/* Mobile & Tablet Button centered on floating board */}
+
+                    <div
+
+                      className="absolute inset-x-[6%] flex justify-center"
+
+                      style={{ top: "var(--btn-y-active)" }}
+
+                    >
+
+                      <a
+
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
+
+                        className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+
+                        style={{
+
+                          fontFamily: "var(--font-code-pro), system-ui, sans-serif",
+
+                          fontWeight: 700,
+
+                          // CLAMP BUTTON SIZE (MOBILE): min 16px, scales with 5.5cqi, max 26px
+                          fontSize: "clamp(16px, 5.5cqi, 26px)",
+
+                          letterSpacing: "0.08em",
+
+                          lineHeight: 1,
+
+                          color: "#FFFFFF",
+
+                          background: "#5A8A4A",
+
+                          // THICKER BORDER: 4px solid white with matching shadow
+                          border: "4px solid #FFFFFF",
+
+                          borderRadius: "9999px",
+
+                          padding: "0.65em 1.8em",
+
+                          boxShadow: "0 4px 0 rgba(0,0,0,0.35)",
+
+                        }}
+
+                      >
+
+                        Interest Form
+
+                      </a>
+
+                    </div>
 
                   </div>
 
@@ -1219,7 +1334,7 @@ function App() {
 
                   style={{
 
-                    transform: "scaleX(1.04) skewX(0deg)",
+                    transform: "scaleX(1.04) skewX(0deg) translateY(-120px)",
 
                     transformOrigin: "center bottom",
 
@@ -1251,15 +1366,13 @@ function App() {
 
 
 
-                {/* Button layer — an empty box with the sign's exact geometry, stacked
-
-            above the buildings so the CTA stays visible and clickable. */}
+                {/* Desktop Button layer — stacked above the buildings for lg desktop */}
 
                 <div
 
-                  className="absolute left-1/2 z-[3] -translate-x-1/2"
+                  className="hidden lg:block absolute left-1/2 z-[3] -translate-x-1/2"
 
-                  style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "905 / 578", containerType: "inline-size" }}
+                  style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "2000 / 1277", containerType: "inline-size" }}
 
                 >
 
@@ -1273,11 +1386,9 @@ function App() {
 
                   >
 
+                    <a
 
-
-                    {/* <a href="https://boilermake-apply.web.app" */}
-
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
 
                       className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
 
@@ -1287,7 +1398,8 @@ function App() {
 
                         fontWeight: 700,
 
-                        fontSize: "clamp(13px, 4.4cqi, 30px)",
+                        // CLAMP BUTTON SIZE (DESKTOP): min 18px, scales with 4.4cqi, max 32px
+                        fontSize: "clamp(18px, 4.4cqi, 32px)",
 
                         letterSpacing: "0.08em",
 
@@ -1297,13 +1409,14 @@ function App() {
 
                         background: "#5A8A4A",
 
-                        border: "0.5cqi solid #FFFFFF",
+                        // THICKER BORDER: 4.5px solid white with bold shadow
+                        border: "4.5px solid #FFFFFF",
 
                         borderRadius: "9999px",
 
                         padding: "0.72em 2.1em",
 
-                        boxShadow: "0 0.5cqi 0 rgba(0,0,0,0.28)",
+                        boxShadow: "0 5px 0 rgba(0,0,0,0.35)",
 
                       }}
 
@@ -1509,15 +1622,15 @@ function App() {
 
 
 
-          {/* ================= Judges Section ================= */}
-          <section
-            id="judges"
-            aria-labelledby="judges-heading"
-            className="absolute w-full px-8"
-            style={{ top: isMobile ? "535vh" : "580vh" }}
-          >
-            <JudgesSection />
-          </section>
+            {/* ================= Judges Section ================= */}
+            <section
+              id="judges"
+              aria-labelledby="judges-heading"
+              className="absolute w-full px-8"
+              style={{ top: isMobile ? "535vh" : "580vh" }}
+            >
+              <JudgesSection />
+            </section>
 
 
             {/* FAQ Section */}
@@ -1540,7 +1653,7 @@ function App() {
 
 
 
-          {/* ================= Sponsors Section ================= */}
+            {/* ================= Sponsors Section ================= */}
 
             <section
 

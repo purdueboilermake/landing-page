@@ -169,11 +169,11 @@ export default function ScheduleSection({
                     <Image src="/imagesbm14/schedule/activity sign.png" alt="Activity Section" width={200} height={600} className="object-contain w-[15vw] md:w-[150px] lg:w-[200px] h-auto" />
                 </div>
 
-                {/* Background Bricks */}
-                <Image src="/imagesbm14/schedule/brick2 1.png" alt="Bricks" width={180} height={180} className="absolute z-[-1] opacity-50 top-[8%] left-[8%] w-[15vw] md:w-[180px] h-auto pointer-events-none" />
-                <Image src="/imagesbm14/schedule/brick_1 2.png" alt="Bricks" width={160} height={160} className="absolute z-[-1] opacity-50 top-[35%] right-[10%] w-[12vw] md:w-[160px] h-auto pointer-events-none" />
-                <Image src="/imagesbm14/schedule/brick2 1.png" alt="Bricks" width={200} height={200} className="absolute z-[-1] opacity-50 bottom-[20%] left-[12%] w-[18vw] md:w-[200px] h-auto pointer-events-none" />
-                <Image src="/imagesbm14/schedule/brick_1 2.png" alt="Bricks" width={140} height={140} className="absolute z-[-1] opacity-50 top-[50%] left-[38%] w-[10vw] md:w-[140px] h-auto pointer-events-none" />
+                {/* Background Bricks - locked to true aspect ratio so they never squash */}
+                <Image src="/imagesbm14/schedule/brick2 1.png" alt="Bricks" width={995} height={500} className="absolute z-[-1] opacity-50 top-[8%] left-[8%] w-[15vw] md:w-[180px] h-auto pointer-events-none" style={{ aspectRatio: "995 / 500" }} />
+                <Image src="/imagesbm14/schedule/brick_1 2.png" alt="Bricks" width={745} height={520} className="absolute z-[-1] opacity-50 top-[35%] right-[10%] w-[12vw] md:w-[160px] h-auto pointer-events-none" style={{ aspectRatio: "745 / 520" }} />
+                <Image src="/imagesbm14/schedule/brick2 1.png" alt="Bricks" width={995} height={500} className="absolute z-[-1] opacity-50 bottom-[20%] left-[12%] w-[18vw] md:w-[200px] h-auto pointer-events-none" style={{ aspectRatio: "995 / 500" }} />
+                <Image src="/imagesbm14/schedule/brick_1 2.png" alt="Bricks" width={745} height={520} className="absolute z-[-1] opacity-50 top-[50%] left-[38%] w-[10vw] md:w-[140px] h-auto pointer-events-none" style={{ aspectRatio: "745 / 520" }} />
 
                 {/* Decorative images */}
                 <Image src="/imagesbm14/schedule/star graffiti.png" alt="Star" width={350} height={350} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite] top-[15%] md:top-[15%] left-[-10%] md:left-[-10%] w-[25vw] md:w-[250px] lg:w-[350px] h-auto pointer-events-none" />

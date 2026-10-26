@@ -875,11 +875,19 @@ function App() {
               bottom: auto !important;
               flex-shrink: 0;
             }
-            /* Meet the purple ledge directly; do not leave a viewport-sized gap. */
+            .bm-layout > #hero-about-gradient {
+              position: relative !important;
+              top: auto !important;
+              margin-top: -120px !important;
+              margin-bottom: -80px !important;
+              height: 220px !important;
+              z-index: 15 !important;
+            }
+            /* Mobile & Tablet spacing between Hero and About (Adjust gap here) */
             .bm-layout > #about {
               width: 100% !important;
-              padding: 170px 7vw 24px;
-              margin-top: 100px;
+              padding: 100px 7vw 24px !important;
+              margin-top: 0px !important;
               margin-bottom: 64px;
               background: #3B344B;
               z-index: 8;
@@ -1464,11 +1472,11 @@ function App() {
 
                   style={{
 
-                    height: "calc(var(--ledge-h) * 0.55)",
+                    height: "clamp(120px, 22vh, 280px)",
 
                     background:
 
-                      "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.6) 65%, #3B344B 100%)",
+                      "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.25) 30%, rgba(59,52,75,0.75) 65%, #3B344B 100%)",
 
                   }}
 
@@ -1564,15 +1572,34 @@ function App() {
 
             </section>
 
+            {/* =========================================================================
+                TRANSITION GRADIENT: OVERLAY BETWEEN BUILDINGS (HERO) AND ABOUT SECTION
+                - Sits on top of both sections (z-[15])
+                - Fades the bottom of the buildings smoothly into the About section
+                - Pointer-events-none ensures it never blocks clicks or interaction
+               ========================================================================= */}
+            <div
+              id="hero-about-gradient"
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 w-full z-[15]"
+              style={{
+                // DESKTOP POSITION & SIZING:
+                top: isMobile ? "auto" : "max(50vh, 720px)",
+                height: isMobile ? "620px" : "clamp(620px, 90vh, 980px)",
+                background:
+                  "linear-gradient(to bottom, rgba(28, 10, 42, 0) 0%, rgba(28, 10, 42, 0.65) 30%, #1C0A2A 50%, rgba(28, 10, 42, 0.65) 70%, rgba(28, 10, 42, 0) 100%)",
+              }}
+            />
+
             {/* About Section */}
 
             <section
 
               id="about"
 
-              className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
+              className="w-full flex items-center justify-center absolute"
 
-              style={{ top: isMobile ? "163vh" : "170vh" }}
+              style={{ top: isMobile ? "163vh" : "max(155vh, 1280px)" }}
 
             >
 
@@ -1592,11 +1619,11 @@ function App() {
 
               style={{
 
-                // Give Schedule a larger, more deliberate slice of the page
+                // Protected with max() so when viewport height shrinks (e.g. Inspect Element is open),
 
-                // while leaving a deliberate gap before the FAQ below it.
+                // Schedule never collides or overlaps with the About card above it.
 
-                top: isMobile ? "260vh" : "272vh",
+                top: isMobile ? "260vh" : "max(272vh, 2250px)",
 
                 minHeight: isMobile ? "215vh" : "248vh",
 
@@ -2187,9 +2214,7 @@ function App() {
 
                   {/* Brick doodle — sits between the heart and the flower,
 
-                      matching the mobile Figma frame. No coordinates were
-
-                      given for this one — best guess. */}
+                      matching the mobile Figma frame. Sized consistently with Schedule bricks */}
 
                   <DecorImage
 
@@ -2207,11 +2232,11 @@ function App() {
 
                       left: "10.1%",
 
-                      width: "10%",
+                      width: "clamp(130px, 14vw, 180px)",
 
                       height: "auto",
 
-                      maxHeight: "11%",
+                      aspectRatio: "287 / 200",
 
                     }}
 
@@ -2221,9 +2246,7 @@ function App() {
 
                   {/* Brick doodle — sits between the heart and the flower,
 
-                      matching the mobile Figma frame. No coordinates were
-
-                      given for this one — best guess. */}
+                      matching the mobile Figma frame. Sized consistently with Schedule bricks */}
 
                   <DecorImage
 
@@ -2241,11 +2264,11 @@ function App() {
 
                       left: "70.07%",
 
-                      width: "10%",
+                      width: "clamp(130px, 14vw, 180px)",
 
                       height: "auto",
 
-                      maxHeight: "11%",
+                      aspectRatio: "398 / 200",
 
                     }}
 

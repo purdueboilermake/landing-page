@@ -13,10 +13,12 @@ type FAQSectionProps = {
 export default function FAQSectionBM14({ questions }: FAQSectionProps) {
   return (
     <div
-      className="absolute top-0 left-1/2 -translate-x-1/2 w-screen overflow-x-clip flex flex-col items-center min-h-[128vh] sm:min-h-[135vh] lg:min-h-[145vh]"
+      className="relative w-full overflow-x-clip flex flex-col items-center"
       style={{
-        paddingTop: "clamp(96px, 19vw, 250px)",
-        paddingBottom: "clamp(120px, 18vw, 240px)",
+        height: "clamp(980px, 112vh, 1160px)",
+        minHeight: "clamp(980px, 112vh, 1160px)",
+        paddingTop: "clamp(60px, 10vw, 130px)",
+        paddingBottom: "clamp(20px, 3vw, 40px)",
       }}
     >
       {/* Caution tape header — two overlapping torn strips (Tape.png also carries the cyan splatter) */}
@@ -67,15 +69,15 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         <FAQAccordian questions={questions} />
       </div>
 
-      {/* Left sticker cluster (green star → purple → blue crown) */}
+      {/* Left sticker cluster (green star → purple → blue crown) — pinned to fixed top so it stays static when questions toggle */}
       <img
         src="/imagesbm14/faq/StickerRandom1%202.png"
         alt=""
-        className="absolute pointer-events-none select-none z-[3]"
+        className="hidden sm:block absolute pointer-events-none select-none z-[3]"
         style={{
-          left: "clamp(-28px, -0.8vw, -12px)",
-          top: "44%",
-          height: "clamp(400px, 58vw, 700px)",
+          left: "clamp(-120px, -4vw, -16px)",
+          top: "clamp(380px, 32vw, 520px)",
+          height: "clamp(280px, 38vw, 620px)",
           width: "auto",
         }}
       />
@@ -87,7 +89,7 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         className="absolute pointer-events-none select-none z-[2]"
         style={{
           left: "clamp(-16px, -1vw, 0px)",
-          bottom: "clamp(4px, 3vw, 50px)",
+          bottom: "clamp(8px, 1.5vw, 20px)",
           height: "clamp(150px, 24vw, 290px)",
           width: "auto",
         }}
@@ -100,7 +102,7 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         className="absolute pointer-events-none select-none z-[3]"
         style={{
           left: "clamp(16px, 4vw, 48px)",
-          bottom: "clamp(16px, 3vw, 40px)",
+          bottom: "clamp(12px, 2vw, 24px)",
           width: "clamp(96px, 14vw, 180px)",
           height: "auto",
         }}
@@ -110,9 +112,9 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
       <div
         className="absolute pointer-events-none select-none z-[3]"
         style={{
-          right: "clamp(-48px, -2.5vw, 0px)",
-          bottom: "clamp(12px, 4vw, 60px)",
-          width: "clamp(180px, 32vw, 420px)",
+          right: "clamp(-60px, -3vw, 0px)",
+          bottom: "clamp(12px, 2vw, 24px)",
+          width: "clamp(150px, 22vw, 360px)",
         }}
       >
         <img

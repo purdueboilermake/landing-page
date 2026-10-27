@@ -46,16 +46,6 @@ import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
 
 const TEX_SIZE = "100vw auto";
 
-const TEX_FOOTER_OFFSET = "calc(25vw - 485vh)";
-
-const TEX_FOOTER_FADE_IN =
-
-  "linear-gradient(to bottom, transparent 0px, #000 24px)";
-
-const TEX_FOOTER_MASK =
-
-  "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
-
 
 
 interface DecorImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -900,12 +890,12 @@ function App() {
               z-index: 7;
             }
             .bm-layout > #faq {
-              min-height: 780px !important;
+              min-height: auto !important;
               height: auto !important;
               display: block !important;
               visibility: visible !important;
-              padding: 26px 0 46px;
-              margin-bottom: 65px;
+              padding: 20px 0 5px;
+              margin-bottom: 24px;
               z-index: 6;
               overflow: visible !important;
               background: transparent;
@@ -918,24 +908,27 @@ function App() {
               z-index: 5;
             }
             .bm-layout > #sponsors {
-              min-height: 460px !important;
+              min-height: 380px !important;
               height: auto !important;
               display: flex !important;
               visibility: visible !important;
-              padding: 34px 18px 38px !important;
-              margin-bottom: 125px !important;
+              padding: 16px 18px 28px !important;
+              margin-bottom: 0px !important;
               z-index: 4;
               overflow: visible !important;
               background: transparent;
             }
             .bm-layout > #sponsors > div { gap: 8px !important; }
             .bm-layout > #sponsors h1 { margin: 0; }
-            /* Start the heart/footer straight after Coming Soon. */
+            /* Seamless footer matching sponsors dark gray */
             .bm-layout > #footer {
               height: auto !important;
-              min-height: 610px !important;
-              padding-top: 50px;
+              min-height: auto !important;
+              margin-top: -2px !important;
+              padding-top: 36px !important;
               padding-bottom: 32px !important;
+              background-color: #292526 !important;
+              background-image: none !important;
             }
           }
           @media (max-width: 699px) {
@@ -958,7 +951,7 @@ function App() {
 
             className="w-full main-content bm-layout"
 
-            style={{ height: `calc(${isMobile ? "1000vh" : "1200vh"} + clamp(700px, 60vw, 950px))`, overflow: "hidden" }}
+            style={{ height: `calc(${isMobile ? "1000vh" : "max(845vh, 7150px) + clamp(460px, 58vh, 660px)"} + 220px)`, overflow: "hidden" }}
 
           >
 
@@ -1668,7 +1661,10 @@ function App() {
 
               className="w-full absolute overflow-x-clip"
 
-              style={{ top: isMobile ? "535vh" : "780vh", minHeight: isMobile ? "140vh" : "150vh" }}
+              style={{
+                top: isMobile ? "auto" : "max(720vh, 6000px)",
+                minHeight: isMobile ? "auto" : "clamp(980px, 112vh, 1160px)",
+              }}
 
             >
 
@@ -1686,147 +1682,75 @@ function App() {
 
               id="sponsors"
 
-              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden pointer-events-none"
+              className="absolute flex flex-col items-center justify-center pt-8 pb-16 px-8 w-full overflow-hidden pointer-events-none"
 
               style={{
 
-                top: isMobile ? "750vh" : "850vh",
+                top: isMobile ? "auto" : "max(845vh, 7150px)",
 
-                height: isMobile ? "200vh" : "280vh"
+                minHeight: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
+
+                height: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
 
               }}
 
             >
 
-              <div className="flex flex-col items-center justify-center gap-14 max-w-[1406px] w-full relative">
+              <div className="flex flex-col items-center justify-center gap-10 max-w-[1406px] w-full relative">
 
+                {/* Big pink splotch — anchored to bottom-left of sponsors (similar to FAQ) */}
+                <DecorImage
 
+                  src="/imagesbm14/spons/Splotchpink.png"
 
-                {/* Decoration layer — locked to the design frame's aspect
+                  alt=""
 
-                    ratio (1405.55 x 1550.66) so every % position below
+                  label="Splotch"
 
-                    resolves against a real, defined height instead of
-
-                    "auto". (An auto-height container is what sent the
-
-                    splotch/crown/drip flying up near the page header
-
-                    before — % top/left on an absolutely positioned child
-
-                    only works reliably when its containing block has a
-
-                    real height.) */}
-
-                <div
-
-                  className="absolute top-0 left-0 w-full pointer-events-none"
+                  className="absolute opacity-90 pointer-events-none select-none z-[1]"
 
                   style={{
 
-                    aspectRatio: "1405.5479736328125 / 1550.6602783203125",
+                    left: "clamp(-100px, -4vw, -20px)",
 
-                    zIndex: 0,
+                    bottom: "clamp(10px, 2vw, 30px)",
+
+                    width: "clamp(180px, 24vw, 340px)",
+
+                    height: "auto",
 
                   }}
 
-                >
+                />
 
+                {/* Crown doodle — anchored to bottom-right of sponsors (similar to FAQ) */}
+                <DecorImage
 
+                  src="/imagesbm14/spons/image-2.png"
 
-                  {/* Big pink splotch — bleeds off the left edge, level with
+                  alt=""
 
-                      the middle rows of the sponsor grid. Sized off the
+                  label="Crown"
 
-                      real image's own proportions (width + maxHeight cap)
+                  className="absolute pointer-events-none select-none z-[5]"
 
-                      instead of a guessed aspect-ratio, which was
+                  style={{
 
-                      distorting it. */}
+                    right: "clamp(12px, 3vw, 48px)",
 
-                  <DecorImage
+                    bottom: "clamp(12px, 2vw, 36px)",
 
-                    src="/imagesbm14/spons/Splotchpink.png"
+                    width: "clamp(90px, 14vw, 190px)",
 
-                    alt=""
+                    height: "auto",
 
-                    label="Splotch"
+                    aspectRatio: "1 / 1",
 
-                    className="absolute opacity-90"
+                    transform: "rotate(14.87deg)",
 
-                    style={{
+                  }}
 
-
-
-
-
-                      left: "clamp(-140px, 140vw, 140px)",
-
-                      top: "clamp(150px, 15vh, 4500px)",
-
-                      width: "clamp(250px, 30vw, 500px)",
-
-                      height: "auto",
-
-                      maxHeight: "120vh",
-
-                      zIndex: 1,
-
-                      transform: "translateX(-80%)",
-
-                      aspectRatio: "1/ 3",
-
-                    }}
-
-                  />
-
-
-
-
-
-                  {/* Crown doodle — bottom-right of the grid, matches the
-
-                      exact top/left/size/rotation from the design frame.
-
-                      zIndex bumped above its siblings so nothing (like the
-
-                      splotch above) can ever render over it again. */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/spons/image-2.png"
-
-                    alt=""
-
-                    label="Crown"
-
-                    className="absolute"
-
-                    style={{
-
-
-
-                      top: "90vh",      // example, adjust
-
-                      right: "2vw",
-
-                      width: "17vw",
-
-                      height: "auto",
-
-                      aspectRatio: "1 / 1",
-
-                      transform: "rotate(14.87deg)",
-
-                      zIndex: 5,
-
-                    }}
-
-                  />
-
-                </div>
-
-
+                />
 
                 {/* Sponsors heading — this is a graphic asset from the design team */}
 
@@ -1849,8 +1773,6 @@ function App() {
                   }}
 
                 />
-
-
 
                 <h1
 
@@ -1969,479 +1891,70 @@ function App() {
             {/* ================= Footer Section ================= */}
 
             <section
-
               id="footer"
-
-              className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
-
+              className="flex flex-col items-center justify-center w-full gap-5 relative z-[100]"
               style={{
-
-                top: isMobile ? "1000vh" : "1200vh",
-
-                zIndex: 100,
-
-                position: "absolute",
-
-                backgroundColor: "#403A50",
-
-                minHeight: "clamp(700px, 60vw, 950px)",
-
-                paddingBottom: "3rem",
-
+                top: isMobile ? "auto" : "calc(max(845vh, 7150px) + clamp(460px, 58vh, 660px) - 2px)",
+                position: isMobile ? "relative" : "absolute",
+                backgroundColor: "#292526",
+                minHeight: isMobile ? "auto" : "clamp(140px, 16vh, 200px)",
+                paddingTop: "clamp(36px, 4vw, 56px)",
+                paddingBottom: "clamp(32px, 4vw, 48px)",
               }}
-
             >
-
-              {/* Transition from Sponsors → Footer */}
-
-              <div
-
-                className="
-
-    absolute left-1/2 -translate-x-1/2
-
-    w-screen pointer-events-none
-
-    top-[-55vw]
-
-    sm:top-[-40vw]
-
-    lg:top-[-25vw]
-
-  "
-
-                style={{
-
-                  zIndex: 1,
-
-                }}
-
-              >
-
-                {/* The graphic is opaque, so its top edge cut the texture off
-
-                    with a hairline. It fades in over its first 24px instead,
-
-                    and the texture overlay below fades in over the same 24px —
-
-                    as the graphic hides the band's texture, the overlay's copy
-
-                    replaces it at the same rate, so coverage stays constant
-
-                    and there's no edge. */}
-
-                <DecorImage
-
-                  src="/imagesbm14/spons/Transition.png"
-
-                  alt=""
-
-                  label="Transition"
-
-                  className="block w-full h-auto"
-
-                  style={{
-
-                    WebkitMaskImage: TEX_FOOTER_FADE_IN,
-
-                    maskImage: TEX_FOOTER_FADE_IN,
-
-                  }}
-
-                />
-
-                {/* Carries the Rough Tex band across the opaque part of the
-
-                    graphic, then masks itself out where it turns purple. */}
-
-                <div
-
-                  aria-hidden
-
-                  className="absolute inset-0 pointer-events-none"
-
-                  style={{
-
-                    backgroundImage:
-
-                      "url('/imagesbm14/faq/Rough%20Tex.png')",
-
-                    backgroundRepeat: "no-repeat",
-
-                    backgroundSize: TEX_SIZE,
-
-                    backgroundPosition: `center ${isMobile ? "calc(55vw - 480vh)" : TEX_FOOTER_OFFSET}`,
-
-                    WebkitMaskImage: TEX_FOOTER_MASK,
-
-                    maskImage: TEX_FOOTER_MASK,
-
-                  }}
-
-                />
-
-              </div>
-
-              {/* Decoration layer — centered, capped at the design frame's
-
-                  1280px reference width, and locked to its 1280:1308 aspect
-
-                  ratio so the % positions below resolve against a real,
-
-                  defined height instead of "auto" (the same bug that sent
-
-                  the traffic light off to the wrong spot). */}
-
-
-
-              <div
-
-                className="absolute inset-0 flex items-start justify-center pointer-events-none"
-
-                style={{ zIndex: 10 }}
-
-              >
-
-                {/* Blue spray blob and the traffic light that sits on it. Both
-
-                    live outside the 1280 frame and are anchored to the real
-
-                    left edge of the viewport — inside the frame they'd drift
-
-                    apart by the frame's inset on screens wider than 1280. The
-
-                    blob comes first in the DOM so the light paints over it.
-
-                    The kit has no cyan blob, so the orange cloud is
-
-                    hue-rotated. */}
-
-                <DecorImage
-
-                  src="/imagesbm14/faq/Splotch.png"
-
-                  alt=""
-
-                  label="Splotch"
-
-                  className="absolute"
-
-                  style={{
-
-                    top: "14%",
-
-                    left: "calc(-1 * clamp(130px, 19vw, 300px))",
-
-                    width: "clamp(300px, 40vw, 650px)",
-
-                    height: "auto",
-
-                    filter: "hue-rotate(168deg) saturate(1.25)",
-
-                    transform: "rotate(270deg)",
-
-                  }}
-
-                />
-
-                <DecorImage
-
-                  src="/imagesbm14/spons/traffic-light.png"
-
-                  alt=""
-
-                  label="Traffic light"
-
-                  className="absolute opacity-90"
-
-                  style={{
-
-                    top: "clamp(60px, 10vh, 180px)",
-
-                    left: "clamp(-6px, 1vw, 24px)",
-
-                    width: "clamp(150px, 17vw, 240px)",
-
-                    height: "auto",
-
-                    transform: "rotate(-11.77deg)",
-
-                    aspectRatio: "277.91 / 416.87",
-
-                  }}
-
-                />
-
-
-
-                <div
-
-                  className="relative w-full max-w-[1280px]"
-
-                  style={{ aspectRatio: "1280 / 1308" }}
-
-                >
-
-                  {/* Dripping heart doodle */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/spons/heart.png"
-
-                    alt=""
-
-                    label="Heart"
-
-                    className="absolute"
-
-                    style={{
-
-                      top: "9.4%",
-
-                      left: "28.75%",
-
-                      width: "40.2%",
-
-                      height: "auto",
-
-                      aspectRatio: "1 / 1",
-
-                    }}
-
-                  />
-
-
-
-                  {/* Brick doodle — sits between the heart and the flower,
-
-                      matching the mobile Figma frame. Sized consistently with Schedule bricks */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/brick_1.webp"
-
-                    alt=""
-
-                    label="Brick"
-
-                    className="absolute opacity-90"
-
-                    style={{
-
-                      top: isMobile ? "70%" : "40%",
-
-                      left: "10.1%",
-
-                      width: "clamp(130px, 14vw, 180px)",
-
-                      height: "auto",
-
-                      aspectRatio: "287 / 200",
-
-                    }}
-
-                  />
-
-
-
-                  {/* Brick doodle — sits between the heart and the flower,
-
-                      matching the mobile Figma frame. Sized consistently with Schedule bricks */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/brick2.webp"
-
-                    alt=""
-
-                    label="Brick"
-
-                    className="absolute opacity-90"
-
-                    style={{
-
-                      top: "20%",
-
-                      left: "70.07%",
-
-                      width: "clamp(130px, 14vw, 180px)",
-
-                      height: "auto",
-
-                      aspectRatio: "398 / 200",
-
-                    }}
-
-                  />
-
-                </div>
-
-
-
-                {/* Orange blob + flower, pinned to the real right edge of the
-
-                    viewport rather than the 1280 frame so the blob bleeds off
-
-                    screen the way the mock does. */}
-
-                <DecorImage
-
-                  src="/imagesbm14/end/splotch-3.png"
-
-                  alt=""
-
-                  label="Splotch"
-
-                  className="absolute"
-
-                  style={{
-
-                    top: "-11%",
-
-                    right: "0px",
-
-                    height: "clamp(260px, 62vw, 680px)",
-
-                    width: "auto",
-
-                  }}
-
-                />
-
-                <DecorImage
-
-                  src="/imagesbm14/spons/flower.png"
-
-                  alt=""
-
-                  label="Flower"
-
-                  className="absolute"
-
-                  style={{
-
-                    top: "8%",
-
-                    right: "clamp(8px, 1.8vw, 34px)",
-
-                    width: "clamp(120px, 20vw, 270px)",
-
-                    height: "auto",
-
-                    transform: "rotate(18deg)",
-
-                  }}
-
-                />
-
-              </div>
-
-
-
-              {/* Social Media Icons — stays centered, above the doodles, near the bottom */}
-
+              {/* Social Media Icons */}
               <div className="flex flex-row gap-6 relative z-10">
-
                 <a
-
                   href="https://www.instagram.com/boilermake/?hl=en"
-
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-
                   onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "0px 0px 15px #FFE958";
-
                   }}
-
                   onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "none";
-
                   }}
-
                   target="_blank"
-
                   rel="noopener noreferrer"
-
                   aria-label="Instagram"
-
                 >
-
                   <i className="fab fa-instagram" style={{ fontSize: "1.75em" }} />
-
                 </a>
 
                 <a
-
                   href="https://www.linkedin.com/company/boilermake/"
-
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-
                   aria-label="LinkedIn"
-
                   onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "0px 0px 15px #FFE958";
-
                   }}
-
                   onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "none";
-
                   }}
-
                   target="_blank"
-
                   rel="noopener noreferrer"
-
                 >
-
                   <i className="fab fa-linkedin" style={{ fontSize: "1.75em" }} />
-
                 </a>
-
               </div>
-
-
 
               {/* Made with love text */}
-
               <p
-
-                className="text-center text-white relative z-10 bg-[#403A50]"
-
+                className="text-center text-white relative z-10"
                 style={{
-
                   fontFamily: "var(--font-code-pro)",
-
                   fontWeight: 300,
-
                   fontSize: "clamp(14px, 1.5vw, 18px)",
-
                   letterSpacing: "0.05em",
-
                   color: "#FFFFFF",
-
                   textShadow: "0px 0px 10px #FFDE00",
-
                 }}
-
               >
-
                 Made with 💛 by the BoilerMake XIV team
-
               </p>
-
             </section>
 
           </main>

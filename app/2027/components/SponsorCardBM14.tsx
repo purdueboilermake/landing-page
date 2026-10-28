@@ -13,6 +13,8 @@ type SponsorCardProps = {
         name: string; // for alt text
         logo: string;
         url: string;
+        logoScale?: number;
+        logoOffsetY?: number;
     };
     size?: 'sm' | 'md' | 'lg' | 'xl';
 }
@@ -55,6 +57,8 @@ export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) 
     }, []);
 
     const sizeStyle = cardSizeStyles[size] || cardSizeStyles['md'];
+    const logoScale = sponsor.logoScale ?? 1;
+    const logoOffsetY = sponsor.logoOffsetY ?? 0;
 
     return (
         <a
@@ -75,6 +79,7 @@ export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) 
                 borderRadius: '16px',
                 boxShadow: '5px 5px 0 #21152F',
                 boxSizing: 'border-box',
+                overflow: 'hidden',
             }}
         >
             <Image
@@ -84,7 +89,7 @@ export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) 
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', transform: `translateY(${logoOffsetY}px) scale(${logoScale})` }}
             />
         </a>
     )

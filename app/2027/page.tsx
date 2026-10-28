@@ -194,6 +194,10 @@ const bronzeSponsors = [
 
     url: "https://www.rcac.purdue.edu/",
 
+    logoScale: 1.28,
+
+    logoOffsetY: 10,
+
   },
 
   {
@@ -203,6 +207,10 @@ const bronzeSponsors = [
     logo: "/assets/sponsors/PurdueCS.svg",
 
     url: "https://www.cs.purdue.edu/",
+
+    logoScale: 1.28,
+
+    logoOffsetY: 10,
 
   },
 

@@ -1,576 +1,380 @@
-// /**
-//  * app/page.tsx
-//  * Home page
-//  * @DylanMiller
-//  * 9-28-2025
-//  */
-
-// /*Currently website opens to this page, which is a coming soon announcement for BoilerMake XIV.*/
-
-// import Image from "next/image";
-
-// export default function Home() {
-//   return (
-//     <>
-//       <meta charSet="UTF-8" />
-//       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//       <title>BoilerMake XIV</title>
-//       <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-//       <link
-//         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-//         rel="stylesheet"
-//       />
-//       <link
-//         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-//         rel="stylesheet"
-//       />
-//       <link rel="preconnect" href="https://fonts.googleapis.com" />
-//       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-//       <link
-//         href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200..800&family=Inter:wght@100..900&family=Roboto+Mono:wght@400;500;600;700&family=Days+One&display=swap"
-//         rel="stylesheet"
-//       />
-//       <link
-//         href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
-//         rel="stylesheet"
-//       />
-//       <meta name="title" content="BoilerMake XIV" />
-//       <meta
-//         name="description"
-//         content="Purdue University's flagship hackathon, BoilerMake, is back in January 2026."
-//       />
-//       <meta
-//         name="keywords"
-//         content="boilermake, purdue, midwest, hackathon, boilermaker, uiuc, chicago, Indiana, illinois"
-//       />
-//       <meta name="robots" content="index, follow" />
-//       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-//       <meta name="language" content="English" />
-//       <style
-//         dangerouslySetInnerHTML={{
-//           __html:
-//             '\n            body {\n                font-family: "Dosis", sans-serif;\n                font-weight: 500;\n            }\n\n            h1 {\n                font-family: "Arvo", serif;\n            }\n        '
-//         }}
-//       />
-//       <main
-//         className="flex flex-col h-screen w-full overflow-hidden justify-center items-center bg-[#1E1E1E] relative"
-//       >
-//         {/* Ellipse backdrop layer (below everything) */}
-//         <div className="absolute inset-0 pointer-events-none z-1">
-//           <div className="relative w-full h-full">
-//             <Image
-//               src="/images/ellipses.png"
-//               alt="Ellipses Background"
-//               fill
-//               priority
-//               className="object-cover object-center"
-//             />
-//           </div>
-//         </div>
-//         {/* Gradient layer: fit full viewport height and stretch to width */}
-//         <div
-//           className="absolute inset-0 bg-center bg-no-repeat"
-//           style={{
-//             backgroundImage: "url('/images/Gradient.png')",
-//             backgroundSize: '100% 100%', // force stretch both directions to always fill
-//             zIndex: 20
-//           }}
-//           aria-hidden
-//         />
-//         <div className="absolute inset-0 pointer-events-none flex justify-center overflow-hidden">
-//           {/* Wider container with transparent side padding so blur can extend without hard edge */}
-//           <div
-//             className="relative h-screen px-[15vw] box-content"
-//             style={{
-//               zIndex: 10,
-//               backgroundClip: 'padding-box'
-//             }}
-//           >
-//             {/* Sharp (top) layer */}
-//             <Image
-//               src="/images/Circle.png"
-//               alt=""
-//               width={1049}
-//               height={1049}
-//               priority
-//               className="h-screen w-auto max-w-none select-none"
-//               style={{
-//                 WebkitMaskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)',
-//                 maskImage: 'linear-gradient(to bottom, #000 65%, rgba(0,0,0,0) 100%)'
-//               }}
-//             />
-//           </div>
-//         </div>
-//         {/* Stars left image */}
-//         <div className="absolute bottom-0 left-0 pointer-events-none" style={{ zIndex: 15 }}>
-//           <Image
-//             src="/images/stars_left.png"
-//             alt=""
-//             width={0}
-//             height={0}
-//             sizes="100vw"
-//             className="w-auto h-auto"
-//             style={{
-//               paddingLeft: '3.984375vw' // 51px / 1280px * 100 = 3.984375vw
-//             }}
-//           />
-//         </div>
-//         {/* Stars right image */}
-//         <div className="absolute bottom-0 right-0 pointer-events-none" style={{ zIndex: 15 }}>
-//           <Image
-//             src="/images/stars_right.png"
-//             alt=""
-//             width={0}
-//             height={0}
-//             sizes="100vw"
-//             className="w-auto h-auto"
-//             style={{
-//               paddingRight: '2.421875vw', // 31px / 1280px * 100 = 2.421875vw
-//               paddingBottom: '3.125vw' // 26px / 832px * 100 = 3.125vw
-//             }}
-//           />
-//         </div>
-//         <div className="flex flex-col items-center justify-between min-h-screen w-full relative z-20" style={{ paddingTop: `${(158 / 832) * 100}vh` }}>
-//           <div className="flex flex-col items-center">
-//             <Image
-//               src="/images/logo_BMXIII.png"
-//               alt="BoilerMake Logo"
-//               width={158}
-//               height={149}
-//               className="mb-8"
-//               style={{
-//                 height: `min(${(149 / 832) * 100}vh, 149px)`,
-//                 width: 'auto',
-//               }}
-//             />
-//             <h2 
-//               className="text-center mb-6"
-//               style={{
-//                 fontFamily: 'var(--font-futura-cyrillic)',
-//                 fontWeight: 500,
-//                 fontSize: 'clamp(18px, 3.5vw, 28px)',
-//                 lineHeight: '100%',
-//                 letterSpacing: '0.1em',
-//                 color: '#FFFFFF',
-//                 textShadow: '0px 0px 15px #FFDE00',
-//               }}
-//             >
-//               COMING SOON...
-//             </h2>
-//             <h1 
-//               className="text-center mb-12"
-//               style={{
-//                 fontFamily: 'var(--font-disket-mono)',
-//                 fontWeight: 400,
-//                 fontSize: 'clamp(32px, 8vw, 60px)',
-//                 lineHeight: '100%',
-//                 letterSpacing: '0.1em',
-//                 color: '#FFE958',
-//                 textShadow: '0px 0px 15px #FFDE00',
-//               }}
-//             >
-//               BOILERMAKE XIV
-//             </h1>
-//             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-//               {/* <a
-//                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
-//                 href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-//                 style={{
-//                   fontFamily: 'var(--font-futura-cyrillic)',
-//                   fontWeight: 700,
-//                   fontSize: 'clamp(14px, 1.68vh, 14px)',
-//                   lineHeight: '100%',
-//                   letterSpacing: '0.05em',
-//                   textAlign: 'center',
-//                   verticalAlign: 'middle',
-//                   height: '50px',
-//                   border: '2px solid #FFFFFF',
-//                   borderRadius: '30px',
-//                   paddingLeft: 'clamp(12px, 3.5vw, 40px)',
-//                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
-//                 }}
-//               >
-//                 Early Interest Form
-//               </a> */}
-//               <a 
-//                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center" 
-//                 href="https://docs.google.com/forms/d/e/1FAIpQLSftgeNHXItUDe9s7sSmbDRY5NQWIuFAzT2Vx3EcRNuhOrk5yw/viewform"
-//                 style={{
-//                   fontFamily: 'var(--font-futura-cyrillic)',
-//                   fontWeight: 700,
-//                   fontSize: 'clamp(14px, 1.68vh, 14px)',
-//                   lineHeight: '100%',
-//                   letterSpacing: '0.05em',
-//                   textAlign: 'center',
-//                   verticalAlign: 'middle',
-//                   height: '50px',
-//                   border: '2px solid #FFFFFF',
-//                   borderRadius: '30px',
-//                   paddingLeft: 'clamp(12px, 3.5vw, 40px)',
-//                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
-//                 }}
-//               >
-//                 Organizer Application
-//               </a>
-//               <a
-//                 href="/past"
-//                 className="bg-[#2A262780] text-white py-2 hover:bg-[#2A2627AA] transition duration-500 ease-in-out text-center whitespace-nowrap flex items-center justify-center"
-//                 style={{
-//                   fontFamily: 'var(--font-futura-cyrillic)',
-//                   fontWeight: 700,
-//                   fontSize: 'clamp(14px, 1.68vh, 14px)',
-//                   lineHeight: '100%',
-//                   letterSpacing: '0.05em',
-//                   textAlign: 'center',
-//                   verticalAlign: 'middle',
-//                   height: '50px',
-//                   border: '2px solid #FFFFFF',
-//                   borderRadius: '30px',
-//                   paddingLeft: 'clamp(12px, 3.5vw, 40px)',
-//                   paddingRight: 'clamp(12px, 3.5vw, 40px)'
-//                 }}
-//               >
-//                 In the Past
-//               </a>
-//             </div>
-//           </div>
-//           <div className="flex flex-row gap-5 pt-8 pb-16">
-//             <a
-//               href="mailto:team@boilermake.org"
-//               className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-//               onMouseEnter={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = '0px 0px 15px #FFE958';
-//               }}
-//               onMouseLeave={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = 'none';
-//               }}
-//             >
-//               <i className="fas fa-envelope" style={{ fontSize: '1.75em' }} />
-//             </a>
-//             <a
-//               href="https://www.instagram.com/boilermake/?hl=en"
-//               className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-//               onMouseEnter={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = '0px 0px 15px #FFE958';
-//               }}
-//               onMouseLeave={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = 'none';
-//               }}
-//             >
-//               <i className="fab fa-instagram" style={{ fontSize: '1.75em' }} />
-//             </a>
-//             <a
-//               href="https://www.linkedin.com/company/boilermake/"
-//               className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-//               onMouseEnter={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = '0px 0px 15px #FFE958';
-//               }}
-//               onMouseLeave={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = 'none';
-//               }}
-//             >
-//               <i className="fab fa-linkedin" style={{ fontSize: '1.75em' }} />
-//             </a>
-//             <a
-//               href="https://x.com/BoilerMake1"
-//               className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-//               onMouseEnter={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = '0px 0px 15px #FFE958';
-//               }}
-//               onMouseLeave={(e) => {
-//                 const target = e.currentTarget as HTMLElement;
-//                 target.style.textShadow = 'none';
-//               }}
-//             >
-//               <i className="fab fa-twitter" style={{ fontSize: '1.75em' }} />
-//             </a>
-//           </div>
-//         </div>
-//         <div className="flex flex-col z-0">
-//           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-//             <path
-//               fill="#fffbfaff"
-//               fillOpacity="0.7"
-//               d="M0,224L26.7,229.3C53.3,235,107,245,160,213.3C213.3,181,267,107,320,106.7C373.3,107,427,181,480,197.3C533.3,213,587,171,640,170.7C693.3,171,747,213,800,218.7C853.3,224,907,192,960,149.3C1013.3,107,1067,53,1120,32C1173.3,11,1227,21,1280,64C1333.3,107,1387,181,1413,218.7L1440,256L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
-//             ></path>
-//           </svg>
-          
-//         </div>
-//       </main>
-//     </>
-//   );
-// }
-
-
 /**
  * app/page.tsx
- * Home page — BoilerMake XIV coming soon
- * @DylanMiller
- * 7-22-2026
+ * Home page — BoilerMake XIV
  */
 
 import Image from "next/image";
 import PastPage from "@/app/past/page";
 import ScrollArrow from "@/app/components/ScrollArrow";
-const TEX_FOOTER_FADE_IN =
-  "linear-gradient(to bottom, transparent 0px, #000 24px)";
-const TEX_FOOTER_MASK =
-  "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
 
 const INTEREST_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform";
 
-const heroButtonClass =
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white px-3.5 py-2.5 text-[13px] font-semibold leading-none text-[#1a1a1a] no-underline hover:bg-[#f3f3f3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a] sm:px-5 sm:py-3 sm:text-[15px]";
-
 export default function Home() {
   return (
     <>
-    
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         rel="stylesheet"
       />
 
-      
+      {/* Header — Logo only (no sections navbar) */}
+      <header
+        className="w-full fixed top-0 z-50 transition-all duration-200 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%)",
+        }}
+      >
+        <div className="relative flex items-center h-16 px-6 sm:px-8">
+          <a
+            href="/"
+            className="pointer-events-auto absolute left-6 top-4 hover:scale-105 transition"
+            aria-label="BoilerMake XIV Home"
+          >
+            <Image
+              src="/imagesbm14/logo_bm14_hammers_only.svg"
+              alt="BoilerMake Logo"
+              width={64}
+              height={56}
+              priority
+              className="w-10 sm:w-12 md:w-14 h-auto"
+            />
+          </a>
+        </div>
+      </header>
+
+      {/* Hero Section Responsiveness Overrides */}
+      <style>{`
+        #hero {
+          --bb-w-active: var(--bb-w-mobile);
+          --bb-y-active: var(--bb-y-mobile);
+          --btn-y-active: var(--btn-y-mobile);
+        }
+        @media (min-width: 700px) and (max-width: 1023px) {
+          #hero {
+            --bb-w-active: var(--bb-w-tablet);
+            --bb-y-active: var(--bb-y-tablet);
+            --btn-y-active: var(--btn-y-tablet);
+          }
+        }
+        @media (max-width: 699px) {
+          #hero {
+            height: var(--hero-h-mobile, clamp(560px, 92svh, 750px)) !important;
+            min-height: 0 !important;
+          }
+        }
+        @media (min-width: 700px) and (max-width: 1023px) {
+          #hero {
+            height: var(--hero-h-tablet, clamp(750px, 95svh, 1050px)) !important;
+            min-height: 0 !important;
+          }
+        }
+      `}</style>
+
       <main
         className="relative w-full overflow-x-hidden"
         style={{ backgroundColor: "#0d0618" }}
       >
+        {/* Hero Section — BoilerMake XIV skyline scene */}
+        <section
+          id="hero"
+          className="hero-section relative w-full overflow-hidden"
+          style={
+            {
+              // Hero Section Height (controls how tall the sky is)
+              height: "140vh",
+              backgroundColor: "#0d0618",
 
-        {/* Responsive top-left logo */}
-<header className="absolute top-0 left-0 z-[30] w-full pointer-events-none">
-  <div className="px-4 pt-4 sm:px-8 sm:pt-8 lg:px-12 lg:pt-10">
-      <Image
-        src="/images/logo_BMXIII.png"
-        alt="BoilerMake Logo"
-        width={158}
-        height={149}
-        priority
-        sizes="(max-width: 639px) 40px, 48px"
-        className="h-auto w-10 sm:w-12 select-none"
-      />
-  </div>
-</header>
+              // --- Hero Tuning Knobs (Edit billboard & layout here) ---
+              // Desktop Anchored Billboard (lg screens, >= 1024px):
+              "--bb-w": "55%",          // Desktop width
+              "--bb-y": "30%",          // Height above skyline baseline
+              "--btn-y": "55%",         // Button position on the sign
 
-        
-        {/* Sky — mirror the 2027 background treatment */}
-        <div
-          className="pointer-events-none absolute z-[1]"
-          aria-hidden
-          style={{
-            top: 0,
-            bottom: 0,
-            left: "-6%",
-            width: "133%",
-          }}
+              // Tablet Floating Billboard (700px - 1023px, iPad Mini, iPad Pro, iPad Air):
+              "--bb-w-tablet": "85%",              // Tablet width (fills tablet nicely)
+              "--bb-y-tablet": "calc(52% + 14vh)", // Height above baseline with viewport lift to stay centered
+              "--btn-y-tablet": "108%",            // Button position on floating sign
+
+              // Mobile Floating Billboard (phones, < 700px):
+              "--bb-w-mobile": "95%",              // Mobile width
+              "--bb-y-mobile": "calc(60% + 18vh)", // Height above baseline with viewport lift (lifts off bottom!)
+              "--btn-y-mobile": "110%",            // Button position on floating sign
+
+              // Responsive Hero Heights:
+              "--hero-h-mobile": "clamp(560px, 92svh, 750px)",
+              "--hero-h-tablet": "clamp(750px, 95svh, 1050px)",
+
+              "--ledge-h": "clamp(52px, 11vw, 190px)",
+
+              "--scene-drop": "0%",
+
+              // Sky & Clouds Overscale & Offsets (bleed border whitespace off-screen):
+              "--clouds-w": "calc(100% + 150px)",    // Width: 100% + extra bleed
+              "--clouds-top": "-50px",              // Top offset: pulls top edge up past screen
+              "--gradient-w": "calc(100% + 80px)",  // Width: bleed gradient past left & right screen edges
+            } as React.CSSProperties
+          }
         >
-          <Image
-            src="/imagesbm14/landing/Background.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            draggable={false}
-            className="select-none object-cover"
-            style={{
-              objectPosition: "50% 100%",
-              transform: "translateY(-135px) translateX(0%) scaleX(1.35)",
-              transformOrigin: "top right",
-            }}
-          />
-        </div>
-
-        {/* Sky breathing room — enough room for full buildings below */}
-        <div className="relative z-[1]" style={{ height: "22vh" }} aria-hidden />
-
-        {/* Mid buildings — slight overscale to kill edge gaps in the asset */}
-        <div className="relative z-[3] w-full">
+          {/* Sky — base gradient and clouds/stars overlay */}
           <div
-            className="relative z-[3] left-1/2"
-            style={{ width: "103%", transform: "translate(-50%, -60px)" }}
+            className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
+            aria-hidden
           >
-            <Image
-              src="/imagesbm14/landing/Buildings.webp"
-              alt=""
-              width={1652}
-              height={1080}
-              priority
-              sizes="100vw"
-              className="w-full h-auto select-none block"
-            />
-          </div>
-
-          {/*
-            Billboard sits behind the buildings
-          */}
-          <div
-            className="absolute left-1/2 z-[2] pointer-events-none"
-            style={{
-              bottom: "32%",
-              width: "min(72vw, 2000px)",
-              transform: "translate(-50%, -60px)",
-            }}
-          >
-            <div className="relative w-full">
+            {/* Base Gradient Layer — centered and overscaled to eliminate side border whitespace */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 inset-y-0 pointer-events-none"
+              style={{
+                width: "var(--gradient-w, calc(100% + 80px))",
+              }}
+            >
               <Image
-                src="/imagesbm14/landing/Billboard Before.webp"
+                src="/imagesbm14/landing/Gradient.webp"
                 alt=""
-                width={905}
-                height={578}
+                fill
                 priority
+                sizes="100vw"
+                draggable={false}
+                className="select-none object-cover object-bottom opacity-50"
+                style={{
+                  objectPosition: "center 200%",
+                }}
+              />
+            </div>
+
+            {/* Clouds & Stars Layer — centered and overscaled to eliminate border whitespace */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+              style={{
+                top: "var(--clouds-top, -50px)",
+                width: "var(--clouds-w, calc(100% + 150px))",
+                maxWidth: "none",
+              }}
+            >
+              <Image
+                src="/imagesbm14/landing/Clouds Stars.webp"
+                alt=""
+                width={3000}
+                height={1110}
+                priority
+                sizes="100vw"
+                draggable={false}
                 className="w-full h-auto select-none"
               />
             </div>
           </div>
 
-          {/* Title and date sit above the skyline so they can be highlighted.
-              The sign frame stays behind the buildings. */}
+          {/* SKYLINE — full-bleed, exact aspect ratio, bottom-anchored */}
           <div
-            className="absolute left-1/2 z-[4] pointer-events-none"
+            className="pointer-events-none absolute inset-x-0 z-[3] w-full"
             style={{
-              bottom: "32%",
-              width: "min(72vw, 2000px)",
-              transform: "translate(-50%, -60px)",
-              aspectRatio: "905 / 578",
+              aspectRatio: "1652 / 1080",
+              bottom: "calc(-1 * var(--scene-drop))",
             }}
           >
-            <div className="pointer-events-auto absolute left-[7%] right-[7%] top-[7%] h-[43%] flex flex-col items-center justify-center text-center select-text">
-              <h1
-                className="w-full select-text"
-                style={{
-                  fontFamily: "var(--font-disket-mono)",
-                  fontWeight: 400,
-                  fontSize: "6.2cqi",
-                  lineHeight: 1.02,
-                  letterSpacing: "0.06em",
-                  color: "#1a1a1a",
-                  userSelect: "text",
-                  WebkitUserSelect: "text",
-                }}
-              >
-                BOILERMAKE XIV
-              </h1>
+            {/* Desktop: Anchored Billboard with scaffolding legs (lg screens only, >= 1024px) */}
+            <div
+              className="hidden lg:block absolute left-1/2 z-[1] -translate-x-1/2"
+              style={{
+                bottom: "var(--bb-y)",
+                width: "var(--bb-w)",
+                containerType: "inline-size",
+              }}
+            >
+              <Image
+                src="/imagesbm14/landing/Billboard.webp"
+                alt="BoilerMake XIV"
+                width={2000}
+                height={1277}
+                priority
+                draggable={false}
+                className="h-auto w-full select-none"
+              />
 
-              <p
-                className="select-text"
-                style={{
-                  fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "clamp(0.5rem, 2.3vw, 1.05rem)",
-                  lineHeight: 1.1,
-                  color: "#1a1a1a",
-                  marginTop: "clamp(0.2rem, 1vw, 0.35em)",
-                  whiteSpace: "nowrap",
-                  userSelect: "text",
-                  WebkitUserSelect: "text",
-                }}
+              {/* Sign copy — date above the painted panel */}
+              <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center">
+                <h2
+                  style={{
+                    fontFamily: "var(--font-code-pro)",
+                    fontWeight: 400,
+                    fontSize: "3.4cqi",
+                    letterSpacing: "0.1em",
+                    color: "#E8E4DA",
+                    marginBottom: "0.5em",
+                  }}
+                >
+                  January 22nd - 24th, 2027
+                </h2>
+              </div>
+            </div>
+
+            {/* Mobile & Tablet: Floating Billboard (hidden on desktop lg) */}
+            <div
+              className="lg:hidden absolute left-1/2 z-[3] -translate-x-1/2"
+              style={{
+                bottom: "var(--bb-y-active)",
+                width: "var(--bb-w-active)",
+                containerType: "inline-size",
+              }}
+            >
+              <div className="relative w-full" style={{ aspectRatio: "2000 / 654" }}>
+                <Image
+                  src="/imagesbm14/landing/Billboard Floating.webp"
+                  alt="BoilerMake XIV"
+                  width={2000}
+                  height={654}
+                  priority
+                  draggable={false}
+                  className="h-auto w-full select-none"
+                />
+
+                {/* Sign copy — date above mobile billboard */}
+                <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-code-pro)",
+                      fontWeight: 400,
+                      fontSize: "4.5cqi",
+                      letterSpacing: "0.1em",
+                      color: "#E8E4DA",
+                      marginBottom: "0.5em",
+                    }}
+                  >
+                    January 22nd - 24th, 2027
+                  </h2>
+                </div>
+
+                {/* Mobile & Tablet Button centered on floating board */}
+                <div
+                  className="absolute inset-x-[6%] flex justify-center"
+                  style={{ top: "var(--btn-y-active)" }}
+                >
+                  <a
+                    href={INTEREST_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                    style={{
+                      fontFamily: "var(--font-code-pro), system-ui, sans-serif",
+                      fontWeight: 700,
+                      fontSize: "clamp(16px, 5.5cqi, 26px)",
+                      letterSpacing: "0.08em",
+                      lineHeight: 1,
+                      color: "#FFFFFF",
+                      background: "#5A8A4A",
+                      border: "4px solid #FFFFFF",
+                      borderRadius: "9999px",
+                      padding: "0.65em 1.8em",
+                      boxShadow: "0 4px 0 rgba(0,0,0,0.35)",
+                    }}
+                  >
+                    Interest Form
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Buildings — sit on top of the sign */}
+            <div
+              className="absolute inset-0 z-[2]"
+              style={{
+                transform: "scaleX(1.04) skewX(0deg)",
+                transformOrigin: "center bottom",
+                willChange: "transform",
+              }}
+            >
+              <Image
+                src="/imagesbm14/landing/Buildings.webp"
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                draggable={false}
+                className="select-none object-cover object-bottom"
+              />
+            </div>
+
+            {/* Desktop Button layer — stacked above the buildings for lg desktop */}
+            <div
+              className="hidden lg:block absolute left-1/2 z-[3] -translate-x-1/2"
+              style={{
+                bottom: "var(--bb-y)",
+                width: "var(--bb-w)",
+                aspectRatio: "2000 / 1277",
+                containerType: "inline-size",
+              }}
+            >
+              <div
+                className="absolute inset-x-[6%] flex justify-center"
+                style={{ top: "var(--btn-y)" }}
               >
-                January 22-24 2027
-              </p>
+                <a
+                  href={INTEREST_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                  style={{
+                    fontFamily: "var(--font-code-pro), system-ui, sans-serif",
+                    fontWeight: 700,
+                    fontSize: "clamp(18px, 4.4cqi, 32px)",
+                    letterSpacing: "0.08em",
+                    lineHeight: 1,
+                    color: "#FFFFFF",
+                    background: "#5A8A4A",
+                    border: "4.5px solid #FFFFFF",
+                    borderRadius: "9999px",
+                    padding: "0.72em 2.1em",
+                    boxShadow: "0 5px 0 rgba(0,0,0,0.35)",
+                  }}
+                >
+                  Interest Form
+                </a>
+              </div>
             </div>
           </div>
 
+          {/* Foreground ledge */}
           <div
-            className="absolute left-1/2 z-[5] flex max-w-[100vw] flex-nowrap items-center justify-center gap-2 px-2 sm:gap-3 sm:px-3"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[7] w-full"
             style={{
-              bottom: "50%",
-              transform: "translate(-50%, -60px)",
-              fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
+              height: "var(--ledge-h)",
+              bottom: "calc(-1 * var(--scene-drop))",
             }}
+            aria-hidden
           >
-            <a
-              href={INTEREST_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={heroButtonClass}
-            >
-              Interest Form
-            </a>
-            <a href="mailto:sponsorship@boilermake.org" className={heroButtonClass}>
-              Be a Sponsor!
-            </a>
-            <a
-              href="https://forms.gle/t6iGEN9h1pTWRuEU9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={heroButtonClass}
-            >
-              Be a Judge
-            </a>
-          </div>
-          {/* Front ledge — overlaps bottom of mid buildings */}
-          <div className="absolute inset-x-0 bottom-0 z-[8] w-full pointer-events-none">
             <Image
-    src="/imagesbm14/landing/Front_Buildings.webp"
-    alt=""
-    width={1280}
-    height={203}
-    priority
-    sizes="100vw"
-    className="
-      block w-full h-auto
-      select-none
-      origin-bottom
-      scale-y-[1.35]
-      sm:scale-y-100
-    "
-  />
+              src="/imagesbm14/landing/Front_Buildings.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              draggable={false}
+              className="select-none object-cover object-bottom"
+            />
           </div>
+        </section>
 
-          {/* Socials — overlay on front buildings
-          <div className="absolute inset-x-0 bottom-0 z-[12] flex justify-center gap-5 sm:gap-6 pb-4 sm:pb-5">
-            {[
-              { href: "mailto:team@boilermake.org", label: "Email", icon: "fas fa-envelope" },
-              { href: "https://www.instagram.com/boilermake/?hl=en", label: "Instagram", icon: "fab fa-instagram" },
-              { href: "https://www.linkedin.com/company/boilermake/", label: "LinkedIn", icon: "fab fa-linkedin" },
-              { href: "https://x.com/BoilerMake1", label: "X", icon: "fab fa-twitter" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                aria-label={item.label}
-                className="text-[#FFE958] hover:text-white transition duration-300"
-                style={{ fontSize: "1.45em" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className={item.icon} />
-              </a>
-            ))}
-          </div> */}
-        </div>
-        
-<ScrollArrow />
+        <ScrollArrow />
       </main>
-      {/* Full-width graffiti transition, directly beneath the social icons. */}
+
       {/* Transition overlay between landing and past page */}
-<div className="relative z-[20] h-0 pointer-events-none"style={{
+      <div className="relative z-[20] h-0 pointer-events-none">
+        <img
+          src="/imagesbm14/about/Transition.webp"
+          alt=""
+          className="absolute left-0 top-0 block w-full h-auto"
+          style={{
+            transform: "translateY(-62%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+          }}
+        />
+      </div>
 
-
-    }}>
-  <img
-    src="/imagesbm14/about/Transition.webp"
-    alt=""
-    className="absolute left-0 top-0 block w-full h-auto"
-    style={{
-      transform: "translateY(-62%)",
-      WebkitMaskImage:
-        "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-      maskImage:
-        "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-    }}
-  />
-</div>
-
-<PastPage />
+      <PastPage />
     </>
   );
 }

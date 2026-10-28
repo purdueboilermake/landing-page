@@ -138,211 +138,86 @@ function DecorImage({ label, style, className, ...props }: DecorImageProps) {
 
 
 
-const sponsors = [
+const silverSponsors = [
 
-  [
+  {
 
-    // XL logos
+    name: "Salesforce",
 
-    {
+    logo: "/assets/sponsors/salesforce.png",
 
-      name: "CAT",
+    url: "https://www.salesforce.com/",
 
-      logo: "/assets/sponsors/cat.png",
-
-      url: "https://www.caterpillar.com/",
-
-    },
-
-    {
-
-      name: "SFAB",
-
-      logo: "/assets/sponsors/SFAB.png",
-
-      url: "https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html",
-
-    },
-
-  ],
-
-  [
-
-    // LG logos
-
-  ],
-
-  [
-
-    // MD logos
-
-    {
-
-      name: "Purdue CS",
-
-      logo: "/assets/sponsors/PurdueCS.svg",
-
-      url: "https://www.cs.purdue.edu/",
-
-    },
-
-    {
-
-      name: "D.E. Shaw",
-
-      logo: "/assets/sponsors/deshaw.png",
-
-      url: "https://www.deshaw.com/",
-
-    },
-
-    {
-
-      name: "RCAC",
-
-      logo: "/assets/sponsors/RCAC_Logo.png",
-
-      url: "https://www.rcac.purdue.edu/",
-
-    },
-
-  ],
-
-  [
-
-    // SM logos
-
-    {
-
-      name: "CoE",
-
-      logo: "/assets/sponsors/coe.svg",
-
-      url: "https://engineering.purdue.edu/Engr",
-
-    },
-
-    {
-
-      name: "Roboflow",
-
-      logo: "/assets/sponsors/roboflow.png",
-
-      url: "https://roboflow.com/",
-
-    },
-
-    {
-
-      name: "Runpod",
-
-      logo: "/assets/sponsors/runpod_color.png",
-
-      url: "https://www.runpod.io/",
-
-    },
-
-    {
-
-      name: "Purdue Innovates",
-
-      logo: "/assets/sponsors/purdue_innovates.png",
-
-      url: "https://purdueinnovates.org/",
-
-    },
-
-  ],
-
-  [
-
-    {
-
-      name: "Klaviyo",
-
-      logo: "/assets/sponsors/klaviyo.png",
-
-      url: "https://www.klaviyo.com/",
-
-    },
-
-    {
-
-      name: "Blip",
-
-      logo: "/assets/sponsors/blip.png",
-
-      url: "https://www.blippayments.com/",
-
-    },
-
-    {
-
-      name: "Sync",
-
-      logo: "/assets/sponsors/sync.png",
-
-      url: "https://sync.so/",
-
-    },
-
-    {
-
-      name: "Modal",
-
-      logo: "/assets/sponsors/modal.svg",
-
-      url: "https://modal.com/",
-
-    },
-
-  ],
-
-  [
-
-    {
-
-      name: "Taco Bell",
-
-      logo: "/assets/sponsors/TacoBell.svg",
-
-      url: "https://www.tacobell.com/",
-
-    },
-
-    {
-
-      name: "Cartesia",
-
-      logo: "/assets/sponsors/cartesia.svg",
-
-      url: "https://www.cartesia.ai/",
-
-    },
-
-    {
-
-      name: "Warp",
-
-      logo: "/assets/sponsors/warp.png",
-
-      url: "https://www.warp.dev/",
-
-    },
-
-    {
-
-      name: "Wolfram",
-
-      logo: "/assets/sponsors/wolfram.png",
-
-      url: "https://www.wolfram.com/",
-
-    },
-
-  ],
+  },
 
 ];
+
+
+
+const bronzeSponsors = [
+
+  {
+
+    name: "Keytos",
+
+    logo: "/assets/sponsors/keytos.svg",
+
+    url: "https://www.keytos.io/",
+
+  },
+
+  {
+
+    name: "Caterpillar",
+
+    logo: "/assets/sponsors/cat.png",
+
+    url: "https://www.caterpillar.com/",
+
+  },
+
+  {
+
+    name: "Lovable",
+
+    logo: "/assets/sponsors/lovable.png",
+
+    url: "https://lovable.dev/",
+
+  },
+
+  {
+
+    name: "Purdue RCAC",
+
+    logo: "/assets/sponsors/RCAC_Logo.png",
+
+    url: "https://www.rcac.purdue.edu/",
+
+  },
+
+  {
+
+    name: "CS Department",
+
+    logo: "/assets/sponsors/PurdueCS.svg",
+
+    url: "https://www.cs.purdue.edu/",
+
+  },
+
+  {
+
+    name: "Maritime",
+
+    logo: "/assets/sponsors/maritime.png",
+
+    url: "https://maritime.sh/",
+
+  },
+
+];
+
 
 
 
@@ -909,7 +784,7 @@ function App() {
 
             className="w-full main-content bm-layout"
 
-            style={{ height: `calc(${isMobile ? "1000vh" : "max(845vh, 7150px) + clamp(460px, 58vh, 660px)"} + 220px)`, overflow: "hidden" }}
+            style={{ height: `calc(${isMobile ? "1000vh" : "max(845vh, 7150px) + clamp(860px, 80vh, 980px)"} + 220px)`, overflow: "hidden" }}
 
           >
 
@@ -1641,8 +1516,8 @@ function App() {
               className="absolute flex flex-col items-center justify-center w-full overflow-x-clip pointer-events-none"
               style={{
                 top: isMobile ? "auto" : "max(845vh, 7150px)",
-                minHeight: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
-                height: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
+                minHeight: isMobile ? "auto" : "clamp(860px, 80vh, 980px)",
+                height: isMobile ? "auto" : "clamp(860px, 80vh, 980px)",
               }}
             >
               {/* Screen-edge anchored decorations */}
@@ -1698,94 +1573,30 @@ function App() {
 
                 />
 
-                <p
-                  className="relative z-10 text-center text-white"
-                  style={{
-                    fontFamily: "var(--font-code-pro), sans-serif",
-                    fontWeight: 400,
-                    fontSize: "clamp(1.5rem, 3.5vw, 3rem)",
-                    lineHeight: 1.2,
-                    letterSpacing: "0.06em",
-                  }}
-                >
-                  Coming Soon
-                </p>
+                <div className="relative z-10 flex flex-col items-center gap-8 w-full pointer-events-auto">
 
-                {/*
+                  <div className="flex items-center justify-center">
 
-                {/* Sponsor tier grid
+                    {silverSponsors.map((sponsor) => (
 
-                <div className="flex flex-col items-center gap-4 w-full max-w-3xl relative z-10">
+                      <SponsorCard key={sponsor.name} sponsor={sponsor} size="lg" />
 
-                  {sponsors.map((tier, tierIndex) => {
+                    ))}
 
-                    if (tier.length === 0) return null;
+                  </div>
 
-                    const heightByTier = ["h-24", "h-24", "h-20", "h-16", "h-14", "h-14"];
+                  <div className="grid grid-cols-2 min-[720px]:grid-cols-3 justify-items-center gap-5">
 
-                    const boxHeight = heightByTier[tierIndex] || "h-14";
+                    {bronzeSponsors.map((sponsor) => (
 
-                    return (
+                      <SponsorCard key={sponsor.name} sponsor={sponsor} size="sm" />
 
-                      <div
+                    ))}
 
-                        key={`tier-${tierIndex}`}
-
-                        className="flex flex-row flex-wrap items-center justify-center gap-4 w-full"
-
-                      >
-
-                        {tier.map((sponsor, i) => (
-
-                          <a
-
-                            key={sponsor.name || `placeholder-${tierIndex}-${i}`}
-
-                            href={sponsor.url || "#"}
-
-                            target="_blank"
-
-                            rel="noopener noreferrer"
-
-                            className={`flex items-center justify-center border-2 border-white rounded-lg ${boxHeight} flex-1 min-w-[120px] max-w-[220px] bg-transparent`}
-
-                          >
-
-                            {sponsor.logo ? (
-
-                              <img
-
-                                src={sponsor.logo}
-
-                                alt={sponsor.name}
-
-                                className="max-h-[70%] max-w-[70%] object-contain"
-
-                              />
-
-                            ) : (
-
-                              <span className="text-white/40 text-xs uppercase tracking-wider">
-
-                                [logo]
-
-                              </span>
-
-                            )}
-
-                          </a>
-
-                        ))}
-
-                      </div>
-
-                    );
-
-                  })}
+                  </div>
 
                 </div>
 
-                */}
 
 
 
@@ -1801,7 +1612,7 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-center w-full gap-5 relative z-[100]"
               style={{
-                top: isMobile ? "auto" : "calc(max(845vh, 7150px) + clamp(460px, 58vh, 660px) - 2px)",
+                top: isMobile ? "auto" : "calc(max(845vh, 7150px) + clamp(860px, 80vh, 980px) - 2px)",
                 position: isMobile ? "relative" : "absolute",
                 backgroundColor: "transparent",
                 minHeight: isMobile ? "auto" : "clamp(140px, 16vh, 200px)",

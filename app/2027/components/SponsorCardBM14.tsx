@@ -17,12 +17,12 @@ type SponsorCardProps = {
     size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-// Card container dimensions (width x height) per tier
+// Wide bars, matching the light sponsor cards on the main page.
 const cardSizeStyles: Record<string, { width: string; height: string; padding: string }> = {
-    'xl': { width: 'clamp(300px, 52vw, 420px)', height: 'clamp(140px, 20vw, 180px)', padding: '24px' },
-    'lg': { width: 'clamp(260px, 38vw, 340px)', height: 'clamp(120px, 16vw, 150px)', padding: '20px' },
-    'md': { width: 'clamp(240px, 38vw, 320px)', height: 'clamp(110px, 15vw, 140px)', padding: '16px' },
-    'sm': { width: 'clamp(200px, 30vw, 260px)', height: 'clamp(100px, 13vw, 120px)', padding: '12px' },
+    'xl': { width: 'clamp(280px, 48vw, 520px)', height: 'clamp(108px, 12vw, 140px)', padding: '16px 28px' },
+    'lg': { width: 'clamp(260px, 40vw, 460px)', height: 'clamp(104px, 11vw, 132px)', padding: '16px 28px' },
+    'md': { width: 'clamp(200px, 28vw, 320px)', height: 'clamp(88px, 10vw, 112px)', padding: '12px 20px' },
+    'sm': { width: 'clamp(168px, 24vw, 280px)', height: 'clamp(80px, 9vw, 104px)', padding: '12px 18px' },
 };
 
 export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) {
@@ -58,11 +58,11 @@ export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) 
 
     return (
         <a
-            href={sponsor.url}
-            target="_blank"
-            rel="noreferrer"
+            href={sponsor.url || undefined}
+            target={sponsor.url ? "_blank" : undefined}
+            rel={sponsor.url ? "noreferrer" : undefined}
             ref={cardRef}
-            className={`transition-all duration-700 hover:scale-105 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`transition-all duration-200 ease-out hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -70,9 +70,10 @@ export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) 
                 width: sizeStyle.width,
                 height: sizeStyle.height,
                 padding: sizeStyle.padding,
-                backgroundColor: 'rgba(0, 0, 0, 0. 0.2)',
-                border: '2px solid rgba(255, 255, 255, 1)',
+                backgroundColor: '#DEDEDE',
+                border: '3px solid #21152F',
                 borderRadius: '16px',
+                boxShadow: '5px 5px 0 #21152F',
                 boxSizing: 'border-box',
             }}
         >
@@ -83,7 +84,7 @@ export default function SponsorCard({ sponsor, size = 'md' }: SponsorCardProps) 
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: '80%', height: '80%', objectFit: 'contain' }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
         </a>
     )

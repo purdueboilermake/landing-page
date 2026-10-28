@@ -1,5 +1,3 @@
-"use client";
-
 // /**
 //  * app/page.tsx
 //  * Home page
@@ -320,27 +318,19 @@
 
 import Image from "next/image";
 import PastPage from "@/app/past/page";
-import { useEffect } from "react";
+import ScrollArrow from "@/app/components/ScrollArrow";
 const TEX_FOOTER_FADE_IN =
   "linear-gradient(to bottom, transparent 0px, #000 24px)";
 const TEX_FOOTER_MASK =
   "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
+
+const INTEREST_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform";
+
+const heroButtonClass =
+  "inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white px-3.5 py-2.5 text-[13px] font-semibold leading-none text-[#1a1a1a] no-underline hover:bg-[#f3f3f3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1a1a] sm:px-5 sm:py-3 sm:text-[15px]";
+
 export default function Home() {
-  useEffect(() => {
-    const arrow = document.querySelector(".scroll-arrow");
-
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        arrow?.classList.add("opacity-0", "pointer-events-none");
-      } else {
-        arrow?.classList.remove("opacity-0", "pointer-events-none");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <>
     
@@ -438,62 +428,84 @@ export default function Home() {
                 priority
                 className="w-full h-auto select-none"
               />
-              <div
-  className="absolute left-[7%] right-[7%] top-[7%] h-[43%] flex flex-col items-center justify-center text-center"
->
-  <h1
-    className="w-full"
-    style={{
-                        fontFamily: "var(--font-disket-mono)",
-                        fontWeight: 400,
-                        fontSize: "6.2cqi",
-                        lineHeight: 1.02,
-                        letterSpacing: "0.06em",
-                        color: "#1a1a1a",
-                      }}
-  >
-    BOILERMAKE XIV
-  </h1>
-
-  <p
-    style={{
-      fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
-      fontWeight: 500,
-      fontSize: "clamp(0.5rem, 2.3vw, 1.05rem)",
-      lineHeight: 1.1,
-      color: "#1a1a1a",
-      marginTop: "clamp(0.2rem, 1vw, 0.35em)",
-      whiteSpace: "nowrap",
-    }}
-  >
-    22-24 January 2027
-  </p>
-</div>
             </div>
           </div>
 
-          <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute left-1/2 z-[5] inline-flex items-center justify-center cursor-pointer
-                    text-[10px] sm:text-[13px]
-                    px-3 py-1.5 sm:px-6 sm:py-3
-                    border sm:border-2 border-white rounded-full"
-          style={{
-            bottom: "50%",
-            transform: "translate(-50%, -60px)",
-            fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
-            fontWeight: 700,
-            color: "#FFFFFF",
-            background: "#5A8A4A",
-            boxShadow: "0 3px 0 rgba(0,0,0,0.18)",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-          }}
-        >
-            Interest Form
-          </a>
+          {/* Title and date sit above the skyline so they can be highlighted.
+              The sign frame stays behind the buildings. */}
+          <div
+            className="absolute left-1/2 z-[4] pointer-events-none"
+            style={{
+              bottom: "32%",
+              width: "min(72vw, 2000px)",
+              transform: "translate(-50%, -60px)",
+              aspectRatio: "905 / 578",
+            }}
+          >
+            <div className="pointer-events-auto absolute left-[7%] right-[7%] top-[7%] h-[43%] flex flex-col items-center justify-center text-center select-text">
+              <h1
+                className="w-full select-text"
+                style={{
+                  fontFamily: "var(--font-disket-mono)",
+                  fontWeight: 400,
+                  fontSize: "6.2cqi",
+                  lineHeight: 1.02,
+                  letterSpacing: "0.06em",
+                  color: "#1a1a1a",
+                  userSelect: "text",
+                  WebkitUserSelect: "text",
+                }}
+              >
+                BOILERMAKE XIV
+              </h1>
+
+              <p
+                className="select-text"
+                style={{
+                  fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(0.5rem, 2.3vw, 1.05rem)",
+                  lineHeight: 1.1,
+                  color: "#1a1a1a",
+                  marginTop: "clamp(0.2rem, 1vw, 0.35em)",
+                  whiteSpace: "nowrap",
+                  userSelect: "text",
+                  WebkitUserSelect: "text",
+                }}
+              >
+                January 22-24 2027
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="absolute left-1/2 z-[5] flex max-w-[100vw] flex-nowrap items-center justify-center gap-2 px-2 sm:gap-3 sm:px-3"
+            style={{
+              bottom: "50%",
+              transform: "translate(-50%, -60px)",
+              fontFamily: "var(--font-roboto-flex), system-ui, sans-serif",
+            }}
+          >
+            <a
+              href={INTEREST_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={heroButtonClass}
+            >
+              Interest Form
+            </a>
+            <a href="mailto:sponsorship@boilermake.org" className={heroButtonClass}>
+              Be a Sponsor!
+            </a>
+            <a
+              href="https://forms.gle/t6iGEN9h1pTWRuEU9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={heroButtonClass}
+            >
+              Be a Judge
+            </a>
+          </div>
           {/* Front ledge — overlaps bottom of mid buildings */}
           <div className="absolute inset-x-0 bottom-0 z-[8] w-full pointer-events-none">
             <Image
@@ -536,19 +548,7 @@ export default function Home() {
           </div> */}
         </div>
         
-<a
-  href="#past"
-  aria-label="Scroll down"
-  className="scroll-arrow hidden sm:block absolute left-[50%] top-[66%] z-[30]
-             -translate-x-1/2
-             text-3xl sm:text-4xl md:text-5xl
-             text-white
-             drop-shadow-[0_0_8px_rgba(255,255,255,0.7)]
-             animate-bounce transition-opacity duration-300"
->
-  <i className="fas fa-chevron-down" />
-  
-</a>
+<ScrollArrow />
       </main>
       {/* Full-width graffiti transition, directly beneath the social icons. */}
       {/* Transition overlay between landing and past page */}

@@ -19,7 +19,7 @@ export default function AboutSection() {
       {/* Decorative sticker strips. top/left/height are calibrated so the bricks
           baked into the PNGs land above the title and below the card. */}
       <img
-        src="/imagesbm14/about/bm-left.png"
+        src="/imagesbm14/about/bm-left.webp"
         alt=""
         className="hidden sm:block absolute pointer-events-none select-none z-[1]"
         style={{
@@ -32,7 +32,7 @@ export default function AboutSection() {
         }}
       />
       <img
-        src="/imagesbm14/about/bm-right.png"
+        src="/imagesbm14/about/bm-right.webp"
         alt=""
         className="hidden sm:block absolute pointer-events-none select-none z-[1]"
         style={{

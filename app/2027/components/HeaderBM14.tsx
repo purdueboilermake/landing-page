@@ -67,18 +67,15 @@ const handleNavigation = (sectionId: string) => {
     >
       <div className="relative flex items-center h-16 px-8">
         {/* Logo positioned in top-left corner */}
-        <a
-  href={basePath}
-  className="absolute left-6 top-1/2 -translate-y-1/2 hover:scale-105 transition">
-          {/* accordingly modify href here */}
+        <div className="absolute left-6 top-1/2 -translate-y-1/2">
           <Image
             src={"/images/logo_BMXIII.png"}
             alt="Boilermake Logo"
             width={42}
-height={42}
-className="w-10 h-10"
+            height={42}
+            className="w-10 h-10"
           />
-        </a>
+        </div>
         
         {/* was: flex justify-between items-center text-white max-w-screen-2xl mx-auto */}
         <div className="flex w-full justify-end items-center text-white">

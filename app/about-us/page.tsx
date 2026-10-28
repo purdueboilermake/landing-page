@@ -163,7 +163,7 @@ export default function TeamsPage() {
 
   return (
     <div className="bg-blue-200 flex flex-col items-center h-full py-12 md:py-24 px-4 md:px-24 lg:px-32">
-      <Header2025 screenSize={screenSize} />
+      <Header2025 screenSize={screenSize} logoHref={null} />
       <h1 className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-dosis text-center mt-16 md:mt-8">
         About Us
       </h1>

@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Image from 'next/image'
 
@@ -17,9 +15,8 @@ export default function ImageCarousel({
   speed = 60, // Default: 60 seconds for one complete cycle
   className = ''
 }: ImageCarouselProps) {
-  // For seamless infinite scroll, we need to duplicate the images
-  // We'll create 3 sets: the original set is in the middle, with copies on both sides
-  const extendedImages = [...images, ...images, ...images]
+  // Two identical copies: the animation scrolls exactly one set, then jumps back.
+  const extendedImages = [...images, ...images]
   
   // Calculate the width for each image (including padding)
   const imageWidth = 304 // 300px width + 4px padding (2px on each side)
@@ -49,7 +46,6 @@ export default function ImageCarousel({
               width={300}
               height={288}
               sizes="300px"
-              priority={index < 6} // Prioritize first few images
             />
           </div>
         ))}

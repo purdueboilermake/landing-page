@@ -494,17 +494,6 @@ export default function Home() {
             >
               Interest Form
             </a>
-            <a href="mailto:sponsorship@boilermake.org" className={heroButtonClass}>
-              Be a Sponsor!
-            </a>
-            <a
-              href="https://forms.gle/t6iGEN9h1pTWRuEU9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={heroButtonClass}
-            >
-              Be a Judge
-            </a>
           </div>
           {/* Front ledge — overlaps bottom of mid buildings */}
           <div className="absolute inset-x-0 bottom-0 z-[8] w-full pointer-events-none">

@@ -4,11 +4,7 @@
 
 @layer base {
   html {
-    font-family: var(--font-dosis), system-ui, sans-serif;
-  }
-
-  :root {
-    --font-code-pro: var(--font-source-code-pro);
+    font-family: var(--font-code-pro), var(--font-dosis), system-ui, sans-serif;
   }
 }
 

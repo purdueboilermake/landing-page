@@ -22,7 +22,7 @@ import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 
 import Image from "next/image";
 
-import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
+// import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
 
 
 
@@ -45,16 +45,6 @@ import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
  */
 
 const TEX_SIZE = "100vw auto";
-
-const TEX_FOOTER_OFFSET = "calc(25vw - 485vh)";
-
-const TEX_FOOTER_FADE_IN =
-
-  "linear-gradient(to bottom, transparent 0px, #000 24px)";
-
-const TEX_FOOTER_MASK =
-
-  "linear-gradient(to bottom, transparent 0px, #000 24px, #000 46%, transparent 64%)";
 
 
 
@@ -540,20 +530,17 @@ function App() {
         if (section.style.marginBottom !== margin) section.style.marginBottom = margin;
       }
 
-      // One continuous texture surface across FAQ and Sponsors (Judges stays purple above FAQ).
+      // One continuous texture surface across FAQ, Sponsors, and Footer (Judges stays purple above FAQ).
       // Measuring these edges also keeps it aligned when FAQ panels expand.
       const faqSection = layout.querySelector<HTMLElement>("#faq");
-      const sponsorSection = layout.querySelector<HTMLElement>("#sponsors");
       const texture = layout.querySelector<HTMLElement>(".mobile-rough-continuous");
-      if (faqSection && sponsorSection && texture) {
+      if (faqSection && texture) {
         const layoutTop = layout.getBoundingClientRect().top;
-        const start = faqSection.getBoundingClientRect().top - layoutTop;
-        const end = sponsorSection.getBoundingClientRect().bottom - layoutTop +
-          parseFloat(getComputedStyle(sponsorSection).marginBottom || "0");
-        const top = `${Math.round(start)}px`;
-        const height = `${Math.max(0, Math.ceil(end - start))}px`;
+        // Tape.png sits at top: -30vw above #faq; start the dark backdrop right at the caution tape
+        const tapeOffset = Math.round(window.innerWidth * 0.28);
+        const start = Math.max(0, Math.round(faqSection.getBoundingClientRect().top - layoutTop - tapeOffset));
+        const top = `${start}px`;
         if (texture.style.top !== top) texture.style.top = top;
-        if (texture.style.height !== height) texture.style.height = height;
       }
     };
     const scheduleUpdate = () => {
@@ -573,7 +560,7 @@ function App() {
     };
     const observer = new ResizeObserver(scheduleUpdate);
     const mutation = new MutationObserver(scheduleUpdate);
-    layout.querySelectorAll("#about, #schedule, #faq, #judges, #sponsors, #about *, #schedule *, #faq *")
+    layout.querySelectorAll("#about, #schedule, #faq, #judges, #sponsors, #footer, #about *, #schedule *, #faq *")
       .forEach((el) => observer.observe(el));
     mutation.observe(layout, { subtree: true, childList: true, attributes: true, attributeFilter: ["aria-expanded", "class"] });
     const faq = layout.querySelector("#faq");
@@ -596,93 +583,51 @@ function App() {
     };
   }, [isMobile]);
 
-  // --- Buildings scroll wobble ---
+  // --- Buildings scroll wobble (commented out for now) ---
 
-  const buildingsRef = useRef<HTMLDivElement>(null);
+  // const buildingsRef = useRef<HTMLDivElement>(null);
 
-
-
-  useEffect(() => {
-
-    let lastScrollY = window.scrollY;
-
-    let velocity = 0;
-
-    let skew = 0;
-
-    let rafId: number;
-
-
-
-    const MAX_SKEW = 2.5;   // max degrees
-
-    const STIFFNESS = 0.08; // lower = bouncier
-
-    const DAMPING = 0.75;   // velocity decay per frame
-
-
-
-    const spring = () => {
-
-      skew += (0 - skew) * STIFFNESS + velocity * 0.012;
-
-      velocity *= DAMPING;
-
-      skew = Math.max(-MAX_SKEW, Math.min(MAX_SKEW, skew));
-
-
-
-      if (buildingsRef.current) {
-
-        buildingsRef.current.style.transform =
-
-          `scaleX(1.04) skewX(${skew.toFixed(3)}deg)`;
-
-      }
-
-
-
-      if (Math.abs(skew) > 0.01 || Math.abs(velocity) > 0.01) {
-
-        rafId = requestAnimationFrame(spring);
-
-      } else if (buildingsRef.current) {
-
-        buildingsRef.current.style.transform = "scaleX(1.04) skewX(0deg)";
-
-      }
-
-    };
-
-
-
-    const onScroll = () => {
-
-      const currentY = window.scrollY;
-
-      velocity = (currentY - lastScrollY) * 0.6;
-
-      lastScrollY = currentY;
-
-      cancelAnimationFrame(rafId);
-
-      rafId = requestAnimationFrame(spring);
-
-    };
-
-
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-
-      window.removeEventListener("scroll", onScroll);
-
-      cancelAnimationFrame(rafId);
-
-    };
-
-  }, []);
+  // useEffect(() => {
+  //   let lastScrollY = window.scrollY;
+  //   let velocity = 0;
+  //   let skew = 0;
+  //   let rafId: number;
+  //
+  //   const MAX_SKEW = 2.5;   // max degrees
+  //   const STIFFNESS = 0.08; // lower = bouncier
+  //   const DAMPING = 0.75;   // velocity decay per frame
+  //
+  //   const spring = () => {
+  //     skew += (0 - skew) * STIFFNESS + velocity * 0.012;
+  //     velocity *= DAMPING;
+  //     skew = Math.max(-MAX_SKEW, Math.min(MAX_SKEW, skew));
+  //
+  //     if (buildingsRef.current) {
+  //       buildingsRef.current.style.transform =
+  //         `scaleX(1.04) skewX(${skew.toFixed(3)}deg)`;
+  //     }
+  //
+  //     if (Math.abs(skew) > 0.01 || Math.abs(velocity) > 0.01) {
+  //       rafId = requestAnimationFrame(spring);
+  //     } else if (buildingsRef.current) {
+  //       buildingsRef.current.style.transform = "scaleX(1.04) skewX(0deg)";
+  //     }
+  //   };
+  //
+  //   const onScroll = () => {
+  //     const currentY = window.scrollY;
+  //     velocity = (currentY - lastScrollY) * 0.6;
+  //     lastScrollY = currentY;
+  //     cancelAnimationFrame(rafId);
+  //     rafId = requestAnimationFrame(spring);
+  //   };
+  //
+  //   window.addEventListener("scroll", onScroll, { passive: true });
+  //   return () => {
+  //     window.removeEventListener("scroll", onScroll);
+  //     cancelAnimationFrame(rafId);
+  //   };
+  // }, []);
 
   // --- end Buildings wobble ---
 
@@ -695,9 +640,7 @@ function App() {
 
 
     const checkMobile = () => {
-
-      setIsMobile(window.innerWidth < 768);
-
+      setIsMobile(window.innerWidth < 1024);
     };
 
 
@@ -830,16 +773,28 @@ function App() {
 
 
 
-          {/* Spray paint cursor trail — activates when scrolled past hero */}
+          {/* Spray paint cursor trail — activates when scrolled past hero (commented out for now) */}
 
-          <SprayPaintOverlay />
-
-
+          {/* <SprayPaintOverlay /> */}
 
 
-        {/* Mobile-only layout: content flows naturally so expanded FAQs push Sponsors down. */}
-        <style>{`
-          @media (max-width: 767px) {
+
+
+          {/* Mobile & Tablet layout: content flows naturally with tailored hero sizing */}
+          <style>{`
+          #hero {
+            --bb-w-active: var(--bb-w-mobile);
+            --bb-y-active: var(--bb-y-mobile);
+            --btn-y-active: var(--btn-y-mobile);
+          }
+          @media (min-width: 700px) and (max-width: 1023px) {
+            #hero {
+              --bb-w-active: var(--bb-w-tablet);
+              --bb-y-active: var(--bb-y-tablet);
+              --btn-y-active: var(--btn-y-tablet);
+            }
+          }
+          @media (max-width: 1023px) {
             .bm-layout {
               display: flex !important;
               flex-direction: column !important;
@@ -856,6 +811,8 @@ function App() {
               background-position: center top;
               background-size: 100vw auto;
               background-repeat: repeat-y;
+              bottom: 0 !important;
+              height: auto !important;
             }
             .bm-layout > section {
               position: relative !important;
@@ -863,16 +820,19 @@ function App() {
               bottom: auto !important;
               flex-shrink: 0;
             }
-            /* Shrink the excessive empty sky, while preserving the skyline composition. */
-            .bm-layout > #hero {
-              height: clamp(500px, calc(130vw + 55px), 610px) !important;
-              min-height: 0 !important;
+            .bm-layout > #hero-about-gradient {
+              position: relative !important;
+              top: auto !important;
+              margin-top: -120px !important;
+              margin-bottom: -80px !important;
+              height: 220px !important;
+              z-index: 15 !important;
             }
-            /* Meet the purple ledge directly; do not leave a viewport-sized gap. */
+            /* Mobile & Tablet spacing between Hero and About (Adjust gap here) */
             .bm-layout > #about {
               width: 100% !important;
-              padding: 170px 7vw 24px;
-              margin-top: 100px;
+              padding: 100px 7vw 24px !important;
+              margin-top: 0px !important;
               margin-bottom: 64px;
               background: #3B344B;
               z-index: 8;
@@ -885,12 +845,12 @@ function App() {
               z-index: 7;
             }
             .bm-layout > #faq {
-              min-height: 780px !important;
+              min-height: auto !important;
               height: auto !important;
               display: block !important;
               visibility: visible !important;
-              padding: 26px 0 46px;
-              margin-bottom: 65px;
+              padding: 20px 0 5px;
+              margin-bottom: 24px;
               z-index: 6;
               overflow: visible !important;
               background: transparent;
@@ -898,32 +858,47 @@ function App() {
             .bm-layout > #judges {
               min-height: 0 !important;
               height: auto !important;
-              padding: 24px 24px 72px;
+              padding: 16px 24px 32px;
               background-color: #3B344B;
               z-index: 5;
             }
             .bm-layout > #sponsors {
-              min-height: 460px !important;
+              min-height: 380px !important;
               height: auto !important;
               display: flex !important;
               visibility: visible !important;
-              padding: 34px 18px 38px !important;
-              margin-bottom: 125px !important;
+              padding: 0 !important;
+              margin-bottom: 0px !important;
               z-index: 4;
               overflow: visible !important;
               background: transparent;
             }
-            .bm-layout > #sponsors > div { gap: 8px !important; }
-            .bm-layout > #sponsors h1 { margin: 0; }
-            /* Prevent nested section decorations from clipping the content. */
-            .bm-layout > #faq > *,
-            .bm-layout > #sponsors > * { visibility: visible !important; }
-            /* Start the heart/footer straight after Coming Soon. */
+            .bm-layout > #sponsors > div {
+              gap: 8px !important;
+              padding: 16px 18px 28px !important;
+            }
+            .bm-layout > #sponsors h1, .bm-layout > #sponsors p { margin: 0; }
+            /* Transparent footer letting the underlying backdrop texture show through */
             .bm-layout > #footer {
               height: auto !important;
-              min-height: 610px !important;
-              padding-top: 50px;
+              min-height: auto !important;
+              margin-top: -2px !important;
+              padding-top: 36px !important;
               padding-bottom: 32px !important;
+              background-color: transparent !important;
+              background-image: none !important;
+            }
+          }
+          @media (max-width: 699px) {
+            .bm-layout > #hero {
+              height: var(--hero-h-mobile, clamp(560px, 92svh, 750px)) !important;
+              min-height: 0 !important;
+            }
+          }
+          @media (min-width: 700px) and (max-width: 1023px) {
+            .bm-layout > #hero {
+              height: var(--hero-h-tablet, clamp(750px, 95svh, 1050px)) !important;
+              min-height: 0 !important;
             }
           }
         `}</style>
@@ -934,7 +909,7 @@ function App() {
 
             className="w-full main-content bm-layout"
 
-            style={{ height: `calc(${isMobile ? "1000vh" : "1200vh"} + clamp(700px, 60vw, 950px))`, overflow: "hidden" }}
+            style={{ height: `calc(${isMobile ? "1000vh" : "max(845vh, 7150px) + clamp(460px, 58vh, 660px)"} + 220px)`, overflow: "hidden" }}
 
           >
 
@@ -984,11 +959,11 @@ function App() {
 
 
 
-            {/* Mobile: a single background surface avoids texture seams between sections. */}
+            {/* Mobile/Tablet: a single background surface avoids texture seams between sections. */}
             <div
               aria-hidden
               className="mobile-rough-continuous absolute inset-x-0 pointer-events-none z-0 hidden"
-              style={{ top: 0, height: 0 }}
+              style={{ top: 0, bottom: 0 }}
             />
 
             {/* Hero Section — BoilerMake XIV skyline scene */}
@@ -1003,86 +978,89 @@ function App() {
 
                 {
 
-                  height: "160vh",
+                  // Hero Section Height (controls how tall the sky is)
+                  height: "140vh",
 
                   backgroundColor: "#0d0618",
 
-                  // --- tuning knobs ---
+                  // --- Hero Tuning Knobs (Edit billboard & layout here) ---
+                  // Desktop Anchored Billboard (lg screens, >= 1024px):
+                  "--bb-w": "55%",          // Desktop width
+                  "--bb-y": "30%",          // Height above skyline baseline
+                  "--btn-y": "55%",         // Button position on the sign
 
-                  "--bb-w": "70%",     // billboard width, % of skyline box
+                  // Tablet Floating Billboard (700px - 1023px, iPad Mini, iPad Pro, iPad Air):
+                  "--bb-w-tablet": "85%",              // Tablet width (fills tablet nicely)
+                  "--bb-y-tablet": "calc(52% + 14vh)", // Height above baseline with viewport lift to stay centered
+                  "--btn-y-tablet": "108%",            // Button position on floating sign
 
-                  "--bb-y": "30%",     // billboard height above skyline baseline
+                  // Mobile Floating Billboard (phones, < 700px):
+                  "--bb-w-mobile": "95%",              // Mobile width
+                  "--bb-y-mobile": "calc(60% + 18vh)", // Height above baseline with viewport lift (lifts off bottom!)
+                  "--btn-y-mobile": "110%",            // Button position on floating sign
+
+                  // Responsive Hero Heights:
+                  "--hero-h-mobile": "clamp(560px, 92svh, 750px)",
+                  "--hero-h-tablet": "clamp(750px, 95svh, 1050px)",
 
                   "--ledge-h": "clamp(52px, 11vw, 190px)",
 
-                  "--sky-zoom": "1", // 1 = plain cover, higher = bigger clouds
+                  "--scene-drop": "0%",
 
-
-
-                  "--btn-y": "55%",   // button height on the sign, % of billboard height
-
-                  "--scene-drop": "0%",   // pushes the whole scene down; more = more sky above
-
-                  "--sky-offset-y": "-135px",
-
+                  // Sky & Clouds Overscale & Offsets (bleed border whitespace off-screen):
+                  "--clouds-w": "calc(100% + 150px)",    // Width: 100% + extra bleed (e.g. "calc(100% + 80px)" or "108%")
+                  "--clouds-top": "-50px",              // Top offset: negative value pulls top edge up past screen
+                  "--gradient-w": "calc(100% + 80px)",  // Width: bleed gradient past left & right screen edges
                 } as React.CSSProperties
-
               }
-
             >
 
-
-
-              {/* Sky — clouds at top, magenta bleed at bottom */}
-
+              {/* Sky — base gradient (anchored to bottom) and clouds/stars overlay */}
               <div
-
-                className="pointer-events-none absolute z-[1]"
-
+                className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
                 aria-hidden
-
-                style={{
-
-                  top: "var(--sky-offset-y)",
-
-                  bottom: 0,
-
-                  left: "-6%",
-
-                  width: "133%",
-
-                }}
-
               >
-
-                <Image
-
-                  src="/imagesbm14/landing/Background.webp"
-
-                  alt=""
-
-                  fill
-
-                  priority
-
-                  sizes="100vw"
-
-                  draggable={false}
-
-                  className="select-none object-cover"
-
+                {/* Base Gradient Layer — centered and overscaled to eliminate side border whitespace */}
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 inset-y-0 pointer-events-none"
                   style={{
-
-                    objectPosition: "50% 100%",
-
-                    transform: "scaleX(1.35)",
-
-                    transformOrigin: "center",
-
+                    width: "var(--gradient-w, calc(100% + 80px))",
                   }}
+                >
+                  <Image
+                    src="/imagesbm14/landing/Gradient.webp"
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    draggable={false}
+                    className="select-none object-cover object-bottom opacity-50"
+                    style={{
+                      objectPosition: "center 200%", // combined with pushing it down
+                    }}
+                  />
+                </div>
 
-                />
-
+                {/* Clouds & Stars Layer — centered and overscaled to eliminate border whitespace */}
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    top: "var(--clouds-top, -15px)",
+                    width: "var(--clouds-w, calc(100% + 80px))",
+                    maxWidth: "none",
+                  }}
+                >
+                  <Image
+                    src="/imagesbm14/landing/Clouds Stars.webp"
+                    alt=""
+                    width={3000}
+                    height={1110}
+                    priority
+                    sizes="100vw"
+                    draggable={false}
+                    className="w-full h-auto select-none"
+                  />
+                </div>
               </div>
 
 
@@ -1103,11 +1081,11 @@ function App() {
 
               >
 
-                {/* Billboard art — before the buildings so rooftops occlude its base */}
+                {/* Desktop: Anchored Billboard with scaffolding legs (lg screens only, >= 1024px) */}
 
                 <div
 
-                  className="absolute left-1/2 z-[1] -translate-x-1/2"
+                  className="hidden lg:block absolute left-1/2 z-[1] -translate-x-1/2"
 
                   style={{
 
@@ -1125,11 +1103,11 @@ function App() {
 
                     src="/imagesbm14/landing/Billboard.webp"
 
-                    alt=""
+                    alt="BoilerMake XIV"
 
-                    width={905}
+                    width={2000}
 
-                    height={578}
+                    height={1277}
 
                     priority
 
@@ -1141,41 +1119,9 @@ function App() {
 
 
 
-                  {/* Sign copy — dark ink on the painted panel */}
+                  {/* Sign copy — date above the painted panel */}
 
-                  <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
-
-                    {/* Hide the title
-
-                    <h1
-
-                      className="w-full text-balance"
-
-                      style={{
-
-                        fontFamily: "var(--font-disket-mono)",
-
-                        fontWeight: 400,
-
-                        fontSize: "8.2cqi",
-
-                        lineHeight: 1.02,
-
-                        letterSpacing: "0.06em",
-
-                        color: "#1a1a1a",
-
-                      }}
-
-                    >
-
-                      BOILERMAKE XIV
-
-                    </h1>
-
-                    */}
-
-
+                  <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center">
 
                     <h2
 
@@ -1197,11 +1143,9 @@ function App() {
 
                     >
 
-                      22 - 24 JANUARY 2027
+                      January 22nd - 24th, 2027
 
                     </h2>
-
-
 
                   </div>
 
@@ -1209,11 +1153,141 @@ function App() {
 
 
 
-                {/* Buildings — sit on top of the sign, wobble on scroll */}
+                {/* Mobile & Tablet: Floating Billboard (hidden on desktop lg) */}
 
                 <div
 
-                  ref={buildingsRef}
+                  className="lg:hidden absolute left-1/2 z-[3] -translate-x-1/2"
+
+                  style={{
+
+                    bottom: "var(--bb-y-active)",
+
+                    width: "var(--bb-w-active)",
+
+                    containerType: "inline-size",
+
+                  }}
+
+                >
+
+                  <div className="relative w-full" style={{ aspectRatio: "2000 / 654" }}>
+
+                    <Image
+
+                      src="/imagesbm14/landing/Billboard Floating.webp"
+
+                      alt="BoilerMake XIV"
+
+                      width={2000}
+
+                      height={654}
+
+                      priority
+
+                      draggable={false}
+
+                      className="h-auto w-full select-none"
+
+                    />
+
+
+
+                    {/* Sign copy — date above mobile billboard */}
+
+                    <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
+
+                      <h2
+
+                        style={{
+
+                          fontFamily: "var(--font-code-pro)",
+
+                          fontWeight: 400,
+
+                          fontSize: "4.5cqi",
+
+                          letterSpacing: "0.1em",
+
+                          color: "#E8E4DA",
+
+                          marginBottom: "0.5em",
+
+                        }}
+
+                      >
+
+                        January 22nd - 24th, 2027
+
+                      </h2>
+
+                    </div>
+
+
+
+                    {/* Mobile & Tablet Button centered on floating board */}
+
+                    <div
+
+                      className="absolute inset-x-[6%] flex justify-center"
+
+                      style={{ top: "var(--btn-y-active)" }}
+
+                    >
+
+                      <a
+
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
+
+                        className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+
+                        style={{
+
+                          fontFamily: "var(--font-code-pro), system-ui, sans-serif",
+
+                          fontWeight: 700,
+
+                          // CLAMP BUTTON SIZE (MOBILE): min 16px, scales with 5.5cqi, max 26px
+                          fontSize: "clamp(16px, 5.5cqi, 26px)",
+
+                          letterSpacing: "0.08em",
+
+                          lineHeight: 1,
+
+                          color: "#FFFFFF",
+
+                          background: "#5A8A4A",
+
+                          // THICKER BORDER: 4px solid white with matching shadow
+                          border: "4px solid #FFFFFF",
+
+                          borderRadius: "9999px",
+
+                          padding: "0.65em 1.8em",
+
+                          boxShadow: "0 4px 0 rgba(0,0,0,0.35)",
+
+                        }}
+
+                      >
+
+                        Interest Form
+
+                      </a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
+                {/* Buildings — sit on top of the sign, wobble on scroll (commented out for now) */}
+
+                <div
+
+                  // ref={buildingsRef}
 
                   className="absolute inset-0 z-[2]"
 
@@ -1251,15 +1325,13 @@ function App() {
 
 
 
-                {/* Button layer — an empty box with the sign's exact geometry, stacked
-
-            above the buildings so the CTA stays visible and clickable. */}
+                {/* Desktop Button layer — stacked above the buildings for lg desktop */}
 
                 <div
 
-                  className="absolute left-1/2 z-[3] -translate-x-1/2"
+                  className="hidden lg:block absolute left-1/2 z-[3] -translate-x-1/2"
 
-                  style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "905 / 578", containerType: "inline-size" }}
+                  style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "2000 / 1277", containerType: "inline-size" }}
 
                 >
 
@@ -1273,11 +1345,9 @@ function App() {
 
                   >
 
+                    <a
 
-
-                    {/* <a href="https://boilermake-apply.web.app" */}
-
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
 
                       className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
 
@@ -1287,7 +1357,8 @@ function App() {
 
                         fontWeight: 700,
 
-                        fontSize: "clamp(13px, 4.4cqi, 30px)",
+                        // CLAMP BUTTON SIZE (DESKTOP): min 18px, scales with 4.4cqi, max 32px
+                        fontSize: "clamp(18px, 4.4cqi, 32px)",
 
                         letterSpacing: "0.08em",
 
@@ -1297,13 +1368,14 @@ function App() {
 
                         background: "#5A8A4A",
 
-                        border: "0.5cqi solid #FFFFFF",
+                        // THICKER BORDER: 4.5px solid white with bold shadow
+                        border: "4.5px solid #FFFFFF",
 
                         borderRadius: "9999px",
 
                         padding: "0.72em 2.1em",
 
-                        boxShadow: "0 0.5cqi 0 rgba(0,0,0,0.28)",
+                        boxShadow: "0 5px 0 rgba(0,0,0,0.35)",
 
                       }}
 
@@ -1351,11 +1423,11 @@ function App() {
 
                   style={{
 
-                    height: "calc(var(--ledge-h) * 0.55)",
+                    height: "clamp(120px, 22vh, 280px)",
 
                     background:
 
-                      "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.6) 65%, #3B344B 100%)",
+                      "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.25) 30%, rgba(59,52,75,0.75) 65%, #3B344B 100%)",
 
                   }}
 
@@ -1451,15 +1523,34 @@ function App() {
 
             </section>
 
+            {/* =========================================================================
+                TRANSITION GRADIENT: OVERLAY BETWEEN BUILDINGS (HERO) AND ABOUT SECTION
+                - Sits on top of both sections (z-[15])
+                - Fades the bottom of the buildings smoothly into the About section
+                - Pointer-events-none ensures it never blocks clicks or interaction
+               ========================================================================= */}
+            <div
+              id="hero-about-gradient"
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 w-full z-[15]"
+              style={{
+                // DESKTOP POSITION & SIZING:
+                top: isMobile ? "auto" : "max(55vh, 780px)",
+                height: isMobile ? "620px" : "clamp(620px, 90vh, 980px)",
+                background:
+                  "linear-gradient(to bottom, rgba(28, 10, 42, 0) 0%, rgba(28, 10, 42, 0.65) 30%, #1C0A2A 50%, rgba(28, 10, 42, 0.65) 70%, rgba(28, 10, 42, 0) 100%)",
+              }}
+            />
+
             {/* About Section */}
 
             <section
 
               id="about"
 
-              className="w-[80vw] lg:w-[60vw] flex items-center justify-center absolute"
+              className="w-full flex items-center justify-center absolute"
 
-              style={{ top: isMobile ? "163vh" : "170vh" }}
+              style={{ top: isMobile ? "163vh" : "max(155vh, 1280px)" }}
 
             >
 
@@ -1479,11 +1570,11 @@ function App() {
 
               style={{
 
-                // Give Schedule a larger, more deliberate slice of the page
+                // Protected with max() so when viewport height shrinks (e.g. Inspect Element is open),
 
-                // while leaving a deliberate gap before the FAQ below it.
+                // Schedule never collides or overlaps with the About card above it.
 
-                top: isMobile ? "260vh" : "272vh",
+                top: isMobile ? "260vh" : "max(272vh, 2250px)",
 
                 minHeight: isMobile ? "215vh" : "248vh",
 
@@ -1509,15 +1600,15 @@ function App() {
 
 
 
-          {/* ================= Judges Section ================= */}
-          <section
-            id="judges"
-            aria-labelledby="judges-heading"
-            className="absolute w-full px-8"
-            style={{ top: isMobile ? "535vh" : "580vh" }}
-          >
-            <JudgesSection />
-          </section>
+            {/* ================= Judges Section ================= */}
+            <section
+              id="judges"
+              aria-labelledby="judges-heading"
+              className="absolute w-full px-8"
+              style={{ top: isMobile ? "535vh" : "580vh" }}
+            >
+              <JudgesSection />
+            </section>
 
 
             {/* FAQ Section */}
@@ -1528,7 +1619,10 @@ function App() {
 
               className="w-full absolute overflow-x-clip"
 
-              style={{ top: isMobile ? "535vh" : "780vh", minHeight: isMobile ? "140vh" : "150vh" }}
+              style={{
+                top: isMobile ? "auto" : "max(720vh, 6000px)",
+                minHeight: isMobile ? "auto" : "clamp(980px, 112vh, 1160px)",
+              }}
 
             >
 
@@ -1540,153 +1634,47 @@ function App() {
 
 
 
-          {/* ================= Sponsors Section ================= */}
+            {/* ================= Sponsors Section ================= */}
 
             <section
-
               id="sponsors"
-
-              className="absolute flex flex-col items-center justify-center py-24 px-8 w-full overflow-hidden pointer-events-none"
-
+              className="absolute flex flex-col items-center justify-center w-full overflow-x-clip pointer-events-none"
               style={{
-
-                top: isMobile ? "750vh" : "850vh",
-
-                height: isMobile ? "200vh" : "280vh"
-
+                top: isMobile ? "auto" : "max(845vh, 7150px)",
+                minHeight: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
+                height: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
               }}
-
             >
-
-              <div className="flex flex-col items-center justify-center gap-14 max-w-[1406px] w-full relative">
-
-
-
-                {/* Decoration layer — locked to the design frame's aspect
-
-                    ratio (1405.55 x 1550.66) so every % position below
-
-                    resolves against a real, defined height instead of
-
-                    "auto". (An auto-height container is what sent the
-
-                    splotch/crown/drip flying up near the page header
-
-                    before — % top/left on an absolutely positioned child
-
-                    only works reliably when its containing block has a
-
-                    real height.) */}
-
-                <div
-
-                  className="absolute top-0 left-0 w-full pointer-events-none"
-
-                  style={{
-
-                    aspectRatio: "1405.5479736328125 / 1550.6602783203125",
-
-                    zIndex: 0,
-
-                  }}
-
-                >
-
-
-
-                  {/* Big pink splotch — bleeds off the left edge, level with
-
-                      the middle rows of the sponsor grid. Sized off the
-
-                      real image's own proportions (width + maxHeight cap)
-
-                      instead of a guessed aspect-ratio, which was
-
-                      distorting it. */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/spons/Splotchpink.png"
-
-                    alt=""
-
-                    label="Splotch"
-
-                    className="absolute opacity-90"
-
-                    style={{
-
-
-
-
-
-                      left: "clamp(-140px, 140vw, 140px)",
-
-                      top: "clamp(150px, 15vh, 4500px)",
-
-                      width: "clamp(250px, 30vw, 500px)",
-
-                      height: "auto",
-
-                      maxHeight: "120vh",
-
-                      zIndex: 1,
-
-                      transform: "translateX(-80%)",
-
-                      aspectRatio: "1/ 3",
-
-                    }}
-
-                  />
-
-
-
-
-
-                  {/* Crown doodle — bottom-right of the grid, matches the
-
-                      exact top/left/size/rotation from the design frame.
-
-                      zIndex bumped above its siblings so nothing (like the
-
-                      splotch above) can ever render over it again. */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/spons/image-2.png"
-
-                    alt=""
-
-                    label="Crown"
-
-                    className="absolute"
-
-                    style={{
-
-
-
-                      top: "90vh",      // example, adjust
-
-                      right: "2vw",
-
-                      width: "17vw",
-
-                      height: "auto",
-
-                      aspectRatio: "1 / 1",
-
-                      transform: "rotate(14.87deg)",
-
-                      zIndex: 5,
-
-                    }}
-
-                  />
-
-                </div>
-
-
+              {/* Screen-edge anchored decorations */}
+              <DecorImage
+                src="/imagesbm14/spons/Splotchpink.png"
+                alt=""
+                label="Splotch"
+                className="absolute opacity-90 pointer-events-none select-none z-[1]"
+                style={{
+                  left: "clamp(-40px, -1vw, 0px)",
+                  bottom: "clamp(0px, 2vw, 20px)",
+                  width: "clamp(160px, 20vw, 300px)",
+                  height: "auto",
+                }}
+              />
+
+              <DecorImage
+                src="/imagesbm14/spons/image-2.png"
+                alt=""
+                label="Crown"
+                className="absolute pointer-events-none select-none z-[5]"
+                style={{
+                  right: "clamp(12px, 3vw, 48px)",
+                  bottom: "clamp(12px, 2vw, 36px)",
+                  width: "clamp(90px, 14vw, 190px)",
+                  height: "auto",
+                  aspectRatio: "1 / 1",
+                  transform: "rotate(14.87deg)",
+                }}
+              />
+
+              <div className="flex flex-col items-center justify-center gap-10 max-w-[1406px] w-full px-6 sm:px-8 pt-8 pb-16 relative">
 
                 {/* Sponsors heading — this is a graphic asset from the design team */}
 
@@ -1710,37 +1698,18 @@ function App() {
 
                 />
 
-
-
-                <h1
-
-                  className="relative z-10"
-
+                <p
+                  className="relative z-10 text-center text-white"
                   style={{
-
-                    fontFamily: "var(--font-sprite-graffiti)",
-
+                    fontFamily: "var(--font-code-pro), sans-serif",
                     fontWeight: 400,
-
-                    fontSize: "clamp(2rem, 4.5vw, 4rem)",
-
-                    lineHeight: "100%",
-
-                    letterSpacing: "0.04em",
-
-                    color: "#FFE958",
-
-                    textShadow:
-
-                      "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
-
+                    fontSize: "clamp(1.5rem, 3.5vw, 3rem)",
+                    lineHeight: 1.2,
+                    letterSpacing: "0.06em",
                   }}
-
                 >
-
-                  COMING SOON
-
-                </h1>
+                  Coming Soon
+                </p>
 
                 {/*
 
@@ -1829,483 +1798,70 @@ function App() {
             {/* ================= Footer Section ================= */}
 
             <section
-
               id="footer"
-
-              className="flex flex-col items-center justify-end w-full gap-6 relative overflow-visible "
-
+              className="flex flex-col items-center justify-center w-full gap-5 relative z-[100]"
               style={{
-
-                top: isMobile ? "1000vh" : "1200vh",
-
-                zIndex: 100,
-
-                position: "absolute",
-
-                backgroundColor: "#403A50",
-
-                minHeight: "clamp(700px, 60vw, 950px)",
-
-                paddingBottom: "3rem",
-
+                top: isMobile ? "auto" : "calc(max(845vh, 7150px) + clamp(460px, 58vh, 660px) - 2px)",
+                position: isMobile ? "relative" : "absolute",
+                backgroundColor: "transparent",
+                minHeight: isMobile ? "auto" : "clamp(140px, 16vh, 200px)",
+                paddingTop: "clamp(36px, 4vw, 56px)",
+                paddingBottom: "clamp(32px, 4vw, 48px)",
               }}
-
             >
-
-              {/* Transition from Sponsors → Footer */}
-
-              <div
-
-                className="
-
-    absolute left-1/2 -translate-x-1/2
-
-    w-screen pointer-events-none
-
-    top-[-55vw]
-
-    sm:top-[-40vw]
-
-    lg:top-[-25vw]
-
-  "
-
-                style={{
-
-                  zIndex: 1,
-
-                }}
-
-              >
-
-                {/* The graphic is opaque, so its top edge cut the texture off
-
-                    with a hairline. It fades in over its first 24px instead,
-
-                    and the texture overlay below fades in over the same 24px —
-
-                    as the graphic hides the band's texture, the overlay's copy
-
-                    replaces it at the same rate, so coverage stays constant
-
-                    and there's no edge. */}
-
-                <DecorImage
-
-                  src="/imagesbm14/spons/Transition.webp"
-
-                  alt=""
-
-                  label="Transition"
-
-                  className="block w-full h-auto"
-
-                  style={{
-
-                    WebkitMaskImage: TEX_FOOTER_FADE_IN,
-
-                    maskImage: TEX_FOOTER_FADE_IN,
-
-                  }}
-
-                />
-
-                {/* Carries the Rough Tex band across the opaque part of the
-
-                    graphic, then masks itself out where it turns purple. */}
-
-                <div
-
-                  aria-hidden
-
-                  className="absolute inset-0 pointer-events-none"
-
-                  style={{
-
-                    backgroundImage:
-
-                      "url('/imagesbm14/faq/Rough%20Tex.png')",
-
-                    backgroundRepeat: "no-repeat",
-
-                    backgroundSize: TEX_SIZE,
-
-                    backgroundPosition: `center ${isMobile ? "calc(55vw - 480vh)" : TEX_FOOTER_OFFSET}`,
-
-                    WebkitMaskImage: TEX_FOOTER_MASK,
-
-                    maskImage: TEX_FOOTER_MASK,
-
-                  }}
-
-                />
-
-              </div>
-
-              {/* Decoration layer — centered, capped at the design frame's
-
-                  1280px reference width, and locked to its 1280:1308 aspect
-
-                  ratio so the % positions below resolve against a real,
-
-                  defined height instead of "auto" (the same bug that sent
-
-                  the traffic light off to the wrong spot). */}
-
-
-
-              <div
-
-                className="absolute inset-0 flex items-start justify-center pointer-events-none"
-
-                style={{ zIndex: 10 }}
-
-              >
-
-                {/* Blue spray blob and the traffic light that sits on it. Both
-
-                    live outside the 1280 frame and are anchored to the real
-
-                    left edge of the viewport — inside the frame they'd drift
-
-                    apart by the frame's inset on screens wider than 1280. The
-
-                    blob comes first in the DOM so the light paints over it.
-
-                    The kit has no cyan blob, so the orange cloud is
-
-                    hue-rotated. */}
-
-                <DecorImage
-
-                  src="/imagesbm14/faq/Splotch.png"
-
-                  alt=""
-
-                  label="Splotch"
-
-                  className="absolute"
-
-                  style={{
-
-                    top: "14%",
-
-                    left: "calc(-1 * clamp(130px, 19vw, 300px))",
-
-                    width: "clamp(300px, 40vw, 650px)",
-
-                    height: "auto",
-
-                    filter: "hue-rotate(168deg) saturate(1.25)",
-
-                    transform: "rotate(270deg)",
-
-                  }}
-
-                />
-
-                <DecorImage
-
-                  src="/imagesbm14/spons/traffic-light.png"
-
-                  alt=""
-
-                  label="Traffic light"
-
-                  className="absolute opacity-90"
-
-                  style={{
-
-                    top: "clamp(60px, 10vh, 180px)",
-
-                    left: "clamp(-6px, 1vw, 24px)",
-
-                    width: "clamp(150px, 17vw, 240px)",
-
-                    height: "auto",
-
-                    transform: "rotate(-11.77deg)",
-
-                    aspectRatio: "277.91 / 416.87",
-
-                  }}
-
-                />
-
-
-
-                <div
-
-                  className="relative w-full max-w-[1280px]"
-
-                  style={{ aspectRatio: "1280 / 1308" }}
-
-                >
-
-                  {/* Dripping heart doodle */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/spons/heart.png"
-
-                    alt=""
-
-                    label="Heart"
-
-                    className="absolute"
-
-                    style={{
-
-                      top: "9.4%",
-
-                      left: "28.75%",
-
-                      width: "40.2%",
-
-                      height: "auto",
-
-                      aspectRatio: "1 / 1",
-
-                    }}
-
-                  />
-
-
-
-                  {/* Brick doodle — sits between the heart and the flower,
-
-                      matching the mobile Figma frame. No coordinates were
-
-                      given for this one — best guess. */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/brick_1.webp"
-
-                    alt=""
-
-                    label="Brick"
-
-                    className="absolute opacity-90"
-
-                    style={{
-
-                      top: isMobile ? "70%" : "40%",
-
-                      left: "10.1%",
-
-                      width: "10%",
-
-                      height: "auto",
-
-                      maxHeight: "11%",
-
-                    }}
-
-                  />
-
-
-
-                  {/* Brick doodle — sits between the heart and the flower,
-
-                      matching the mobile Figma frame. No coordinates were
-
-                      given for this one — best guess. */}
-
-                  <DecorImage
-
-                    src="/imagesbm14/brick2.webp"
-
-                    alt=""
-
-                    label="Brick"
-
-                    className="absolute opacity-90"
-
-                    style={{
-
-                      top: "20%",
-
-                      left: "70.07%",
-
-                      width: "10%",
-
-                      height: "auto",
-
-                      maxHeight: "11%",
-
-                    }}
-
-                  />
-
-                </div>
-
-
-
-                {/* Orange blob + flower, pinned to the real right edge of the
-
-                    viewport rather than the 1280 frame so the blob bleeds off
-
-                    screen the way the mock does. */}
-
-                <DecorImage
-
-                  src="/imagesbm14/end/splotch-3.png"
-
-                  alt=""
-
-                  label="Splotch"
-
-                  className="absolute"
-
-                  style={{
-
-                    top: "-11%",
-
-                    right: "0px",
-
-                    height: "clamp(260px, 62vw, 680px)",
-
-                    width: "auto",
-
-                  }}
-
-                />
-
-                <DecorImage
-
-                  src="/imagesbm14/spons/flower.png"
-
-                  alt=""
-
-                  label="Flower"
-
-                  className="absolute"
-
-                  style={{
-
-                    top: "8%",
-
-                    right: "clamp(8px, 1.8vw, 34px)",
-
-                    width: "clamp(120px, 20vw, 270px)",
-
-                    height: "auto",
-
-                    transform: "rotate(18deg)",
-
-                  }}
-
-                />
-
-              </div>
-
-
-
-              {/* Social Media Icons — stays centered, above the doodles, near the bottom */}
-
+              {/* Social Media Icons */}
               <div className="flex flex-row gap-6 relative z-10">
-
                 <a
-
                   href="https://www.instagram.com/boilermake/?hl=en"
-
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-
                   onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "0px 0px 15px #FFE958";
-
                   }}
-
                   onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "none";
-
                   }}
-
                   target="_blank"
-
                   rel="noopener noreferrer"
-
                   aria-label="Instagram"
-
                 >
-
                   <i className="fab fa-instagram" style={{ fontSize: "1.75em" }} />
-
                 </a>
 
                 <a
-
                   href="https://www.linkedin.com/company/boilermake/"
-
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-
                   aria-label="LinkedIn"
-
                   onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "0px 0px 15px #FFE958";
-
                   }}
-
                   onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-
                     const target = e.currentTarget as HTMLElement;
-
                     target.style.textShadow = "none";
-
                   }}
-
                   target="_blank"
-
                   rel="noopener noreferrer"
-
                 >
-
                   <i className="fab fa-linkedin" style={{ fontSize: "1.75em" }} />
-
                 </a>
-
               </div>
-
-
 
               {/* Made with love text */}
-
               <p
-
-                className="text-center text-white relative z-10 bg-[#403A50]"
-
+                className="text-center text-white relative z-10"
                 style={{
-
                   fontFamily: "var(--font-code-pro)",
-
                   fontWeight: 300,
-
                   fontSize: "clamp(14px, 1.5vw, 18px)",
-
                   letterSpacing: "0.05em",
-
                   color: "#FFFFFF",
-
                   textShadow: "0px 0px 10px #FFDE00",
-
                 }}
-
               >
-
                 Made with 💛 by the BoilerMake XIV team
-
               </p>
-
             </section>
 
           </main>

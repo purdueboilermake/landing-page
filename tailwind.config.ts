@@ -14,6 +14,7 @@ const config: Config = {
         dosis: ['var(--font-dosis)'],
         'averia-libre': ['var(--font-averia-libre)'],
         arvo: ['var(--font-arvo)'],
+        owned: ['var(--font-owned)'],
       },
       colors: {
         background: "var(--background)",

@@ -12,7 +12,7 @@ import Image from "next/image";
 
 type HeaderProps = {};
 
-export default function Header({}: HeaderProps) {
+export default function Header({ }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Close menu when screen widens to desktop size
@@ -31,35 +31,35 @@ export default function Header({}: HeaderProps) {
   const basePath = currentPath === "/2027" ? "/2027" : "/";
   // changed to 2027 here
 
- const HEADER_OFFSET = 70; // adjust to match your header height
+  const HEADER_OFFSET = 70; // adjust to match your header height
 
-const handleNavigation = (sectionId: string) => {
-  if (currentPath === basePath) {
-    const element = document.getElementById(sectionId);
+  const handleNavigation = (sectionId: string) => {
+    if (currentPath === basePath) {
+      const element = document.getElementById(sectionId);
 
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      const absoluteTop = rect.top + window.scrollY;
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        const absoluteTop = rect.top + window.scrollY;
 
-      const targetY =
-        sectionId === "sponsors"
-          ? absoluteTop + rect.height / 2 - window.innerHeight / 2
-          : sectionId === "schedule"
-            ? absoluteTop - HEADER_OFFSET - 200
-            : absoluteTop - HEADER_OFFSET;
+        const targetY =
+          sectionId === "sponsors"
+            ? absoluteTop + rect.height / 2 - window.innerHeight / 2
+            : sectionId === "schedule"
+              ? absoluteTop - HEADER_OFFSET - 200
+              : absoluteTop - HEADER_OFFSET;
 
-      window.scrollTo({
-        top: targetY,
-        behavior: "smooth",
-      });
+        window.scrollTo({
+          top: targetY,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      window.location.href = `${basePath}#${sectionId}`;
     }
-  } else {
-    window.location.href = `${basePath}#${sectionId}`;
-  }
-};
+  };
 
- return (
-    <header 
+  return (
+    <header
       className={`w-full fixed top-0 z-50 transition-all duration-[200ms] ${isMenuOpen ? 'bg-black/95 md:bg-transparent' : ''}`}
       style={!isMenuOpen ? {
         background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 100%)'
@@ -67,38 +67,42 @@ const handleNavigation = (sectionId: string) => {
     >
       <div className="relative flex items-center h-16 px-8">
         {/* Logo positioned in top-left corner */}
-        <div className="absolute left-6 top-1/2 -translate-y-1/2">
+        <a
+          href={basePath}
+          className="absolute left-6 top-4 hover:scale-105 transition">
+          {/* accordingly modify href here */}
           <Image
-            src={"/images/logo_BMXIII.png"}
+            src="/imagesbm14/logo_bm14_hammers_only.svg"
             alt="Boilermake Logo"
-            width={42}
-            height={42}
-            className="w-10 h-10"
+            width={64}
+            height={56}
+            priority
+            className="w-10 sm:w-12 md:w-14 h-auto"
           />
-        </div>
-        
+        </a>
+
         {/* was: flex justify-between items-center text-white max-w-screen-2xl mx-auto */}
         <div className="flex w-full justify-end items-center text-white">
 
-    {/* Desktop Navigation - right aligned */}
-    {/* was: hidden md:flex flex-1 items-center justify-between ml-20 lg:ml-24 xl:ml-28 pt-6 */}
-            <nav
-              className="hidden md:flex items-center justify-end pt-6"
-              style={{ gap: 'clamp(1rem, 1.5vw, 2rem)' }}
-            >
+          {/* Desktop Navigation - right aligned */}
+          {/* was: hidden md:flex flex-1 items-center justify-between ml-20 lg:ml-24 xl:ml-28 pt-6 */}
+          <nav
+            className="hidden md:flex items-center justify-end pt-6"
+            style={{ gap: 'clamp(1rem, 1.5vw, 2rem)' }}
+          >
             <button
               onClick={() => handleNavigation("about")}
               className="transition-all duration-300 whitespace-nowrap"
               style={{
                 fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
-                fontSize: "clamp(18px, 3.5vw, 28px)",
+                fontSize: "clamp(15px, 1.3vw, 20px)",
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                
+
               }}
-              
+
             >
               About
             </button>
@@ -108,13 +112,13 @@ const handleNavigation = (sectionId: string) => {
               style={{
                 fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
-                fontSize: "clamp(18px, 3.5vw, 28px)",
+                fontSize: "clamp(15px, 1.3vw, 20px)",
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                
+
               }}
-              
+
             >
               Schedule
             </button>
@@ -124,7 +128,7 @@ const handleNavigation = (sectionId: string) => {
               style={{
                 fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
-                fontSize: "clamp(18px, 3.5vw, 28px)",
+                fontSize: "clamp(15px, 1.3vw, 20px)",
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
@@ -138,12 +142,12 @@ const handleNavigation = (sectionId: string) => {
               style={{
                 fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
-                fontSize: "clamp(18px, 3.5vw, 28px)",
+                fontSize: "clamp(15px, 1.3vw, 20px)",
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF"
               }}
-              
+
             >
               FAQs
             </button>
@@ -153,13 +157,13 @@ const handleNavigation = (sectionId: string) => {
               style={{
                 fontFamily: "var(--font-code-pro)",
                 fontWeight: 500,
-                fontSize: "clamp(18px, 3.5vw, 28px)",
+                fontSize: "clamp(15px, 1.3vw, 20px)",
                 lineHeight: "100%",
                 letterSpacing: "0.1em",
                 color: "#FFFFFF",
-                
+
               }}
-              
+
             >
               Sponsors
             </button>
@@ -174,121 +178,117 @@ const handleNavigation = (sectionId: string) => {
           >
             <div className="w-6 h-5 flex flex-col justify-between">
               <span
-                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${
-                  isMenuOpen ? "rotate-45 translate-y-2.5" : ""
-                }`}
+                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2.5" : ""
+                  }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-white transition-all duration-300 ${
-                  isMenuOpen ? "opacity-0" : ""
-                }`}
+                className={`w-full h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""
+                  }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${
-                  isMenuOpen ? "-rotate-45 -translate-y-2" : ""
-                }`}
+                className={`w-full h-0.5 bg-white transform transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                  }`}
               ></span>
             </div>
           </button>
         </div>
       </div>
 
-        {/* Mobile Dropdown Menu */}
-        <div
-          className={`md:hidden absolute top-0 left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${
-            isMenuOpen 
-              ? "opacity-100 visible" 
-              : "opacity-0 invisible pointer-events-none"
+      {/* Mobile Dropdown Menu */}
+      <div
+        className={`md:hidden absolute top-0 left-0 right-0 z-[55] transition-all duration-[200ms] ease-out ${isMenuOpen
+          ? "opacity-100 visible"
+          : "opacity-0 invisible pointer-events-none"
           }`}
-          style={{ 
-            maxHeight: '80vh',
-            overflowY: 'auto'
-          }}
-        >
-          <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl pt-8 pb-8">
-            <nav className="flex flex-col items-center py-6 space-y-4">
-              <button
-                onClick={() => {
-                  handleNavigation("about");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-code-pro)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  
-                }}
-                
-              >
-                About
-              </button>
-              
-              <button
-                onClick={() => {
-                  handleNavigation("schedule");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-code-pro)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  
-                }}
-                
-              >
-                Schedule
-              </button>
-              <button
-                onClick={() => {
-                  handleNavigation("judges");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-code-pro)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                }}
-              >
-                Judges
-              </button>
-              <button
-                onClick={() => {
-                  handleNavigation("faq");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-code-pro)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  
-                }}
-                
-              >
-                FAQs
-              </button>
-              
-              <button
-                onClick={() => {
-                  handleNavigation("sponsors");
-                  setIsMenuOpen(false);
-                }}
-                className="transition-all duration-300 text-white text-lg"
-                style={{
-                  fontFamily: "var(--font-code-pro)",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  
-                }}
-                
-              >
-                Sponsors
-              </button>
-              
-              {/* <a
+        style={{
+          maxHeight: '80vh',
+          overflowY: 'auto'
+        }}
+      >
+        <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/80 backdrop-blur-lg shadow-2xl pt-8 pb-8">
+          <nav className="flex flex-col items-center py-6 space-y-4">
+            <button
+              onClick={() => {
+                handleNavigation("about");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-code-pro)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+
+              }}
+
+            >
+              About
+            </button>
+
+            <button
+              onClick={() => {
+                handleNavigation("schedule");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-code-pro)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+
+              }}
+
+            >
+              Schedule
+            </button>
+            <button
+              onClick={() => {
+                handleNavigation("judges");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-code-pro)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+              }}
+            >
+              Judges
+            </button>
+            <button
+              onClick={() => {
+                handleNavigation("faq");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-code-pro)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+
+              }}
+
+            >
+              FAQs
+            </button>
+
+            <button
+              onClick={() => {
+                handleNavigation("sponsors");
+                setIsMenuOpen(false);
+              }}
+              className="transition-all duration-300 text-white text-lg"
+              style={{
+                fontFamily: "var(--font-code-pro)",
+                fontWeight: 500,
+                letterSpacing: "0.05em",
+
+              }}
+
+            >
+              Sponsors
+            </button>
+
+            {/* <a
                 href="https://boilermake-apply.web.app"
                 target="_blank"
                 rel="noreferrer"
@@ -304,9 +304,9 @@ const handleNavigation = (sectionId: string) => {
               >
                 Apply Now!
               </a> */}
-           </nav>
-          </div>
+          </nav>
         </div>
+      </div>
     </header>
   );
 }

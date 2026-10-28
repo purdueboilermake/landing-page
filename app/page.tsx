@@ -70,6 +70,18 @@ export default function Home() {
             min-height: 0 !important;
           }
         }
+        #hero-past-gradient {
+          --grad-mt: -250px;
+          --grad-mb: -160px;
+          --grad-h: 460px;
+        }
+        @media (max-width: 767px) {
+          #hero-past-gradient {
+            --grad-mt: -140px;
+            --grad-mb: -100px;
+            --grad-h: 300px;
+          }
+        }
       `}</style>
 
       <main
@@ -343,6 +355,15 @@ export default function Home() {
             }}
             aria-hidden
           >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-[8]"
+              style={{
+                height: "clamp(140px, 25vh, 320px)",
+                background:
+                  "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.2) 30%, rgba(59,52,75,0.55) 70%, rgba(59,52,75,0.9) 100%)",
+              }}
+            />
             <Image
               src="/imagesbm14/landing/Front_Buildings.webp"
               alt=""
@@ -358,21 +379,19 @@ export default function Home() {
         <ScrollArrow />
       </main>
 
-      {/* Transition overlay between landing and past page */}
-      <div className="relative z-[20] h-0 pointer-events-none">
-        <img
-          src="/imagesbm14/about/Transition.webp"
-          alt=""
-          className="absolute left-0 top-0 block w-full h-auto"
-          style={{
-            transform: "translateY(-62%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-            maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-          }}
-        />
-      </div>
+      {/* Transition gradient overlay between hero buildings and past section (from /2027) */}
+      <div
+        id="hero-past-gradient"
+        aria-hidden
+        className="pointer-events-none relative w-full z-[15]"
+        style={{
+          marginTop: "var(--grad-mt, -200px)",
+          marginBottom: "var(--grad-mb, -160px)",
+          height: "var(--grad-h, 460px)",
+          background:
+            "linear-gradient(to bottom, rgba(28, 10, 42, 0) 0%, rgba(28, 10, 42, 0.45) 25%, rgba(28, 10, 42, 0.8) 50%, rgba(28, 10, 42, 0.45) 75%, rgba(28, 10, 42, 0) 100%)",
+        }}
+      />
 
       <PastPage />
     </>

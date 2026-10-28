@@ -17,6 +17,9 @@ Each iteration of the hackathon gets its own route under `app/`:
 Site-wide routes (header/footer, about, etc.) live alongside:
 `app/about-us/`, `app/home/`, `app/privacy/`.
 
+The current homepage hero displays only the **Interest Form** button.
+Its destination is set by `INTEREST_FORM_URL` in `app/page.tsx`.
+
 ## Adding a new year
 
 When the next hackathon kicks off, copy the most recent year's

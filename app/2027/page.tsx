@@ -1892,7 +1892,7 @@ function App() {
 
                 <DecorImage
 
-                  src="/imagesbm14/spons/Transition.png"
+                  src="/imagesbm14/spons/Transition.webp"
 
                   alt=""
 

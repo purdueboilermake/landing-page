@@ -1119,43 +1119,25 @@ function App() {
                     >
 
                       <a
-
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
-
+                        href="https://boilermake-apply.web.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-
                         style={{
-
                           fontFamily: "var(--font-code-pro), system-ui, sans-serif",
-
                           fontWeight: 700,
-
-                          // CLAMP BUTTON SIZE (MOBILE): min 16px, scales with 5.5cqi, max 26px
                           fontSize: "clamp(16px, 5.5cqi, 26px)",
-
                           letterSpacing: "0.08em",
-
                           lineHeight: 1,
-
                           color: "#FFFFFF",
-
                           background: "#5A8A4A",
-
-                          // THICKER BORDER: 4px solid white with matching shadow
                           border: "4px solid #FFFFFF",
-
                           borderRadius: "9999px",
-
                           padding: "0.65em 1.8em",
-
                           boxShadow: "0 4px 0 rgba(0,0,0,0.35)",
-
                         }}
-
                       >
-
-                        Interest Form
-
+                        Apply Now!
                       </a>
 
                     </div>
@@ -1229,43 +1211,25 @@ function App() {
                   >
 
                     <a
-
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSeExKZR9uEza6FShsE8-WIw1jtwXVZVbb77927ZJ0BLhHp3jQ/viewform"
-
+                      href="https://boilermake-apply.web.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-
                       style={{
-
                         fontFamily: "var(--font-code-pro), system-ui, sans-serif",
-
                         fontWeight: 700,
-
-                        // CLAMP BUTTON SIZE (DESKTOP): min 18px, scales with 4.4cqi, max 32px
                         fontSize: "clamp(18px, 4.4cqi, 32px)",
-
                         letterSpacing: "0.08em",
-
                         lineHeight: 1,
-
                         color: "#FFFFFF",
-
                         background: "#5A8A4A",
-
-                        // THICKER BORDER: 4.5px solid white with bold shadow
                         border: "4.5px solid #FFFFFF",
-
                         borderRadius: "9999px",
-
                         padding: "0.72em 2.1em",
-
                         boxShadow: "0 5px 0 rgba(0,0,0,0.35)",
-
                       }}
-
                     >
-
-                      Interest Form
-
+                      Apply Now!
                     </a>
 
                   </div>

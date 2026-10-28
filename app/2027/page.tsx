@@ -530,20 +530,17 @@ function App() {
         if (section.style.marginBottom !== margin) section.style.marginBottom = margin;
       }
 
-      // One continuous texture surface across FAQ and Sponsors (Judges stays purple above FAQ).
+      // One continuous texture surface across FAQ, Sponsors, and Footer (Judges stays purple above FAQ).
       // Measuring these edges also keeps it aligned when FAQ panels expand.
       const faqSection = layout.querySelector<HTMLElement>("#faq");
-      const sponsorSection = layout.querySelector<HTMLElement>("#sponsors");
       const texture = layout.querySelector<HTMLElement>(".mobile-rough-continuous");
-      if (faqSection && sponsorSection && texture) {
+      if (faqSection && texture) {
         const layoutTop = layout.getBoundingClientRect().top;
-        const start = faqSection.getBoundingClientRect().top - layoutTop;
-        const end = sponsorSection.getBoundingClientRect().bottom - layoutTop +
-          parseFloat(getComputedStyle(sponsorSection).marginBottom || "0");
-        const top = `${Math.round(start)}px`;
-        const height = `${Math.max(0, Math.ceil(end - start))}px`;
+        // Tape.png sits at top: -30vw above #faq; start the dark backdrop right at the caution tape
+        const tapeOffset = Math.round(window.innerWidth * 0.28);
+        const start = Math.max(0, Math.round(faqSection.getBoundingClientRect().top - layoutTop - tapeOffset));
+        const top = `${start}px`;
         if (texture.style.top !== top) texture.style.top = top;
-        if (texture.style.height !== height) texture.style.height = height;
       }
     };
     const scheduleUpdate = () => {
@@ -563,7 +560,7 @@ function App() {
     };
     const observer = new ResizeObserver(scheduleUpdate);
     const mutation = new MutationObserver(scheduleUpdate);
-    layout.querySelectorAll("#about, #schedule, #faq, #judges, #sponsors, #about *, #schedule *, #faq *")
+    layout.querySelectorAll("#about, #schedule, #faq, #judges, #sponsors, #footer, #about *, #schedule *, #faq *")
       .forEach((el) => observer.observe(el));
     mutation.observe(layout, { subtree: true, childList: true, attributes: true, attributeFilter: ["aria-expanded", "class"] });
     const faq = layout.querySelector("#faq");
@@ -685,9 +682,7 @@ function App() {
 
 
     const checkMobile = () => {
-
-      setIsMobile(window.innerWidth < 768);
-
+      setIsMobile(window.innerWidth < 1024);
     };
 
 
@@ -858,6 +853,8 @@ function App() {
               background-position: center top;
               background-size: 100vw auto;
               background-repeat: repeat-y;
+              bottom: 0 !important;
+              height: auto !important;
             }
             .bm-layout > section {
               position: relative !important;
@@ -912,22 +909,25 @@ function App() {
               height: auto !important;
               display: flex !important;
               visibility: visible !important;
-              padding: 16px 18px 28px !important;
+              padding: 0 !important;
               margin-bottom: 0px !important;
               z-index: 4;
               overflow: visible !important;
               background: transparent;
             }
-            .bm-layout > #sponsors > div { gap: 8px !important; }
+            .bm-layout > #sponsors > div {
+              gap: 8px !important;
+              padding: 16px 18px 28px !important;
+            }
             .bm-layout > #sponsors h1 { margin: 0; }
-            /* Seamless footer matching sponsors dark gray */
+            /* Transparent footer letting the underlying backdrop texture show through */
             .bm-layout > #footer {
               height: auto !important;
               min-height: auto !important;
               margin-top: -2px !important;
               padding-top: 36px !important;
               padding-bottom: 32px !important;
-              background-color: #292526 !important;
+              background-color: transparent !important;
               background-image: none !important;
             }
           }
@@ -1001,11 +1001,11 @@ function App() {
 
 
 
-            {/* Mobile: a single background surface avoids texture seams between sections. */}
+            {/* Mobile/Tablet: a single background surface avoids texture seams between sections. */}
             <div
               aria-hidden
               className="mobile-rough-continuous absolute inset-x-0 pointer-events-none z-0 hidden"
-              style={{ top: 0, height: 0 }}
+              style={{ top: 0, bottom: 0 }}
             />
 
             {/* Hero Section — BoilerMake XIV skyline scene */}
@@ -1679,78 +1679,44 @@ function App() {
             {/* ================= Sponsors Section ================= */}
 
             <section
-
               id="sponsors"
-
-              className="absolute flex flex-col items-center justify-center pt-8 pb-16 px-8 w-full overflow-hidden pointer-events-none"
-
+              className="absolute flex flex-col items-center justify-center w-full overflow-x-clip pointer-events-none"
               style={{
-
                 top: isMobile ? "auto" : "max(845vh, 7150px)",
-
                 minHeight: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
-
                 height: isMobile ? "auto" : "clamp(460px, 58vh, 660px)",
-
               }}
-
             >
+              {/* Screen-edge anchored decorations */}
+              <DecorImage
+                src="/imagesbm14/spons/Splotchpink.png"
+                alt=""
+                label="Splotch"
+                className="absolute opacity-90 pointer-events-none select-none z-[1]"
+                style={{
+                  left: "clamp(-40px, -1vw, 0px)",
+                  bottom: "clamp(0px, 2vw, 20px)",
+                  width: "clamp(160px, 20vw, 300px)",
+                  height: "auto",
+                }}
+              />
 
-              <div className="flex flex-col items-center justify-center gap-10 max-w-[1406px] w-full relative">
+              <DecorImage
+                src="/imagesbm14/spons/image-2.png"
+                alt=""
+                label="Crown"
+                className="absolute pointer-events-none select-none z-[5]"
+                style={{
+                  right: "clamp(12px, 3vw, 48px)",
+                  bottom: "clamp(12px, 2vw, 36px)",
+                  width: "clamp(90px, 14vw, 190px)",
+                  height: "auto",
+                  aspectRatio: "1 / 1",
+                  transform: "rotate(14.87deg)",
+                }}
+              />
 
-                {/* Big pink splotch — anchored to bottom-left of sponsors (similar to FAQ) */}
-                <DecorImage
-
-                  src="/imagesbm14/spons/Splotchpink.png"
-
-                  alt=""
-
-                  label="Splotch"
-
-                  className="absolute opacity-90 pointer-events-none select-none z-[1]"
-
-                  style={{
-
-                    left: "clamp(-100px, -4vw, -20px)",
-
-                    bottom: "clamp(10px, 2vw, 30px)",
-
-                    width: "clamp(180px, 24vw, 340px)",
-
-                    height: "auto",
-
-                  }}
-
-                />
-
-                {/* Crown doodle — anchored to bottom-right of sponsors (similar to FAQ) */}
-                <DecorImage
-
-                  src="/imagesbm14/spons/image-2.png"
-
-                  alt=""
-
-                  label="Crown"
-
-                  className="absolute pointer-events-none select-none z-[5]"
-
-                  style={{
-
-                    right: "clamp(12px, 3vw, 48px)",
-
-                    bottom: "clamp(12px, 2vw, 36px)",
-
-                    width: "clamp(90px, 14vw, 190px)",
-
-                    height: "auto",
-
-                    aspectRatio: "1 / 1",
-
-                    transform: "rotate(14.87deg)",
-
-                  }}
-
-                />
+              <div className="flex flex-col items-center justify-center gap-10 max-w-[1406px] w-full px-6 sm:px-8 pt-8 pb-16 relative">
 
                 {/* Sponsors heading — this is a graphic asset from the design team */}
 
@@ -1896,7 +1862,7 @@ function App() {
               style={{
                 top: isMobile ? "auto" : "calc(max(845vh, 7150px) + clamp(460px, 58vh, 660px) - 2px)",
                 position: isMobile ? "relative" : "absolute",
-                backgroundColor: "#292526",
+                backgroundColor: "transparent",
                 minHeight: isMobile ? "auto" : "clamp(140px, 16vh, 200px)",
                 paddingTop: "clamp(36px, 4vw, 56px)",
                 paddingBottom: "clamp(32px, 4vw, 48px)",

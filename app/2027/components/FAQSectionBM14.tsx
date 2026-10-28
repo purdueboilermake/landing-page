@@ -21,6 +21,14 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         paddingBottom: "clamp(20px, 3vw, 40px)",
       }}
     >
+      {/* Purple rough texture stipple — transition between purple backdrop and caution tape */}
+      <img
+        src="/imagesbm14/schedule/RoughTexPurple.png"
+        alt=""
+        className="absolute left-0 w-full pointer-events-none select-none z-[1] opacity-90"
+        style={{ top: "-28vw", height: "auto" }}
+      />
+
       {/* Caution tape header — two overlapping torn strips (Tape.png also carries the cyan splatter) */}
       <img
         src="/imagesbm14/faq/Tape.png"

@@ -199,23 +199,6 @@ export default function ScheduleSection({
                     ))}
                 </div>
             </div>
-
-            <div
-    className="relative h-[250px] md:h-[400px] mt-10 pointer-events-none overflow-hidden"
-    style={{
-        width: "100vw",
-        marginLeft: "calc(50% - 50vw)",
-        marginRight: "calc(50% - 50vw)",
-    }}
->
-    <Image
-        src="/imagesbm14/schedule/RoughTexPurple.png"
-        alt=""
-        fill
-        sizes="100vw"
-        className="object-cover object-top opacity-90"
-    />
-</div>
         </div>
     );
 }

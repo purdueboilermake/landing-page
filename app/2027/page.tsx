@@ -1633,14 +1633,7 @@ function App() {
                 <a
                   href="https://www.instagram.com/boilermake/?hl=en"
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "0px 0px 15px #FFE958";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "none";
-                  }}
+                  
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -1652,14 +1645,7 @@ function App() {
                   href="https://www.linkedin.com/company/boilermake/"
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
                   aria-label="LinkedIn"
-                  onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "0px 0px 15px #FFE958";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.textShadow = "none";
-                  }}
+                  
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1676,7 +1662,7 @@ function App() {
                   fontSize: "clamp(14px, 1.5vw, 18px)",
                   letterSpacing: "0.05em",
                   color: "#FFFFFF",
-                  textShadow: "0px 0px 10px #FFDE00",
+                  
                 }}
               >
                 Made with 💛 by the BoilerMake XIV team

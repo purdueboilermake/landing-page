@@ -56,7 +56,9 @@ export default function PastPage() {
             textShadow: "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
           }}
                 >
-                    BoilerMake In The Past         
+                    <a href="/past" style={{ color: "inherit", textDecoration: "none" }}>
+                    BoilerMake In The Past
+                    </a>
                     </h1>
                 <section className="text-white flex flex-col items-center justify-center">
                     <div className="flex flex-col md:flex-row gap-5 md:gap-10">
@@ -122,37 +124,37 @@ export default function PastPage() {
                 </section>
                 <ImageCarousel
                     images={[
-                        { src: "/assets/pics/0.JPG", alt: "Event photo 0" },
-                        { src: "/assets/pics/1.JPG", alt: "Event photo 1" },
-                        { src: "/assets/pics/2.JPG", alt: "Event photo 2" },
-                        { src: "/assets/pics/3.JPG", alt: "Event photo 3" },
-                        { src: "/assets/pics/5.JPG", alt: "Event photo 5" },
-                        { src: "/assets/pics/6.JPG", alt: "Event photo 6" },
-                        { src: "/assets/pics/8.JPG", alt: "Event photo 8" },
-                        { src: "/assets/pics/16.JPG", alt: "Event photo 16" },
-                        { src: "/assets/pics/21.JPG", alt: "Event photo 21" },
-                        { src: "/assets/pics/11.JPG", alt: "Event photo 11" },
-                        { src: "/assets/pics/12.JPG", alt: "Event photo 12" },
-                        { src: "/assets/pics/13.JPG", alt: "Event photo 13" },
-                        { src: "/assets/pics/9.JPG", alt: "Event photo 9" },
-                        { src: "/assets/pics/10.JPG", alt: "Event photo 10" },
-                        { src: "/assets/pics/14.JPG", alt: "Event photo 14" },
-                        { src: "/assets/pics/15.JPG", alt: "Event photo 15" },
-                        { src: "/assets/pics/17.JPG", alt: "Event photo 17" },
-                        { src: "/assets/pics/18.JPG", alt: "Event photo 18" },
-                        { src: "/assets/pics/19.JPG", alt: "Event photo 19" },
-                        { src: "/assets/pics/20.JPG", alt: "Event photo 20" },
-                        { src: "/assets/pics/22.JPG", alt: "Event photo 22" },
-                        { src: "/assets/pics/23.JPG", alt: "Event photo 23" },
-                        { src: "/assets/pics/24.JPG", alt: "Event photo 24" },
-                        { src: "/assets/pics/25.JPG", alt: "Event photo 25" },
-                        { src: "/assets/pics/26.JPG", alt: "Event photo 26" },
-                        { src: "/assets/pics/27.JPG", alt: "Event photo 27" },
-                        { src: "/assets/pics/28.JPG", alt: "Event photo 28" },
-                        { src: "/assets/pics/29.JPG", alt: "Event photo 29" },
-                        { src: "/assets/pics/30.JPG", alt: "Event photo 30" },
-                        { src: "/assets/pics/4.JPG", alt: "Event photo 4" },
-                        { src: "/assets/pics/7.JPG", alt: "Event photo 7" },
+                        { src: "/assets/pics/0.webp", alt: "Event photo 0" },
+                        { src: "/assets/pics/1.webp", alt: "Event photo 1" },
+                        { src: "/assets/pics/2.webp", alt: "Event photo 2" },
+                        { src: "/assets/pics/3.webp", alt: "Event photo 3" },
+                        { src: "/assets/pics/5.webp", alt: "Event photo 5" },
+                        { src: "/assets/pics/6.webp", alt: "Event photo 6" },
+                        { src: "/assets/pics/8.webp", alt: "Event photo 8" },
+                        { src: "/assets/pics/16.webp", alt: "Event photo 16" },
+                        { src: "/assets/pics/21.webp", alt: "Event photo 21" },
+                        { src: "/assets/pics/11.webp", alt: "Event photo 11" },
+                        { src: "/assets/pics/12.webp", alt: "Event photo 12" },
+                        { src: "/assets/pics/13.webp", alt: "Event photo 13" },
+                        { src: "/assets/pics/9.webp", alt: "Event photo 9" },
+                        { src: "/assets/pics/10.webp", alt: "Event photo 10" },
+                        { src: "/assets/pics/14.webp", alt: "Event photo 14" },
+                        { src: "/assets/pics/15.webp", alt: "Event photo 15" },
+                        { src: "/assets/pics/17.webp", alt: "Event photo 17" },
+                        { src: "/assets/pics/18.webp", alt: "Event photo 18" },
+                        { src: "/assets/pics/19.webp", alt: "Event photo 19" },
+                        { src: "/assets/pics/20.webp", alt: "Event photo 20" },
+                        { src: "/assets/pics/22.webp", alt: "Event photo 22" },
+                        { src: "/assets/pics/23.webp", alt: "Event photo 23" },
+                        { src: "/assets/pics/24.webp", alt: "Event photo 24" },
+                        { src: "/assets/pics/25.webp", alt: "Event photo 25" },
+                        { src: "/assets/pics/26.webp", alt: "Event photo 26" },
+                        { src: "/assets/pics/27.webp", alt: "Event photo 27" },
+                        { src: "/assets/pics/28.webp", alt: "Event photo 28" },
+                        { src: "/assets/pics/29.webp", alt: "Event photo 29" },
+                        { src: "/assets/pics/30.webp", alt: "Event photo 30" },
+                        { src: "/assets/pics/4.webp", alt: "Event photo 4" },
+                        { src: "/assets/pics/7.webp", alt: "Event photo 7" },
                     ]}
                     speed={120} // higher is slower, speed = seconds for one complete scroll cycle
                     className="w-full graffiti-photo-strip"
@@ -195,14 +197,15 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.cs.purdue.edu/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
+                            <div className="graffiti-sponsor-card relative bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 overflow-hidden shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/PurdueCS.svg"
                                     alt="Purdue CS"
-                                    className="h-16 w-auto object-contain"
-                                    width={200}
-                                    height={64}
-                                    sizes="200px"
+                                    className="absolute left-1/2 top-1/2 max-w-none object-contain"
+                                    style={{ width: "auto", height: "100px", transform: "translate(-50%, calc(-50% + 15%))" }}
+                                    width={160}
+                                    height={127}
+                                    sizes="180px"
                                 />
                             </div>
                         </a>
@@ -219,26 +222,28 @@ export default function PastPage() {
                             </div>
                         </a>
                         <a href="https://www.rcac.purdue.edu/" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
+                            <div className="graffiti-sponsor-card relative bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 overflow-hidden shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/RCAC_Logo.png"
                                     alt="RCAC"
-                                    className="h-16 w-auto object-contain"
-                                    width={200}
-                                    height={64}
-                                    sizes="200px"
+                                    className="absolute left-1/2 top-1/2 max-w-none object-contain"
+                                    style={{ width: "auto", height: "100px", transform: "translate(-50%, calc(-50% + 15%))" }}
+                                    width={223}
+                                    height={176}
+                                    sizes="180px"
                                 />
                             </div>
                         </a>
                         <a href="https://engineering.purdue.edu/Engr" target="_blank" className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center">
-                            <div className="graffiti-sponsor-card bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]">
+                            <div className="graffiti-sponsor-card relative bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 overflow-hidden shadow-[5px_5px_0_#21152F]">
                                 <Image
                                     src="/assets/sponsors/coe.svg"
                                     alt="CoE"
-                                    className="h-16 w-auto object-contain"
-                                    width={200}
-                                    height={64}
-                                    sizes="200px"
+                                    className="absolute left-1/2 top-1/2 max-w-none object-contain"
+                                    style={{ width: "auto", height: "100px", transform: "translate(-50%, calc(-50% + 15%))" }}
+                                    width={160}
+                                    height={127}
+                                    sizes="180px"
                                 />
                             </div>
                         </a>

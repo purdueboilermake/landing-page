@@ -155,7 +155,7 @@ export default function ScheduleSection({
                 {/* Section title — graffiti asset */}
                 <div className="relative flex justify-center items-center text-center mb-24 min-h-[140px] w-full">
                     <Image
-                        src="/imagesbm14/schedule/title.png"
+                        src="/imagesbm14/schedule/title.webp"
                         alt="Schedule"
                         width={850}
                         height={250}
@@ -166,7 +166,7 @@ export default function ScheduleSection({
 
                 {/* "ACTIVITY SECTION" vertical text on the right side */}
                 <div className="absolute right-[-2%] md:right-0 bottom-[10%] md:bottom-[15%] z-0 pointer-events-none">
-                    <Image src="/imagesbm14/schedule/activity sign.png" alt="Activity Section" width={200} height={600} className="object-contain w-[15vw] md:w-[150px] lg:w-[200px] h-auto" />
+                    <Image src="/imagesbm14/schedule/activity sign.webp" alt="Activity Section" width={200} height={600} className="object-contain w-[15vw] md:w-[150px] lg:w-[200px] h-auto" />
                 </div>
 
                 {/* Background Bricks - locked to true aspect ratio so they never squash */}
@@ -176,11 +176,11 @@ export default function ScheduleSection({
                 <Image src="/imagesbm14/schedule/brick_1 2.png" alt="Bricks" width={745} height={520} className="absolute z-[-1] opacity-50 top-[50%] left-[38%] w-[10vw] md:w-[140px] h-auto pointer-events-none" style={{ aspectRatio: "745 / 520" }} />
 
                 {/* Decorative images */}
-                <Image src="/imagesbm14/schedule/star graffiti.png" alt="Star" width={350} height={350} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite] top-[15%] md:top-[15%] left-[-10%] md:left-[-10%] w-[25vw] md:w-[250px] lg:w-[350px] h-auto pointer-events-none" />
-                <Image src="/imagesbm14/schedule/skateboard.png" alt="Skateboard" width={500} height={300} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-1s] top-[12%] right-[2%] md:right-[3%] w-[30vw] md:w-[300px] lg:w-[400px] h-auto pointer-events-none" />
-                <Image src="/imagesbm14/schedule/spray paint.png" alt="Spraypaint" width={240} height={340} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-2s] top-[40%] left-[38%] md:left-[38%] w-[15vw] md:w-[180px] lg:w-[240px] h-auto pointer-events-none" />
-                <Image src="/imagesbm14/schedule/cone.png" alt="Cone" width={250} height={250} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-3s] bottom-[8%] md:bottom-[5%] left-[50%] w-[18vw] md:w-[180px] lg:w-[220px] h-auto pointer-events-none" />
-                <Image src="/imagesbm14/schedule/BMLogoSchedule.png" alt="Logo" width={500} height={500} className="absolute z-0 opacity-[0.85] animate-[float_6s_ease-in-out_infinite_-4s] top-[42%] md:top-[42%] left-[-5%] md:left-[-4%] w-[35vw] md:w-[350px] lg:w-[500px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/star graffiti.webp" alt="Star" width={350} height={350} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite] top-[15%] md:top-[15%] left-[-10%] md:left-[-10%] w-[25vw] md:w-[250px] lg:w-[350px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/skateboard.webp" alt="Skateboard" width={500} height={300} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-1s] top-[12%] right-[2%] md:right-[3%] w-[30vw] md:w-[300px] lg:w-[400px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/spray paint.webp" alt="Spraypaint" width={240} height={340} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-2s] top-[40%] left-[38%] md:left-[38%] w-[15vw] md:w-[180px] lg:w-[240px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/cone.webp" alt="Cone" width={250} height={250} className="absolute z-0 opacity-90 animate-[float_6s_ease-in-out_infinite_-3s] bottom-[8%] md:bottom-[5%] left-[50%] w-[18vw] md:w-[180px] lg:w-[220px] h-auto pointer-events-none" />
+                <Image src="/imagesbm14/schedule/BMLogoSchedule.webp" alt="Logo" width={500} height={500} className="absolute z-0 opacity-[0.85] animate-[float_6s_ease-in-out_infinite_-4s] top-[42%] md:top-[42%] left-[-5%] md:left-[-4%] w-[35vw] md:w-[350px] lg:w-[500px] h-auto pointer-events-none" />
 
                 {/* RoughTexPurple was moved to the bottom of the wrapper */}
 

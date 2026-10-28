@@ -46,7 +46,7 @@ export default function AboutSection() {
     <div className="relative w-full py-6 sm:py-10 flex items-center justify-center overflow-visible">
       {/* Decorative sticker strip - LEFT (hidden on mobile phones, visible on sm+ screens) */}
       <img
-        src="/imagesbm14/about/bm-left.png"
+        src="/imagesbm14/about/bm-left.webp"
         alt=""
         className="hidden sm:block absolute pointer-events-none select-none z-[1]"
         style={{
@@ -62,7 +62,7 @@ export default function AboutSection() {
 
       {/* Decorative sticker strip - RIGHT (hidden on mobile phones, visible on sm+ screens) */}
       <img
-        src="/imagesbm14/about/bm-right.png"
+        src="/imagesbm14/about/bm-right.webp"
         alt=""
         className="hidden sm:block absolute pointer-events-none select-none z-[1]"
         style={{

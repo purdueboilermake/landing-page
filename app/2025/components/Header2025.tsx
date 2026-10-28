@@ -12,9 +12,11 @@ import { LAYER_OFFSETS, ScreenSize } from '@/utils/parallaxOffset';
 type HeaderProps = {
     screenSize: ScreenSize;
     parallaxRef?: React.RefObject<IParallax>;
+    /** Archive pages keep the logo link. Pass null to show the mark without a link. */
+    logoHref?: string | null;
 };
 
-export default function Header2025({ screenSize, parallaxRef }: HeaderProps) {
+export default function Header2025({ screenSize, parallaxRef, logoHref = "/2025" }: HeaderProps) {
     const handleNavigation = (section: string) => {
         const offset = LAYER_OFFSETS[section][screenSize]
         // Check if we're on the main page
@@ -33,7 +35,8 @@ export default function Header2025({ screenSize, parallaxRef }: HeaderProps) {
         <header className="w-full p-4 fixed top-0 z-50">
             <div className="flex justify-between items-center text-white">
                 {/* Logo */}
-                <a href="/2025">
+                {logoHref ? (
+                <a href={logoHref}>
                     <Image
                         src={"/images/logo.png"}
                         alt="Boilermake Logo"
@@ -42,6 +45,15 @@ export default function Header2025({ screenSize, parallaxRef }: HeaderProps) {
                         className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
                     />
                 </a>
+                ) : (
+                    <Image
+                        src={"/images/logo.png"}
+                        alt="Boilermake Logo"
+                        width={100}
+                        height={100}
+                        className="w-[50px] h-[50px] md:w-[100px] md:h-[100px] object-contain"
+                    />
+                )}
 
                 {/* Spacer */}
                 <div className="flex-grow"></div>

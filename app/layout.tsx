@@ -4,9 +4,34 @@ import localFont from 'next/font/local'
 import './globals.css';
 
 
+const description =
+  "Purdue University\u2019s flagship hackathon, BoilerMake, is back in January 22-24, 2027. Escape Reality.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://boilermake.org"),
   title: "BoilerMake XIV",
-  description: "Purdue University's flagship hackathon, BoilerMake, is back in January 2026. Escape Reality.",
+  description,
+  openGraph: {
+    title: "BoilerMake XIV",
+    description,
+    url: "https://boilermake.org",
+    siteName: "BoilerMake",
+    type: "website",
+    images: [
+      {
+        url: "/images/logo.png",
+        width: 1366,
+        height: 1366,
+        alt: "BoilerMake logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "BoilerMake XIV",
+    description,
+    images: ["/images/logo.png"],
+  },
 }
   
 const dosis = Dosis({

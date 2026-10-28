@@ -19,13 +19,20 @@ type JudgesSectionProps = {
 };
 
 export default function JudgesSection({ judges = [] }: JudgesSectionProps) {
+  const isComingSoon = judges.length === 0;
+
   return (
-    <div className="w-full min-h-[70vh] md:min-h-[120vh] flex flex-col items-center justify-start gap-10 md:gap-16 pt-24 md:pt-32 pb-32 md:pb-64">
+    <div
+      className={`w-full flex flex-col items-center justify-start ${isComingSoon
+        ? "min-h-[35vh] py-8 gap-4 md:gap-6"
+        : "min-h-[70vh] md:min-h-[120vh] gap-10 md:gap-16 pt-24 md:pt-32 pb-32 md:pb-64"
+        }`}
+    >
       <h2
         id="judges-heading"
-        className="text-center"
+        className="text-center select-none tracking-wider"
         style={{
-          fontFamily: "var(--font-sprite-graffiti)",
+          fontFamily: "var(--font-owned), var(--font-sprite-graffiti), sans-serif",
           fontWeight: 400,
           fontSize: "clamp(2.75rem, 8vw, 6rem)",
           lineHeight: "100%",
@@ -42,14 +49,14 @@ export default function JudgesSection({ judges = [] }: JudgesSectionProps) {
         <p
           className="text-center text-white"
           style={{
-            fontFamily: "var(--font-code-pro)",
-            fontWeight: 700,
+            fontFamily: "var(--font-code-pro), sans-serif",
+            fontWeight: 400,
             fontSize: "clamp(1.5rem, 3.5vw, 3rem)",
             lineHeight: 1.2,
             letterSpacing: "0.06em",
           }}
         >
-          COMING SOON
+          Coming Soon
         </p>
       ) : (
         <div className="grid w-full max-w-[1180px] gap-8 px-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

@@ -22,7 +22,7 @@ import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 
 import Image from "next/image";
 
-import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
+// import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
 
 
 
@@ -583,93 +583,51 @@ function App() {
     };
   }, [isMobile]);
 
-  // --- Buildings scroll wobble ---
+  // --- Buildings scroll wobble (commented out for now) ---
 
-  const buildingsRef = useRef<HTMLDivElement>(null);
+  // const buildingsRef = useRef<HTMLDivElement>(null);
 
-
-
-  useEffect(() => {
-
-    let lastScrollY = window.scrollY;
-
-    let velocity = 0;
-
-    let skew = 0;
-
-    let rafId: number;
-
-
-
-    const MAX_SKEW = 2.5;   // max degrees
-
-    const STIFFNESS = 0.08; // lower = bouncier
-
-    const DAMPING = 0.75;   // velocity decay per frame
-
-
-
-    const spring = () => {
-
-      skew += (0 - skew) * STIFFNESS + velocity * 0.012;
-
-      velocity *= DAMPING;
-
-      skew = Math.max(-MAX_SKEW, Math.min(MAX_SKEW, skew));
-
-
-
-      if (buildingsRef.current) {
-
-        buildingsRef.current.style.transform =
-
-          `scaleX(1.04) skewX(${skew.toFixed(3)}deg)`;
-
-      }
-
-
-
-      if (Math.abs(skew) > 0.01 || Math.abs(velocity) > 0.01) {
-
-        rafId = requestAnimationFrame(spring);
-
-      } else if (buildingsRef.current) {
-
-        buildingsRef.current.style.transform = "scaleX(1.04) skewX(0deg)";
-
-      }
-
-    };
-
-
-
-    const onScroll = () => {
-
-      const currentY = window.scrollY;
-
-      velocity = (currentY - lastScrollY) * 0.6;
-
-      lastScrollY = currentY;
-
-      cancelAnimationFrame(rafId);
-
-      rafId = requestAnimationFrame(spring);
-
-    };
-
-
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-
-      window.removeEventListener("scroll", onScroll);
-
-      cancelAnimationFrame(rafId);
-
-    };
-
-  }, []);
+  // useEffect(() => {
+  //   let lastScrollY = window.scrollY;
+  //   let velocity = 0;
+  //   let skew = 0;
+  //   let rafId: number;
+  //
+  //   const MAX_SKEW = 2.5;   // max degrees
+  //   const STIFFNESS = 0.08; // lower = bouncier
+  //   const DAMPING = 0.75;   // velocity decay per frame
+  //
+  //   const spring = () => {
+  //     skew += (0 - skew) * STIFFNESS + velocity * 0.012;
+  //     velocity *= DAMPING;
+  //     skew = Math.max(-MAX_SKEW, Math.min(MAX_SKEW, skew));
+  //
+  //     if (buildingsRef.current) {
+  //       buildingsRef.current.style.transform =
+  //         `scaleX(1.04) skewX(${skew.toFixed(3)}deg)`;
+  //     }
+  //
+  //     if (Math.abs(skew) > 0.01 || Math.abs(velocity) > 0.01) {
+  //       rafId = requestAnimationFrame(spring);
+  //     } else if (buildingsRef.current) {
+  //       buildingsRef.current.style.transform = "scaleX(1.04) skewX(0deg)";
+  //     }
+  //   };
+  //
+  //   const onScroll = () => {
+  //     const currentY = window.scrollY;
+  //     velocity = (currentY - lastScrollY) * 0.6;
+  //     lastScrollY = currentY;
+  //     cancelAnimationFrame(rafId);
+  //     rafId = requestAnimationFrame(spring);
+  //   };
+  //
+  //   window.addEventListener("scroll", onScroll, { passive: true });
+  //   return () => {
+  //     window.removeEventListener("scroll", onScroll);
+  //     cancelAnimationFrame(rafId);
+  //   };
+  // }, []);
 
   // --- end Buildings wobble ---
 
@@ -815,9 +773,9 @@ function App() {
 
 
 
-          {/* Spray paint cursor trail — activates when scrolled past hero */}
+          {/* Spray paint cursor trail — activates when scrolled past hero (commented out for now) */}
 
-          <SprayPaintOverlay />
+          {/* <SprayPaintOverlay /> */}
 
 
 
@@ -900,7 +858,7 @@ function App() {
             .bm-layout > #judges {
               min-height: 0 !important;
               height: auto !important;
-              padding: 24px 24px 72px;
+              padding: 16px 24px 32px;
               background-color: #3B344B;
               z-index: 5;
             }
@@ -919,7 +877,7 @@ function App() {
               gap: 8px !important;
               padding: 16px 18px 28px !important;
             }
-            .bm-layout > #sponsors h1 { margin: 0; }
+            .bm-layout > #sponsors h1, .bm-layout > #sponsors p { margin: 0; }
             /* Transparent footer letting the underlying backdrop texture show through */
             .bm-layout > #footer {
               height: auto !important;
@@ -1325,17 +1283,17 @@ function App() {
 
 
 
-                {/* Buildings — sit on top of the sign, wobble on scroll */}
+                {/* Buildings — sit on top of the sign, wobble on scroll (commented out for now) */}
 
                 <div
 
-                  ref={buildingsRef}
+                  // ref={buildingsRef}
 
                   className="absolute inset-0 z-[2]"
 
                   style={{
 
-                    transform: "scaleX(1.04) skewX(0deg) translateY(-120px)",
+                    transform: "scaleX(1.04) skewX(0deg)",
 
                     transformOrigin: "center bottom",
 
@@ -1577,7 +1535,7 @@ function App() {
               className="pointer-events-none absolute inset-x-0 w-full z-[15]"
               style={{
                 // DESKTOP POSITION & SIZING:
-                top: isMobile ? "auto" : "max(50vh, 720px)",
+                top: isMobile ? "auto" : "max(55vh, 780px)",
                 height: isMobile ? "620px" : "clamp(620px, 90vh, 980px)",
                 background:
                   "linear-gradient(to bottom, rgba(28, 10, 42, 0) 0%, rgba(28, 10, 42, 0.65) 30%, #1C0A2A 50%, rgba(28, 10, 42, 0.65) 70%, rgba(28, 10, 42, 0) 100%)",
@@ -1740,35 +1698,18 @@ function App() {
 
                 />
 
-                <h1
-
-                  className="relative z-10"
-
+                <p
+                  className="relative z-10 text-center text-white"
                   style={{
-
-                    fontFamily: "var(--font-sprite-graffiti)",
-
+                    fontFamily: "var(--font-code-pro), sans-serif",
                     fontWeight: 400,
-
-                    fontSize: "clamp(2rem, 4.5vw, 4rem)",
-
-                    lineHeight: "100%",
-
-                    letterSpacing: "0.04em",
-
-                    color: "#FFE958",
-
-                    textShadow:
-
-                      "0 3px 0 #F0A83A, 0 6px 0 #F0A83A, 0 9px 14px rgba(0,0,0,0.45)",
-
+                    fontSize: "clamp(1.5rem, 3.5vw, 3rem)",
+                    lineHeight: 1.2,
+                    letterSpacing: "0.06em",
                   }}
-
                 >
-
-                  COMING SOON
-
-                </h1>
+                  Coming Soon
+                </p>
 
                 {/*
 

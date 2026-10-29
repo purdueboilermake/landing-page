@@ -5,7 +5,7 @@ import './globals.css';
 
 
 const description =
-  "Purdue University’s flagship hackathon, BoilerMake, is back in January 2027, Leave Your Mark";
+  "Purdue University’s flagship hackathon, BoilerMake, is back in January 2027. Leave Your Mark.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://boilermake.org"),

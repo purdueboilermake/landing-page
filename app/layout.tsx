@@ -5,12 +5,16 @@ import './globals.css';
 
 
 const description =
-  "Purdue University\u2019s flagship hackathon, BoilerMake, is back in January 22-24, 2027. Escape Reality.";
+  "Purdue University\u2019s flagship hackathon, BoilerMake, returns January 22-24, 2027. Leave Your Mark.";
+const logoImage = "/imagesbm14/logo_bm14_hammers_only.svg";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://boilermake.org"),
   title: "BoilerMake XIV",
   description,
+  icons: {
+    icon: [{ url: logoImage, type: "image/svg+xml" }],
+  },
   openGraph: {
     title: "BoilerMake XIV",
     description,
@@ -19,10 +23,8 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/logo.png",
-        width: 1366,
-        height: 1366,
-        alt: "BoilerMake logo",
+        url: logoImage,
+        alt: "BoilerMake hammers logo",
       },
     ],
   },
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "BoilerMake XIV",
     description,
-    images: ["/images/logo.png"],
+    images: [logoImage],
   },
 }
   

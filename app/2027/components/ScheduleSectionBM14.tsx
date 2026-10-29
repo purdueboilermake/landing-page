@@ -12,10 +12,10 @@ import Image from "next/image";
 
 type Activity = {
     title: string;
-    startDate: string;
+    startDate?: string;
     endDate?: string;
-    location: string;
-    description: string;
+    location?: string;
+    description?: string;
 };
 
 type ScheduleSectionProps = {
@@ -49,19 +49,22 @@ function ActivityCard({ activity, index, colorIndex }: ActivityCardProps) {
     // Determine position: 0 = left, 1 = center, 2 = right, 3 = center
     const pos = index % 4;
     const alignment = pos === 0 ? "flex-start" : pos === 2 ? "flex-end" : "center";
+    
+// Time formatting disabled until schedule is finalized
+    // // Format time from ISO string
+    // const startDateObj = new Date(activity.startDate);
+    // const startTime = startDateObj.toLocaleString([], {
+    //     hour: "numeric",
+    //     minute: "2-digit",
+    // });
+    // const endTime = activity.endDate
+    //     ? new Date(activity.endDate).toLocaleString([], {
+    //         hour: "numeric",
+    //         minute: "2-digit",
+    //     })
+    //     : null;
 
-    // Format time from ISO string
-    const startDateObj = new Date(activity.startDate);
-    const startTime = startDateObj.toLocaleString([], {
-        hour: "numeric",
-        minute: "2-digit",
-    });
-    const endTime = activity.endDate
-        ? new Date(activity.endDate).toLocaleString([], {
-            hour: "numeric",
-            minute: "2-digit",
-        })
-        : null;
+    
 
     useEffect(() => {
         const checkMobile = () => {
@@ -115,30 +118,34 @@ function ActivityCard({ activity, index, colorIndex }: ActivityCardProps) {
                 className="bg-[#000000]/25 border-[4px] border-white rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] cursor-default w-full"
                 style={{ padding: "clamp(1.2rem, 3vw, 2rem) clamp(1.5rem, 3.5vw, 2.5rem)" }}
             >
-                {/* Time */}
-                <div
-                    className="text-white/85 tracking-widest mb-1 font-semibold"
-                    style={{ fontFamily: 'var(--font-code-pro)', fontSize: "clamp(14px, 2vw, 18px)" }}
-                >
-                    {startTime}
-                    {endTime && ` – ${endTime}`}
-                </div>
+            {/* Time — disabled until schedule is finalized */}
+            {/*
+            <div
+                className="text-white/85 tracking-widest mb-1 font-semibold"
+                style={{ fontFamily: 'var(--font-code-pro)', fontSize: "clamp(14px, 2vw, 18px)" }}
+            >
+                {startTime}
+                {endTime && ` – ${endTime}`}
+            </div>
+            */}
 
-                {/* Title */}
-                <h3
-                    className="leading-tight mb-3"
-                    style={{ color: titleColor, fontFamily: 'var(--font-sprite-graffiti)', fontSize: "clamp(22px, 3.5vw, 34px)" }}
-                >
-                    {activity.title}
-                </h3>
+            {/* Title — keep visible */}
+            <h3
+                className="leading-tight mb-3"
+                style={{ color: titleColor, fontFamily: 'var(--font-sprite-graffiti)', fontSize: "clamp(22px, 3.5vw, 34px)" }}
+            >
+                {activity.title}
+            </h3>
 
-                {/* Description */}
-                <p
-                    className="text-white/80 leading-relaxed font-light"
-                    style={{ fontFamily: 'var(--font-code-pro)', fontSize: "clamp(12px, 1.6vw, 15px)" }}
-                >
-                    {activity.description}
-                </p>
+            {/* Description — disabled until schedule is finalized */}
+            {/*
+            <p
+                className="text-white/80 leading-relaxed font-light"
+                style={{ fontFamily: 'var(--font-code-pro)', fontSize: "clamp(12px, 1.6vw, 15px)" }}
+            >
+                {activity.description}
+            </p>
+            */}
             </div>
         </div>
     );

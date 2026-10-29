@@ -249,7 +249,7 @@ const activities = [
 
   {
 
-    title: "Arcade",
+    title: "TBD",
 
     startDate: "2026-01-24T21:00:00",
 
@@ -263,7 +263,7 @@ const activities = [
 
   {
 
-    title: "Hacking Ends",
+    title: "TBD",
 
     startDate: "2026-01-25T09:00:00",
 
@@ -275,7 +275,7 @@ const activities = [
 
   {
 
-    title: "Judging",
+    title: "TBD",
 
     startDate: "2026-01-25T10:00:00",
 
@@ -289,7 +289,7 @@ const activities = [
 
   {
 
-    title: "Shark Tank",
+    title: "TBD",
 
     startDate: "2026-01-25T13:30:00",
 

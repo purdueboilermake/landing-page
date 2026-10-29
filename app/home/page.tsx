@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>BoilerMake XIII</title>
+      <title>BoilerMake XIV</title>
       <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -34,10 +34,10 @@ export default function Home() {
         href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Dosis:wght@200..800&family=Inter:wght@100..900&display=swap"
         rel="stylesheet"
       />
-      <meta name="title" content="BoilerMake XIII" />
+      <meta name="title" content="BoilerMake XIV" />
       <meta
         name="description"
-        content="Purdue University's flagship hackathon, BoilerMake, is back in January 2026."
+        content="Purdue University's flagship hackathon, BoilerMake, is back in January 2027. Leave Your Mark."
       />
       <meta
         name="keywords"
@@ -155,7 +155,7 @@ export default function Home() {
                 textShadow: '0px 0px 15px #FFDE00',
               }}
             >
-              COMING JANUARY 2026
+              January 2027. Leave Your Mark.
             </h2>
             <h1 
               className="text-center mb-12"
@@ -169,7 +169,7 @@ export default function Home() {
                 textShadow: '0px 0px 15px #FFDE00',
               }}
             >
-              BOILERMAKE XIII
+              BOILERMAKE XIV
             </h1>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a

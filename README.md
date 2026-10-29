@@ -20,6 +20,10 @@ Site-wide routes (header/footer, about, etc.) live alongside:
 The current homepage hero displays only the **Interest Form** button.
 Its destination is set by `INTEREST_FORM_URL` in `app/page.tsx`.
 
+Current promotional copy: **January 2027. Leave Your Mark.** Shared search
+and social descriptions live in `app/layout.tsx`; `/home` also has its own
+description and promotional heading.
+
 ## Adding a new year
 
 When the next hackathon kicks off, copy the most recent year's

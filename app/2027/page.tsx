@@ -1,405 +1,294 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import Header from "@/app/2027/components/HeaderBM14";
-
 import AboutSection from "@/app/2027/components/AboutSectionBM14";
-
 import FAQSection from "@/app/2027/components/FAQSectionBM14";
-
-// BM14: retained for disabled JSX block below (restoration is one flag change).
 import JudgesSection from "@/app/2027/components/JudgesSectionBM14";
-
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
-
 import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
-
 import { TypingProvider } from "@/context/TypingContext";
-
-// BM14: retained for disabled JSX block below (restoration is one flag change).
 import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
-
-// BM14 TEMP HIDDEN: import SponsorCard from "@/app/2027/components/SponsorCardBM14";
-
+import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 import Image from "next/image";
-
 // import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
 
-import 
-
-
 /**
-
  * The Rough Tex backdrop is painted once, by the connector band that starts at
-
- * 570vh. The footer's Transition.png is opaque and overlaps upwards from
-
+ * BAND_TOP. The footer's Transition.png is opaque and overlaps upwards from
  * 1028vh - 25vw, so it would otherwise cut the texture off well before the
-
  * purple actually begins. A second element re-draws the same texture on top of
-
  * that graphic, which only lines up if both use an identical, centred
-
  * background size and the overlay shifts the image up by the distance between
-
  * the band's top and its own (458vh - 25vw).
-
  */
-
 const TEX_SIZE = "100vw auto";
 
+/**
+ * Temporarily hide the Schedule + Judges sections.
+ * Set to true to bring them back — all desktop vertical positions below
+ * automatically revert to the original layout.
+ */
+const SHOW_SCHEDULE_AND_JUDGES = false;
 
+// Desktop vertical positions. With Schedule + Judges hidden, everything below
+// About slides up by the space those two sections used to take.
+// (To move the FAQ + everything under it further, raise the vh and px numbers
+// of BAND_TOP, FAQ_TOP and SPONSORS_TOP by the same amount.)
+// Hidden-mode values match the layout where the purple -> Rough Tex transition
+// looked seamless: texture band starts 20vh/150px above the FAQ, uses max() with a
+// px fallback like every other section (so it never drifts on short viewports),
+// tiles vertically, and runs all the way behind the footer.
+const BAND_TOP = SHOW_SCHEDULE_AND_JUDGES ? "700vh" : "max(295vh, 2420px)";
+const FAQ_TOP = SHOW_SCHEDULE_AND_JUDGES ? "max(720vh, 6000px)" : "max(315vh, 2570px)";
+const SPONSORS_TOP = SHOW_SCHEDULE_AND_JUDGES ? "max(845vh, 7150px)" : "max(455vh, 3720px)";
+// Taller than before so all 17 past sponsors fit without overflowing.
+const SPONSORS_H = SHOW_SCHEDULE_AND_JUDGES ? "clamp(860px, 80vh, 980px)" : "clamp(1250px, 145vh, 1550px)";
+const FOOTER_EXTRA = SHOW_SCHEDULE_AND_JUDGES ? "220px" : "420px";
+const MAIN_H = `calc(${SPONSORS_TOP} + ${SPONSORS_H} + ${FOOTER_EXTRA})`;
+// Texture band runs from BAND_TOP to the very bottom of <main>.
+const BAND_H = SHOW_SCHEDULE_AND_JUDGES ? "485vh" : `calc(${MAIN_H} - ${BAND_TOP})`;
 
 interface DecorImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-
   label?: string;
-
 }
-
-
 
 function DecorImage({ label, style, className, ...props }: DecorImageProps) {
-
   const [broken, setBroken] = useState(false);
 
-
-
   if (broken) {
-
     return (
-
       <div
-
         className={className}
-
         style={{
-
           ...style,
-
           pointerEvents: "none",
-
           display: "flex",
-
           alignItems: "center",
-
           justifyContent: "center",
-
           textAlign: "center",
-
           padding: "0.5rem",
-
           border: "2px dashed rgba(255, 255, 255, 0.35)",
-
           borderRadius: "12px",
-
           background: "rgba(255, 255, 255, 0.04)",
-
           color: "rgba(255, 255, 255, 0.5)",
-
           fontFamily: "var(--font-code-pro, sans-serif)",
-
           fontSize: "0.7rem",
-
           fontWeight: 600,
-
           textTransform: "uppercase",
-
           letterSpacing: "0.08em",
-
         }}
-
       >
-
         {label}
-
       </div>
-
     );
-
   }
 
-
-
   return (
-
     <img
-
       {...props}
-
-      style={{ ...style, pointerEvents: 'none' }}
-
+      style={{ ...style, pointerEvents: "none" }}
       className={className}
-
       onError={() => setBroken(true)}
-
     />
-
   );
-
 }
 
-
-
-/* BM14 TEMP HIDDEN: current BM XIV sponsors (restore when ready).
 const silverSponsors = [
-
   {
-
     name: "Salesforce",
-
     logo: "/assets/sponsors/salesforce.png",
-
     url: "https://www.salesforce.com/",
-
   },
-
 ];
-
-
 
 const bronzeSponsors = [
-
   {
-
     name: "Keytos",
-
     logo: "/assets/sponsors/keytos.svg",
-
     url: "https://www.keytos.io/",
-
   },
-
   {
-
     name: "Caterpillar",
-
     logo: "/assets/sponsors/cat.png",
-
     url: "https://www.caterpillar.com/",
-
   },
-
   {
-
     name: "Lovable",
-
     logo: "/assets/sponsors/lovable.png",
-
     url: "https://lovable.dev/",
-
   },
-
   {
-
     name: "Purdue RCAC",
-
     logo: "/assets/sponsors/RCAC_Logo.png",
-
     url: "https://www.rcac.purdue.edu/",
-
     logoScale: 1.28,
-
     logoOffsetY: 10,
-
   },
-
   {
-
     name: "CS Department",
-
     logo: "/assets/sponsors/PurdueCS.svg",
-
     url: "https://www.cs.purdue.edu/",
-
     logoScale: 1.28,
-
     logoOffsetY: 10,
-
   },
-
   {
-
     name: "Maritime",
-
     logo: "/assets/sponsors/maritime.png",
-
     url: "https://maritime.sh/",
-
   },
-
 ];
 
+/**
+ * Temporary: show the BM XII "Past Sponsors" grid instead of the current
+ * Salesforce / bronze sponsors. Set to false to bring the old block back.
+ */
+const SHOW_PAST_SPONSORS = true;
 
+type PastSponsor = {
+  name: string;
+  href: string;
+  src: string;
+  // "contain" = normal logo (h-16), "oversized" = big logo clipped inside the card, "tall" = taller logo (Blip)
+  variant?: "contain" | "oversized" | "tall";
+  width?: number;
+  height?: number;
+};
 
-
-// BM14: Schedule data retained (only referenced in disabled JSX block).
-
-*/
-
-// BM14 TEMP: show the 17 BM XII sponsors until updated sponsor list is approved.
-const bmXiiSponsors = [
-  { name: "CAT", logo: "/assets/sponsors/cat.png", url: "https://www.caterpillar.com/" },
-  { name: "SFAB", logo: "/assets/sponsors/SFAB.png", url: "https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html" },
-  { name: "Purdue CS", logo: "/assets/sponsors/PurdueCS.svg", url: "https://www.cs.purdue.edu/" },
-  { name: "D.E. Shaw", logo: "/assets/sponsors/deshaw.png", url: "https://www.deshaw.com/" },
-  { name: "RCAC", logo: "/assets/sponsors/RCAC_Logo.png", url: "https://www.rcac.purdue.edu/" },
-  { name: "CoE", logo: "/assets/sponsors/coe.svg", url: "https://engineering.purdue.edu/Engr" },
-  { name: "Roboflow", logo: "/assets/sponsors/roboflow.png", url: "https://roboflow.com/" },
-  { name: "Runpod", logo: "/assets/sponsors/runpod_color.png", url: "https://www.runpod.io/" },
-  { name: "Purdue Innovates", logo: "/assets/sponsors/purdue_innovates.png", url: "https://purdueinnovates.org/" },
-  { name: "Klaviyo", logo: "/assets/sponsors/klaviyo.png", url: "https://www.klaviyo.com/" },
-  { name: "Blip", logo: "/assets/sponsors/blip.png", url: "https://www.blippayments.com/" },
-  { name: "Sync", logo: "/assets/sponsors/sync.png", url: "https://sync.so/" },
-  { name: "Modal", logo: "/assets/sponsors/modal.svg", url: "https://modal.com/" },
-  { name: "Taco Bell", logo: "/assets/sponsors/TacoBell.svg", url: "https://www.tacobell.com/" },
-  { name: "Cartesia", logo: "/assets/sponsors/cartesia.svg", url: "https://www.cartesia.ai/" },
-  { name: "Warp", logo: "/assets/sponsors/warp.png", url: "https://www.warp.dev/" },
-  { name: "Wolfram", logo: "/assets/sponsors/wolfram.png", url: "https://www.wolfram.com/" },
+const pastSponsors: PastSponsor[] = [
+  { name: "CAT", href: "https://www.caterpillar.com/", src: "/assets/sponsors/cat.png" },
+  { name: "SFAB", href: "https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html", src: "/assets/sponsors/SFAB.png" },
+  { name: "Purdue CS", href: "https://www.cs.purdue.edu/", src: "/assets/sponsors/PurdueCS.svg", variant: "oversized", width: 160, height: 127 },
+  { name: "D.E. Shaw", href: "https://www.deshaw.com/", src: "/assets/sponsors/deshaw.png" },
+  { name: "RCAC", href: "https://www.rcac.purdue.edu/", src: "/assets/sponsors/RCAC_Logo.png", variant: "oversized", width: 223, height: 176 },
+  { name: "CoE", href: "https://engineering.purdue.edu/Engr", src: "/assets/sponsors/coe.svg", variant: "oversized", width: 160, height: 127 },
+  { name: "Roboflow", href: "https://roboflow.com/", src: "/assets/sponsors/roboflow.png" },
+  { name: "Runpod", href: "https://www.runpod.io/", src: "/assets/sponsors/runpod_color.png" },
+  { name: "Purdue Innovates", href: "https://purdueinnovates.org/", src: "/assets/sponsors/purdue_innovates.png" },
+  { name: "Klaviyo", href: "https://www.klaviyo.com/", src: "/assets/sponsors/klaviyo.png" },
+  { name: "Blip", href: "https://www.blippayments.com/", src: "/assets/sponsors/blip.png", variant: "tall" },
+  { name: "Sync", href: "https://sync.so/", src: "/assets/sponsors/sync.png" },
+  { name: "Modal", href: "https://modal.com/", src: "/assets/sponsors/modal.svg" },
+  { name: "Taco Bell", href: "https://www.tacobell.com/", src: "/assets/sponsors/TacoBell.svg" },
+  { name: "Cartesia", href: "https://www.cartesia.ai/", src: "/assets/sponsors/cartesia.svg" },
+  { name: "Warp", href: "https://www.warp.dev/", src: "/assets/sponsors/warp.png" },
+  { name: "Wolfram", href: "https://www.wolfram.com/", src: "/assets/sponsors/wolfram.png" },
 ];
 
+function PastSponsorCard({ sponsor }: { sponsor: PastSponsor }) {
+  const oversized = sponsor.variant === "oversized";
+  return (
+    <a
+      href={sponsor.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center"
+    >
+      <div
+        className={`graffiti-sponsor-card ${
+          oversized ? "relative overflow-hidden " : ""
+        }bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F]`}
+      >
+        {oversized ? (
+          <Image
+            src={sponsor.src}
+            alt={sponsor.name}
+            className="absolute left-1/2 top-1/2 max-w-none object-contain"
+            style={{
+              width: "auto",
+              height: "100px",
+              transform: "translate(-50%, calc(-50% + 15%))",
+            }}
+            width={sponsor.width ?? 160}
+            height={sponsor.height ?? 127}
+            sizes="180px"
+          />
+        ) : (
+          <Image
+            src={sponsor.src}
+            alt={sponsor.name}
+            className={`${sponsor.variant === "tall" ? "h-26" : "h-16"} w-auto object-contain`}
+            width={200}
+            height={64}
+            sizes="200px"
+          />
+        )}
+      </div>
+    </a>
+  );
+}
+
+// The schedule information
 const activities = [
-
   {
-
     title: "TBD",
-
     startDate: "2026-01-23T19:00:00",
-
     endDate: "2026-01-23T21:00:00",
-
     location: "Frances A. Cordova Recreational Sports Center",
-
     description: "Introduction to BoilerMake, event logistics, and ice breaker activities!",
-
   },
-
   {
-
     title: "TBD",
-
     startDate: "2026-01-24T21:00:00",
-
     endDate: "2026-01-24T23:00:00",
-
     location: "Frances A. Cordova Recreational Sports Center",
-
     description: "Hackers can take a break and enjoy some arcade games, eat some snacks, socialize, and win prizes!",
-
   },
-
   {
-
     title: "TBD",
-
     startDate: "2026-01-25T09:00:00",
-
     location: "Frances A. Cordova Recreational Sports Center",
-
     description: "Hackers finish up their projects and submit online for judging before the deadline. They have time to prepare presentations and demos for the judges.",
-
   },
-
   {
-
     title: "TBD",
-
     startDate: "2026-01-25T10:00:00",
-
     endDate: "2026-01-25T11:00:00",
-
     location: "Frances A. Cordova Recreational Sports Center",
-
     description: "A first round of judging where hackers are judged based on their submitted projects by our panel of judges.",
-
   },
-
   {
-
     title: "TBD",
-
     startDate: "2026-01-25T13:30:00",
-
     endDate: "2026-01-25T15:30:00",
-
     location: "Frances A. Cordova Recreational Sports Center",
-
     description: "The finalists present their projects to a panel of judges in a Shark Tank-style format for final evaluation. Awards and prizes are given out to the winners.",
-
   },
-
 ];
 
 const questions = [
-
   {
-
     question: "What is a Hackathon?",
-
     answer:
-
       "The BoilerMake hackathon is a 36-hour event where you can learn, build, and share a cool technology-based project! On top of your project work, you'll get free food, swag, and opportunities to win some of our $4,000 in prizes offered! We offer numerous events and activities as well to keep the fun going, and provide a platform to network with companies in the tech sector and other like-minded individuals from numerous backgrounds.",
-
   },
-
   {
-
     question:
-
       "Who can attend and how much experience do I need to participate?",
-
     answer:
-
       "Any undergraduate university student age 18 or older from any school or major can attend BoilerMake! No experience or technical background is required to participate, and we have mentors on site to assist with any technical needs. We also have unique and enriching experiences available to more skilled hackers, with special technologies and tech talks offered.",
-
   },
-
   {
-
     question: "How does the application process work?",
-
     answer:
-
       "Once applications open, try to submit as soon as possible, make sure to write thoughtful responses in the application, and provide a good resume you want recruiters to see — these are sent to tech companies! Once your application is submitted, you can add your team members through the Teams portal — applicants in a Team will be preferred. After you are accepted through one of our acceptance rounds, you are REQUIRED to RSVP to attend the event. If you are Waitlisted, you are REQUIRED to RSVP to the waitlist to have a good chance at getting a spot. More details will be sent out based on your situation.",
-
   },
-
   {
-
     question: "What projects can I make at BoilerMake?",
-
     answer:
-
       "You can build any project you want at BoilerMake! We have no strict project requirements, other than that it was built at the hackathon itself. Every year, we see a wide variety of technologies used and various applications for projects, and even see hardware-based projects — the possibilities are endless!",
-
   },
-
   {
-
     question: "Does BoilerMake offer travel reimbursements?",
-
     answer:
-
       "Unfortunately, BoilerMake is not able to offer travel reimbursements at this time to those attending from other universities. We do provide all meals while you are at the hackathon, and offer parking to those who need it. The BoilerMake hackathon venue will be open during the entire duration of the hackathon, and there are many nearby locations which can offer housing over the course of the two nights.",
-
   },
-
 ];
 
-
-
-
-
 function App() {
-
-  // BM14 TEMPORARILY HIDDEN: event selection is only needed by Schedule.
-  // const [activeEventId, setActiveEventId] = useState<number>(0);
-
+  const [activeEventId, setActiveEventId] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
   const [isMobile, setIsMobile] = useState(false);
-
-
 
   // Mobile sections may contain animated accordion panels or positioned cards.
   // Reserve space based on their actual visible bounds, including the final FAQ.
@@ -408,8 +297,8 @@ function App() {
 
     const layout = document.querySelector<HTMLElement>(".bm-layout");
     if (!layout) return;
-    const ids = ["about", "faq"] as const; // BM14: schedule section hidden
-    const baseSpacing = { about: 64, faq: 65 }; // BM14: remove schedule margin reservation
+    const ids = ["about", "schedule", "faq"] as const;
+    const baseSpacing = { about: 64, schedule: 38, faq: 65 };
     let frame = 0;
     let animationFrame = 0;
     let animationStart = 0;
@@ -435,19 +324,29 @@ function App() {
         });
 
         const extra = Math.max(0, Math.ceil(contentBottom - sectionRect.bottom));
-        const margin = `${baseSpacing[id] + extra}px`;
+        // About needs a gap at least as tall as the caution tape that hangs above #faq
+        // (top: -30vw), otherwise About's solid purple background covers the tape's top edge.
+        const base = id === "about"
+          ? Math.max(baseSpacing.about, Math.round(window.innerWidth * 0.3))
+          : baseSpacing[id];
+        const margin = `${base + extra}px`;
         if (section.style.marginBottom !== margin) section.style.marginBottom = margin;
       }
 
-      // One continuous texture surface across FAQ, Sponsors, and Footer (Schedule/Judges hidden).
+      // One continuous texture surface across FAQ, Sponsors, and Footer (Judges stays purple above FAQ).
       // Measuring these edges also keeps it aligned when FAQ panels expand.
       const faqSection = layout.querySelector<HTMLElement>("#faq");
       const texture = layout.querySelector<HTMLElement>(".mobile-rough-continuous");
       if (faqSection && texture) {
         const layoutTop = layout.getBoundingClientRect().top;
-        // Tape.png sits at top: -30vw above #faq; start the dark backdrop right at the caution tape
-        const tapeOffset = Math.round(window.innerWidth * 0.28);
-        const start = Math.max(0, Math.round(faqSection.getBoundingClientRect().top - layoutTop - tapeOffset));
+        // Start the texture right where the purple About section ends. The texture's own top
+        // gradient (see CSS) fades from that exact purple, so there is no hard edge; the
+        // caution tape (top: -30vw above #faq) then lands inside the fade.
+        const aboutSection = layout.querySelector<HTMLElement>("#about");
+        const startEdge = aboutSection
+          ? aboutSection.getBoundingClientRect().bottom
+          : faqSection.getBoundingClientRect().top - Math.round(window.innerWidth * 0.28);
+        const start = Math.max(0, Math.round(startEdge - layoutTop));
         const top = `${start}px`;
         if (texture.style.top !== top) texture.style.top = top;
       }
@@ -469,7 +368,7 @@ function App() {
     };
     const observer = new ResizeObserver(scheduleUpdate);
     const mutation = new MutationObserver(scheduleUpdate);
-    layout.querySelectorAll("#about, #faq, #sponsors, #footer, #about *, #faq *")
+    layout.querySelectorAll("#about, #schedule, #faq, #judges, #sponsors, #footer, #about *, #schedule *, #faq *")
       .forEach((el) => observer.observe(el));
     mutation.observe(layout, { subtree: true, childList: true, attributes: true, attributeFilter: ["aria-expanded", "class"] });
     const faq = layout.querySelector("#faq");
@@ -493,9 +392,7 @@ function App() {
   }, [isMobile]);
 
   // --- Buildings scroll wobble (commented out for now) ---
-
   // const buildingsRef = useRef<HTMLDivElement>(null);
-
   // useEffect(() => {
   //   let lastScrollY = window.scrollY;
   //   let velocity = 0;
@@ -537,155 +434,81 @@ function App() {
   //     cancelAnimationFrame(rafId);
   //   };
   // }, []);
-
   // --- end Buildings wobble ---
 
-
-
   useEffect(() => {
-
     setIsLoaded(true);
-
-
 
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
 
-
-
     checkMobile();
-
     window.addEventListener("resize", checkMobile);
 
-
-
     return () => {
-
       window.removeEventListener("resize", checkMobile);
-
     };
-
   }, []);
 
-
-
   useEffect(() => {
-
     // Run after hydration + next paint
-
     const nudge = () => {
-
       // Dispatch synthetic scroll/resize to observers
-
       window.dispatchEvent(new Event("resize"));
-
       window.dispatchEvent(new Event("scroll"));
 
       // Tiny scroll jiggle to guarantee intersection recalculation
-
       const x = window.scrollX,
-
         y = window.scrollY;
-
       window.scrollTo(x, y + 1);
-
       window.scrollTo(x, y);
-
     };
-
-
 
     // Initial nudge
-
     const t1 = setTimeout(nudge, 0);
-
     // Nudge again after images/styles settle
-
     const t2 = setTimeout(nudge, 250);
 
-
-
     // Also nudge when page becomes visible (reloads from bfcache, etc.)
-
     const onVis = () => {
-
       if (document.visibilityState === "visible") {
-
         nudge();
-
       }
-
     };
-
     document.addEventListener("visibilitychange", onVis);
 
-
-
     return () => {
-
       clearTimeout(t1);
-
       clearTimeout(t2);
-
       document.removeEventListener("visibilitychange", onVis);
-
     };
-
   }, []);
 
-
-
-  /* BM14 TEMPORARILY HIDDEN: schedule event click handler
   const handleEventClick = (id: number) => {
-
     if (id === activeEventId) {
-
       setActiveEventId(0);
-
     } else {
-
       setActiveEventId(id);
-
     }
-
   };
-  */
 
   return (
-
     <TypingProvider>
-
       <>
-
         <link
-
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-
           rel="stylesheet"
-
         />
-
         <div className="App font-dosis relative" style={{ background: " #3B344B ", minHeight: "100vh" }}>
 
-
-
           {/* Header floats over the scene so the sky reaches the true top */}
-
           <div className="absolute inset-x-0 top-0 z-[200]">
-
             <Header />
-
           </div>
 
-
-
           {/* Spray paint cursor trail — activates when scrolled past hero (commented out for now) */}
-
           {/* <SprayPaintOverlay /> */}
-
-
-
 
           {/* Mobile & Tablet layout: content flows naturally with tailored hero sizing */}
           <style>{`
@@ -714,10 +537,13 @@ function App() {
             .bm-layout > .mobile-rough-continuous {
               display: block !important;
               background-color: #292526;
-              background-image: url('/imagesbm14/faq/Rough%20Tex.png');
-              background-position: center top;
-              background-size: 100vw auto;
-              background-repeat: repeat-y;
+              /* top gradient fades the purple About section into the texture (no hard line) */
+              background-image:
+                linear-gradient(to bottom, #3B344B 0%, rgba(59,52,75,0.85) 25%, rgba(41,37,38,0) 100%),
+                url('/imagesbm14/faq/Rough%20Tex.png');
+              background-position: center top, center top;
+              background-size: 100% 160px, 100vw auto;
+              background-repeat: no-repeat, repeat-y;
               bottom: 0 !important;
               height: auto !important;
             }
@@ -744,20 +570,31 @@ function App() {
               background: #3B344B;
               z-index: 8;
             }
-            /* BM14 HIDDEN: old mobile #schedule spacing intentionally removed. */
+            .bm-layout > #schedule {
+              min-height: 0 !important;
+              height: auto !important;
+              padding: 28px 0 32px !important;
+              margin-bottom: 38px;
+              z-index: 7;
+            }
             .bm-layout > #faq {
               min-height: auto !important;
               height: auto !important;
               display: block !important;
               visibility: visible !important;
               padding: 20px 0 5px;
-              margin-top: 32px; /* BM14 ADJUST: lower mobile FAQ; texture follows automatically */
               margin-bottom: 24px;
               z-index: 6;
               overflow: visible !important;
               background: transparent;
             }
-            /* BM14 HIDDEN: old mobile #judges spacing intentionally removed. */
+            .bm-layout > #judges {
+              min-height: 0 !important;
+              height: auto !important;
+              padding: 16px 24px 32px;
+              background-color: #3B344B;
+              z-index: 5;
+            }
             .bm-layout > #sponsors {
               min-height: 380px !important;
               height: auto !important;
@@ -800,60 +637,35 @@ function App() {
         `}</style>
 
           {/* Main content container with CSS Grid layout */}
-
           <main
-
             className="w-full main-content bm-layout"
-
-            style={{ height: isMobile ? "auto" : "calc(max(455vh, 3720px) + clamp(1250px, 145vh, 1550px) + 420px)", overflow: "visible" /* BM14 FIX: never clip bottom texture / footer */ }}
-
+            style={{
+              height: isMobile ? "auto" : MAIN_H,
+              overflow: "visible", // never clip the bottom texture / footer
+            }}
           >
-
             {/* Seamless connector: one continuous Rough Tex backdrop running
-
                 from just before FAQ all the way to the top of the
-
                 footer, covering Sponsors and the empty band between
-
                 them. FAQ and Sponsors are deliberately transparent so this is
-
                 the only thing painting that backdrop — when they each painted
-
                 their own, the texture stopped dead at the FAQ section's bottom
-
                 edge and left a hard line. The gradient on top fades the purple
-
                 page above into the texture. Sits behind all section content. */}
-
             <div
-
               aria-hidden
-
               className="absolute inset-x-0 pointer-events-none z-0 rough-texture-band"
-
               style={{
-
-                top: "max(295vh, 2420px)", // BM14 ADJUST: texture transition moved down with FAQ
-
-                height: "calc(max(455vh, 3720px) + clamp(1250px, 145vh, 1550px) + 420px - max(295vh, 2420px))", // BM14 ADJUST: extend dark backdrop behind entire footer
-
+                top: BAND_TOP,
+                height: BAND_H,
                 backgroundColor: "#292526",
-
                 backgroundImage:
-
                   "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
-
-                backgroundRepeat: "no-repeat, repeat-y", // BM14 FIX: tile Rough Tex through sponsors and footer
-
+                backgroundRepeat: "no-repeat, repeat-y", // tile Rough Tex through sponsors + footer
                 backgroundSize: `100% 12vh, ${TEX_SIZE}`,
-
                 backgroundPosition: "center top, center top",
-
               }}
-
             />
-
-
 
             {/* Mobile/Tablet: a single background surface avoids texture seams between sections. */}
             <div
@@ -863,17 +675,11 @@ function App() {
             />
 
             {/* Hero Section — BoilerMake XIV skyline scene */}
-
             <section
-
               id="hero"
-
               className="hero-section relative w-full overflow-hidden"
-
               style={
-
                 {
-
                   // Hero Section Height (controls how tall the sky is)
                   height: "140vh",
 
@@ -910,7 +716,6 @@ function App() {
                 } as React.CSSProperties
               }
             >
-
               {/* Sky — base gradient (anchored to bottom) and clouds/stars overlay */}
               <div
                 className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
@@ -959,182 +764,94 @@ function App() {
                 </div>
               </div>
 
-
-
               {/* SKYLINE — full-bleed, exact aspect ratio, bottom-anchored */}
-
               <div
-
                 className="pointer-events-none absolute inset-x-0 z-[3] w-full"
-
                 style={{
-
                   aspectRatio: "1652 / 1080",
-
                   bottom: "calc(-1 * var(--scene-drop))",
-
                 }}
-
               >
-
                 {/* Desktop: Anchored Billboard with scaffolding legs (lg screens only, >= 1024px) */}
-
                 <div
-
                   className="hidden lg:block absolute left-1/2 z-[1] -translate-x-1/2"
-
                   style={{
-
                     bottom: "var(--bb-y)",
-
                     width: "var(--bb-w)",
-
                     containerType: "inline-size",
-
                   }}
-
                 >
-
                   <Image
-
                     src="/imagesbm14/landing/Billboard.webp"
-
                     alt="BoilerMake XIV"
-
                     width={2000}
-
                     height={1277}
-
                     priority
-
                     draggable={false}
-
                     className="h-auto w-full select-none"
-
                   />
 
-
-
                   {/* Sign copy — date above the painted panel */}
-
                   <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center">
-
                     <h2
-
                       style={{
-
                         fontFamily: "var(--font-code-pro)",
-
                         fontWeight: 400,
-
                         fontSize: "3.4cqi",
-
                         letterSpacing: "0.1em",
-
                         color: "#E8E4DA",
-
                         marginBottom: "0.5em",
-
                       }}
-
                     >
-
                       January 22nd - 24th, 2027
-
                     </h2>
-
                   </div>
-
                 </div>
 
-
-
                 {/* Mobile & Tablet: Floating Billboard (hidden on desktop lg) */}
-
                 <div
-
                   className="lg:hidden absolute left-1/2 z-[3] -translate-x-1/2"
-
                   style={{
-
                     bottom: "var(--bb-y-active)",
-
                     width: "var(--bb-w-active)",
-
                     containerType: "inline-size",
-
                   }}
-
                 >
-
                   <div className="relative w-full" style={{ aspectRatio: "2000 / 654" }}>
-
                     <Image
-
                       src="/imagesbm14/landing/Billboard Floating.webp"
-
                       alt="BoilerMake XIV"
-
                       width={2000}
-
                       height={654}
-
                       priority
-
                       draggable={false}
-
                       className="h-auto w-full select-none"
-
                     />
 
-
-
                     {/* Sign copy — date above mobile billboard */}
-
                     <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
-
                       <h2
-
                         style={{
-
                           fontFamily: "var(--font-code-pro)",
-
                           fontWeight: 400,
-
                           fontSize: "4.5cqi",
-
                           letterSpacing: "0.1em",
-
                           color: "#E8E4DA",
-
                           marginBottom: "0.5em",
-
                         }}
-
                       >
-
                         January 22nd - 24th, 2027
-
                       </h2>
-
                     </div>
 
-
-
                     {/* Mobile & Tablet Button centered on floating board */}
-
                     <div
-
                       className="absolute inset-x-[6%] flex justify-center"
-
                       style={{ top: "var(--btn-y-active)" }}
-
                     >
-
                       <a
                         // href="https://boilermake-apply.web.app"
-                        //href = "https://apply.boilermake.org/"
-                        href = "https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
@@ -1154,81 +871,44 @@ function App() {
                       >
                         Interest Form
                       </a>
-
                     </div>
-
                   </div>
-
                 </div>
-
-
 
                 {/* Buildings — sit on top of the sign, wobble on scroll (commented out for now) */}
-
                 <div
-
                   // ref={buildingsRef}
-
                   className="absolute inset-0 z-[2]"
-
                   style={{
-
                     transform: "scaleX(1.04) skewX(0deg)",
-
                     transformOrigin: "center bottom",
-
                     willChange: "transform",
-
                   }}
-
                 >
-
                   <Image
-
                     src="/imagesbm14/landing/Buildings.webp"
-
                     alt=""
-
                     fill
-
                     priority
-
                     sizes="100vw"
-
                     draggable={false}
-
                     className="select-none object-cover object-bottom"
-
                   />
-
                 </div>
 
-
-
                 {/* Desktop Button layer — stacked above the buildings for lg desktop */}
-
                 <div
-
                   className="hidden lg:block absolute left-1/2 z-[3] -translate-x-1/2"
-
                   style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "2000 / 1277", containerType: "inline-size" }}
-
                 >
-
                   {/* Same inset as the sign copy, so the button shares the panel's box */}
-
                   <div
-
                     className="absolute inset-x-[6%] flex justify-center"
-
                     style={{ top: "var(--btn-y)" }}
-
                   >
-
                     <a
                       // href="https://boilermake-apply.web.app"
-                      // href = "https://apply.boilermake.org/"
-                      href = "https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                      href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
@@ -1248,143 +928,69 @@ function App() {
                     >
                       Interest Form
                     </a>
-
                   </div>
-
                 </div>
-
-
-
               </div>
-
-
-
-
 
               {/* Foreground ledge */}
-
               <div
-
                 className="pointer-events-none absolute inset-x-0 z-[7] w-full"
-
                 style={{
-
                   height: "var(--ledge-h)",
-
                   bottom: "calc(-1 * var(--scene-drop))",
-
                 }}
-
                 aria-hidden
-
               >
-
                 <div
-
                   aria-hidden
-
                   className="pointer-events-none absolute inset-x-0 bottom-0 z-[8]"
-
                   style={{
-
                     height: "clamp(120px, 22vh, 280px)",
-
                     background:
-
                       "linear-gradient(to bottom, rgba(59,52,75,0) 0%, rgba(59,52,75,0.25) 30%, rgba(59,52,75,0.75) 65%, #3B344B 100%)",
-
                   }}
-
-
-
                 />
-
-
-
-
-
-
 
                 <Image
-
                   src="/imagesbm14/landing/Front_Buildings.webp"
-
                   alt=""
-
                   fill
-
                   priority
-
                   sizes="100vw"
-
                   draggable={false}
-
                   className="select-none object-cover object-bottom"
-
-
-
                 />
-
-
-
               </div>
-
-
 
               {/* CTAs — above every scene layer, clear of the ledge */}
-
               <div
-
                 className="absolute inset-x-0 z-[20] flex flex-row flex-wrap items-center justify-center gap-6 px-4"
-
                 style={{ bottom: "calc(var(--ledge-h) + clamp(16px, 4vh, 56px))" }}
-
               >
-
                 {/* <ApplyButton
-
                   text="APPLY NOW!"
-
                   link="https://boilermake-apply.web.app"
-
                   size="large"
-
                   variant="hero"
-
                   className="mr-0"
-
                 />
 
                 <ApplyButton
-
                   text="INTEREST FORM"
-
                   link="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
-
                   size="large"
-
                   variant="hero"
-
                   className="mr-0"
-
                 />
 
                 <ApplyButton
-
                   text="MENTOR FORM"
-
                   link="https://docs.google.com/forms/d/e/1FAIpQLScmpc_zMGpQGUZy5vFkCTbkh-3oG5WMKx1eDES1ziDDSOqA4w/viewform"
-
                   size="large"
-
                   variant="hero"
-
                   className="mr-0"
-
                 /> */}
-
               </div>
-
             </section>
 
             {/* =========================================================================
@@ -1407,115 +1013,68 @@ function App() {
             />
 
             {/* About Section */}
-
             <section
-
               id="about"
-
               className="w-full flex items-center justify-center absolute"
-
               style={{ top: isMobile ? "163vh" : "max(155vh, 1280px)" }}
-
             >
-
               <AboutSection />
-
             </section>
 
+            {/* Schedule Section — hidden while SHOW_SCHEDULE_AND_JUDGES is false */}
+            {SHOW_SCHEDULE_AND_JUDGES && (
+              <section
+                id="schedule"
+                className="w-full absolute flex items-start justify-center"
+                style={{
+                  // Protected with max() so when viewport height shrinks (e.g. Inspect Element is open),
+                  // Schedule never collides or overlaps with the About card above it.
+                  top: isMobile ? "260vh" : "max(272vh, 2250px)",
+                  minHeight: isMobile ? "215vh" : "248vh",
+                  paddingTop: isMobile ? "2rem" : "7rem",
+                  paddingBottom: isMobile ? "2rem" : "10rem",
+                }}
+              >
+                {/* Wider responsive frame = less cramped cards/content on desktop,
+                    while keeping comfortable gutters on smaller screens. */}
+                <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-8 lg:px-12 xl:px-16">
+                  <ScheduleSection activities={activities} />
+                </div>
+              </section>
+            )}
 
-
-            {/* BM14 TEMPORARILY HIDDEN: SCHEDULE + JUDGES.
-                Both sections are intentionally disabled until their content is ready.
-                Restore by changing `false &&` to `true &&` below, then
-                reassess desktop spacing and mobile layout rules. */}
-            {false && (
-              <>
-            {/* Schedule Section */}
-
-            <section
-
-              id="schedule"
-
-              className="w-full absolute flex items-start justify-center"
-
-              style={{
-
-                // Protected with max() so when viewport height shrinks (e.g. Inspect Element is open),
-
-                // Schedule never collides or overlaps with the About card above it.
-
-                top: isMobile ? "260vh" : "max(272vh, 2250px)",
-
-                minHeight: isMobile ? "215vh" : "248vh",
-
-                paddingTop: isMobile ? "2rem" : "7rem",
-
-                paddingBottom: isMobile ? "2rem" : "10rem",
-
-              }}
-
-            >
-
-              {/* Wider responsive frame = less cramped cards/content on desktop,
-
-                  while keeping comfortable gutters on smaller screens. */}
-
-              <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-8 lg:px-12 xl:px-16">
-
-                <ScheduleSection activities={activities} />
-
-              </div>
-
-            </section>
-
-
-
-            {/* ================= Judges Section ================= */}
-            <section
-              id="judges"
-              aria-labelledby="judges-heading"
-              className="absolute w-full px-8"
-              style={{ top: isMobile ? "535vh" : "580vh" }}
-            >
-              <JudgesSection />
-            </section>
-
-
-              </>
+            {/* ================= Judges Section (hidden while SHOW_SCHEDULE_AND_JUDGES is false) ================= */}
+            {SHOW_SCHEDULE_AND_JUDGES && (
+              <section
+                id="judges"
+                aria-labelledby="judges-heading"
+                className="absolute w-full px-8"
+                style={{ top: isMobile ? "535vh" : "580vh" }}
+              >
+                <JudgesSection />
+              </section>
             )}
 
             {/* FAQ Section */}
-
             <section
-
               id="faq"
-
               className="w-full absolute overflow-x-clip"
-
               style={{
-                top: isMobile ? "auto" : "max(315vh, 2570px)", // BM14 ADJUST: lower FAQ ~15vh / 120px
+                top: isMobile ? "auto" : FAQ_TOP,
                 minHeight: isMobile ? "auto" : "clamp(980px, 112vh, 1160px)",
               }}
-
             >
-
               <FAQSection questions={questions} />
-
             </section>
 
-
-
-
-
             {/* ================= Sponsors Section ================= */}
-
             <section
               id="sponsors"
               className="absolute flex flex-col items-center justify-center w-full overflow-x-clip pointer-events-none"
               style={{
-                top: isMobile ? "auto" : "max(455vh, 3720px)", // BM14 ADJUST: preserve FAQ-to-Sponsors spacing
-                minHeight: isMobile ? "auto" : "clamp(1250px, 145vh, 1550px)",
-                height: isMobile ? "auto" : "clamp(1250px, 145vh, 1550px)",
+                top: isMobile ? "auto" : SPONSORS_TOP,
+                minHeight: isMobile ? "auto" : SPONSORS_H,
+                height: isMobile ? "auto" : SPONSORS_H,
               }}
             >
               {/* Screen-edge anchored decorations */}
@@ -1548,125 +1107,70 @@ function App() {
               />
 
               <div className="flex flex-col items-center justify-center gap-10 max-w-[1406px] w-full px-6 sm:px-8 pt-8 pb-16 relative">
+                {SHOW_PAST_SPONSORS ? (
+                  <>
+                    <h2
+                      className="relative z-10 text-center uppercase"
+                      style={{
+                        fontFamily:
+                          "var(--font-owned), var(--font-sprite-graffiti), sans-serif",
+                        fontWeight: 900,
+                        fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                        lineHeight: 1.1,
+                        letterSpacing: "0.04em",
+                        color: "#FFE958",
+                        textShadow: "4px 4px 0 #DE7B14",
+                      }}
+                    >
+                      Past Sponsors
+                    </h2>
 
-                {/* BM14 TEMP: Past Sponsors heading replaces the original sponsors image.
-                    Uses the graffiti heading font shared with the Judges styling.
-                    Restore original asset when current-year sponsors go live. */}
-                <h2
-                  className="relative z-10 text-center uppercase"
-                  style={{
-                    fontFamily: "var(--font-owned), var(--font-sprite-graffiti), sans-serif",
-                    fontWeight: 900,
-                    fontSize: "clamp(2.5rem, 6vw, 5rem)",
-                    lineHeight: 1.1,
-                    letterSpacing: "0.04em",
-                    color: "#FFE958",
-                    textShadow: "4px 4px 0 #DE7B14",
-                  }}
-                >
-                  Past Sponsors
-                </h2>
-
-                {/* BM14 TEMP HIDDEN: original sponsor heading graphic.
+                    <div className="graffiti-sponsors relative z-10 flex flex-wrap justify-center items-center gap-6 md:gap-8 w-full max-w-6xl pointer-events-auto">
+                      {pastSponsors.map((sponsor) => (
+                        <PastSponsorCard key={sponsor.name} sponsor={sponsor} />
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                {/* Sponsors heading — this is a graphic asset from the design team */}
                 <DecorImage
                   src="/imagesbm14/spons/icon-2.png"
                   alt="Sponsors"
                   label="Sponsors heading"
                   className="relative z-10 h-auto"
-                  style={{ width: "clamp(280px, 42vw, 676px)", aspectRatio: "676 / 357" }}
+                  style={{
+                    width: "clamp(280px, 42vw, 676px)",
+                    aspectRatio: "676 / 357",
+                  }}
                 />
-                */}
 
-                {/* BM14 TEMP HIDDEN: original BM XIV sponsor cards; restore when ready.
                 <div className="relative z-10 flex flex-col items-center gap-8 w-full pointer-events-auto">
-
                   <div className="flex items-center justify-center">
-
                     {silverSponsors.map((sponsor) => (
-
                       <SponsorCard key={sponsor.name} sponsor={sponsor} size="lg" />
-
                     ))}
-
                   </div>
 
                   <div className="grid grid-cols-2 min-[720px]:grid-cols-3 justify-items-center gap-5">
-
                     {bronzeSponsors.map((sponsor) => (
-
                       <SponsorCard key={sponsor.name} sponsor={sponsor} size="sm" />
-
                     ))}
-
                   </div>
-
                 </div>
-
-
-
-
-                */}
-
-                {/* BM14 TEMP: BM XII logos. Original BM XII individual image sizing and offsets preserved. */}
-                <div className="relative z-10 flex flex-wrap items-center justify-center gap-6 md:gap-8 w-full pointer-events-auto">
-                  {bmXiiSponsors.map((sponsor) => {
-                    // BM14 TEMP: These three logos use the exact positioning from the BM XII page.
-                    const specialLogo = ["Purdue CS", "RCAC", "CoE"].includes(sponsor.name);
-                    return (
-                      <a
-                        key={sponsor.name}
-                        href={sponsor.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={sponsor.name}
-                        className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center"
-                      >
-                        <div className={`graffiti-sponsor-card relative bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F] ${specialLogo ? "overflow-hidden" : ""}`}>
-                          {specialLogo ? (
-                            <Image
-                              src={sponsor.logo}
-                              alt={sponsor.name}
-                              className="absolute left-1/2 top-1/2 max-w-none object-contain"
-                              style={{
-                                width: "auto",
-                                height: "100px",
-                                transform: "translate(-50%, calc(-50% + 15%))",
-                              }}
-                              width={sponsor.name === "RCAC" ? 223 : 160}
-                              height={sponsor.name === "RCAC" ? 176 : 127}
-                              sizes="180px"
-                            />
-                          ) : (
-                            <Image
-                              src={sponsor.logo}
-                              alt={sponsor.name}
-                              className={`${sponsor.name === "Blip" ? "h-26" : "h-16"} w-auto object-contain`}
-                              width={200}
-                              height={64}
-                              sizes="200px"
-                            />
-                          )}
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-
+                  </>
+                )}
               </div>
-
             </section>
 
-
-
             {/* ================= Footer Section ================= */}
-
             <section
               id="footer"
               className="flex flex-col items-center justify-center w-full gap-5 relative z-[100]"
               style={{
-                top: isMobile ? "auto" : "calc(max(455vh, 3720px) + clamp(1250px, 145vh, 1550px) - 2px)", // BM14 ADJUST: follow Sponsors
+                top: isMobile ? "auto" : `calc(${SPONSORS_TOP} + ${SPONSORS_H} - 2px)`,
                 position: isMobile ? "relative" : "absolute",
-                backgroundColor: "transparent", // BM14 FIX: shared Rough Tex band is continuous behind footer
+                backgroundColor: "transparent",
                 minHeight: isMobile ? "auto" : "clamp(140px, 16vh, 200px)",
                 paddingTop: "clamp(36px, 4vw, 56px)",
                 paddingBottom: "clamp(32px, 4vw, 48px)",
@@ -1677,7 +1181,6 @@ function App() {
                 <a
                   href="https://www.instagram.com/boilermake/?hl=en"
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
-                  
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -1689,7 +1192,6 @@ function App() {
                   href="https://www.linkedin.com/company/boilermake/"
                   className="text-[#FFDE00] hover:text-[#FFE958] transition duration-300 ease-in-out"
                   aria-label="LinkedIn"
-                  
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -1697,36 +1199,25 @@ function App() {
                 </a>
               </div>
 
-              {/* BM14 ADJUST: give the Made with heart credit more breathing room below social icons. */}
+              {/* Made with love text */}
               <p
-                className="text-center text-white relative z-10 mt-10 md:mt-14"
+                className="text-center text-white relative z-10"
                 style={{
                   fontFamily: "var(--font-code-pro)",
                   fontWeight: 300,
                   fontSize: "clamp(14px, 1.5vw, 18px)",
                   letterSpacing: "0.05em",
                   color: "#FFFFFF",
-                  
                 }}
               >
                 Made with 💛 by the BoilerMake XIV team
               </p>
             </section>
-
           </main>
-
-
-
         </div>
-
       </>
-
     </TypingProvider>
-
   );
-
 }
 
-
-
-// export default App;
+export default App;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Header from "@/app/2027/components/HeaderBM14";
 
@@ -8,6 +8,7 @@ import AboutSection from "@/app/2027/components/AboutSectionBM14";
 
 import FAQSection from "@/app/2027/components/FAQSectionBM14";
 
+// BM14: retained for disabled JSX block below (restoration is one flag change).
 import JudgesSection from "@/app/2027/components/JudgesSectionBM14";
 
 import ApplyButton from "@/app/2027/components/ApplyButtonBM14";
@@ -16,14 +17,16 @@ import ActivityPreview from "@/app/2027/components/ActivityPreviewBM14";
 
 import { TypingProvider } from "@/context/TypingContext";
 
+// BM14: retained for disabled JSX block below (restoration is one flag change).
 import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 
-import SponsorCard from "@/app/2027/components/SponsorCardBM14";
+// BM14 TEMP HIDDEN: import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 
 import Image from "next/image";
 
 // import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
 
+import 
 
 
 /**
@@ -138,6 +141,7 @@ function DecorImage({ label, style, className, ...props }: DecorImageProps) {
 
 
 
+/* BM14 TEMP HIDDEN: current BM XIV sponsors (restore when ready).
 const silverSponsors = [
 
   {
@@ -229,7 +233,30 @@ const bronzeSponsors = [
 
 
 
-{/*The schedule information*/ }
+// BM14: Schedule data retained (only referenced in disabled JSX block).
+
+*/
+
+// BM14 TEMP: show the 17 BM XII sponsors until updated sponsor list is approved.
+const bmXiiSponsors = [
+  { name: "CAT", logo: "/assets/sponsors/cat.png", url: "https://www.caterpillar.com/" },
+  { name: "SFAB", logo: "/assets/sponsors/SFAB.png", url: "https://www.purdue.edu/sao/Fundraising/SOGA%20and%20SFAB.html" },
+  { name: "Purdue CS", logo: "/assets/sponsors/PurdueCS.svg", url: "https://www.cs.purdue.edu/" },
+  { name: "D.E. Shaw", logo: "/assets/sponsors/deshaw.png", url: "https://www.deshaw.com/" },
+  { name: "RCAC", logo: "/assets/sponsors/RCAC_Logo.png", url: "https://www.rcac.purdue.edu/" },
+  { name: "CoE", logo: "/assets/sponsors/coe.svg", url: "https://engineering.purdue.edu/Engr" },
+  { name: "Roboflow", logo: "/assets/sponsors/roboflow.png", url: "https://roboflow.com/" },
+  { name: "Runpod", logo: "/assets/sponsors/runpod_color.png", url: "https://www.runpod.io/" },
+  { name: "Purdue Innovates", logo: "/assets/sponsors/purdue_innovates.png", url: "https://purdueinnovates.org/" },
+  { name: "Klaviyo", logo: "/assets/sponsors/klaviyo.png", url: "https://www.klaviyo.com/" },
+  { name: "Blip", logo: "/assets/sponsors/blip.png", url: "https://www.blippayments.com/" },
+  { name: "Sync", logo: "/assets/sponsors/sync.png", url: "https://sync.so/" },
+  { name: "Modal", logo: "/assets/sponsors/modal.svg", url: "https://modal.com/" },
+  { name: "Taco Bell", logo: "/assets/sponsors/TacoBell.svg", url: "https://www.tacobell.com/" },
+  { name: "Cartesia", logo: "/assets/sponsors/cartesia.svg", url: "https://www.cartesia.ai/" },
+  { name: "Warp", logo: "/assets/sponsors/warp.png", url: "https://www.warp.dev/" },
+  { name: "Wolfram", logo: "/assets/sponsors/wolfram.png", url: "https://www.wolfram.com/" },
+];
 
 const activities = [
 
@@ -303,8 +330,6 @@ const activities = [
 
 ];
 
-
-
 const questions = [
 
   {
@@ -367,7 +392,8 @@ const questions = [
 
 function App() {
 
-  const [activeEventId, setActiveEventId] = useState<number>(0);
+  // BM14 TEMPORARILY HIDDEN: event selection is only needed by Schedule.
+  // const [activeEventId, setActiveEventId] = useState<number>(0);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -382,8 +408,8 @@ function App() {
 
     const layout = document.querySelector<HTMLElement>(".bm-layout");
     if (!layout) return;
-    const ids = ["about", "schedule", "faq"] as const;
-    const baseSpacing = { about: 64, schedule: 38, faq: 65 };
+    const ids = ["about", "faq"] as const; // BM14: schedule section hidden
+    const baseSpacing = { about: 64, faq: 65 }; // BM14: remove schedule margin reservation
     let frame = 0;
     let animationFrame = 0;
     let animationStart = 0;
@@ -413,7 +439,7 @@ function App() {
         if (section.style.marginBottom !== margin) section.style.marginBottom = margin;
       }
 
-      // One continuous texture surface across FAQ, Sponsors, and Footer (Judges stays purple above FAQ).
+      // One continuous texture surface across FAQ, Sponsors, and Footer (Schedule/Judges hidden).
       // Measuring these edges also keeps it aligned when FAQ panels expand.
       const faqSection = layout.querySelector<HTMLElement>("#faq");
       const texture = layout.querySelector<HTMLElement>(".mobile-rough-continuous");
@@ -443,7 +469,7 @@ function App() {
     };
     const observer = new ResizeObserver(scheduleUpdate);
     const mutation = new MutationObserver(scheduleUpdate);
-    layout.querySelectorAll("#about, #schedule, #faq, #judges, #sponsors, #footer, #about *, #schedule *, #faq *")
+    layout.querySelectorAll("#about, #faq, #sponsors, #footer, #about *, #faq *")
       .forEach((el) => observer.observe(el));
     mutation.observe(layout, { subtree: true, childList: true, attributes: true, attributeFilter: ["aria-expanded", "class"] });
     const faq = layout.querySelector("#faq");
@@ -610,6 +636,7 @@ function App() {
 
 
 
+  /* BM14 TEMPORARILY HIDDEN: schedule event click handler
   const handleEventClick = (id: number) => {
 
     if (id === activeEventId) {
@@ -623,10 +650,7 @@ function App() {
     }
 
   };
-
-
-
-
+  */
 
   return (
 
@@ -720,31 +744,20 @@ function App() {
               background: #3B344B;
               z-index: 8;
             }
-            .bm-layout > #schedule {
-              min-height: 0 !important;
-              height: auto !important;
-              padding: 28px 0 32px !important;
-              margin-bottom: 38px;
-              z-index: 7;
-            }
+            /* BM14 HIDDEN: old mobile #schedule spacing intentionally removed. */
             .bm-layout > #faq {
               min-height: auto !important;
               height: auto !important;
               display: block !important;
               visibility: visible !important;
               padding: 20px 0 5px;
+              margin-top: 32px; /* BM14 ADJUST: lower mobile FAQ; texture follows automatically */
               margin-bottom: 24px;
               z-index: 6;
               overflow: visible !important;
               background: transparent;
             }
-            .bm-layout > #judges {
-              min-height: 0 !important;
-              height: auto !important;
-              padding: 16px 24px 32px;
-              background-color: #3B344B;
-              z-index: 5;
-            }
+            /* BM14 HIDDEN: old mobile #judges spacing intentionally removed. */
             .bm-layout > #sponsors {
               min-height: 380px !important;
               height: auto !important;
@@ -792,7 +805,7 @@ function App() {
 
             className="w-full main-content bm-layout"
 
-            style={{ height: `calc(${isMobile ? "1000vh" : "max(845vh, 7150px) + clamp(860px, 80vh, 980px)"} + 220px)`, overflow: "hidden" }}
+            style={{ height: isMobile ? "auto" : "calc(max(455vh, 3720px) + clamp(1250px, 145vh, 1550px) + 420px)", overflow: "visible" /* BM14 FIX: never clip bottom texture / footer */ }}
 
           >
 
@@ -820,9 +833,9 @@ function App() {
 
               style={{
 
-                top: "700vh",
+                top: "max(295vh, 2420px)", // BM14 ADJUST: texture transition moved down with FAQ
 
-                height: "485vh",
+                height: "calc(max(455vh, 3720px) + clamp(1250px, 145vh, 1550px) + 420px - max(295vh, 2420px))", // BM14 ADJUST: extend dark backdrop behind entire footer
 
                 backgroundColor: "#292526",
 
@@ -830,7 +843,7 @@ function App() {
 
                   "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
 
-                backgroundRepeat: "no-repeat, no-repeat",
+                backgroundRepeat: "no-repeat, repeat-y", // BM14 FIX: tile Rough Tex through sponsors and footer
 
                 backgroundSize: `100% 12vh, ${TEX_SIZE}`,
 
@@ -1120,6 +1133,7 @@ function App() {
 
                       <a
                         // href="https://boilermake-apply.web.app"
+                        //href = "https://apply.boilermake.org/"
                         href = "https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -1213,6 +1227,7 @@ function App() {
 
                     <a
                       // href="https://boilermake-apply.web.app"
+                      // href = "https://apply.boilermake.org/"
                       href = "https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1409,6 +1424,12 @@ function App() {
 
 
 
+            {/* BM14 TEMPORARILY HIDDEN: SCHEDULE + JUDGES.
+                Both sections are intentionally disabled until their content is ready.
+                Restore by changing `false &&` to `true &&` below, then
+                reassess desktop spacing and mobile layout rules. */}
+            {false && (
+              <>
             {/* Schedule Section */}
 
             <section
@@ -1460,6 +1481,9 @@ function App() {
             </section>
 
 
+              </>
+            )}
+
             {/* FAQ Section */}
 
             <section
@@ -1469,7 +1493,7 @@ function App() {
               className="w-full absolute overflow-x-clip"
 
               style={{
-                top: isMobile ? "auto" : "max(720vh, 6000px)",
+                top: isMobile ? "auto" : "max(315vh, 2570px)", // BM14 ADJUST: lower FAQ ~15vh / 120px
                 minHeight: isMobile ? "auto" : "clamp(980px, 112vh, 1160px)",
               }}
 
@@ -1489,9 +1513,9 @@ function App() {
               id="sponsors"
               className="absolute flex flex-col items-center justify-center w-full overflow-x-clip pointer-events-none"
               style={{
-                top: isMobile ? "auto" : "max(845vh, 7150px)",
-                minHeight: isMobile ? "auto" : "clamp(860px, 80vh, 980px)",
-                height: isMobile ? "auto" : "clamp(860px, 80vh, 980px)",
+                top: isMobile ? "auto" : "max(455vh, 3720px)", // BM14 ADJUST: preserve FAQ-to-Sponsors spacing
+                minHeight: isMobile ? "auto" : "clamp(1250px, 145vh, 1550px)",
+                height: isMobile ? "auto" : "clamp(1250px, 145vh, 1550px)",
               }}
             >
               {/* Screen-edge anchored decorations */}
@@ -1525,28 +1549,35 @@ function App() {
 
               <div className="flex flex-col items-center justify-center gap-10 max-w-[1406px] w-full px-6 sm:px-8 pt-8 pb-16 relative">
 
-                {/* Sponsors heading — this is a graphic asset from the design team */}
-
-                <DecorImage
-
-                  src="/imagesbm14/spons/icon-2.png"
-
-                  alt="Sponsors"
-
-                  label="Sponsors heading"
-
-                  className="relative z-10 h-auto"
-
+                {/* BM14 TEMP: Past Sponsors heading replaces the original sponsors image.
+                    Uses the graffiti heading font shared with the Judges styling.
+                    Restore original asset when current-year sponsors go live. */}
+                <h2
+                  className="relative z-10 text-center uppercase"
                   style={{
-
-                    width: "clamp(280px, 42vw, 676px)",
-
-                    aspectRatio: "676 / 357",
-
+                    fontFamily: "var(--font-owned), var(--font-sprite-graffiti), sans-serif",
+                    fontWeight: 900,
+                    fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                    lineHeight: 1.1,
+                    letterSpacing: "0.04em",
+                    color: "#FFE958",
+                    textShadow: "4px 4px 0 #DE7B14",
                   }}
+                >
+                  Past Sponsors
+                </h2>
 
+                {/* BM14 TEMP HIDDEN: original sponsor heading graphic.
+                <DecorImage
+                  src="/imagesbm14/spons/icon-2.png"
+                  alt="Sponsors"
+                  label="Sponsors heading"
+                  className="relative z-10 h-auto"
+                  style={{ width: "clamp(280px, 42vw, 676px)", aspectRatio: "676 / 357" }}
                 />
+                */}
 
+                {/* BM14 TEMP HIDDEN: original BM XIV sponsor cards; restore when ready.
                 <div className="relative z-10 flex flex-col items-center gap-8 w-full pointer-events-auto">
 
                   <div className="flex items-center justify-center">
@@ -1574,6 +1605,53 @@ function App() {
 
 
 
+                */}
+
+                {/* BM14 TEMP: BM XII logos. Original BM XII individual image sizing and offsets preserved. */}
+                <div className="relative z-10 flex flex-wrap items-center justify-center gap-6 md:gap-8 w-full pointer-events-auto">
+                  {bmXiiSponsors.map((sponsor) => {
+                    // BM14 TEMP: These three logos use the exact positioning from the BM XII page.
+                    const specialLogo = ["Purdue CS", "RCAC", "CoE"].includes(sponsor.name);
+                    return (
+                      <a
+                        key={sponsor.name}
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={sponsor.name}
+                        className="basis-[calc(50%-12px)] md:basis-[calc(25%-24px)] flex justify-center"
+                      >
+                        <div className={`graffiti-sponsor-card relative bg-[#F5F0E8] border-[3px] border-[#21152F] rounded-2xl p-4 hover:-translate-y-1 transition-[transform,background-color,box-shadow] duration-200 ease-out flex items-center justify-center w-full h-24 shadow-[5px_5px_0_#21152F] ${specialLogo ? "overflow-hidden" : ""}`}>
+                          {specialLogo ? (
+                            <Image
+                              src={sponsor.logo}
+                              alt={sponsor.name}
+                              className="absolute left-1/2 top-1/2 max-w-none object-contain"
+                              style={{
+                                width: "auto",
+                                height: "100px",
+                                transform: "translate(-50%, calc(-50% + 15%))",
+                              }}
+                              width={sponsor.name === "RCAC" ? 223 : 160}
+                              height={sponsor.name === "RCAC" ? 176 : 127}
+                              sizes="180px"
+                            />
+                          ) : (
+                            <Image
+                              src={sponsor.logo}
+                              alt={sponsor.name}
+                              className={`${sponsor.name === "Blip" ? "h-26" : "h-16"} w-auto object-contain`}
+                              width={200}
+                              height={64}
+                              sizes="200px"
+                            />
+                          )}
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+
               </div>
 
             </section>
@@ -1586,9 +1664,9 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-center w-full gap-5 relative z-[100]"
               style={{
-                top: isMobile ? "auto" : "calc(max(845vh, 7150px) + clamp(860px, 80vh, 980px) - 2px)",
+                top: isMobile ? "auto" : "calc(max(455vh, 3720px) + clamp(1250px, 145vh, 1550px) - 2px)", // BM14 ADJUST: follow Sponsors
                 position: isMobile ? "relative" : "absolute",
-                backgroundColor: "transparent",
+                backgroundColor: "transparent", // BM14 FIX: shared Rough Tex band is continuous behind footer
                 minHeight: isMobile ? "auto" : "clamp(140px, 16vh, 200px)",
                 paddingTop: "clamp(36px, 4vw, 56px)",
                 paddingBottom: "clamp(32px, 4vw, 48px)",
@@ -1619,9 +1697,9 @@ function App() {
                 </a>
               </div>
 
-              {/* Made with love text */}
+              {/* BM14 ADJUST: give the Made with heart credit more breathing room below social icons. */}
               <p
-                className="text-center text-white relative z-10"
+                className="text-center text-white relative z-10 mt-10 md:mt-14"
                 style={{
                   fontFamily: "var(--font-code-pro)",
                   fontWeight: 300,
@@ -1651,4 +1729,4 @@ function App() {
 
 
 
-export default App;
+// export default App;

@@ -132,7 +132,7 @@ export default function AboutSection() {
           </p>
           <div className="w-full text-left">
             <a
-              href="https://hackp.ac/coc"
+              href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-6 underline text-yellow-300 hover:text-yellow-200 transition-colors duration-200"

@@ -850,8 +850,8 @@ function App() {
                       style={{ top: "var(--btn-y-active)" }}
                     >
                       <a
-                        // href="https://boilermake-apply.web.app"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                        href="https://apply.boilermake.org/"
+                        //href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
@@ -869,7 +869,7 @@ function App() {
                           boxShadow: "0 4px 0 rgba(0,0,0,0.35)",
                         }}
                       >
-                        Interest Form
+                        Apply Now
                       </a>
                     </div>
                   </div>
@@ -907,8 +907,8 @@ function App() {
                     style={{ top: "var(--btn-y)" }}
                   >
                     <a
-                      // href="https://boilermake-apply.web.app"
-                      href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
+                      href="https://apply.boilermake.org/"
+                      //href="https://docs.google.com/forms/d/e/1FAIpQLScaVyVFmm3Jwn1225SjUPCInKD9-MLZhxIRtQT8o4y1HAxs_g/viewform"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pointer-events-auto whitespace-nowrap transition-transform duration-200 hover:-translate-y-[2px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFE958] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
@@ -926,7 +926,7 @@ function App() {
                         boxShadow: "0 5px 0 rgba(0,0,0,0.35)",
                       }}
                     >
-                      Interest Form
+                      Apply Now
                     </a>
                   </div>
                 </div>

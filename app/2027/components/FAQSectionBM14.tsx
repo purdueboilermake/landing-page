@@ -13,7 +13,7 @@ type FAQSectionProps = {
 export default function FAQSectionBM14({ questions }: FAQSectionProps) {
   return (
     <div
-      className="relative w-full overflow-x-clip flex flex-col items-center"
+      className="faq-bm14-frame relative w-full overflow-x-clip flex flex-col items-center"
       style={{
         height: "clamp(980px, 112vh, 1160px)",
         minHeight: "clamp(980px, 112vh, 1160px)",
@@ -21,6 +21,16 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
         paddingBottom: "clamp(20px, 3vw, 40px)",
       }}
     >
+      {/* Fixed desktop height pins the stickers on this note below 1024px. */}
+      <style>{`
+        @media (max-width: 1023px) {
+          .faq-bm14-frame {
+            height: auto !important;
+            min-height: 0 !important;
+            padding-bottom: 220px !important;
+          }
+        }
+      `}</style>
       {/* Purple rough texture stipple — transition between purple backdrop and caution tape */}
       <img
         src="/imagesbm14/schedule/RoughTexPurple.png"
@@ -75,6 +85,37 @@ export default function FAQSectionBM14({ questions }: FAQSectionProps) {
       {/* Main accordion content */}
       <div className="relative z-[5] w-full max-w-4xl px-6 sm:px-10">
         <FAQAccordian questions={questions} />
+        <p
+          className="text-center"
+          style={{
+            fontFamily: "var(--font-code-pro)",
+            fontWeight: 400,
+            fontSize: "clamp(0.95rem, 1.6vw, 1.2rem)",
+            lineHeight: 1.5,
+            marginTop: "clamp(1.5rem, 3vw, 2.25rem)",
+            color: "#E8E4DA",
+          }}
+        >
+          Feel free to email{" "}
+          <a
+            href="mailto:team@boilermake.org"
+            className="underline decoration-1 underline-offset-2 hover:text-[#FFE958]"
+            style={{ color: "#FFE42D" }}
+          >
+            team@boilermake.org
+          </a>{" "}
+          or DM us on Instagram{" "}
+          <a
+            href="https://www.instagram.com/boilermake/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-1 underline-offset-2 hover:text-[#FFE958]"
+            style={{ color: "#FFE42D" }}
+          >
+            @boilermake
+          </a>{" "}
+          for any other questions
+        </p>
       </div>
 
       {/* Left sticker cluster (green star → purple → blue crown) — pinned to fixed top so it stays static when questions toggle */}

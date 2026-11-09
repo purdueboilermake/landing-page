@@ -8,6 +8,46 @@
   }
 }
 
+/* Real text over the billboard art. Transparent fill so the painting
+   stays the picture; the text is what you highlight and copy. */
+.billboard-wordmark {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.billboard-word {
+  position: absolute;
+  display: block;
+  pointer-events: auto;
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.billboard-word svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.billboard-word text {
+  pointer-events: all;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.billboard-word text::selection,
+.billboard-word text::-moz-selection {
+  fill: transparent;
+  background: rgba(255, 233, 88, 0.55);
+}
+
 /* Root Colors */
  :root {
   --background: #3B344B;

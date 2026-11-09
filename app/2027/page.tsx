@@ -11,6 +11,7 @@ import { TypingProvider } from "@/context/TypingContext";
 import ScheduleSection from "@/app/2027/components/ScheduleSectionBM14";
 import SponsorCard from "@/app/2027/components/SponsorCardBM14";
 import Image from "next/image";
+import BillboardWordmark from "@/app/2027/components/BillboardWordmark";
 // import SprayPaintOverlay from "@/app/2027/components/SprayPaintOverlay";
 
 /**
@@ -391,6 +392,57 @@ function App() {
     };
   }, [isMobile]);
 
+  // Desktop sections are pinned with `top`, so an open answer moves the note
+  // down into Sponsors. Follow that overflow; closed, the shift stays 0.
+  useEffect(() => {
+    if (isMobile) return;
+
+    const layout = document.querySelector<HTMLElement>(".bm-layout");
+    const faq = document.querySelector<HTMLElement>("#faq");
+    const sponsors = document.querySelector<HTMLElement>("#sponsors");
+    const note = faq?.querySelector<HTMLElement>("p");
+    if (!layout || !faq || !sponsors || !note) return;
+
+    const GAP = 72;
+    let raf = 0;
+
+    const update = () => {
+      const current =
+        parseFloat(getComputedStyle(layout).getPropertyValue("--faq-shift")) || 0;
+      const naturalSponsorsTop = sponsors.getBoundingClientRect().top - current;
+      const shift = Math.max(
+        0,
+        Math.ceil(note.getBoundingClientRect().bottom + GAP - naturalSponsorsTop)
+      );
+      if (Math.abs(shift - current) > 1) {
+        layout.style.setProperty("--faq-shift", `${shift}px`);
+      }
+    };
+
+    const track = () => {
+      const start = performance.now();
+      const tick = () => {
+        update();
+        if (performance.now() - start < 450) raf = requestAnimationFrame(tick);
+      };
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(tick);
+    };
+
+    faq.addEventListener("click", track);
+    faq.addEventListener("transitionend", update);
+    window.addEventListener("resize", update);
+    update();
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      faq.removeEventListener("click", track);
+      faq.removeEventListener("transitionend", update);
+      window.removeEventListener("resize", update);
+      layout.style.removeProperty("--faq-shift");
+    };
+  }, [isMobile]);
+
   // --- Buildings scroll wobble (commented out for now) ---
   // const buildingsRef = useRef<HTMLDivElement>(null);
   // useEffect(() => {
@@ -640,7 +692,7 @@ function App() {
           <main
             className="w-full main-content bm-layout"
             style={{
-              height: isMobile ? "auto" : MAIN_H,
+              height: isMobile ? "auto" : `calc(${MAIN_H} + var(--faq-shift, 0px))`,
               overflow: "visible", // never clip the bottom texture / footer
             }}
           >
@@ -657,7 +709,7 @@ function App() {
               className="absolute inset-x-0 pointer-events-none z-0 rough-texture-band"
               style={{
                 top: BAND_TOP,
-                height: BAND_H,
+                height: `calc(${BAND_H} + var(--faq-shift, 0px))`,
                 backgroundColor: "#292526",
                 backgroundImage:
                   "linear-gradient(to bottom, #3B344B 0%, rgba(41,37,38,0) 100%), url('/imagesbm14/faq/Rough%20Tex.png')",
@@ -783,7 +835,7 @@ function App() {
                 >
                   <Image
                     src="/imagesbm14/landing/Billboard.webp"
-                    alt="BoilerMake XIV"
+                    alt=""
                     width={2000}
                     height={1277}
                     priority
@@ -794,6 +846,7 @@ function App() {
                   {/* Sign copy — date above the painted panel */}
                   <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center">
                     <h2
+                      className="pointer-events-auto cursor-text select-text"
                       style={{
                         fontFamily: "var(--font-code-pro)",
                         fontWeight: 400,
@@ -820,17 +873,19 @@ function App() {
                   <div className="relative w-full" style={{ aspectRatio: "2000 / 654" }}>
                     <Image
                       src="/imagesbm14/landing/Billboard Floating.webp"
-                      alt="BoilerMake XIV"
+                      alt=""
                       width={2000}
                       height={654}
                       priority
                       draggable={false}
                       className="h-auto w-full select-none"
                     />
+                    <BillboardWordmark variant="floating" />
 
                     {/* Sign copy — date above mobile billboard */}
                     <div className="absolute inset-x-[6%] bottom-full flex flex-col items-center justify-center text-center pb-2">
                       <h2
+                        className="pointer-events-auto cursor-text select-text"
                         style={{
                           fontFamily: "var(--font-code-pro)",
                           fontWeight: 400,
@@ -901,6 +956,7 @@ function App() {
                   className="hidden lg:block absolute left-1/2 z-[3] -translate-x-1/2"
                   style={{ bottom: "var(--bb-y)", width: "var(--bb-w)", aspectRatio: "2000 / 1277", containerType: "inline-size" }}
                 >
+                  <BillboardWordmark variant="anchored" />
                   {/* Same inset as the sign copy, so the button shares the panel's box */}
                   <div
                     className="absolute inset-x-[6%] flex justify-center"
@@ -1072,7 +1128,7 @@ function App() {
               id="sponsors"
               className="absolute flex flex-col items-center justify-center w-full overflow-x-clip pointer-events-none"
               style={{
-                top: isMobile ? "auto" : SPONSORS_TOP,
+                top: isMobile ? "auto" : `calc(${SPONSORS_TOP} + var(--faq-shift, 0px))`,
                 minHeight: isMobile ? "auto" : SPONSORS_H,
                 height: isMobile ? "auto" : SPONSORS_H,
               }}
@@ -1168,7 +1224,7 @@ function App() {
               id="footer"
               className="flex flex-col items-center justify-center w-full gap-5 relative z-[100]"
               style={{
-                top: isMobile ? "auto" : `calc(${SPONSORS_TOP} + ${SPONSORS_H} - 2px)`,
+                top: isMobile ? "auto" : `calc(${SPONSORS_TOP} + ${SPONSORS_H} - 2px + var(--faq-shift, 0px))`,
                 position: isMobile ? "relative" : "absolute",
                 backgroundColor: "transparent",
                 minHeight: isMobile ? "auto" : "clamp(140px, 16vh, 200px)",
